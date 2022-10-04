@@ -1,0 +1,32 @@
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
+
+import logoUNT from "../assets/logoUNT.png";
+
+const title = "Laboratorios Remotos";
+const username = "Nombre Apellido";
+
+function NavigationBar() {
+  return (
+    <Navbar className="bg-light">
+      <Container fluid>
+        <Navbar.Brand href="">
+          <img
+            alt=""
+            src={logoUNT}
+            width="65"
+            height="30"
+            className="d-inline-block align-top"
+          />
+          {"  " + title}
+        </Navbar.Brand>
+        <Navbar.Toggle />
+        <Navbar.Collapse className="justify-content-end">
+          <Navbar.Text>{username}</Navbar.Text>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+}
+
+export default NavigationBar;
