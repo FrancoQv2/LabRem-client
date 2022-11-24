@@ -5,15 +5,22 @@ import { useEnsayosUsuario } from "../../hooks/telecomunicaciones";
 //  @param {Array.<{Fecha:string, Hora:string, Azimut:number, Elevacion:number}>} arrayEnsayos
 
 /**
- * @param {number} idUsuarioActual
+ * @param {number} idUsuario
  */
-function TableWifi({ idLaboratorio, idUsuario }) {
+function TableRadio({ idLaboratorio, idUsuario }) {
   const { data, error, isLoading } = useEnsayosUsuario({
     idLaboratorio: idLaboratorio,
     idUsuario: idUsuario,
   });
 
-  const headers = ["Fecha", "Hora", "Azimut", "Elevacion"];
+  const headers = [
+    "Fecha",
+    "Hora",
+    "Modulación",
+    "Codificación",
+    "Intensidad Mínima",
+    "Intensidad Máxima",
+  ];
 
   return (
     <>
@@ -34,8 +41,10 @@ function TableWifi({ idLaboratorio, idUsuario }) {
                   <td>{indexRecord + 1}</td>
                   <td>{record.Fecha}</td>
                   <td>{record.Hora}</td>
-                  <td>{record.Azimut}</td>
-                  <td>{record.Elevacion}</td>
+                  <td>{record.Modulacion}</td>
+                  <td>{record.Codificacion}</td>
+                  <td>{record.IntensidadMin}</td>
+                  <td>{record.IntensidadMax}</td>
                 </tr>
               ))}
           </tbody>
@@ -49,4 +58,4 @@ function TableWifi({ idLaboratorio, idUsuario }) {
   );
 }
 
-export default TableWifi;
+export default TableRadio;

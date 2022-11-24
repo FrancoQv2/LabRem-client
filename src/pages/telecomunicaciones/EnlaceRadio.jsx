@@ -9,19 +9,19 @@ import Nav from "react-bootstrap/Nav";
 
 import LabInformation from "../../components/LabInformation";
 import LabVideoStreaming from "../../components/LabVideoStreaming";
-import FormWifi from "../../components/telecomunicaciones/FormWifi";
-import TableWifi from "../../components/telecomunicaciones/TableWifi";
+import FormRadio from "../../components/telecomunicaciones/FormRadio";
+import TableRadio from "../../components/telecomunicaciones/TableRadio";
 
-import imgWifi from "../../assets/wifi.jpg";
+import imgRadio from "../../assets/sdr.png";
 
 /**
  * @return Pagina del laboratorio de Enlace Wifi
  */
-function EnlaceWifi() {
+function EnlaceRadio() {
   const [showForm, setShowForm] = useState(true);
   const [showResults, setShowResults] = useState(false);
 
-  const idLabActual = 1;
+  const idLabActual = 2;
   const idUsuarioActual = 2;
 
   const onClickTabs = () => {
@@ -37,7 +37,7 @@ function EnlaceWifi() {
   return (
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
       <LabInformation
-        imagen={imgWifi}
+        imagen={imgRadio}
         idLabActual={idLabActual}
       ></LabInformation>
       <hr />
@@ -79,7 +79,7 @@ function EnlaceWifi() {
                 <Card id="lab-form">
                   <Card.Body>
                     <Card.Title>Ingrese los datos</Card.Title>
-                    <FormWifi idUsuario={idUsuarioActual} />
+                    <FormRadio idUsuario={idUsuarioActual} />
                   </Card.Body>
                 </Card>
               ) : null}
@@ -88,7 +88,7 @@ function EnlaceWifi() {
                 <Card id="lab-results">
                   <Card.Body>
                     <Card.Title>Ensayos realizados</Card.Title>
-                    <TableWifi
+                    <TableRadio
                       idLaboratorio={idLabActual}
                       idUsuario={idUsuarioActual}
                     />
@@ -103,4 +103,4 @@ function EnlaceWifi() {
   );
 }
 
-export default EnlaceWifi;
+export default EnlaceRadio;

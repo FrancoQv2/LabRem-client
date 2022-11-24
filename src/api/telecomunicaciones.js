@@ -4,24 +4,19 @@ import axios from "axios";
 const API_TELECO = "http://localhost:3030/api/teleco";
 
 //-----------------------------------------------------
-// Laboratorio - Enlace Wifi
+// Laboratorios - Teleco
 //-----------------------------------------------------
 
 /**
  *
- * @returns Informacion del Laboratorio de Telecomunicaciones - Enlace Wifi
+ * @returns Informacion de un Laboratorio de Telecomunicaciones segun su ID
  */
-export const getInformationWifi = async () => {
-  const { data } = await axios.get(`${API_TELECO}/1`);
-  return data;
-};
+export const getInformationLab = async ({ queryKey }) => {
+  const [_, { idLaboratorio }] = queryKey;
 
-/**
- *
- * @returns Todos los ensayos realizados en Enlace Wifi
- */
-export const getEnsayosWifi = async () => {
-  const { data } = await axios.get(`${API_TELECO}/wifi`);
+  const { data } = await axios.get(`${API_TELECO}/${idLaboratorio}`, {
+    idLaboratorio: idLaboratorio,
+  });
   return data;
 };
 
@@ -30,11 +25,28 @@ export const getEnsayosWifi = async () => {
  * @returns Todos los ensayos realizados en Enlace Wifi para un usuario especifico
  */
 export const getEnsayosUsuario = async ({ queryKey }) => {
-  const [_, { idUsuario }] = queryKey;
+  const [_, { idLaboratorio, idUsuario }] = queryKey;
 
-  const { data } = await axios.get(`${API_TELECO}/wifi/${idUsuario}`, {
+  const url = `${API_TELECO}/${idLaboratorio}/${idUsuario}`;
+
+  const { data } = await axios.get(url, {
+    idLaboratorio: idLaboratorio,
     idUsuario: idUsuario,
   });
+
+  return data;
+};
+
+//-----------------------------------------------------
+// Laboratorio - Enlace Wifi
+//-----------------------------------------------------
+
+/**
+ *
+ * @returns Todos los ensayos realizados en Enlace Wifi
+ */
+export const getEnsayosWifi = async () => {
+  const { data } = await axios.get(`${API_TELECO}/wifi`);
   return data;
 };
 
@@ -62,9 +74,40 @@ export const postEnsayoWifi = async ({ idUsuario, elevacion, azimut }) => {
 
 /**
  *
- * @returns Informacion del Laboratorio de Telecomunicaciones - Enlace Radio
+ * @returns Todos los ensayos realizados en Enlace Radio
  */
-export const getLabRadio = async () => {
-  const { data } = await axios.get(`${API_TELECO}/2`);
+export const getEnsayosRadio = async () => {
+  const { data } = await axios.get(`${API_TELECO}/radio`);
+  return data;
+};
+
+/**
+ *
+ * @param {Object} newEnsayo
+ * @param {number} newEnsayo.idUsuario
+ * @param {string} newEnsayo.modulacion
+ * @param {number} newEnsayo.codificacion
+ * @param {number} newEnsayo.intensidadMin
+ * @param {number} newEnsayo.intensidadMax
+ */
+export const postEnsayoRadio = async ({
+  idUsuario,
+  modulacion,
+  codificacion,
+  intensidadMin,
+  intensidadMax,
+}) => {
+  const newEnsayoRadio = {
+    idUsuario: idUsuario,
+    tipoModulacion: parseInt(modulacion),
+    tipoCodificacion: parseInt(codificacion),
+    intensidadMin: parseInt(intensidadMin),
+    intensidadMax: parseInt(intensidadMax),
+  };
+
+  console.log(newEnsayoRadio);
+
+  const { data } = await axios.post(`${API_TELECO}/radio`, newEnsayoRadio);
+  console.log(data);
   return data;
 };

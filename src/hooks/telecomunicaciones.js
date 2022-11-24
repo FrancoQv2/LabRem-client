@@ -1,29 +1,29 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import {
-  getInformationWifi,
+  getInformationLab,
   getEnsayosUsuario,
   postEnsayoWifi,
+  postEnsayoRadio,
 } from "../api/telecomunicaciones";
 
 const key = "telecomunicaciones";
 
+export function useInformationLab(idLabActual) {
+  return useQuery([key, { idLaboratorio: idLabActual }], getInformationLab);
+}
+
+export function useEnsayosUsuario({ idLaboratorio, idUsuario }) {
+  return useQuery(
+    [key, { idLaboratorio: idLaboratorio, idUsuario: idUsuario }],
+    getEnsayosUsuario
+  );
+}
+
 export function usePostEnsayoWifi() {
-  //   const queryClient = useQueryClient();
-
-  //   return useMutation(postEnsayoWifi, {
-  //     onSuccess: () => {
-  //       queryClient.invalidateQueries([key]);
-  //     },
-  //   });
-
   return useMutation(postEnsayoWifi);
 }
 
-export function useInformationWifi() {
-  return useQuery([key], getInformationWifi);
-}
-
-export function useEnsayosUsuario(idUsuarioActual) {
-  return useQuery([key, { idUsuario: idUsuarioActual }], getEnsayosUsuario);
+export function usePostEnsayoRadio() {
+  return useMutation(postEnsayoRadio);
 }

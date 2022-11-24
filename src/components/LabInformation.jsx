@@ -3,20 +3,14 @@ import Accordion from "react-bootstrap/Accordion";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import { useInformationWifi } from "../hooks/telecomunicaciones";
+import { useInformationLab } from "../hooks/telecomunicaciones";
 
 /**
- * @param {Object} obj
- * @param {string} obj.data.area
- * @param {string} obj.data.nombre
- * @param {object} obj.labImagen
- * @param {string} obj.labImagen.imgAlt
- * @param {string} obj.labImagen.imgSrc
- * @param {string} obj.data.descripcion
+ * @param {object} imagen
+ * @param {number} idLabActual
  */
-// function LabInformation({ data.area, data.nombre, labImagen, data.descripcion }) {
-function LabInformation({ imagen }) {
-  const { data, error, isLoading } = useInformationWifi();
+function LabInformation({ imagen, idLabActual }) {
+  const { data, error, isLoading } = useInformationLab(idLabActual);
 
   return (
     <>
