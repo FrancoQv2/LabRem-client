@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // const API = process.env.API_TELECO || "http://localhost:3030/api/teleco";
-const API_TELECO = "http://localhost:3030/api/teleco";
+const API_TELECO = "http://localhost:3033/api/teleco";
 
 //-----------------------------------------------------
 // Laboratorios - Teleco

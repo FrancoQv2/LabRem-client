@@ -22,7 +22,7 @@ function FormRadio({ idUsuario }) {
       { idUsuario, modulacion, codificacion, intensidadMin, intensidadMax },
       {
         onSuccess: () => {
-          setModulacion("");
+          setModulacion(0);
           setCodificacion(0);
           setIntensidadMin(0);
           setIntensidadMax(0);
@@ -47,7 +47,7 @@ function FormRadio({ idUsuario }) {
             </Col>
             <Col sm={4} lg={6}>
               <Form.Select aria-label="tipo-modulacion">
-                <option>-</option>
+                <option value={0}>-</option>
                 <option value={1}>4-QAM</option>
                 <option value={2}>8-QAM</option>
                 <option value={3}>16-QAM</option>
@@ -74,7 +74,7 @@ function FormRadio({ idUsuario }) {
             </Col>
             <Col sm={4} lg={6}>
               <Form.Select aria-label="tipo-codificacion">
-                <option>-</option>
+                <option value={0}>-</option>
                 <option value={1}>1</option>
                 <option value={2}>2</option>
                 <option value={3}>3</option>
@@ -98,7 +98,7 @@ function FormRadio({ idUsuario }) {
             </Col>
             <Col sm={4} lg={6}>
               <Form.Select aria-label="intensidad-min">
-                <option>-</option>
+                <option value={0}>-</option>
                 <option value={10}>10</option>
                 <option value={15}>15</option>
                 <option value={20}>20</option>
@@ -123,7 +123,7 @@ function FormRadio({ idUsuario }) {
             </Col>
             <Col sm={4} lg={6}>
               <Form.Select aria-label="intensidad-max">
-                <option>-</option>
+                <option value={0}>-</option>
                 <option value={50}>50</option>
                 <option value={80}>80</option>
                 <option value={100}>100</option>

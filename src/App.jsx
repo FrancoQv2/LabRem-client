@@ -5,6 +5,9 @@ import RootLayout from "./components/RootLayout.jsx";
 import EnlaceWifi from "./pages/telecomunicaciones/EnlaceWifi";
 import EnlaceRadio from "./pages/telecomunicaciones/EnlaceRadio";
 
+import LentesConvergentes from "./pages/fisica/LentesConvergentes";
+import LentesDivergentes from "./pages/fisica/LentesDivergentes";
+
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +22,16 @@ function App() {
             exact
             path="/telecomunicaciones/enlace-radio"
             element={<EnlaceRadio />}
+          ></Route>
+          <Route
+            exact
+            path="/fisica/lentes-convergentes"
+            element={<LentesConvergentes />}
+          ></Route>
+          <Route
+            exact
+            path="/fisica/lentes-divergentes"
+            element={<LentesDivergentes />}
           ></Route>
         </Routes>
       </RootLayout>
