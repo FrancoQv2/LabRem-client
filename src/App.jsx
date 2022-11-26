@@ -8,6 +8,9 @@ import EnlaceRadio from "./pages/telecomunicaciones/EnlaceRadio";
 import LentesConvergentes from "./pages/fisica/LentesConvergentes";
 import LentesDivergentes from "./pages/fisica/LentesDivergentes";
 
+import TxRxUART from "./pages/digital/TxRxUART";
+// import TxRxI2C from "./pages/digital/TxRxI2C";
+
 function App() {
   return (
     <BrowserRouter>
@@ -33,6 +36,8 @@ function App() {
             path="/fisica/lentes-divergentes"
             element={<LentesDivergentes />}
           ></Route>
+          <Route exact path="/digital/uart" element={<TxRxUART />}></Route>
+          {/* <Route exact path="/digital/i2c" element={<TxRxI2C />}></Route> */}
         </Routes>
       </RootLayout>
     </BrowserRouter>
