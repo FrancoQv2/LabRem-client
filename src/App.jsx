@@ -9,7 +9,7 @@ import LentesConvergentes from "./pages/fisica/LentesConvergentes";
 import LentesDivergentes from "./pages/fisica/LentesDivergentes";
 
 import TxRxUART from "./pages/digital/TxRxUART";
-// import TxRxI2C from "./pages/digital/TxRxI2C";
+import TxRxI2C from "./pages/digital/TxRxI2C";
 
 function App() {
   return (
@@ -37,7 +37,7 @@ function App() {
             element={<LentesDivergentes />}
           ></Route>
           <Route exact path="/digital/uart" element={<TxRxUART />}></Route>
-          {/* <Route exact path="/digital/i2c" element={<TxRxI2C />}></Route> */}
+          <Route exact path="/digital/i2c" element={<TxRxI2C />}></Route>
         </Routes>
       </RootLayout>
     </BrowserRouter>

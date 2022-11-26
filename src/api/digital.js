@@ -94,15 +94,17 @@ export const getEnsayosI2C = async () => {
  */
 export const postEnsayoI2C = async ({
   idUsuario,
-  distanciaLente,
-  distanciaLenteLente,
-  distanciaPantalla,
+  velocidad,
+  memoria,
+  readWrite,
+  mensaje,
 }) => {
   const newEnsayo = {
     idUsuario: idUsuario,
-    distanciaLente: parseInt(distanciaLente),
-    distanciaLenteLente: parseInt(distanciaLenteLente),
-    distanciaPantalla: parseInt(distanciaPantalla),
+    velocidad: parseInt(velocidad),
+    memoria: parseInt(memoria),
+    readWrite: parseInt(readWrite),
+    mensaje: mensaje,
   };
 
   const { data } = await axios.post(`${API_DIGITAL}/i2c`, newEnsayo);
