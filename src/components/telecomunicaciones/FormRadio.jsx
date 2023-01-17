@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 import { usePostEnsayoRadio } from "../../hooks/telecomunicaciones";
+import { submitSuccess, submitError } from "../../libs/alerts"; 
 
 function FormRadio({ idUsuario }) {
   const [modulacion, setModulacion] = useState("");
@@ -22,10 +23,14 @@ function FormRadio({ idUsuario }) {
       { idUsuario, modulacion, codificacion, intensidadMin, intensidadMax },
       {
         onSuccess: () => {
-          setModulacion(0);
-          setCodificacion(0);
-          setIntensidadMin(0);
-          setIntensidadMax(0);
+          // setModulacion(0);
+          // setCodificacion(0);
+          // setIntensidadMin(0);
+          // setIntensidadMax(0);
+          submitSuccess();
+        },
+        onError: () => {
+          submitError();
         },
       }
     );

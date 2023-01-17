@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
 
-import LabInformation from "../../components/LabInformation";
+import LabInformation from "../../components/telecomunicaciones/LabInformation";
 import LabVideoStreaming from "../../components/LabVideoStreaming";
 import FormWifi from "../../components/telecomunicaciones/FormWifi";
 import TableWifi from "../../components/telecomunicaciones/TableWifi";

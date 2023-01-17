@@ -22,7 +22,7 @@ function LabInformation({ imagen, idLabActual }) {
           <h4>{data.nombre}</h4>
           <hr />
 
-          <Accordion>
+          <Accordion defaultActiveKey={["0"]} alwaysOpen>
             <Accordion.Item eventKey="0" className="bg-light">
               <Accordion.Header>
                 <b>Marco teórico de la experiencia</b>

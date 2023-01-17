@@ -13,15 +13,7 @@ function TableUART({ idLaboratorio, idUsuario }) {
     idUsuario: idUsuario,
   });
 
-  const headers = [
-    "Fecha",
-    "Hora",
-    "Velocidad",
-    "Bits Datos",
-    "Bits Parada",
-    "Paridad",
-    "Mensaje",
-  ];
+  const headers = ["Fecha", "Hora", "Velocidad", "Pulsadores", "Mensaje"];
 
   return (
     <>
@@ -42,10 +34,8 @@ function TableUART({ idLaboratorio, idUsuario }) {
                   <td>{indexRecord + 1}</td>
                   <td>{record.Fecha}</td>
                   <td>{record.Hora}</td>
-                  <td>{record.velocidad}</td>
-                  <td>{record.bitsDatos}</td>
-                  <td>{record.bitsParada}</td>
-                  <td>{record.paridad ? "Par" : "Impar"}</td>
+                  <td>{`${record.velocidad} bps`}</td>
+                  <td>{record.pulsadores}</td>
                   <td>{record.mensaje}</td>
                 </tr>
               ))}

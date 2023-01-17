@@ -13,7 +13,7 @@ import LabVideoStreaming from "../../components/LabVideoStreaming";
 import FormUART from "../../components/digital/FormUART";
 import TableUART from "../../components/digital/TableUART";
 
-import image from "../../assets/lente-convergente.jpg";
+import image from "../../assets/uart.png";
 
 /**
  * @return Pagina del laboratorio de Enlace Wifi

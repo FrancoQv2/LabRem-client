@@ -22,7 +22,9 @@ function NavigationBar() {
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text>{username}</Navbar.Text>
+          <Navbar.Text>
+            <b>{username}</b>
+          </Navbar.Text>
         </Navbar.Collapse>
       </Container>
     </Navbar>

@@ -8,8 +8,8 @@ import Button from "react-bootstrap/Button";
 import { usePostEnsayoConvergentes } from "../../hooks/fisica";
 
 function FormConvergentes({ idUsuario }) {
-  const [distanciaLente, setDistanciaLente] = useState(0);
-  const [distanciaPantalla, setDistanciaPantalla] = useState(0);
+  const [distanciaLente, setDistanciaLente] = useState(120);
+  const [distanciaPantalla, setDistanciaPantalla] = useState(70);
 
   const { mutate, error, isLoading } = usePostEnsayoConvergentes();
 
@@ -49,12 +49,12 @@ function FormConvergentes({ idUsuario }) {
             </Col>
           </Row>
           <Row className="my-3">
-            <Col sm={4} lg={4}>
+            <Col sm={4} lg={6}>
               <span className="input-group-text" htmlFor="range-distanciaLente">
-                Distancia Lente [ mm ]
+                Distancia Foco - Lente [ mm ]
               </span>
             </Col>
-            <Col sm={4} lg={8}>
+            <Col sm={4} lg={6}>
               <Form.Control disabled type="text" value={distanciaLente} />
             </Col>
           </Row>
@@ -81,15 +81,15 @@ function FormConvergentes({ idUsuario }) {
             </Col>
           </Row>
           <Row className="my-3">
-            <Col sm={4} lg={4}>
+            <Col sm={4} lg={6}>
               <span
                 className="input-group-text"
                 htmlFor="range-distanciaPantalla"
               >
-                Distancia Pantalla [ mm ]
+                Distancia Lente - Pantalla [ mm ]
               </span>
             </Col>
-            <Col sm={4} lg={8}>
+            <Col sm={4} lg={6}>
               <Form.Control disabled type="text" value={distanciaPantalla} />
             </Col>
           </Row>

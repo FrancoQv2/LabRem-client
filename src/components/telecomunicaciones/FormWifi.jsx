@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 import { usePostEnsayoWifi } from "../../hooks/telecomunicaciones";
+import { submitSuccess, submitError } from "../../libs/alerts"; 
 
 function FormWifi({ idUsuario }) {
   const [elevacion, setElevacion] = useState(0);
@@ -20,8 +21,12 @@ function FormWifi({ idUsuario }) {
       { idUsuario, elevacion, azimut },
       {
         onSuccess: () => {
-          setElevacion(0);
-          setAzimut(0);
+          // setElevacion(0);
+          // setAzimut(0);
+          submitSuccess();
+        },
+        onError: () => {
+          submitError();
         },
       }
     );

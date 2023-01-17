@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
  *
  * @param {String} name Nombre del campo (por ej Velocidad)
  * @param {Array} values Arreglo con los valores que puede tener el campo
+ * @param {*} defaultValue Valor por defecto de campo
  * @param {Function} setState Función Set del Hook del campo que se utiliza
  * @returns
  */

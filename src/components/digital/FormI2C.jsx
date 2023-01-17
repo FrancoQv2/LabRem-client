@@ -10,17 +10,18 @@ import FormSelect from "../FormSelect";
 import { usePostEnsayoI2C } from "../../hooks/digital";
 
 function FormI2C({ idUsuario }) {
-  // Definicion de valores posibles
-  const valuesVelocidad = [100000, 400000, 1000000, 3400000, 5000000]; // bbps
-
-  // Definicion de valores default
+  const valuesVelocidad = [100000, 400000, 1000000, 3400000, 5000000]; // bps
   const defaultVelocidad = valuesVelocidad[0];
 
   // Definicion de Hooks
   const [velocidad, setVelocidad] = useState(defaultVelocidad);
-  const [memoria, setMemoria] = useState(0);
-  const [readWrite, setReadWrite] = useState(0); // 0 -> read, 1 -> write
-  const [mensaje, setMensaje] = useState(0);
+
+  const [pulsador1, setPulsador1] = useState(0); // 0 -> apagado, 1 -> encendido
+  const [pulsador2, setPulsador2] = useState(0); // 0 -> apagado, 1 -> encendido
+  const [pulsador3, setPulsador3] = useState(0); // 0 -> apagado, 1 -> encendido
+  const [pulsador4, setPulsador4] = useState(0); // 0 -> apagado, 1 -> encendido
+
+  const [mensaje, setMensaje] = useState("");
 
   const { mutate, error, isLoading } = usePostEnsayoI2C();
 
@@ -31,15 +32,14 @@ function FormI2C({ idUsuario }) {
       {
         idUsuario,
         velocidad,
-        memoria,
-        readWrite,
+        pulsador1,
+        pulsador2,
+        pulsador3,
+        pulsador4,
         mensaje,
       },
       {
         onSuccess: () => {
-          setVelocidad(defaultVelocidad);
-          setMemoria(0);
-          setReadWrite(0);
           setMensaje("");
         },
       }
@@ -58,42 +58,79 @@ function FormI2C({ idUsuario }) {
       <Row className="my-3">
         <Form.Group
           className="border border-secondary rounded"
-          controlId="formMemoria"
-          onChange={(changeEvent) => setMemoria(changeEvent.target.value)}
-        >
-          <Row className="my-3">
-            <Col sm={4} lg={6}>
-              <span className="input-group-text" htmlFor="memoria">
-                Memoria
-              </span>
-            </Col>
-            <Col sm={4} lg={6}>
-              <Form.Control type="number" aria-describedby="text-memoria" />
-              <Form.Text id="text-memoria"></Form.Text>
-            </Col>
-          </Row>
-        </Form.Group>
-      </Row>
-
-      <Row className="my-3">
-        <Form.Group
-          className="border border-secondary rounded"
-          controlId="formReadWrite"
+          controlId="formPulsador"
           onChange={(changeEvent) => {
-            setReadWrite(changeEvent.target.value);
-            // console.log(changeEvent.target);
+            switch (changeEvent.target.ariaLabel) {
+              case "pulsador-1":
+                setPulsador1(changeEvent.target.value);
+                break;
+              case "pulsador-2":
+                setPulsador2(changeEvent.target.value);
+                break;
+              case "pulsador-3":
+                setPulsador3(changeEvent.target.value);
+                break;
+              case "pulsador-4":
+                setPulsador4(changeEvent.target.value);
+                break;
+
+              default:
+                break;
+            }
           }}
         >
           <Row className="my-3">
             <Col sm={4} lg={6}>
-              <span className="input-group-text" htmlFor="readWrite">
-                Bit read/write
+              <span className="input-group-text" htmlFor="pulsador-1">
+                Pulsador 1
               </span>
             </Col>
             <Col sm={4} lg={6}>
-              <Form.Select aria-label="readWrite" defaultValue={0}>
-                <option value={0}>Lectura</option>
-                <option value={1}>Escritura</option>
+              <Form.Select aria-label="pulsador-1" defaultValue={pulsador1}>
+                <option value={0}>Apagado</option>
+                <option value={1}>Encendido</option>
+              </Form.Select>
+            </Col>
+          </Row>
+
+          <Row className="my-3">
+            <Col sm={4} lg={6}>
+              <span className="input-group-text" htmlFor="pulsador-2">
+                Pulsador 2
+              </span>
+            </Col>
+            <Col sm={4} lg={6}>
+              <Form.Select aria-label="pulsador-2" defaultValue={pulsador2}>
+                <option value={0}>Apagado</option>
+                <option value={1}>Encendido</option>
+              </Form.Select>
+            </Col>
+          </Row>
+
+          <Row className="my-3">
+            <Col sm={4} lg={6}>
+              <span className="input-group-text" htmlFor="pulsador-3">
+                Pulsador 3
+              </span>
+            </Col>
+            <Col sm={4} lg={6}>
+              <Form.Select aria-label="pulsador-3" defaultValue={pulsador3}>
+                <option value={0}>Apagado</option>
+                <option value={1}>Encendido</option>
+              </Form.Select>
+            </Col>
+          </Row>
+
+          <Row className="my-3">
+            <Col sm={4} lg={6}>
+              <span className="input-group-text" htmlFor="pulsador-4">
+                Pulsador 4
+              </span>
+            </Col>
+            <Col sm={4} lg={6}>
+              <Form.Select aria-label="pulsador-4" defaultValue={pulsador4}>
+                <option value={0}>Apagado</option>
+                <option value={1}>Encendido</option>
               </Form.Select>
             </Col>
           </Row>

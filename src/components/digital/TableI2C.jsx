@@ -13,14 +13,7 @@ function TableI2C({ idLaboratorio, idUsuario }) {
     idUsuario: idUsuario,
   });
 
-  const headers = [
-    "Fecha",
-    "Hora",
-    "Velocidad",
-    "Memoria",
-    "Bit read/write",
-    "Mensaje",
-  ];
+  const headers = ["Fecha", "Hora", "Velocidad", "Pulsadores", "Mensaje"];
 
   return (
     <>
@@ -41,13 +34,12 @@ function TableI2C({ idLaboratorio, idUsuario }) {
                   <td>{indexRecord + 1}</td>
                   <td>{record.Fecha}</td>
                   <td>{record.Hora}</td>
-                  <td>{`${record.velocidad / 1000} kbps`}</td>
-                  <td>{record.memoria}</td>
                   <td>
-                    {record.readWrite
-                      ? `${record.readWrite} - Escritura`
-                      : `${record.readWrite} - Lectura`}
+                    {record.velocidad < 1000000
+                      ? `${record.velocidad / 1000} kbps`
+                      : `${record.velocidad / 1000000} Mbps`}
                   </td>
+                  <td>{record.pulsadores}</td>
                   <td>{record.mensaje}</td>
                 </tr>
               ))}

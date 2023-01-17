@@ -11,11 +11,15 @@ import LentesDivergentes from "./pages/fisica/LentesDivergentes";
 import TxRxUART from "./pages/digital/TxRxUART";
 import TxRxI2C from "./pages/digital/TxRxI2C";
 
+import HomePage from "./pages/HomePage";
+import Laboratorios from "./pages/Laboratorios";
+
 function App() {
   return (
     <BrowserRouter>
       <RootLayout>
         <Routes>
+          <Route exact path="/" element={<HomePage />}></Route>
           <Route
             exact
             path="/telecomunicaciones/enlace-wifi"
@@ -38,6 +42,8 @@ function App() {
           ></Route>
           <Route exact path="/digital/uart" element={<TxRxUART />}></Route>
           <Route exact path="/digital/i2c" element={<TxRxI2C />}></Route>
+
+          <Route exact path="/laboratorios" element={<Laboratorios />}></Route>
         </Routes>
       </RootLayout>
     </BrowserRouter>

@@ -57,17 +57,22 @@ export const getEnsayosUART = async () => {
 export const postEnsayoUART = async ({
   idUsuario,
   velocidad,
-  bitsDatos,
-  bitsParada,
-  paridad,
+  pulsador1,
+  pulsador2,
+  pulsador3,
+  pulsador4,
   mensaje,
 }) => {
+  const pulsadores = [];
+  pulsadores.push(parseInt(pulsador1));
+  pulsadores.push(parseInt(pulsador2));
+  pulsadores.push(parseInt(pulsador3));
+  pulsadores.push(parseInt(pulsador4));
+
   const newEnsayo = {
     idUsuario: idUsuario,
     velocidad: parseInt(velocidad),
-    bitsDatos: parseInt(bitsDatos),
-    bitsParada: parseInt(bitsParada),
-    paridad: paridad,
+    pulsadores: pulsadores,
     mensaje: mensaje,
   };
 
@@ -95,15 +100,22 @@ export const getEnsayosI2C = async () => {
 export const postEnsayoI2C = async ({
   idUsuario,
   velocidad,
-  memoria,
-  readWrite,
+  pulsador1,
+  pulsador2,
+  pulsador3,
+  pulsador4,
   mensaje,
 }) => {
+  const pulsadores = [];
+  pulsadores.push(parseInt(pulsador1));
+  pulsadores.push(parseInt(pulsador2));
+  pulsadores.push(parseInt(pulsador3));
+  pulsadores.push(parseInt(pulsador4));
+
   const newEnsayo = {
     idUsuario: idUsuario,
     velocidad: parseInt(velocidad),
-    memoria: parseInt(memoria),
-    readWrite: parseInt(readWrite),
+    pulsadores: pulsadores,
     mensaje: mensaje,
   };
 

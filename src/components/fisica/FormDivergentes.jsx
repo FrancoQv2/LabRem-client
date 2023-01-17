@@ -8,9 +8,9 @@ import Button from "react-bootstrap/Button";
 import { usePostEnsayoDivergentes } from "../../hooks/fisica";
 
 function FormDivergentes({ idUsuario }) {
-  const [distanciaLente, setDistanciaLente] = useState(0);
-  const [distanciaLenteLente, setDistanciaLenteLente] = useState(0);
-  const [distanciaPantalla, setDistanciaPantalla] = useState(0);
+  const [distanciaLente, setDistanciaLente] = useState(50);
+  const [distanciaLenteLente, setDistanciaLenteLente] = useState(70);
+  const [distanciaPantalla, setDistanciaPantalla] = useState(70);
 
   const { mutate, error, isLoading } = usePostEnsayoDivergentes();
 
@@ -21,9 +21,9 @@ function FormDivergentes({ idUsuario }) {
       { idUsuario, distanciaLente, distanciaLenteLente, distanciaPantalla },
       {
         onSuccess: () => {
-          setDistanciaLente(0);
-          setDistanciaLenteLente(0);
-          setDistanciaPantalla(0);
+          setDistanciaLente(50);
+          setDistanciaLenteLente(70);
+          setDistanciaPantalla(70);
         },
       }
     );
@@ -51,12 +51,12 @@ function FormDivergentes({ idUsuario }) {
             </Col>
           </Row>
           <Row className="my-3">
-            <Col sm={4} lg={4}>
+            <Col sm={4} lg={6}>
               <span className="input-group-text" htmlFor="range-distanciaLente">
-                Distancia Lente [ mm ]
+                Distancia Foco - Lente 1 [ mm ]
               </span>
             </Col>
-            <Col sm={4} lg={8}>
+            <Col sm={4} lg={6}>
               <Form.Control disabled type="text" value={distanciaLente} />
             </Col>
           </Row>
@@ -83,15 +83,15 @@ function FormDivergentes({ idUsuario }) {
             </Col>
           </Row>
           <Row className="my-3">
-            <Col sm={4} lg={4}>
+            <Col sm={4} lg={6}>
               <span
                 className="input-group-text"
                 htmlFor="range-distanciaLenteLente"
               >
-                Distancia Lente Lente [ mm ]
+                Distancia Lente 1 - Lente 2 [ mm ]
               </span>
             </Col>
-            <Col sm={4} lg={8}>
+            <Col sm={4} lg={6}>
               <Form.Control disabled type="text" value={distanciaLenteLente} />
             </Col>
           </Row>
@@ -118,15 +118,15 @@ function FormDivergentes({ idUsuario }) {
             </Col>
           </Row>
           <Row className="my-3">
-            <Col sm={4} lg={4}>
+            <Col sm={4} lg={6}>
               <span
                 className="input-group-text"
                 htmlFor="range-distanciaPantalla"
               >
-                Distancia Pantalla [ mm ]
+                Distancia Lente 2 - Pantalla [ mm ]
               </span>
             </Col>
-            <Col sm={4} lg={8}>
+            <Col sm={4} lg={6}>
               <Form.Control disabled type="text" value={distanciaPantalla} />
             </Col>
           </Row>
