@@ -11,7 +11,7 @@ const API_TELECO = "http://localhost:3033/api/teleco";
  *
  * @returns Informacion de un Laboratorio de Telecomunicaciones segun su ID
  */
-export const getInformationLab = async ({ queryKey }) => {
+export const getInfoLaboratorio = async ({ queryKey }) => {
   const [_, { idLaboratorio }] = queryKey;
 
   const { data } = await axios.get(`${API_TELECO}/${idLaboratorio}`, {

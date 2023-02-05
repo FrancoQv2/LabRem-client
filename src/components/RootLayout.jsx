@@ -1,10 +1,10 @@
 import NavigationBar from "./NavigationBar";
 import Footer from "./Footer";
 
-function RootLayout({ children }) {
+function RootLayout({ session, children }) {
   return (
     <>
-      <NavigationBar />
+      <NavigationBar session={session}/>
       <main>{children}</main>
       <Footer />
     </>

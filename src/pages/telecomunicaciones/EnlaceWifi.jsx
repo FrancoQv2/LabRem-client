@@ -7,14 +7,21 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
 
-import LabInformation from "../../components/telecomunicaciones/LabInformation";
+import LabInformation from "../../components/LabInformation";
 import LabVideoStreaming from "../../components/LabVideoStreaming";
 import FormWifi from "../../components/telecomunicaciones/FormWifi";
-import TableWifi from "../../components/telecomunicaciones/TableWifi";
+import TableQueryPaginated from "../../components/TableQueryPaginated";
 
-import imgWifi from "../../assets/wifi.jpg";
+import { useInfoLaboratorio } from "../../hooks/telecomunicaciones";
+
+import { headersWifi as tableHeaders } from "../../libs/tableHeaders";
+import imgWifi from "../../assets/teleco_wifi.jpg";
+
 
 /**
+ * -----------------------------------------------------
+ * Componente EnlaceWifi
+ * -----------------------------------------------------
  * @return Pagina del laboratorio de Enlace Wifi
  */
 function EnlaceWifi() {
@@ -39,9 +46,11 @@ function EnlaceWifi() {
       <LabInformation
         imagen={imgWifi}
         idLabActual={idLabActual}
+        useInfoLaboratorio={useInfoLaboratorio}
       ></LabInformation>
       <hr />
 
+      {/* <Row className="m-2" style={{height: 600}}> */}
       <Row className="m-2">
         <Col
           className="d-flex justify-content-center align-items-center"
@@ -74,6 +83,7 @@ function EnlaceWifi() {
               </Nav>
             </Card.Header>
 
+            {/* <Card.Body style={{height: 525}}> */}
             <Card.Body>
               {showForm ? (
                 <Card id="lab-form">
@@ -88,13 +98,15 @@ function EnlaceWifi() {
                 <Card id="lab-results">
                   <Card.Body>
                     <Card.Title>Ensayos realizados</Card.Title>
-                    <TableWifi
+                    <TableQueryPaginated
                       idLaboratorio={idLabActual}
                       idUsuario={idUsuarioActual}
+                      tableHeaders={tableHeaders}
                     />
                   </Card.Body>
                 </Card>
               ) : null}
+
             </Card.Body>
           </Card>
         </Col>

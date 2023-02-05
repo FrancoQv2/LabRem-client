@@ -7,14 +7,21 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
 
-import LabInformation from "../../components/telecomunicaciones/LabInformation";
+import LabInformation from "../../components/LabInformation";
 import LabVideoStreaming from "../../components/LabVideoStreaming";
 import FormRadio from "../../components/telecomunicaciones/FormRadio";
-import TableRadio from "../../components/telecomunicaciones/TableRadio";
+import TableQueryPaginated from "../../components/TableQueryPaginated";
 
-import imgRadio from "../../assets/sdr.png";
+import { useInfoLaboratorio } from "../../hooks/telecomunicaciones";
+
+import { headersRadio as tableHeaders } from "../../libs/tableHeaders";
+import imgRadio from "../../assets/teleco_radio.png";
+
 
 /**
+ * -----------------------------------------------------
+ * Componente EnlaceRadio
+ * -----------------------------------------------------
  * @return Pagina del laboratorio de Enlace Wifi
  */
 function EnlaceRadio() {
@@ -39,6 +46,7 @@ function EnlaceRadio() {
       <LabInformation
         imagen={imgRadio}
         idLabActual={idLabActual}
+        useInfoLaboratorio={useInfoLaboratorio}
       ></LabInformation>
       <hr />
 
@@ -88,9 +96,10 @@ function EnlaceRadio() {
                 <Card id="lab-results">
                   <Card.Body>
                     <Card.Title>Ensayos realizados</Card.Title>
-                    <TableRadio
+                    <TableQueryPaginated
                       idLaboratorio={idLabActual}
                       idUsuario={idUsuarioActual}
+                      tableHeaders={tableHeaders}
                     />
                   </Card.Body>
                 </Card>

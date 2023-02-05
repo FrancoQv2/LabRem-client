@@ -14,10 +14,19 @@ import TxRxI2C from "./pages/digital/TxRxI2C";
 import HomePage from "./pages/HomePage";
 import Laboratorios from "./pages/Laboratorios";
 
+import TableQueryPaginated from "./components/TableQueryPaginated.jsx";
+
+const session = {
+  user: {
+    name: "Nombre Apellido",
+    id: 2
+  }
+}
+
 function App() {
   return (
     <BrowserRouter>
-      <RootLayout>
+      <RootLayout session={session}>
         <Routes>
           <Route exact path="/" element={<HomePage />}></Route>
           <Route
@@ -44,6 +53,14 @@ function App() {
           <Route exact path="/digital/i2c" element={<TxRxI2C />}></Route>
 
           <Route exact path="/laboratorios" element={<Laboratorios />}></Route>
+
+
+          <Route exact path="/query" element={
+              <TableQueryPaginated 
+                idLaboratorio={1} 
+                idUsuario={2}
+              />
+          }></Route>
         </Routes>
       </RootLayout>
     </BrowserRouter>

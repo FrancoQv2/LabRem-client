@@ -4,9 +4,8 @@ import Navbar from "react-bootstrap/Navbar";
 import logoUNT from "../assets/logoUNT.png";
 
 const title = "Laboratorios Remotos";
-const username = "Nombre Apellido";
 
-function NavigationBar() {
+function NavigationBar({session}) {
   return (
     <Navbar className="bg-light">
       <Container fluid>
@@ -23,7 +22,7 @@ function NavigationBar() {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-            <b>{username}</b>
+            <b>{session.user.name}</b>
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>

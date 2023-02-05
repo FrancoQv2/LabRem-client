@@ -37,7 +37,7 @@ function TableWifi({ idLaboratorio, idUsuario }) {
                   <td>{record.Azimut}</td>
                   <td>{record.Elevacion}</td>
                 </tr>
-              ))}
+            ))}
           </tbody>
         </Table>
       ) : (
