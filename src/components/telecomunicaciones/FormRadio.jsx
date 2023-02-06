@@ -23,10 +23,6 @@ function FormRadio({ idUsuario }) {
       { idUsuario, modulacion, codificacion, intensidadMin, intensidadMax },
       {
         onSuccess: () => {
-          // setModulacion(0);
-          // setCodificacion(0);
-          // setIntensidadMin(0);
-          // setIntensidadMax(0);
           submitSuccess();
         },
         onError: () => {

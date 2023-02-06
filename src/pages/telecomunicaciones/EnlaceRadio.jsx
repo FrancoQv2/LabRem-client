@@ -17,6 +17,10 @@ import { useInfoLaboratorio } from "../../hooks/telecomunicaciones";
 import { headersRadio as tableHeaders } from "../../libs/tableHeaders";
 import imgRadio from "../../assets/teleco_radio.png";
 
+import ExportResults from "../../components/common/ExportResults"
+
+import { useEnsayosUsuario } from "../../hooks/telecomunicaciones"
+
 
 /**
  * -----------------------------------------------------
@@ -105,6 +109,15 @@ function EnlaceRadio() {
                 </Card>
               ) : null}
             </Card.Body>
+
+            <Card.Footer>
+              <ExportResults 
+                useHook={useEnsayosUsuario}
+                idLaboratorio={idLabActual}
+                idUsuario={idUsuarioActual}
+                filename={"radio-ensayos"}
+              />
+            </Card.Footer>
           </Card>
         </Col>
       </Row>

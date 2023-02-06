@@ -21,8 +21,6 @@ function FormWifi({ idUsuario }) {
       { idUsuario, elevacion, azimut },
       {
         onSuccess: () => {
-          // setElevacion(0);
-          // setAzimut(0);
           submitSuccess();
         },
         onError: () => {

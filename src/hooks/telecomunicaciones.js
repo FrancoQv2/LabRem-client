@@ -19,10 +19,11 @@ export function useInfoLaboratorio(idLabActual) {
  * @param {number} idUsuario
  * @returns 
  */
-export function useEnsayosUsuario({ idLaboratorio, idUsuario }) {
+export function useEnsayosUsuario({ idLaboratorio, idUsuario }, options) {
   return useQuery(
     [key, { idLaboratorio: idLaboratorio, idUsuario: idUsuario }],
-    getEnsayosUsuario
+    getEnsayosUsuario, 
+    options
   );
 }
 

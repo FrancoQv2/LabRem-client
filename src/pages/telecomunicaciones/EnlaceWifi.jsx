@@ -3,6 +3,7 @@ import { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
 import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
@@ -17,6 +18,9 @@ import { useInfoLaboratorio } from "../../hooks/telecomunicaciones";
 import { headersWifi as tableHeaders } from "../../libs/tableHeaders";
 import imgWifi from "../../assets/teleco_wifi.jpg";
 
+import ExportResults from "../../components/common/ExportResults"
+
+import { useEnsayosUsuario } from "../../hooks/telecomunicaciones"
 
 /**
  * -----------------------------------------------------
@@ -108,6 +112,15 @@ function EnlaceWifi() {
               ) : null}
 
             </Card.Body>
+
+            <Card.Footer>
+              <ExportResults 
+                useHook={useEnsayosUsuario}
+                idLaboratorio={idLabActual}
+                idUsuario={idUsuarioActual}
+                filename={"wifi-ensayos"}
+              />
+            </Card.Footer>
           </Card>
         </Col>
       </Row>
