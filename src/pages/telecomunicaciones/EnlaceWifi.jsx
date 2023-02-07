@@ -1,26 +1,27 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 
 import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
 
-import LabInformation from "../../components/LabInformation";
+import LabInformation from "../../components/common/LabInformation";
 import LabVideoStreaming from "../../components/LabVideoStreaming";
+
 import FormWifi from "../../components/telecomunicaciones/FormWifi";
-import TableQueryPaginated from "../../components/TableQueryPaginated";
 
-import { useInfoLaboratorio } from "../../hooks/telecomunicaciones";
-
-import { headersWifi as tableHeaders } from "../../libs/tableHeaders";
-import imgWifi from "../../assets/teleco_wifi.jpg";
-
+import TableQueryPaginated from "../../components/common/TableQueryPaginated";
 import ExportResults from "../../components/common/ExportResults"
 
-import { useEnsayosUsuario } from "../../hooks/telecomunicaciones"
+import { useInfoLaboratorio, useEnsayosUsuario } from "../../hooks/telecomunicaciones";
+
+import { headersWifi as tableHeaders } from "../../libs/tableHeaders";
+
+import imgWifi from "../../assets/teleco_wifi.jpg";
+
+
 
 /**
  * -----------------------------------------------------
@@ -108,6 +109,7 @@ function EnlaceWifi() {
                       idLaboratorio={idLabActual}
                       idUsuario={idUsuarioActual}
                       tableHeaders={tableHeaders}
+                      useHook={useEnsayosUsuario}
                       setComponentRef={setComponentRef}
                     />
                   </Card.Body>

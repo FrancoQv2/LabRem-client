@@ -14,7 +14,7 @@ import TxRxI2C from "./pages/digital/TxRxI2C";
 import HomePage from "./pages/HomePage";
 import Laboratorios from "./pages/Laboratorios";
 
-import TableQueryPaginated from "./components/TableQueryPaginated.jsx";
+import TableQueryPaginated from "./components/common/TableQueryPaginated.jsx";
 
 const session = {
   user: {

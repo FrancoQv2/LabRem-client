@@ -7,13 +7,19 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
 
-import LabInformation from "../../components/fisica/LabInformation";
+import LabInformation from "../../components/common/LabInformation";
 import LabVideoStreaming from "../../components/LabVideoStreaming";
 
 import FormDivergentes from "../../components/fisica/FormDivergentes";
-import TableDivergentes from "../../components/fisica/TableDivergentes";
 
-import imgRadio from "../../assets/lente-divergente.png";
+import TableQueryPaginated from "../../components/common/TableQueryPaginated";
+import ExportResults from "../../components/common/ExportResults"
+
+import { useInfoLaboratorio, useEnsayosUsuario } from "../../hooks/fisica";
+
+import { headersDivergentes as tableHeaders } from "../../libs/tableHeaders";
+
+import imgDiv from "../../assets/lente-divergente.png";
 
 /**
  * @return Pagina del laboratorio de Enlace Wifi
@@ -30,6 +36,8 @@ function LentesDivergentes() {
     setShowResults(!showResults);
   };
 
+  const [componentRef, setComponentRef] = useState({});
+
   /**
    * -----------------------------------------------------
    * Renderizado del componente
@@ -38,8 +46,9 @@ function LentesDivergentes() {
   return (
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
       <LabInformation
-        imagen={imgRadio}
+        imagen={imgDiv}
         idLabActual={idLabActual}
+        useInfoLaboratorio={useInfoLaboratorio}
       ></LabInformation>
       <hr />
 
@@ -89,14 +98,27 @@ function LentesDivergentes() {
                 <Card id="lab-results">
                   <Card.Body>
                     <Card.Title>Ensayos realizados</Card.Title>
-                    <TableDivergentes
+                    <TableQueryPaginated
                       idLaboratorio={idLabActual}
                       idUsuario={idUsuarioActual}
+                      tableHeaders={tableHeaders}
+                      useHook={useEnsayosUsuario}
+                      setComponentRef={setComponentRef}
                     />
                   </Card.Body>
                 </Card>
               ) : null}
             </Card.Body>
+
+            <Card.Footer>
+              <ExportResults 
+                useHook={useEnsayosUsuario}
+                idLaboratorio={idLabActual}
+                idUsuario={idUsuarioActual}
+                filename={"ensayos-divergentes"}
+                componentRef={componentRef}
+              />
+            </Card.Footer>
           </Card>
         </Col>
       </Row>

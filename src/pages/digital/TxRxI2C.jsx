@@ -7,13 +7,22 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
 
-import LabInformation from "../../components/digital/LabInformation";
+import LabInformation from "../../components/common/LabInformation";
 import LabVideoStreaming from "../../components/LabVideoStreaming";
 
 import FormI2C from "../../components/digital/FormI2C";
 import TableI2C from "../../components/digital/TableI2C";
 
-import image from "../../assets/i2c.webp";
+import TableQueryPaginated from "../../components/common/TableQueryPaginated";
+import ExportResults from "../../components/common/ExportResults"
+
+import { useInfoLaboratorio, useEnsayosUsuario } from "../../hooks/digital";
+
+import { headersI2C as tableHeaders } from "../../libs/tableHeaders";
+
+import imgI2C from "../../assets/i2c.webp";
+
+
 
 /**
  * @return Pagina del laboratorio de Enlace Wifi
@@ -30,6 +39,8 @@ function TxRxI2C() {
     setShowResults(!showResults);
   };
 
+  const [componentRef, setComponentRef] = useState({});
+
   /**
    * -----------------------------------------------------
    * Renderizado del componente
@@ -37,7 +48,11 @@ function TxRxI2C() {
    */
   return (
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
-      <LabInformation imagen={image} idLabActual={idLabActual}></LabInformation>
+      <LabInformation
+        imagen={imgI2C}
+        idLabActual={idLabActual}
+        useInfoLaboratorio={useInfoLaboratorio}
+      ></LabInformation>
       <hr />
 
       <Row className="m-2">
@@ -94,6 +109,16 @@ function TxRxI2C() {
                 </Card>
               ) : null}
             </Card.Body>
+
+            <Card.Footer>
+              <ExportResults 
+                useHook={useEnsayosUsuario}
+                idLaboratorio={idLabActual}
+                idUsuario={idUsuarioActual}
+                filename={"ensayos-i2c"}
+                componentRef={componentRef}
+              />
+            </Card.Footer>
           </Card>
         </Col>
       </Row>

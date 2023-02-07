@@ -7,7 +7,15 @@ import { getDateNow } from "../../libs/datetime.js";
 import BtnDownloadPng from "./BtnDownloadPng"
 import BtnDownloadCsv from "./BtnDownloadCsv"
 
+
+/**
+ * Este componente realiza dos acciones:
+ * - Para csv realiza una query usando el hook useEnsayosUsuarios y obtener toda la data más reciente
+ * - Para png necesita la Red del componente Tabla actual
+ */
 function ExportResults({ useHook, idLaboratorio, idUsuario, filename, componentRef }) {
+
+  // Necesario para no realizar la query más de una vez
   const options = {
     staleTime: Infinity,
     cacheTime: Infinity
@@ -49,4 +57,4 @@ function ExportResults({ useHook, idLaboratorio, idUsuario, filename, componentR
   )
 }
 
-export default ExportResults
+export default ExportResults;

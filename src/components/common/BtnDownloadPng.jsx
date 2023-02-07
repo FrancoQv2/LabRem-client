@@ -8,6 +8,12 @@ import {
   downloadPngError,
 } from "../../libs/alerts";
 
+
+/**
+ * Devuelve un componente Button con la funcionalidad de descargar una imagen png
+ * @param componentRef objeto Ref hacia el componente tabla, utilizado como base para exportar
+ * @param filename nombre del archivo a generar con el formato "string-YY-MM-DD"
+ */
 function BtnDownloadPng({ componentRef, filename }) {
   
 

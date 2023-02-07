@@ -8,15 +8,14 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
 
-import { useEnsayosUsuario } from "../hooks/telecomunicaciones";
 
 /**
  * -----------------------------------------------------
  * Component - TableQueryPaginated
  * -----------------------------------------------------
  */
-const TableQueryPaginated = ({ idLaboratorio, idUsuario, tableHeaders, setComponentRef }) => {
-  const { data: tableData, isLoading } = useEnsayosUsuario({
+const TableQueryPaginated = ({ idLaboratorio, idUsuario, tableHeaders, useHook, setComponentRef }) => {
+  const { data: tableData, isLoading } = useHook({
     idLaboratorio: idLaboratorio,
     idUsuario: idUsuario,
   });

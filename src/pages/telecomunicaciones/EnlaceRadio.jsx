@@ -7,19 +7,19 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
 
-import LabInformation from "../../components/LabInformation";
+import LabInformation from "../../components/common/LabInformation";
 import LabVideoStreaming from "../../components/LabVideoStreaming";
-import FormRadio from "../../components/telecomunicaciones/FormRadio";
-import TableQueryPaginated from "../../components/TableQueryPaginated";
 
-import { useInfoLaboratorio } from "../../hooks/telecomunicaciones";
+import FormRadio from "../../components/telecomunicaciones/FormRadio";
+
+import TableQueryPaginated from "../../components/common/TableQueryPaginated";
+import ExportResults from "../../components/common/ExportResults"
+
+import { useInfoLaboratorio, useEnsayosUsuario } from "../../hooks/telecomunicaciones";
 
 import { headersRadio as tableHeaders } from "../../libs/tableHeaders";
 import imgRadio from "../../assets/teleco_radio.png";
 
-import ExportResults from "../../components/common/ExportResults"
-
-import { useEnsayosUsuario } from "../../hooks/telecomunicaciones"
 
 
 /**
@@ -106,6 +106,7 @@ function EnlaceRadio() {
                       idLaboratorio={idLabActual}
                       idUsuario={idUsuarioActual}
                       tableHeaders={tableHeaders}
+                      useHook={useEnsayosUsuario}
                       setComponentRef={setComponentRef}
                     />
                   </Card.Body>

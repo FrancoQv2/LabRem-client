@@ -9,7 +9,7 @@ import {
 
 const key = "fisica";
 
-export function useInformationLab(idLabActual) {
+export function useInfoLaboratorio(idLabActual) {
   return useQuery([key, { idLaboratorio: idLabActual }], getInformationLab);
 }
 

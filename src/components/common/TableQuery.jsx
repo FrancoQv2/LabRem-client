@@ -3,7 +3,7 @@ import { useTable } from 'react-table';
 
 import Table from "react-bootstrap/Table";
 
-import { useEnsayosUsuario } from '../hooks/telecomunicaciones';
+import { useEnsayosUsuario } from '../../hooks/telecomunicaciones';
 
 /**
  * -----------------------------------------------------

@@ -7,13 +7,20 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
 
-import LabInformation from "../../components/digital/LabInformation";
+import LabInformation from "../../components/common/LabInformation";
 import LabVideoStreaming from "../../components/LabVideoStreaming";
 
 import FormUART from "../../components/digital/FormUART";
 import TableUART from "../../components/digital/TableUART";
 
-import image from "../../assets/uart.png";
+import TableQueryPaginated from "../../components/common/TableQueryPaginated";
+import ExportResults from "../../components/common/ExportResults"
+
+import { useInfoLaboratorio, useEnsayosUsuario } from "../../hooks/digital";
+
+import { headersUART as tableHeaders } from "../../libs/tableHeaders";
+
+import imgUART from "../../assets/uart.png";
 
 /**
  * @return Pagina del laboratorio de Enlace Wifi
@@ -30,6 +37,8 @@ function TxRxUART() {
     setShowResults(!showResults);
   };
 
+  const [componentRef, setComponentRef] = useState({});
+
   /**
    * -----------------------------------------------------
    * Renderizado del componente
@@ -37,7 +46,11 @@ function TxRxUART() {
    */
   return (
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
-      <LabInformation imagen={image} idLabActual={idLabActual}></LabInformation>
+      <LabInformation
+        imagen={imgUART}
+        idLabActual={idLabActual}
+        useInfoLaboratorio={useInfoLaboratorio}
+      ></LabInformation>
       <hr />
 
       <Row className="m-2">
@@ -94,6 +107,16 @@ function TxRxUART() {
                 </Card>
               ) : null}
             </Card.Body>
+
+            <Card.Footer>
+              <ExportResults 
+                useHook={useEnsayosUsuario}
+                idLaboratorio={idLabActual}
+                idUsuario={idUsuarioActual}
+                filename={"ensayos-wifi"}
+                componentRef={componentRef}
+              />
+            </Card.Footer>
           </Card>
         </Col>
       </Row>

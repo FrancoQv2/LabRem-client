@@ -7,13 +7,21 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
 
-import LabInformation from "../../components/fisica/LabInformation";
+import LabInformation from "../../components/common/LabInformation";
 import LabVideoStreaming from "../../components/LabVideoStreaming";
 
 import FormConvergentes from "../../components/fisica/FormConvergentes";
-import TableConvergentes from "../../components/fisica/TableConvergentes";
 
-import imgWifi from "../../assets/lente-convergente.jpg";
+import TableQueryPaginated from "../../components/common/TableQueryPaginated";
+import ExportResults from "../../components/common/ExportResults"
+
+import { useInfoLaboratorio, useEnsayosUsuario } from "../../hooks/fisica";
+
+import { headersConvergentes as tableHeaders } from "../../libs/tableHeaders";
+
+import imgConv from "../../assets/lente-convergente.jpg";
+
+
 
 /**
  * @return Pagina del laboratorio de Enlace Wifi
@@ -30,6 +38,8 @@ function LentesConvergentes() {
     setShowResults(!showResults);
   };
 
+  const [componentRef, setComponentRef] = useState({});
+
   /**
    * -----------------------------------------------------
    * Renderizado del componente
@@ -38,8 +48,9 @@ function LentesConvergentes() {
   return (
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
       <LabInformation
-        imagen={imgWifi}
+        imagen={imgConv}
         idLabActual={idLabActual}
+        useInfoLaboratorio={useInfoLaboratorio}
       ></LabInformation>
       <hr />
 
@@ -89,14 +100,27 @@ function LentesConvergentes() {
                 <Card id="lab-results">
                   <Card.Body>
                     <Card.Title>Ensayos realizados</Card.Title>
-                    <TableConvergentes
+                    <TableQueryPaginated
                       idLaboratorio={idLabActual}
                       idUsuario={idUsuarioActual}
+                      tableHeaders={tableHeaders}
+                      useHook={useEnsayosUsuario}
+                      setComponentRef={setComponentRef}
                     />
                   </Card.Body>
                 </Card>
               ) : null}
             </Card.Body>
+
+            <Card.Footer>
+              <ExportResults 
+                useHook={useEnsayosUsuario}
+                idLaboratorio={idLabActual}
+                idUsuario={idUsuarioActual}
+                filename={"ensayos-convergentes"}
+                componentRef={componentRef}
+              />
+            </Card.Footer>
           </Card>
         </Col>
       </Row>
