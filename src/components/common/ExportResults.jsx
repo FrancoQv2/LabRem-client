@@ -2,17 +2,18 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
-import { CSVLink } from "react-csv";
+import { getDateNow } from "../../libs/datetime.js";
 
-import { getDateNow } from "../../libs/datetime.js"
+import BtnDownloadPng from "./BtnDownloadPng"
+import BtnDownloadCsv from "./BtnDownloadCsv"
 
-function ExportResults({ useHook, idLaboratorio, idUsuario, filename }) {
+function ExportResults({ useHook, idLaboratorio, idUsuario, filename, componentRef }) {
   const options = {
     staleTime: Infinity,
     cacheTime: Infinity
   }
 
-  const { data, error, isLoading } = useHook({
+  const { data: tableData, isLoading } = useHook({
     idLaboratorio: idLaboratorio,
     idUsuario: idUsuario
   }, options);
@@ -25,26 +26,23 @@ function ExportResults({ useHook, idLaboratorio, idUsuario, filename }) {
             Exportar resultados
           </Button>
         </Col>
+
         <Col className="d-flex justify-content-end">
           {!isLoading ? (
-            <Button variant="success" className="mx-2">
-              <CSVLink 
-                className="text-light"
-                data={data} 
-                target="_blank"
-                filename={`${filename}-${getDateNow()}.csv`}
-                >
-                csv
-              </CSVLink>
-            </Button>
+            <BtnDownloadCsv 
+              data={tableData}
+              filename={`${filename}-${getDateNow()}.csv`}
+            />
           ) : (
-            <Button variant="success" className="mx-2">
+            <Button variant="secondary" className="mx-2" disabled>
               csv
             </Button>
           )}
-          <Button variant="success" className="mx-2">
-            pdf
-          </Button>
+
+          <BtnDownloadPng 
+            componentRef={componentRef}
+            filename={`${filename}-${getDateNow()}`}
+          />
         </Col>
       </Row>
     </>

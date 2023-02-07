@@ -1,38 +1,42 @@
-import React, { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { useTable, usePagination, useSortBy } from "react-table";
 
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
 
 import { useEnsayosUsuario } from "../hooks/telecomunicaciones";
-import { Button, ButtonGroup, Col, Form, Row } from "react-bootstrap";
-
 
 /**
  * -----------------------------------------------------
  * Component - TableQueryPaginated
  * -----------------------------------------------------
  */
-const TableQueryPaginated = ({ idLaboratorio, idUsuario, tableHeaders }) => {
-  const [tableData, setTableData] = useState(null);
-
-  const { data, isLoading } = useEnsayosUsuario({
+const TableQueryPaginated = ({ idLaboratorio, idUsuario, tableHeaders, setComponentRef }) => {
+  const { data: tableData, isLoading } = useEnsayosUsuario({
     idLaboratorio: idLaboratorio,
     idUsuario: idUsuario,
   });
 
+  // Ref for download table as image
+  const innerRef = useRef();
   useEffect(() => {
-    setTableData(data);
-  }, [data]);
+      setComponentRef(innerRef)
+  }, [tableData]);
 
   if (isLoading || !tableData) {
     return <div>Loading...</div>;
-  }
+  };
 
   return (
     <>
-      <TableInstance 
+      <TableInstance
         tableData={tableData} 
         tableHeaders={tableHeaders}
+        innerRef={innerRef}
       />
     </>
   );
@@ -43,7 +47,7 @@ const TableQueryPaginated = ({ idLaboratorio, idUsuario, tableHeaders }) => {
  * Function - TableInstance
  * -----------------------------------------------------
  */
-const TableInstance = ({ tableData, tableHeaders }) => {
+const TableInstance = ({ tableData, tableHeaders, innerRef }) => {
   const [columns, data] = useMemo(() => {
     const columns = tableHeaders;
     return [columns, tableData];
@@ -58,7 +62,12 @@ const TableInstance = ({ tableData, tableHeaders }) => {
     usePagination
   );
 
-  return <TableLayout {...tableInstance} />;
+  return (
+    <TableLayout 
+      {...tableInstance} 
+      innerRef={innerRef} 
+    />
+  );
 };
 
 /**
@@ -80,7 +89,8 @@ const TableLayout = ({
   gotoPage,
   pageCount,
   setPageSize,
-  state: { pageIndex, pageSize }
+  state: { pageIndex, pageSize },
+  innerRef
 }) => {
   return (
     <>
@@ -92,6 +102,7 @@ const TableLayout = ({
         size="sm"
         className="text-center"
         {...getTableProps()}
+        ref={innerRef}
       >
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -117,7 +128,8 @@ const TableLayout = ({
           })}
         </tbody>
       </Table>
-      <Row className="my-2 text-center align-items-center justify-content-between">
+
+      <Row className="my-2 text-center align-items-center d-flex justify-content-between">
         <Col sm={4} lg={6}>
           <ButtonGroup size="sm">
             <Button variant="secondary" onClick={() => gotoPage(0)} disabled={!canPreviousPage}>{"<<"}</Button>
@@ -126,16 +138,20 @@ const TableLayout = ({
             <Button variant="secondary" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>{">>"}</Button>
           </ButtonGroup>
         </Col>
-        <Col sm={4} lg={3}>
+
+        <Col sm={3} lg={2}>
           <span>
-            <b>|</b> Página{" "}
+            <b>|</b>
+            {" "}
             <strong>
-              {pageIndex + 1} de {pageOptions.length}
-            </strong>{" "}
+              {pageIndex + 1} / {pageOptions.length}
+            </strong>
+            {" "}
             <b>|</b>
           </span>
         </Col>
-        <Col sm={4} lg={3}>
+
+        <Col sm={5} lg={4}>
           <Form.Select 
             size="sm"
             value={pageSize}

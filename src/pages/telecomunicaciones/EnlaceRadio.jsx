@@ -40,6 +40,8 @@ function EnlaceRadio() {
     setShowResults(!showResults);
   };
 
+  const [componentRef, setComponentRef] = useState({});
+
   /**
    * -----------------------------------------------------
    * Renderizado del componente
@@ -104,6 +106,7 @@ function EnlaceRadio() {
                       idLaboratorio={idLabActual}
                       idUsuario={idUsuarioActual}
                       tableHeaders={tableHeaders}
+                      setComponentRef={setComponentRef}
                     />
                   </Card.Body>
                 </Card>
@@ -115,7 +118,8 @@ function EnlaceRadio() {
                 useHook={useEnsayosUsuario}
                 idLaboratorio={idLabActual}
                 idUsuario={idUsuarioActual}
-                filename={"radio-ensayos"}
+                filename={"ensayos-radio"}
+                componentRef={componentRef}
               />
             </Card.Footer>
           </Card>

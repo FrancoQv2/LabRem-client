@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -39,6 +39,8 @@ function EnlaceWifi() {
     setShowForm(!showForm);
     setShowResults(!showResults);
   };
+
+  const [componentRef, setComponentRef] = useState({});
 
   /**
    * -----------------------------------------------------
@@ -106,6 +108,7 @@ function EnlaceWifi() {
                       idLaboratorio={idLabActual}
                       idUsuario={idUsuarioActual}
                       tableHeaders={tableHeaders}
+                      setComponentRef={setComponentRef}
                     />
                   </Card.Body>
                 </Card>
@@ -118,7 +121,8 @@ function EnlaceWifi() {
                 useHook={useEnsayosUsuario}
                 idLaboratorio={idLabActual}
                 idUsuario={idUsuarioActual}
-                filename={"wifi-ensayos"}
+                filename={"ensayos-wifi"}
+                componentRef={componentRef}
               />
             </Card.Footer>
           </Card>
