@@ -3,14 +3,14 @@ import Accordion from "react-bootstrap/Accordion";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import { useInformationLab } from "../../hooks/digital";
+import { useInfoLaboratorio } from "../../hooks/digital";
 
 /**
  * @param {object} imagen
  * @param {number} idLabActual
  */
 function LabInformation({ imagen, idLabActual }) {
-  const { data, error, isLoading } = useInformationLab(idLabActual);
+  const { data, error, isLoading } = useInfoLaboratorio(idLabActual);
 
   return (
     <>

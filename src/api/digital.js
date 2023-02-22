@@ -56,23 +56,19 @@ export const getEnsayosUART = async () => {
  */
 export const postEnsayoUART = async ({
   idUsuario,
-  velocidad,
-  pulsador1,
-  pulsador2,
-  pulsador3,
-  pulsador4,
-  mensaje,
+    velocidad,
+    cantidadBitDato,
+    paridad,// false par, true impar
+    cantidadBitParada,
+    mensaje,
 }) => {
-  const pulsadores = [];
-  pulsadores.push(parseInt(pulsador1));
-  pulsadores.push(parseInt(pulsador2));
-  pulsadores.push(parseInt(pulsador3));
-  pulsadores.push(parseInt(pulsador4));
 
   const newEnsayo = {
     idUsuario: idUsuario,
     velocidad: parseInt(velocidad),
-    pulsadores: pulsadores,
+    cantidadBitDato: cantidadBitDato,
+    paridad: paridad,
+    cantidadBitParada: cantidadBitParada,
     mensaje: mensaje,
   };
 

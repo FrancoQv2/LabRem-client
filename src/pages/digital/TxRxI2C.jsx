@@ -11,9 +11,11 @@ import LabInformation from "../../components/digital/LabInformation";
 import LabVideoStreaming from "../../components/LabVideoStreaming";
 
 import FormI2C from "../../components/digital/FormI2C";
-import TableI2C from "../../components/digital/TableI2C";
-
+import TableQueryPaginated from "../../components/digital/TableQueryPaginated";
 import image from "../../assets/i2c.webp";
+import { headersUART as tableHeaders } from "../../libs/tableHeaders";
+import ExportResults from "../../components/common/ExportResults"
+import { useEnsayosUsuario } from "../../hooks/digital"
 
 /**
  * @return Pagina del laboratorio de Enlace Wifi
@@ -30,6 +32,7 @@ function TxRxI2C() {
     setShowResults(!showResults);
   };
 
+  const [componentRef, setComponentRef] = useState({});
   /**
    * -----------------------------------------------------
    * Renderizado del componente
@@ -86,14 +89,25 @@ function TxRxI2C() {
                 <Card id="lab-results">
                   <Card.Body>
                     <Card.Title>Ensayos realizados</Card.Title>
-                    <TableI2C
+                    <TableQueryPaginated
                       idLaboratorio={idLabActual}
                       idUsuario={idUsuarioActual}
+                      tableHeaders={tableHeaders}
+                      setComponentRef={setComponentRef}
                     />
                   </Card.Body>
                 </Card>
               ) : null}
             </Card.Body>
+            <Card.Footer>
+                    <ExportResults 
+                      useHook={useEnsayosUsuario}
+                      idLaboratorio={idLabActual}
+                      idUsuario={idUsuarioActual}
+                      filename={"ensayos-i2c"}
+                      componentRef={componentRef}
+                    />
+                  </Card.Footer>
           </Card>
         </Col>
       </Row>

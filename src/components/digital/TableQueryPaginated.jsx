@@ -8,7 +8,7 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
 
-import { useEnsayosUsuario } from "../hooks/telecomunicaciones";
+import { useEnsayosUsuario } from "../../hooks/digital";
 
 /**
  * -----------------------------------------------------
@@ -24,7 +24,7 @@ const TableQueryPaginated = ({ idLaboratorio, idUsuario, tableHeaders, setCompon
   // Ref for download table as image
   const innerRef = useRef();
   useEffect(() => {
-      //setComponentRef(innerRef)
+     // setComponentRef(innerRef)
   }, [tableData]);
 
   if (isLoading || !tableData) {

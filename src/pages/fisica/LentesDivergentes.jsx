@@ -11,9 +11,12 @@ import LabInformation from "../../components/fisica/LabInformation";
 import LabVideoStreaming from "../../components/LabVideoStreaming";
 
 import FormDivergentes from "../../components/fisica/FormDivergentes";
-import TableDivergentes from "../../components/fisica/TableDivergentes";
-
+import { headersDivergente as tableHeaders } from "../../libs/tableHeaders";
+import TableQueryPaginated from "../../components/fisica/TableQueryPaginated";
 import imgRadio from "../../assets/lente-divergente.png";
+
+import ExportResults from "../../components/common/ExportResults"
+import { useEnsayosUsuario } from "../../hooks/fisica"
 
 /**
  * @return Pagina del laboratorio de Enlace Wifi
@@ -29,7 +32,7 @@ function LentesDivergentes() {
     setShowForm(!showForm);
     setShowResults(!showResults);
   };
-
+const [componentRef, setComponentRef] = useState({});
   /**
    * -----------------------------------------------------
    * Renderizado del componente
@@ -89,14 +92,26 @@ function LentesDivergentes() {
                 <Card id="lab-results">
                   <Card.Body>
                     <Card.Title>Ensayos realizados</Card.Title>
-                    <TableDivergentes
-                      idLaboratorio={idLabActual}
-                      idUsuario={idUsuarioActual}
+                    <TableQueryPaginated
+                       idLaboratorio={idLabActual}
+                       idUsuario={idUsuarioActual}
+                       tableHeaders={tableHeaders}
+                       setComponentRef={setComponentRef}
                     />
                   </Card.Body>
                 </Card>
               ) : null}
             </Card.Body>
+
+            <Card.Footer>
+              <ExportResults 
+                useHook={useEnsayosUsuario}
+                idLaboratorio={idLabActual}
+                idUsuario={idUsuarioActual}
+                filename={"ensayos-divergentes"}
+                componentRef={componentRef}
+              />
+            </Card.Footer>
           </Card>
         </Col>
       </Row>

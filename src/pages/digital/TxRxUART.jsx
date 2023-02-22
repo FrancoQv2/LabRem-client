@@ -11,9 +11,15 @@ import LabInformation from "../../components/digital/LabInformation";
 import LabVideoStreaming from "../../components/LabVideoStreaming";
 
 import FormUART from "../../components/digital/FormUART";
-import TableUART from "../../components/digital/TableUART";
 
+import TableQueryPaginated from "../../components/digital/TableQueryPaginated";
 import image from "../../assets/uart.png";
+
+import { headersUART as tableHeaders } from "../../libs/tableHeaders";
+import { useInfoLaboratorio } from "../../hooks/digital";
+import ExportResults from "../../components/common/ExportResults"
+import { useEnsayosUsuario } from "../../hooks/digital"
+
 
 /**
  * @return Pagina del laboratorio de Enlace Wifi
@@ -30,6 +36,7 @@ function TxRxUART() {
     setShowResults(!showResults);
   };
 
+  const [componentRef, setComponentRef] = useState({});
   /**
    * -----------------------------------------------------
    * Renderizado del componente
@@ -37,7 +44,11 @@ function TxRxUART() {
    */
   return (
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
-      <LabInformation imagen={image} idLabActual={idLabActual}></LabInformation>
+      <LabInformation 
+        imagen={image} 
+        idLabActual={idLabActual}>
+        useInfoLaboratorio={useInfoLaboratorio}
+      </LabInformation>
       <hr />
 
       <Row className="m-2">
@@ -86,14 +97,25 @@ function TxRxUART() {
                 <Card id="lab-results">
                   <Card.Body>
                     <Card.Title>Ensayos realizados</Card.Title>
-                    <TableUART
+                    <TableQueryPaginated
                       idLaboratorio={idLabActual}
                       idUsuario={idUsuarioActual}
+                      tableHeaders={tableHeaders}
+                      setComponentRef={setComponentRef}
                     />
                   </Card.Body>
                 </Card>
               ) : null}
             </Card.Body>
+            <Card.Footer>
+              <ExportResults 
+                useHook={useEnsayosUsuario}
+                idLaboratorio={idLabActual}
+                idUsuario={idUsuarioActual}
+                filename={"ensayos-uart"}
+                componentRef={componentRef}
+              />
+            </Card.Footer>
           </Card>
         </Col>
       </Row>

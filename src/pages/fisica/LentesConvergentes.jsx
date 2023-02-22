@@ -11,9 +11,12 @@ import LabInformation from "../../components/fisica/LabInformation";
 import LabVideoStreaming from "../../components/LabVideoStreaming";
 
 import FormConvergentes from "../../components/fisica/FormConvergentes";
-import TableConvergentes from "../../components/fisica/TableConvergentes";
-
+import { headersConvergente as tableHeaders } from "../../libs/tableHeaders";
+import TableQueryPaginated from "../../components/fisica/TableQueryPaginated";
 import imgWifi from "../../assets/lente-convergente.jpg";
+
+import ExportResults from "../../components/common/ExportResults"
+import { useEnsayosUsuario } from "../../hooks/fisica"
 
 /**
  * @return Pagina del laboratorio de Enlace Wifi
@@ -29,6 +32,7 @@ function LentesConvergentes() {
     setShowForm(!showForm);
     setShowResults(!showResults);
   };
+  const [componentRef, setComponentRef] = useState({});
 
   /**
    * -----------------------------------------------------
@@ -89,14 +93,26 @@ function LentesConvergentes() {
                 <Card id="lab-results">
                   <Card.Body>
                     <Card.Title>Ensayos realizados</Card.Title>
-                    <TableConvergentes
-                      idLaboratorio={idLabActual}
-                      idUsuario={idUsuarioActual}
+                    <TableQueryPaginated
+                       idLaboratorio={idLabActual}
+                       idUsuario={idUsuarioActual}
+                       tableHeaders={tableHeaders}
+                       setComponentRef={setComponentRef}
                     />
                   </Card.Body>
                 </Card>
               ) : null}
             </Card.Body>
+
+            <Card.Footer>
+              <ExportResults 
+                useHook={useEnsayosUsuario}
+                idLaboratorio={idLabActual}
+                idUsuario={idUsuarioActual}
+                filename={"ensayos-convergentes"}
+                componentRef={componentRef}
+              />
+            </Card.Footer>
           </Card>
         </Col>
       </Row>

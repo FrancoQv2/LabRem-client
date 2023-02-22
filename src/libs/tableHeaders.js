@@ -51,3 +51,82 @@ export const headersRadio = [
     accessor: "IntensidadMax",
   },
 ];
+export const headersConvergente = [
+  {
+    Header: "#",
+    accessor: "index",
+  },
+  {
+    Header: "Fecha",
+    accessor: "Fecha",
+  },
+  {
+    Header: "Hora",
+    accessor: "Hora",
+  },
+  {
+    Header: "distanciaLente",
+    accessor: "distanciaLente",
+  },
+  {
+    Header: "distanciaPantalla",
+    accessor: "distanciaPantalla",
+  },
+];
+
+export const headersDivergente = [
+  {
+    Header: "#",
+    accessor: "index",
+  },
+  {
+    Header: "Fecha",
+    accessor: "Fecha",
+  },
+  {
+    Header: "Hora",
+    accessor: "Hora",
+  },
+  {
+    Header: "distanciaLente",
+    accessor: "distanciaLente",
+  },
+  {
+    Header: "distanciaLenteLente",
+    accessor: "distanciaLenteLente",
+  },
+  {
+    Header: "distanciaPantalla",
+    accessor: "distanciaPantalla",
+  },
+];
+export const headersUART = [
+  {
+    Header: "#",
+    accessor: "index",
+  },
+  {
+    Header: "Fecha",
+    accessor: "Fecha",
+  },
+  {
+    Header: "Hora",
+    accessor: "Hora",
+  },
+  {
+    Header: "cantidadBitDato",
+    accessor: "cantidadBitDato",
+  },
+  {
+    Header: "paridad",
+    accessor: "paridad",
+  },
+  {
+    Header: "cantidadBitParada",
+    accessor: "cantidadBitParada",
+  },
+  {
+    Header: "mensaje",
+    accessor: "mensaje",
+  }
+];
