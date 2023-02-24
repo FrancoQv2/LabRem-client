@@ -13,7 +13,7 @@ import LabVideoStreaming from "../../components/LabVideoStreaming";
 import FormI2C from "../../components/digital/FormI2C";
 import TableQueryPaginated from "../../components/digital/TableQueryPaginated";
 import image from "../../assets/i2c.webp";
-import { headersUART as tableHeaders } from "../../libs/tableHeaders";
+import { headersi2c as tableHeaders } from "../../libs/tableHeaders";
 import ExportResults from "../../components/common/ExportResults"
 import { useEnsayosUsuario } from "../../hooks/digital"
 

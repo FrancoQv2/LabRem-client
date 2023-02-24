@@ -130,3 +130,33 @@ export const headersUART = [
     accessor: "mensaje",
   }
 ];
+export const headersi2c = [
+  {
+    Header: "#",
+    accessor: "index",
+  },
+  {
+    Header: "Fecha",
+    accessor: "Fecha",
+  },
+  {
+    Header: "Hora",
+    accessor: "Hora",
+  },
+  {
+    Header: "Frecuencia",
+    accessor: "frecuencia",
+  },
+  {
+    Header: "Memoria",
+    accessor: "memoria",
+  },
+  {
+    Header: "accion",
+    accessor: "accion",
+  },
+  {
+    Header: "Datos",
+    accessor: "datos",
+  }
+];
