@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 import { usePostEnsayoDivergentes } from "../../hooks/fisica";
+import { submitSuccess, submitError } from "../../libs/alerts";
 
 function FormDivergentes({ idUsuario }) {
   const [distanciaLente, setDistanciaLente] = useState(50);
@@ -24,6 +25,10 @@ function FormDivergentes({ idUsuario }) {
           setDistanciaLente(50);
           setDistanciaLenteLente(70);
           setDistanciaPantalla(70);
+          submitSuccess();
+        },
+        onError: () => {
+          submitError();
         },
       }
     );

@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 import { usePostEnsayoConvergentes } from "../../hooks/fisica";
+import { submitSuccess, submitError } from "../../libs/alerts"; 
 
 function FormConvergentes({ idUsuario }) {
   const [distanciaLente, setDistanciaLente] = useState(120);
@@ -22,6 +23,10 @@ function FormConvergentes({ idUsuario }) {
         onSuccess: () => {
           setDistanciaLente(0);
           setDistanciaPantalla(0);
+          submitSuccess();
+        },
+        onError: () => {
+          submitError();
         },
       }
     );

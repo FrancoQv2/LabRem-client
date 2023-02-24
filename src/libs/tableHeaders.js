@@ -114,6 +114,10 @@ export const headersUART = [
     accessor: "Hora",
   },
   {
+    Header: "velocidad",
+    accessor: "velocidad",
+  },
+  {
     Header: "cantidadBitDato",
     accessor: "cantidadBitDato",
   },

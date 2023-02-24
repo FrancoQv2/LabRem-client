@@ -8,6 +8,7 @@ import Button from "react-bootstrap/Button";
 import FormSelect from "../../components/FormSelect";
 
 import { usePostEnsayoUART } from "../../hooks/digital";
+import { submitSuccess, submitError } from "../../libs/alerts"; 
 
 function FormUART({ idUsuario }) {
   // Definicion de valores posibles
@@ -56,6 +57,10 @@ function FormUART({ idUsuario }) {
       {
         onSuccess: () => {
           setMensaje("");
+          submitSuccess();
+        },
+        onError: () => {
+          submitError();
         },
       }
     );

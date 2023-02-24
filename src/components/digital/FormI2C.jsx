@@ -8,6 +8,7 @@ import Button from "react-bootstrap/Button";
 import FormSelect from "../FormSelect";
 
 import { usePostEnsayoI2C } from "../../hooks/digital";
+import { submitSuccess, submitError } from "../../libs/alerts";
 
 function FormI2C({ idUsuario }) {
   const valuesLectura = ["lectura","escritura"]; // bps
@@ -37,6 +38,10 @@ function FormI2C({ idUsuario }) {
         onSuccess: () => {
           setFrecuencia("");
           setMemoria(0);
+          submitSuccess();
+        },
+        onError: () => {
+          submitError();
         },
       }
     );
