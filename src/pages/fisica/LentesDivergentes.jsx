@@ -16,7 +16,7 @@ import TableQueryPaginated from "../../components/fisica/TableQueryPaginated";
 import imgRadio from "../../assets/lente-divergente.png";
 
 import ExportResults from "../../components/common/ExportResults"
-import { useEnsayosUsuario } from "../../hooks/fisica"
+import { useEnsayosUsuario, useEnsayos } from "../../hooks/fisica"
 
 /**
  * @return Pagina del laboratorio de Enlace Wifi
@@ -27,7 +27,8 @@ function LentesDivergentes() {
 
   const idLabActual = 2;
   const idUsuarioActual = 2;
-
+  const prof = 1;//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area;
+  
   const onClickTabs = () => {
     setShowForm(!showForm);
     setShowResults(!showResults);
@@ -106,8 +107,10 @@ const [componentRef, setComponentRef] = useState({});
             <Card.Footer>
               <ExportResults 
                 useHook={useEnsayosUsuario}
+                exportToProfe={useEnsayos}
                 idLaboratorio={idLabActual}
                 idUsuario={idUsuarioActual}
+                prof={prof}
                 filename={"ensayos-divergentes"}
                 componentRef={componentRef}
               />

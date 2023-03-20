@@ -7,7 +7,10 @@ import { getDateNow } from "../../libs/datetime.js";
 import BtnDownloadPng from "./BtnDownloadPng"
 import BtnDownloadCsv from "./BtnDownloadCsv"
 
-function ExportResults({ useHook, idLaboratorio, idUsuario, filename, componentRef }) {
+import BtnDownloadCsvProf from "./BtnDownloadCsvProf.jsx";
+
+
+function ExportResults({ useHook, idLaboratorio, idUsuario,Prof, filename,exportToProfe, componentRef }) {
   const options = {
     staleTime: Infinity,
     cacheTime: Infinity
@@ -17,7 +20,9 @@ function ExportResults({ useHook, idLaboratorio, idUsuario, filename, componentR
     idLaboratorio: idLaboratorio,
     idUsuario: idUsuario
   }, options);
- 
+  
+  const id=idLaboratorio.toString();
+  
   return (
     <>
       <Row>
@@ -45,6 +50,12 @@ function ExportResults({ useHook, idLaboratorio, idUsuario, filename, componentR
           />
         </Col>
       </Row>
+      {Prof=1 ? <BtnDownloadCsvProf 
+          useHookProf={exportToProfe}
+          idLaboratorio={id}
+          filename={"ensayos-convergentes"}
+          /> :null}
+      
     </>
   )
 }

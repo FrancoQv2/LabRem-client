@@ -37,19 +37,21 @@ export const getEnsayosUsuario = async ({ queryKey }) => {
   return data;
 };
 
-//-----------------------------------------------------
-// Laboratorio - Enlace Wifi
-//-----------------------------------------------------
-
 /**
  *
- * @returns Todos los ensayos realizados en Enlace Wifi
+ * @returns Todos los ensayos realizados dependiendo del id de lab
  */
-export const getEnsayosWifi = async () => {
-  const { data } = await axios.get(`${API_TELECO}/wifi`);
+export const getEnsayos = async ({ queryKey }) => {
+  const [_, { idLaboratorio }] = queryKey;
+  
+  const url = `${API_TELECO}/ensayos/${idLaboratorio}`;
+ 
+  const { data } = await axios.get(url, {
+    idLaboratorio: idLaboratorio
+  });
+
   return data;
 };
-
 /**
  *
  * @param {Object} newEnsayo

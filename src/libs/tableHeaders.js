@@ -72,6 +72,10 @@ export const headersConvergente = [
     Header: "distanciaPantalla",
     accessor: "distanciaPantalla",
   },
+  {
+    Header: "diafragma",
+    accessor: "diafragma",
+  },
 ];
 
 export const headersDivergente = [
@@ -162,5 +166,31 @@ export const headersi2c = [
   {
     Header: "Datos",
     accessor: "datos",
+  }
+];
+export const headersetb = [
+  {
+    Header: "#",
+    accessor: "index",
+  },
+  {
+    Header: "Fecha",
+    accessor: "Fecha",
+  },
+  {
+    Header: "Hora",
+    accessor: "Hora",
+  },
+  {
+    Header: "Frecuencia de caida de agua",
+    accessor: "FrecuenciaCaidaAgua",
+  },
+  {
+    Header: "Frecuencia de la luz",
+    accessor: "FrecuenciaLuz",
+  },
+  {
+    Header: "Caida Agua",
+    accessor: "CaidaAgua",
   }
 ];

@@ -65,6 +65,8 @@ function Laboratorios() {
                 <option value={JSON.stringify(lab.fisica_div)}>     {lab.fisica_div.nombre}   </option>
                 <option value={JSON.stringify(lab.digital_uart)}>   {lab.digital_uart.nombre} </option>
                 <option value={JSON.stringify(lab.digital_i2c)}>    {lab.digital_i2c.nombre}  </option>
+                <option value={JSON.stringify(lab.estroboscopica)}>    {lab.estroboscopica.nombre}  </option>
+                <option value={JSON.stringify(lab.posicion)}>    {lab.posicion.nombre}  </option>
               </Form.Select>
             </Col>
           </Row>

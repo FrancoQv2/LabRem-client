@@ -24,7 +24,7 @@ const TableQueryPaginated = ({ idLaboratorio, idUsuario, tableHeaders, setCompon
   // Ref for download table as image
   const innerRef = useRef();
   useEffect(() => {
-      //setComponentRef(innerRef)
+      setComponentRef(innerRef)
   }, [tableData]);
 
   if (isLoading || !tableData) {

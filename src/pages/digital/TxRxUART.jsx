@@ -18,7 +18,7 @@ import image from "../../assets/uart.png";
 import { headersUART as tableHeaders } from "../../libs/tableHeaders";
 import { useInfoLaboratorio } from "../../hooks/digital";
 import ExportResults from "../../components/common/ExportResults"
-import { useEnsayosUsuario } from "../../hooks/digital"
+import { useEnsayosUsuario, useEnsayos } from "../../hooks/digital"
 
 
 /**
@@ -30,6 +30,7 @@ function TxRxUART() {
 
   const idLabActual = 1;
   const idUsuarioActual = 2;
+  const prof = 1;//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area;
 
   const onClickTabs = () => {
     setShowForm(!showForm);
@@ -110,8 +111,10 @@ function TxRxUART() {
             <Card.Footer>
               <ExportResults 
                 useHook={useEnsayosUsuario}
+                exportToProfe={useEnsayos}
                 idLaboratorio={idLabActual}
                 idUsuario={idUsuarioActual}
+                prof={prof}
                 filename={"ensayos-uart"}
                 componentRef={componentRef}
               />

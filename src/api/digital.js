@@ -44,12 +44,17 @@ export const getEnsayosUsuario = async ({ queryKey }) => {
  * getEnsayosUART
  *
  */
-export const getEnsayosUART = async () => {
-  const { data } = await axios.get(`${API_DIGITAL}/uart`);
-  console.log(data);
+export const getEnsayos = async ({ queryKey }) => {
+  const [_, { idLaboratorio }] = queryKey;
+  
+  const url = `${API_DIGITAL}/ensayos/${idLaboratorio}`;
+ 
+  const { data } = await axios.get(url, {
+    idLaboratorio: idLaboratorio
+  });
+
   return data;
 };
-
 /**
  * postEnsayoUART
  *

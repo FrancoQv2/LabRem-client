@@ -3,7 +3,7 @@ import Accordion from "react-bootstrap/Accordion";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import { useInformationLab } from "../../hooks/fisica";
+import { useInformationLab } from "../../hooks/control";
 
 /**
  * @param {object} imagen

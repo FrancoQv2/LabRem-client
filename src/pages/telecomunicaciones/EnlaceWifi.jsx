@@ -20,7 +20,7 @@ import imgWifi from "../../assets/teleco_wifi.jpg";
 
 import ExportResults from "../../components/common/ExportResults"
 
-import { useEnsayosUsuario } from "../../hooks/telecomunicaciones"
+import { useEnsayosUsuario, useEnsayos } from "../../hooks/telecomunicaciones"
 
 /**
  * -----------------------------------------------------
@@ -34,6 +34,7 @@ function EnlaceWifi() {
 
   const idLabActual = 1;
   const idUsuarioActual = 2;
+  const prof = 1;//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area;
 
   const onClickTabs = () => {
     setShowForm(!showForm);
@@ -119,8 +120,10 @@ function EnlaceWifi() {
             <Card.Footer>
               <ExportResults 
                 useHook={useEnsayosUsuario}
+                exportToProfe={useEnsayos}
                 idLaboratorio={idLabActual}
                 idUsuario={idUsuarioActual}
+                prof={prof}
                 filename={"ensayos-wifi"}
                 componentRef={componentRef}
               />

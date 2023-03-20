@@ -15,7 +15,8 @@ import TableQueryPaginated from "../../components/digital/TableQueryPaginated";
 import image from "../../assets/i2c.webp";
 import { headersi2c as tableHeaders } from "../../libs/tableHeaders";
 import ExportResults from "../../components/common/ExportResults"
-import { useEnsayosUsuario } from "../../hooks/digital"
+import { useEnsayosUsuario, useEnsayos } from "../../hooks/digital"
+
 
 /**
  * @return Pagina del laboratorio de Enlace Wifi
@@ -26,7 +27,7 @@ function TxRxI2C() {
 
   const idLabActual = 2;
   const idUsuarioActual = 2;
-
+  const prof = 1;//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area;
   const onClickTabs = () => {
     setShowForm(!showForm);
     setShowResults(!showResults);
@@ -102,8 +103,10 @@ function TxRxI2C() {
             <Card.Footer>
                     <ExportResults 
                       useHook={useEnsayosUsuario}
+                      exportToProfe={useEnsayos}
                       idLaboratorio={idLabActual}
                       idUsuario={idUsuarioActual}
+                      prof={prof}
                       filename={"ensayos-i2c"}
                       componentRef={componentRef}
                     />

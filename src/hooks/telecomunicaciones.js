@@ -3,6 +3,7 @@ import { useMutation, useQuery } from "react-query";
 import {
   getInfoLaboratorio,
   getEnsayosUsuario,
+  getEnsayos,
   postEnsayoWifi,
   postEnsayoRadio,
 } from "../api/telecomunicaciones";
@@ -25,6 +26,11 @@ export function useEnsayosUsuario({ idLaboratorio, idUsuario }, options) {
     getEnsayosUsuario, 
     options
   );
+}
+
+export function useEnsayos({ idLaboratorio}) {
+  return useQuery(
+    [key, { idLaboratorio: idLaboratorio }],getEnsayos);
 }
 
 export function usePostEnsayoWifi() {

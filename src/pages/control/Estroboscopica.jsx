@@ -7,34 +7,32 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
 
-import LabInformation from "../../components/fisica/LabInformation";
+import LabInformation from "../../components/control/LabInformation";
 import LabVideoStreaming from "../../components/LabVideoStreaming";
 
-import FormConvergentes from "../../components/fisica/FormConvergentes";
-import { headersConvergente as tableHeaders } from "../../libs/tableHeaders";
-import TableQueryPaginated from "../../components/fisica/TableQueryPaginated";
-import imgWifi from "../../assets/lente-convergente.jpg";
-
+import FormETB from "../../components/control/FormETB";
+import TableQueryPaginated from "../../components/control/TableQueryPaginated";
+import image from "../../assets/i2c.webp";
+import { headersetb as tableHeaders } from "../../libs/tableHeaders";
 import ExportResults from "../../components/common/ExportResults"
-import { useEnsayosUsuario,useEnsayos } from "../../hooks/fisica"
+import { useEnsayosUsuario,useEnsayos } from "../../hooks/control"
 
 /**
  * @return Pagina del laboratorio de Enlace Wifi
  */
-function LentesConvergentes() {
+function Estroboscopica() {
   const [showForm, setShowForm] = useState(true);
   const [showResults, setShowResults] = useState(false);
 
   const idLabActual = 1;
   const idUsuarioActual = 2;
-  const prof = 1;//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area;
-
+  const prof = 1//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area;
   const onClickTabs = () => {
     setShowForm(!showForm);
     setShowResults(!showResults);
   };
-  const [componentRef, setComponentRef] = useState({});
 
+  const [componentRef, setComponentRef] = useState({});
   /**
    * -----------------------------------------------------
    * Renderizado del componente
@@ -42,10 +40,7 @@ function LentesConvergentes() {
    */
   return (
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
-      <LabInformation
-        imagen={imgWifi}
-        idLabActual={idLabActual}
-      ></LabInformation>
+      <LabInformation imagen={image} idLabActual={idLabActual}></LabInformation>
       <hr />
 
       <Row className="m-2">
@@ -85,7 +80,7 @@ function LentesConvergentes() {
                 <Card id="lab-form">
                   <Card.Body>
                     <Card.Title>Ingrese los datos</Card.Title>
-                    <FormConvergentes idUsuario={idUsuarioActual} />
+                    <FormETB idUsuario={idUsuarioActual} />
                   </Card.Body>
                 </Card>
               ) : null}
@@ -95,16 +90,15 @@ function LentesConvergentes() {
                   <Card.Body>
                     <Card.Title>Ensayos realizados</Card.Title>
                     <TableQueryPaginated
-                       idLaboratorio={idLabActual}
-                       idUsuario={idUsuarioActual}
-                       tableHeaders={tableHeaders}
-                       setComponentRef={setComponentRef}
+                      idLaboratorio={idLabActual}
+                      idUsuario={idUsuarioActual}
+                      tableHeaders={tableHeaders}
+                      setComponentRef={setComponentRef}
                     />
                   </Card.Body>
                 </Card>
               ) : null}
             </Card.Body>
-
             <Card.Footer>
               <ExportResults 
                 useHook={useEnsayosUsuario}
@@ -112,7 +106,7 @@ function LentesConvergentes() {
                 idLaboratorio={idLabActual}
                 idUsuario={idUsuarioActual}
                 prof={prof}
-                filename={"ensayos-convergentes"}
+                filename={"ensayos-Estroboscopico"}
                 componentRef={componentRef}
               />
             </Card.Footer>
@@ -123,4 +117,4 @@ function LentesConvergentes() {
   );
 }
 
-export default LentesConvergentes;
+export default Estroboscopica;
