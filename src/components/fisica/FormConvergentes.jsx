@@ -4,24 +4,33 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-
+import FormSelect from "../../components/FormSelect";
 import { usePostEnsayoConvergentes } from "../../hooks/fisica";
+import { submitSuccess, submitError } from "../../libs/alerts"; 
 
 function FormConvergentes({ idUsuario }) {
+  const tipoDiafragma = ["sin diafragma","diafragma central","diafragma periferico","filtro rojo" ]; 
+  const defaultDiafragma = tipoDiafragma[0];
+  
   const [distanciaLente, setDistanciaLente] = useState(120);
   const [distanciaPantalla, setDistanciaPantalla] = useState(70);
-
+  const [diafragma, setDiafragma] = useState(defaultDiafragma);
   const { mutate, error, isLoading } = usePostEnsayoConvergentes();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     mutate(
-      { idUsuario, distanciaLente, distanciaPantalla },
+      { idUsuario, distanciaLente, distanciaPantalla, diafragma },
       {
         onSuccess: () => {
-          setDistanciaLente(0);
-          setDistanciaPantalla(0);
+          setDistanciaLente(120);
+          setDistanciaPantalla(70);
+          setDiafragma(0);
+          //submitSuccess();
+        },
+        onError: () => {
+          submitError();
         },
       }
     );
@@ -95,7 +104,12 @@ function FormConvergentes({ idUsuario }) {
           </Row>
         </Form.Group>
       </Row>
-
+      <FormSelect
+            name="Diafragma"
+            values={tipoDiafragma}
+            defaultValue={defaultDiafragma}
+            setState={setDiafragma}
+      />
       <Row>
         <Button variant="primary" type="submit">
           Iniciar experiencia

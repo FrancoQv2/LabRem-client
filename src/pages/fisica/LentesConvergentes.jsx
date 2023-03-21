@@ -15,12 +15,11 @@ import FormConvergentes from "../../components/fisica/FormConvergentes";
 import TableQueryPaginated from "../../components/common/TableQueryPaginated";
 import ExportResults from "../../components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario } from "../../hooks/fisica";
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/fisica";
 
 import { headersConvergentes as tableHeaders } from "../../libs/tableHeaders";
 
 import imgConv from "../../assets/lente-convergente.jpg";
-
 
 
 /**
@@ -32,11 +31,13 @@ function LentesConvergentes() {
 
   const idLabActual = 1;
   const idUsuarioActual = 2;
+  const prof = 1;//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area;
 
   const onClickTabs = () => {
     setShowForm(!showForm);
     setShowResults(!showResults);
   };
+  const [componentRef, setComponentRef] = useState({});
 
   const [componentRef, setComponentRef] = useState({});
 
@@ -115,8 +116,10 @@ function LentesConvergentes() {
             <Card.Footer>
               <ExportResults 
                 useHook={useEnsayosUsuario}
+                exportToProfe={useEnsayos}
                 idLaboratorio={idLabActual}
                 idUsuario={idUsuarioActual}
+                prof={prof}
                 filename={"ensayos-convergentes"}
                 componentRef={componentRef}
               />

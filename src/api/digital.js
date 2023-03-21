@@ -44,35 +44,36 @@ export const getEnsayosUsuario = async ({ queryKey }) => {
  * getEnsayosUART
  *
  */
-export const getEnsayosUART = async () => {
-  const { data } = await axios.get(`${API_DIGITAL}/uart`);
-  console.log(data);
+export const getEnsayos = async ({ queryKey }) => {
+  const [_, { idLaboratorio }] = queryKey;
+  
+  const url = `${API_DIGITAL}/ensayos/${idLaboratorio}`;
+ 
+  const { data } = await axios.get(url, {
+    idLaboratorio: idLaboratorio
+  });
+
   return data;
 };
-
 /**
  * postEnsayoUART
  *
  */
 export const postEnsayoUART = async ({
   idUsuario,
-  velocidad,
-  pulsador1,
-  pulsador2,
-  pulsador3,
-  pulsador4,
-  mensaje,
+    velocidad,
+    cantidadBitDato,
+    paridad,// false par, true impar
+    cantidadBitParada,
+    mensaje,
 }) => {
-  const pulsadores = [];
-  pulsadores.push(parseInt(pulsador1));
-  pulsadores.push(parseInt(pulsador2));
-  pulsadores.push(parseInt(pulsador3));
-  pulsadores.push(parseInt(pulsador4));
 
   const newEnsayo = {
     idUsuario: idUsuario,
     velocidad: parseInt(velocidad),
-    pulsadores: pulsadores,
+    cantidadBitDato: cantidadBitDato,
+    paridad: paridad,
+    cantidadBitParada: cantidadBitParada,
     mensaje: mensaje,
   };
 
@@ -99,24 +100,17 @@ export const getEnsayosI2C = async () => {
  */
 export const postEnsayoI2C = async ({
   idUsuario,
-  velocidad,
-  pulsador1,
-  pulsador2,
-  pulsador3,
-  pulsador4,
-  mensaje,
+  frecuencia,
+  memoria,
+  accion,
+  datos
 }) => {
-  const pulsadores = [];
-  pulsadores.push(parseInt(pulsador1));
-  pulsadores.push(parseInt(pulsador2));
-  pulsadores.push(parseInt(pulsador3));
-  pulsadores.push(parseInt(pulsador4));
-
   const newEnsayo = {
     idUsuario: idUsuario,
-    velocidad: parseInt(velocidad),
-    pulsadores: pulsadores,
-    mensaje: mensaje,
+    accion: accion,
+    frecuencia: frecuencia,
+    memoria: memoria,
+    datos: datos,
   };
 
   const { data } = await axios.post(`${API_DIGITAL}/i2c`, newEnsayo);

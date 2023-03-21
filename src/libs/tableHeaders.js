@@ -72,7 +72,11 @@ export const headersConvergentes = [
   {
     Header: "Distancia Pantalla",
     accessor: "distanciaPantalla",
-  }
+  },
+  {
+    Header: "Diafragma",
+    accessor: "diafragma",
+  },
 ];
 
 export const headersDivergentes = [
@@ -116,20 +120,27 @@ export const headersI2C = [
     accessor: "Hora",
   },
   {
-    Header: "Velocidad",
+    Header: "velocidad",
     accessor: "velocidad",
   },
   {
-    Header: "Pulsadores",
-    accessor: "pulsadores",
+    Header: "cantidadBitDato",
+    accessor: "cantidadBitDato",
   },
   {
-    Header: "Mensaje",
-    accessor: "mensaje",
+    Header: "paridad",
+    accessor: "paridad",
   },
+  {
+    Header: "cantidadBitParada",
+    accessor: "cantidadBitParada",
+  },
+  {
+    Header: "mensaje",
+    accessor: "mensaje",
+  }
 ];
-
-export const headersUART = [
+export const headersi2c = [
   {
     Header: "#",
     accessor: "index",
@@ -143,15 +154,45 @@ export const headersUART = [
     accessor: "Hora",
   },
   {
-    Header: "Velocidad",
-    accessor: "velocidad",
+    Header: "Frecuencia",
+    accessor: "frecuencia",
   },
   {
-    Header: "Pulsadores",
-    accessor: "pulsadores",
+    Header: "Memoria",
+    accessor: "memoria",
   },
   {
-    Header: "Mensaje",
-    accessor: "mensaje",
+    Header: "accion",
+    accessor: "accion",
   },
+  {
+    Header: "Datos",
+    accessor: "datos",
+  }
+];
+export const headersetb = [
+  {
+    Header: "#",
+    accessor: "index",
+  },
+  {
+    Header: "Fecha",
+    accessor: "Fecha",
+  },
+  {
+    Header: "Hora",
+    accessor: "Hora",
+  },
+  {
+    Header: "Frecuencia de caida de agua",
+    accessor: "FrecuenciaCaidaAgua",
+  },
+  {
+    Header: "Frecuencia de la luz",
+    accessor: "FrecuenciaLuz",
+  },
+  {
+    Header: "Caida Agua",
+    accessor: "CaidaAgua",
+  }
 ];

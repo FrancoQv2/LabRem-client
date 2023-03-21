@@ -15,11 +15,12 @@ import FormRadio from "../../components/telecomunicaciones/FormRadio";
 import TableQueryPaginated from "../../components/common/TableQueryPaginated";
 import ExportResults from "../../components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario } from "../../hooks/telecomunicaciones";
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/telecomunicaciones";
 
 import { headersRadio as tableHeaders } from "../../libs/tableHeaders";
 import imgRadio from "../../assets/teleco_radio.png";
 
+import ExportResults from "../../components/common/ExportResults"
 
 
 /**
@@ -34,6 +35,7 @@ function EnlaceRadio() {
 
   const idLabActual = 2;
   const idUsuarioActual = 2;
+  const prof = 1;//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area;
 
   const onClickTabs = () => {
     setShowForm(!showForm);
@@ -117,8 +119,10 @@ function EnlaceRadio() {
             <Card.Footer>
               <ExportResults 
                 useHook={useEnsayosUsuario}
+                exportToProfe={useEnsayos}
                 idLaboratorio={idLabActual}
                 idUsuario={idUsuarioActual}
+                prof={prof}
                 filename={"ensayos-radio"}
                 componentRef={componentRef}
               />

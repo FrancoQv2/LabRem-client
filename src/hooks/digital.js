@@ -3,6 +3,7 @@ import { useMutation, useQuery } from "react-query";
 import {
   getInformationLab,
   getEnsayosUsuario,
+  getEnsayos,
   postEnsayoUART,
   postEnsayoI2C,
 } from "../api/digital";
@@ -19,7 +20,10 @@ export function useEnsayosUsuario({ idLaboratorio, idUsuario }) {
     getEnsayosUsuario
   );
 }
-
+export function useEnsayos({ idLaboratorio}) {
+  return useQuery(
+    [key, { idLaboratorio: idLaboratorio }],getEnsayos);
+}
 export function usePostEnsayoUART() {
   return useMutation(postEnsayoUART);
 }

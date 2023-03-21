@@ -8,6 +8,7 @@ import Button from "react-bootstrap/Button";
 import FormSelect from "../common/FormSelect";
 
 import { usePostEnsayoUART } from "../../hooks/digital";
+import { submitSuccess, submitError } from "../../libs/alerts"; 
 
 function FormUART({ idUsuario }) {
   // Definicion de valores posibles
@@ -17,13 +18,25 @@ function FormUART({ idUsuario }) {
   ]; // bps
   const defaultVelocidad = valuesVelocidad[5];
 
+
+  const valuesParidad = [
+    "par","impar" 
+  ]; // bps
+  const defaultParidad = valuesParidad[0];
+
+
+  const valuescantidadBitParada = [
+    0,1,2 
+  ]; // bps
+  const defaultcantidadBitParada = valuescantidadBitParada[0];
+
   // Definicion de Hooks
   const [velocidad, setVelocidad] = useState(defaultVelocidad);
 
-  const [pulsador1, setPulsador1] = useState(0); // 0 -> apagado, 1 -> encendido
-  const [pulsador2, setPulsador2] = useState(0); // 0 -> apagado, 1 -> encendido
-  const [pulsador3, setPulsador3] = useState(0); // 0 -> apagado, 1 -> encendido
-  const [pulsador4, setPulsador4] = useState(0); // 0 -> apagado, 1 -> encendido
+  const [cantidadBitDato, setcantidadBitsDato] = useState("");
+
+  const [paridad, setParidad] = useState(defaultParidad);
+  const [cantidadBitParada, setParada] = useState(defaultcantidadBitParada);
 
   const [mensaje, setMensaje] = useState("");
 
@@ -36,20 +49,24 @@ function FormUART({ idUsuario }) {
       {
         idUsuario,
         velocidad,
-        pulsador1,
-        pulsador2,
-        pulsador3,
-        pulsador4,
-        mensaje,
+        cantidadBitDato,
+        paridad,
+        cantidadBitParada,
+        mensaje
       },
       {
         onSuccess: () => {
           setMensaje("");
+          submitSuccess();
+        },
+        onError: () => {
+          submitError();
         },
       }
     );
   };
-
+ 
+  
   return (
     <Form className="m-3" onSubmit={handleSubmit}>
       <FormSelect
@@ -58,113 +75,40 @@ function FormUART({ idUsuario }) {
         defaultValue={defaultVelocidad}
         setState={setVelocidad}
       />
-
-      <Row className="my-3">
-        <Form.Group
+     
+     <Row className="my-3">
+     <Form.Group
           className="border border-secondary rounded"
-          controlId="formPulsador"
-          onChange={(changeEvent) => {
-            switch (changeEvent.target.ariaLabel) {
-              case "pulsador-1":
-                setPulsador1(changeEvent.target.value);
-                break;
-              case "pulsador-2":
-                setPulsador2(changeEvent.target.value);
-                break;
-              case "pulsador-3":
-                setPulsador3(changeEvent.target.value);
-                break;
-              case "pulsador-4":
-                setPulsador4(changeEvent.target.value);
-                break;
-
-              default:
-                break;
-            }
-          }}
+          controlId="formMensaje"
+          onChange={(changeEvent) => setcantidadBitsDato(changeEvent.target.value)}
         >
           <Row className="my-3">
             <Col sm={4} lg={6}>
-              <span className="input-group-text" htmlFor="pulsador-1">
-                Pulsador 1
+              <span className="input-group-text" htmlFor="cantidadBitDato">
+                cantidad de Bits del Dato
               </span>
             </Col>
             <Col sm={4} lg={6}>
-              <Form.Select aria-label="pulsador-1" defaultValue={pulsador1}>
-                <option value={0}>Apagado</option>
-                <option value={1}>Encendido</option>
-              </Form.Select>
+              <Form.Control type="text" aria-describedby="text-cantidadBitDato" />
+              <Form.Text id="text-cantidadBitDato"></Form.Text>
             </Col>
           </Row>
-
-          <Row className="my-3">
-            <Col sm={4} lg={6}>
-              <span className="input-group-text" htmlFor="pulsador-2">
-                Pulsador 2
-              </span>
-            </Col>
-            <Col sm={4} lg={6}>
-              <Form.Select aria-label="pulsador-2" defaultValue={pulsador2}>
-                <option value={0}>Apagado</option>
-                <option value={1}>Encendido</option>
-              </Form.Select>
-            </Col>
-          </Row>
-
-          <Row className="my-3">
-            <Col sm={4} lg={6}>
-              <span className="input-group-text" htmlFor="pulsador-3">
-                Pulsador 3
-              </span>
-            </Col>
-            <Col sm={4} lg={6}>
-              <Form.Select aria-label="pulsador-3" defaultValue={pulsador3}>
-                <option value={0}>Apagado</option>
-                <option value={1}>Encendido</option>
-              </Form.Select>
-            </Col>
-          </Row>
-
-          <Row className="my-3">
-            <Col sm={4} lg={6}>
-              <span className="input-group-text" htmlFor="pulsador-4">
-                Pulsador 4
-              </span>
-            </Col>
-            <Col sm={4} lg={6}>
-              <Form.Select aria-label="pulsador-4" defaultValue={pulsador4}>
-                <option value={0}>Apagado</option>
-                <option value={1}>Encendido</option>
-              </Form.Select>
-            </Col>
-          </Row>
-        </Form.Group>
+        </Form.Group>  
       </Row>
 
-      {/* <Row className="my-3">
-        <Form.Group
-          className="border border-secondary rounded"
-          controlId="formParidad"
-          onChange={(changeEvent) => {
-            setParidad(changeEvent.target.value);
-            // console.log(changeEvent.target);
-          }}
-        >
-          <Row className="my-3">
-            <Col sm={4} lg={6}>
-              <span className="input-group-text" htmlFor="paridad">
-                Paridad
-              </span>
-            </Col>
-            <Col sm={4} lg={6}>
-              <Form.Select aria-label="paridad" defaultValue={true}>
-                <option value={true}>Par</option>
-                <option value={false}>Impar</option>
-              </Form.Select>
-            </Col>
-          </Row>
-        </Form.Group>
-      </Row> */}
+      <FormSelect
+        name="Paridad"
+        values={valuesParidad}
+        defaultValue={defaultParidad}
+        setState={setParidad}
+      />
+
+      <FormSelect
+        name="Parada"
+        values={valuescantidadBitParada}
+        defaultValue={defaultcantidadBitParada}
+        setState={setParada}
+      />
 
       <Row className="my-3">
         <Form.Group

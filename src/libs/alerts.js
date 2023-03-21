@@ -68,3 +68,16 @@ export function downloadCsvError() {
         title: 'Hubo un error al generar el archivo csv!'
     })
 }
+
+export function process() {
+    Toast.fire({
+        icon: 'info',
+        title: 'realizando ensayo, espere a que termine.'
+    })
+}
+export function submitErrorDato(Msj) {
+    Toast.fire({
+        icon: 'error',
+        title: Msj
+    })
+}

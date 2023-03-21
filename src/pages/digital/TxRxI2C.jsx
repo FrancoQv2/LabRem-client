@@ -33,14 +33,13 @@ function TxRxI2C() {
 
   const idLabActual = 2;
   const idUsuarioActual = 2;
-
+  const prof = 1;//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area;
   const onClickTabs = () => {
     setShowForm(!showForm);
     setShowResults(!showResults);
   };
 
   const [componentRef, setComponentRef] = useState({});
-
   /**
    * -----------------------------------------------------
    * Renderizado del componente
@@ -101,24 +100,27 @@ function TxRxI2C() {
                 <Card id="lab-results">
                   <Card.Body>
                     <Card.Title>Ensayos realizados</Card.Title>
-                    <TableI2C
+                    <TableQueryPaginated
                       idLaboratorio={idLabActual}
                       idUsuario={idUsuarioActual}
+                      tableHeaders={tableHeaders}
+                      setComponentRef={setComponentRef}
                     />
                   </Card.Body>
                 </Card>
               ) : null}
             </Card.Body>
-
             <Card.Footer>
-              <ExportResults 
-                useHook={useEnsayosUsuario}
-                idLaboratorio={idLabActual}
-                idUsuario={idUsuarioActual}
-                filename={"ensayos-i2c"}
-                componentRef={componentRef}
-              />
-            </Card.Footer>
+                    <ExportResults 
+                      useHook={useEnsayosUsuario}
+                      exportToProfe={useEnsayos}
+                      idLaboratorio={idLabActual}
+                      idUsuario={idUsuarioActual}
+                      prof={prof}
+                      filename={"ensayos-i2c"}
+                      componentRef={componentRef}
+                    />
+                  </Card.Footer>
           </Card>
         </Col>
       </Row>

@@ -31,7 +31,12 @@ function TxRxUART() {
   const navigateI2C = () => {
     navigate("/digital/i2c");
   };
-
+  const navigateETB = () => {
+    navigate("/control/estroboscopica");
+  };
+  const navigatePOS = () => {
+    navigate("/control/Posicion");
+  };
   return (
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
       <hr />
@@ -79,6 +84,22 @@ function TxRxUART() {
         <Col sm={12} lg={6}>
           <Button variant="primary" size="lg" onClick={navigateI2C}>
             Transmisor/Receptor I2C
+          </Button>
+        </Col>
+      </Row>
+      <hr />
+      <Row className="m-2">
+        <h1>automatización y control</h1>
+        <hr />
+        <Col sm={12} lg={6}>
+          <Button variant="primary" size="lg" onClick={navigateETB}>
+          Submuestreo, aliasing y efecto estroboscópico
+          </Button>
+        </Col>
+
+        <Col sm={12} lg={6}>
+          <Button variant="primary" size="lg" onClick={navigatePOS}>
+            Sistema de control automático de posición
           </Button>
         </Col>
       </Row>

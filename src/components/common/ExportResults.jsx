@@ -7,15 +7,15 @@ import { getDateNow } from "../../libs/datetime.js";
 import BtnDownloadPng from "./BtnDownloadPng"
 import BtnDownloadCsv from "./BtnDownloadCsv"
 
+// Necesario para no realizar la query más de una vez
+import BtnDownloadCsvProf from "./BtnDownloadCsvProf.jsx";
 
 /**
  * Este componente realiza dos acciones:
  * - Para csv realiza una query usando el hook useEnsayosUsuarios y obtener toda la data más reciente
  * - Para png necesita la Red del componente Tabla actual
  */
-function ExportResults({ useHook, idLaboratorio, idUsuario, filename, componentRef }) {
-
-  // Necesario para no realizar la query más de una vez
+function ExportResults({ useHook, idLaboratorio, idUsuario,Prof, filename,exportToProfe, componentRef }) {
   const options = {
     staleTime: Infinity,
     cacheTime: Infinity
@@ -25,7 +25,9 @@ function ExportResults({ useHook, idLaboratorio, idUsuario, filename, componentR
     idLaboratorio: idLaboratorio,
     idUsuario: idUsuario
   }, options);
- 
+  
+  const id=idLaboratorio.toString();
+  
   return (
     <>
       <Row>
@@ -53,6 +55,12 @@ function ExportResults({ useHook, idLaboratorio, idUsuario, filename, componentR
           />
         </Col>
       </Row>
+      {Prof=1 ? <BtnDownloadCsvProf 
+          useHookProf={exportToProfe}
+          idLaboratorio={id}
+          filename={"ensayos-convergentes"}
+          /> :null}
+      
     </>
   )
 }

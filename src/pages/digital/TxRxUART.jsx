@@ -11,7 +11,6 @@ import LabInformation from "../../components/common/LabInformation";
 import LabVideoStreaming from "../../components/LabVideoStreaming";
 
 import FormUART from "../../components/digital/FormUART";
-import TableUART from "../../components/digital/TableUART";
 
 import TableQueryPaginated from "../../components/common/TableQueryPaginated";
 import ExportResults from "../../components/common/ExportResults"
@@ -22,6 +21,12 @@ import { headersUART as tableHeaders } from "../../libs/tableHeaders";
 
 import imgUART from "../../assets/uart.png";
 
+import { headersUART as tableHeaders } from "../../libs/tableHeaders";
+import { useInfoLaboratorio } from "../../hooks/digital";
+import ExportResults from "../../components/common/ExportResults"
+import { useEnsayosUsuario, useEnsayos } from "../../hooks/digital"
+
+
 /**
  * @return Pagina del laboratorio de Enlace Wifi
  */
@@ -31,6 +36,7 @@ function TxRxUART() {
 
   const idLabActual = 1;
   const idUsuarioActual = 2;
+  const prof = 1;//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area;
 
   const onClickTabs = () => {
     setShowForm(!showForm);
@@ -38,7 +44,6 @@ function TxRxUART() {
   };
 
   const [componentRef, setComponentRef] = useState({});
-
   /**
    * -----------------------------------------------------
    * Renderizado del componente
@@ -99,21 +104,24 @@ function TxRxUART() {
                 <Card id="lab-results">
                   <Card.Body>
                     <Card.Title>Ensayos realizados</Card.Title>
-                    <TableUART
+                    <TableQueryPaginated
                       idLaboratorio={idLabActual}
                       idUsuario={idUsuarioActual}
+                      tableHeaders={tableHeaders}
+                      setComponentRef={setComponentRef}
                     />
                   </Card.Body>
                 </Card>
               ) : null}
             </Card.Body>
-
             <Card.Footer>
               <ExportResults 
                 useHook={useEnsayosUsuario}
+                exportToProfe={useEnsayos}
                 idLaboratorio={idLabActual}
                 idUsuario={idUsuarioActual}
-                filename={"ensayos-wifi"}
+                prof={prof}
+                filename={"ensayos-uart"}
                 componentRef={componentRef}
               />
             </Card.Footer>

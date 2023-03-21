@@ -4,13 +4,12 @@ import {
   getInformationLab,
   getEnsayosUsuario,
   getEnsayos,
-  postEnsayoConvergentes,
-  postEnsayoDivergentes,
-} from "../api/fisica";
+  postEnsayoEstroboscopica
+} from "../api/control";
 
-const key = "fisica";
+const key = "control";
 
-export function useInfoLaboratorio(idLabActual) {
+export function useInformationLab(idLabActual) {
   return useQuery([key, { idLaboratorio: idLabActual }], getInformationLab);
 }
 
@@ -24,10 +23,7 @@ export function useEnsayos({ idLaboratorio}) {
   return useQuery(
     [key, { idLaboratorio: idLaboratorio }],getEnsayos);
 }
-export function usePostEnsayoConvergentes() {
-  return useMutation(postEnsayoConvergentes);
+export function usePostEnsayoEstroboscopica() {
+  return useMutation(postEnsayoEstroboscopica);
 }
 
-export function usePostEnsayoDivergentes() {
-  return useMutation(postEnsayoDivergentes);
-}
