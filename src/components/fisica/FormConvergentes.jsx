@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import FormSelect from "../../components/FormSelect";
 import { usePostEnsayoConvergentes } from "../../hooks/fisica";
 import { submitSuccess, submitError } from "../../libs/alerts"; 
+import FormSaveConvergente from "./FormSaveConvergente";
 
 function FormConvergentes({ idUsuario }) {
   const tipoDiafragma = ["sin diafragma","diafragma central","diafragma periferico","filtro rojo" ]; 
@@ -16,18 +17,15 @@ function FormConvergentes({ idUsuario }) {
   const [distanciaPantalla, setDistanciaPantalla] = useState(70);
   const [diafragma, setDiafragma] = useState(defaultDiafragma);
   const { mutate, error, isLoading } = usePostEnsayoConvergentes();
-
+  const [cambio,setcambio] =useState(true);
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setcambio(current =>!current);
     mutate(
-      { idUsuario, distanciaLente, distanciaPantalla, diafragma },
+      { idUsuario, distanciaLente, distanciaPantalla, diafragma,setcambio },
       {
         onSuccess: () => {
-          setDistanciaLente(120);
-          setDistanciaPantalla(70);
-          setDiafragma(0);
-          //submitSuccess();
+         
         },
         onError: () => {
           submitError();
@@ -111,10 +109,24 @@ function FormConvergentes({ idUsuario }) {
             setState={setDiafragma}
       />
       <Row>
+        { cambio ? (<Col className="text-center">
         <Button variant="primary" type="submit">
           Iniciar experiencia
         </Button>
+        </Col>):null
+
+        }
+        
+        <Col className="text-center">
+        <FormSaveConvergente
+        idUsuario={idUsuario}
+        distanciaLente={distanciaLente}
+        distanciaPantalla={distanciaPantalla}
+        diafragma={diafragma}
+        />
+        </Col>
       </Row>
+      
     </Form>
   );
 }

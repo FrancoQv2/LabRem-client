@@ -17,7 +17,7 @@ import imgWifi from "../../assets/lente-convergente.jpg";
 
 import ExportResults from "../../components/common/ExportResults"
 import { useEnsayosUsuario,useEnsayos } from "../../hooks/fisica"
-
+import Button from "react-bootstrap/Button";
 /**
  * @return Pagina del laboratorio de Enlace Wifi
  */

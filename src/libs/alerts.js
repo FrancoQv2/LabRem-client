@@ -81,3 +81,9 @@ export function submitErrorDato(Msj) {
         title: Msj
     })
 }
+export function saveSuccess() {
+    Toast.fire({
+        icon: 'success',
+        title: 'valores guardados.'
+    })
+}

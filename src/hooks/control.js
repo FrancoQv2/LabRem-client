@@ -26,4 +26,6 @@ export function useEnsayos({ idLaboratorio}) {
 export function usePostEnsayoEstroboscopica() {
   return useMutation(postEnsayoEstroboscopica);
 }
-
+export function usePostEnsayoPosicion() {
+  return useMutation(postEnsayoEstroboscopica);
+}

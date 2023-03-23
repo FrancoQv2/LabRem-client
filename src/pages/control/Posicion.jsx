@@ -10,7 +10,7 @@ import Nav from "react-bootstrap/Nav";
 import LabInformation from "../../components/control/LabInformation";
 import LabVideoStreaming from "../../components/LabVideoStreaming";
 
-import FormETB from "../../components/control/FormETB";
+import FormPOS from "../../components/control/FormPOS";
 import TableQueryPaginated from "../../components/control/TableQueryPaginated";
 import image from "../../assets/i2c.webp";
 import { headersetb as tableHeaders } from "../../libs/tableHeaders";
@@ -80,7 +80,7 @@ function Estroboscopica() {
                 <Card id="lab-form">
                   <Card.Body>
                     <Card.Title>Ingrese los datos</Card.Title>
-                    <FormETB idUsuario={idUsuarioActual} />
+                    <FormPOS idUsuario={idUsuarioActual} />
                   </Card.Body>
                 </Card>
               ) : null}
@@ -106,7 +106,7 @@ function Estroboscopica() {
                 idLaboratorio={idLabActual}
                 idUsuario={idUsuarioActual}
                 prof={prof}
-                filename={"ensayos-Estroboscopico"}
+                filename={"ensayos-Posicion"}
                 componentRef={componentRef}
               />
             </Card.Footer>

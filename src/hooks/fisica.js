@@ -5,7 +5,9 @@ import {
   getEnsayosUsuario,
   getEnsayos,
   postEnsayoConvergentes,
+  postEnsayoConvergentesSave,
   postEnsayoDivergentes,
+  postEnsayoDivergentesSave
 } from "../api/fisica";
 
 const key = "fisica";
@@ -28,6 +30,13 @@ export function usePostEnsayoConvergentes() {
   return useMutation(postEnsayoConvergentes);
 }
 
+export function usePostEnsayoConvergentesSave() {
+  return useMutation(postEnsayoConvergentesSave);
+}
+
 export function usePostEnsayoDivergentes() {
   return useMutation(postEnsayoDivergentes);
+}
+export function usePostEnsayoDivergentesSave() {
+  return useMutation(postEnsayoDivergentesSave);
 }
