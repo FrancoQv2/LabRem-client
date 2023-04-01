@@ -15,16 +15,11 @@ import FormUART from "../../components/digital/FormUART";
 import TableQueryPaginated from "../../components/common/TableQueryPaginated";
 import ExportResults from "../../components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario } from "../../hooks/digital";
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/digital";
 
 import { headersUART as tableHeaders } from "../../libs/tableHeaders";
 
 import imgUART from "../../assets/uart.png";
-
-import { headersUART as tableHeaders } from "../../libs/tableHeaders";
-import { useInfoLaboratorio } from "../../hooks/digital";
-import ExportResults from "../../components/common/ExportResults"
-import { useEnsayosUsuario, useEnsayos } from "../../hooks/digital"
 
 
 /**

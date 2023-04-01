@@ -15,14 +15,12 @@ import FormWifi from "../../components/telecomunicaciones/FormWifi";
 import TableQueryPaginated from "../../components/common/TableQueryPaginated";
 import ExportResults from "../../components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario } from "../../hooks/telecomunicaciones";
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/telecomunicaciones";
 
 import { headersWifi as tableHeaders } from "../../libs/tableHeaders";
 
 import imgWifi from "../../assets/teleco_wifi.jpg";
 
-
-import { useEnsayosUsuario, useEnsayos } from "../../hooks/telecomunicaciones"
 
 /**
  * -----------------------------------------------------

@@ -16,7 +16,7 @@ import TableI2C from "../../components/digital/TableI2C";
 import TableQueryPaginated from "../../components/common/TableQueryPaginated";
 import ExportResults from "../../components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario } from "../../hooks/digital";
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/digital";
 
 import { headersI2C as tableHeaders } from "../../libs/tableHeaders";
 

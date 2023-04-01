@@ -20,8 +20,6 @@ import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/t
 import { headersRadio as tableHeaders } from "../../libs/tableHeaders";
 import imgRadio from "../../assets/teleco_radio.png";
 
-import ExportResults from "../../components/common/ExportResults"
-
 
 /**
  * -----------------------------------------------------

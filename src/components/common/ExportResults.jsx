@@ -55,11 +55,14 @@ function ExportResults({ useHook, idLaboratorio, idUsuario,Prof, filename,export
           />
         </Col>
       </Row>
-      {Prof=1 ? <BtnDownloadCsvProf 
+      {/* {Prof=1 
+        ? <BtnDownloadCsvProf 
           useHookProf={exportToProfe}
           idLaboratorio={id}
           filename={"ensayos-convergentes"}
-          /> :null}
+          /> 
+        :null
+      } */}
       
     </>
   )

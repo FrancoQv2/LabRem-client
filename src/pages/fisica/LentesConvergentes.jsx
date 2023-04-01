@@ -39,8 +39,6 @@ function LentesConvergentes() {
   };
   const [componentRef, setComponentRef] = useState({});
 
-  const [componentRef, setComponentRef] = useState({});
-
   /**
    * -----------------------------------------------------
    * Renderizado del componente

@@ -140,7 +140,8 @@ export const headersI2C = [
     accessor: "mensaje",
   }
 ];
-export const headersi2c = [
+
+export const headersUART = [
   {
     Header: "#",
     accessor: "index",
@@ -170,6 +171,7 @@ export const headersi2c = [
     accessor: "datos",
   }
 ];
+
 export const headersetb = [
   {
     Header: "#",
