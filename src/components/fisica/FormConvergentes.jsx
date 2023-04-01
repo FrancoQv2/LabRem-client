@@ -8,6 +8,7 @@ import FormSelect from "../../components/FormSelect";
 import { usePostEnsayoConvergentes } from "../../hooks/fisica";
 import { submitSuccess, submitError } from "../../libs/alerts"; 
 import FormSaveConvergente from "./FormSaveConvergente";
+import DownloadImage from "../DownloadImage"
 
 function FormConvergentes({ idUsuario }) {
   const tipoDiafragma = ["sin diafragma","diafragma central","diafragma periferico","filtro rojo" ]; 
@@ -109,24 +110,28 @@ function FormConvergentes({ idUsuario }) {
             setState={setDiafragma}
       />
       <Row>
-        { cambio ? (<Col className="text-center">
-        <Button variant="primary" type="submit">
-          Iniciar experiencia
-        </Button>
-        </Col>):null
-
+        { cambio ? (
+          <Col className="text-center">
+            <Button variant="primary" type="submit">
+              Iniciar experiencia
+            </Button>
+          </Col>):null
         }
         
         <Col className="text-center">
-        <FormSaveConvergente
-        idUsuario={idUsuario}
-        distanciaLente={distanciaLente}
-        distanciaPantalla={distanciaPantalla}
-        diafragma={diafragma}
+          <FormSaveConvergente
+            idUsuario={idUsuario}
+            distanciaLente={distanciaLente}
+            distanciaPantalla={distanciaPantalla}
+            diafragma={diafragma}
+          />
+        </Col>
+        <Col className="text-center">
+        <DownloadImage
         />
         </Col>
       </Row>
-      
+        
     </Form>
   );
 }

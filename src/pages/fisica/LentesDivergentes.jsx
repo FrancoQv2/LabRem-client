@@ -17,7 +17,7 @@ import imgRadio from "../../assets/lente-divergente.png";
 
 import ExportResults from "../../components/common/ExportResults"
 import { useEnsayosUsuario, useEnsayos } from "../../hooks/fisica"
-
+import Button from "react-bootstrap/Button";
 /**
  * @return Pagina del laboratorio de Enlace Wifi
  */
@@ -48,12 +48,8 @@ const [componentRef, setComponentRef] = useState({});
       <hr />
 
       <Row className="m-2">
-        <Col
-          className="d-flex justify-content-center align-items-center"
-          sm={12}
-          lg={5}
-        >
-          <LabVideoStreaming />
+        <Col className="d-flex justify-content-center align-items-center" sm={12} lg={5} >
+          <LabVideoStreaming /> 
         </Col>
 
         <Col sm={12} lg={7}>

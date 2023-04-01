@@ -65,15 +65,15 @@ export const headersConvergente = [
     accessor: "Hora",
   },
   {
-    Header: "distanciaLente",
+    Header: "Distancia de lente",
     accessor: "distanciaLente",
   },
   {
-    Header: "distanciaPantalla",
+    Header: "Distancia de pantalla",
     accessor: "distanciaPantalla",
   },
   {
-    Header: "diafragma",
+    Header: "Diafragma",
     accessor: "diafragma",
   },
 ];
@@ -122,16 +122,20 @@ export const headersUART = [
     accessor: "velocidad",
   },
   {
-    Header: "cantidadBitDato",
-    accessor: "cantidadBitDato",
+    Header: "pulsador1",
+    accessor: "pulsador1",
   },
   {
-    Header: "paridad",
-    accessor: "paridad",
+    Header: "pulsador2",
+    accessor: "pulsador2",
   },
   {
-    Header: "cantidadBitParada",
-    accessor: "cantidadBitParada",
+    Header: "pulsador3",
+    accessor: "pulsador3",
+  },
+  {
+    Header: "pulsador4",
+    accessor: "pulsador4",
   },
   {
     Header: "mensaje",

@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { process, submitSuccess, submitErrorDato, saveSuccess } from "../libs/alerts";
 const API_DIGITAL = "http://localhost:3034/api/digital";
 
 //-----------------------------------------------------
@@ -62,25 +62,68 @@ export const getEnsayos = async ({ queryKey }) => {
 export const postEnsayoUART = async ({
   idUsuario,
     velocidad,
-    cantidadBitDato,
-    paridad,// false par, true impar
-    cantidadBitParada,
+    pulsador1,
+    pulsador2,
+    pulsador3,
+    pulsador4,
     mensaje,
+    setcambio,
 }) => {
+
+  const pulsadores = [];
+  pulsadores.push(parseInt(pulsador1));
+  pulsadores.push(parseInt(pulsador2));
+  pulsadores.push(parseInt(pulsador3));
+  pulsadores.push(parseInt(pulsador4));
 
   const newEnsayo = {
     idUsuario: idUsuario,
     velocidad: parseInt(velocidad),
-    cantidadBitDato: cantidadBitDato,
-    paridad: paridad,
-    cantidadBitParada: cantidadBitParada,
+    pulsadores: pulsadores,
     mensaje: mensaje,
   };
-
+  process();
   const { data } = await axios.post(`${API_DIGITAL}/uart`, newEnsayo);
+  setcambio(current=>!current);
+  if (data === "laboratorio ok") {
+    submitSuccess();
+  } else {
+    submitErrorDato(data);
+  } 
   return data;
 };
 
+
+export const postEnsayoUARTSave = async ({
+  idUsuario,
+  velocidad,
+  pulsador1,
+  pulsador2,
+  pulsador3,
+  pulsador4,
+  mensaje,
+}) => {
+
+const pulsadores = [];
+pulsadores.push(parseInt(pulsador1));
+pulsadores.push(parseInt(pulsador2));
+pulsadores.push(parseInt(pulsador3));
+pulsadores.push(parseInt(pulsador4));
+
+const newEnsayo = {
+  idUsuario: idUsuario,
+  velocidad: parseInt(velocidad),
+  pulsadores: pulsadores,
+  mensaje: mensaje,
+};
+const { data } = await axios.post(`${API_DIGITAL}/uartsave`, newEnsayo);
+if (data === "laboratorio ok") {
+  saveSuccess();
+} else {
+  submitErrorDato(data);
+} 
+return data;
+};
 //-----------------------------------------------------
 // Laboratorio - I2C
 //-----------------------------------------------------

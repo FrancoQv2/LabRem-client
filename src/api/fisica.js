@@ -2,7 +2,7 @@ import axios from "axios";
 import { process, submitSuccess, submitErrorDato, saveSuccess } from "../libs/alerts";
 
 // const API = process.env.API_FISICA || "http://localhost:3030/api/teleco";
-const API_FISICA = "http://localhost:3032/api/fisica";
+const API_FISICA = "http://192.168.100.75:3032/api/fisica";
 
 //-----------------------------------------------------
 // Laboratorios - Fisica
@@ -150,10 +150,7 @@ export const postEnsayoDivergentes = async ({
     diafragma: diafragma,
   };
   process();
-  const { data } = await axios.post(
-    `${API_FISICA}/divergente`,
-    newEnsayoDivergente
-  );
+  const { data } = await axios.post(`${API_FISICA}/divergente`,newEnsayoDivergente);
   
   setcambio(current=>!current);
   if (data === "laboratorio ok") {

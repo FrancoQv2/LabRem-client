@@ -5,6 +5,7 @@ import {
   getEnsayosUsuario,
   getEnsayos,
   postEnsayoUART,
+  postEnsayoUARTSave,
   postEnsayoI2C,
 } from "../api/digital";
 
@@ -26,6 +27,9 @@ export function useEnsayos({ idLaboratorio}) {
 }
 export function usePostEnsayoUART() {
   return useMutation(postEnsayoUART);
+}
+export function usePostEnsayoUARTSave() {
+  return useMutation(postEnsayoUARTSave);
 }
 
 export function usePostEnsayoI2C() {
