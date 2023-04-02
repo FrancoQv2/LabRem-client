@@ -6,11 +6,11 @@ import Col from "react-bootstrap/Col";
 /**
  * @param {object} Lab
  * @param {object} Lab.imagen
- * @param {number} Lab.idLabActual
+ * @param {number} Lab.idLaboratorio
  * @param {hook} Lab.useInfoLaboratorio
  */
-function LabInformation({ imagen, idLabActual, useInfoLaboratorio }) {
-  const { data, isLoading } = useInfoLaboratorio(idLabActual);
+function LabInformation({ imagen, idLaboratorio, useInfoLaboratorio }) {
+  const { data, isLoading } = useInfoLaboratorio(idLaboratorio);
 
   return (
     <>
