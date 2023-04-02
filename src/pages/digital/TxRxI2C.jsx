@@ -11,7 +11,6 @@ import LabInformation from "../../components/common/LabInformation";
 import LabVideoStreaming from "../../components/LabVideoStreaming";
 
 import FormI2C from "../../components/digital/FormI2C";
-import TableI2C from "../../components/digital/TableI2C";
 
 import TableQueryPaginated from "../../components/common/TableQueryPaginated";
 import ExportResults from "../../components/common/ExportResults"
