@@ -1,6 +1,6 @@
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
+import Form from "react-bootstrap/Form"
 
 /**
  *
@@ -11,39 +11,39 @@ import Form from "react-bootstrap/Form";
  * @returns
  */
 function FormSelect({ name, values, defaultValue, setState }) {
-  return (
-    <Row className="my-3">
-      <Form.Group
-        className="border border-secondary rounded"
-        controlId={`form${name}`}
-        onChange={(changeEvent) => setState(changeEvent.target.value)}
-      >
+    return (
         <Row className="my-3">
-          <Col sm={4} lg={6}>
-            <span
-              className="input-group-text"
-              htmlFor={name.toString().toLowerCase().replace(/ /g, "-")}
+            <Form.Group
+                className="border border-secondary rounded"
+                controlId={`form${name}`}
+                onChange={(changeEvent) => setState(changeEvent.target.value)}
             >
-              {name}
-            </span>
-          </Col>
-          <Col sm={4} lg={6}>
-            <Form.Select
-              aria-label={name.toString().toLowerCase().replace(/ /g, "-")}
-              defaultValue={defaultValue}
-            >
-              {values &&
-                values.map((value, index) => (
-                  <option key={`${name}-${index}`} value={value}>
-                    {value}
-                  </option>
-                ))}
-            </Form.Select>
-          </Col>
+                <Row className="my-3">
+                    <Col sm={4} lg={6}>
+                        <span
+                            className="input-group-text"
+                            htmlFor={name.toString().toLowerCase().replace(/ /g, "-")}
+                        >
+                            {name}
+                        </span>
+                    </Col>
+                    <Col sm={4} lg={6}>
+                        <Form.Select
+                            aria-label={name.toString().toLowerCase().replace(/ /g, "-")}
+                            defaultValue={defaultValue}
+                        >
+                            {values &&
+                                values.map((value, index) => (
+                                    <option key={`${name}-${index}`} value={value}>
+                                        {value}
+                                    </option>
+                                ))}
+                        </Form.Select>
+                    </Col>
+                </Row>
+            </Form.Group>
         </Row>
-      </Form.Group>
-    </Row>
-  );
+    )
 }
 
-export default FormSelect;
+export default FormSelect
