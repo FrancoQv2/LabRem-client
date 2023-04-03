@@ -13,7 +13,7 @@ import LabVideoStreaming from "../../components/LabVideoStreaming";
 import FormETB from "../../components/control/FormETB";
 import TableQueryPaginated from "../../components/control/TableQueryPaginated";
 import image from "../../assets/i2c.webp";
-import { headersetb as tableHeaders } from "../../libs/tableHeaders";
+import { headersEstroboscopico as tableHeaders } from "../../libs/tableHeaders";
 import ExportResults from "../../components/common/ExportResults"
 import { useEnsayosUsuario,useEnsayos } from "../../hooks/control"
 
