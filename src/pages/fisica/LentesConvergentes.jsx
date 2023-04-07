@@ -27,8 +27,7 @@ function LentesConvergentes() {
 
   const idLabActual = 1;
   const idUsuarioActual = 2;
-  const prof = 1;//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area;
-
+  const prof = true;//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area;
   const onClickTabs = () => {
     setShowForm(!showForm);
     setShowResults(!showResults);
@@ -111,7 +110,7 @@ function LentesConvergentes() {
                 exportToProfe={useEnsayos}
                 idLaboratorio={idLabActual}
                 idUsuario={idUsuarioActual}
-                prof={prof}
+                Prof={prof}
                 filename={"ensayos-convergentes"}
                 componentRef={componentRef}
               />

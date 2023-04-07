@@ -22,7 +22,6 @@ function ExportResults({ useHook, idLaboratorio, idUsuario,Prof, filename,export
   }, options);
   
   const id=idLaboratorio.toString();
-  
   return (
     <>
       <Row>
@@ -50,7 +49,7 @@ function ExportResults({ useHook, idLaboratorio, idUsuario,Prof, filename,export
           />
         </Col>
       </Row>
-      {Prof=1 ? <BtnDownloadCsvProf 
+      {Prof ? <BtnDownloadCsvProf 
           useHookProf={exportToProfe}
           idLaboratorio={id}
           filename={"ensayos-convergentes"}

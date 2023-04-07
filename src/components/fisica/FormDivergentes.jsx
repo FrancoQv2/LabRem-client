@@ -8,6 +8,7 @@ import FormSelect from "../../components/FormSelect";
 import { usePostEnsayoDivergentes } from "../../hooks/fisica";
 import { submitSuccess, submitError } from "../../libs/alerts";
 import FormSaveDivergente from "./FormSaveDivergente";
+import DownloadImage from "../DownloadImage"
 
 function FormDivergentes({ idUsuario }) {
   const tipoDiafragma = ["sin diafragma","diafragma central","diafragma periferico","filtro rojo" ]; 
@@ -160,6 +161,10 @@ function FormDivergentes({ idUsuario }) {
         distanciaLenteLente={distanciaLenteLente}
         distanciaPantalla={distanciaPantalla}
         diafragma={diafragma}
+        />
+        </Col>
+        <Col className="text-center">
+        <DownloadImage
         />
         </Col>
       </Row>
