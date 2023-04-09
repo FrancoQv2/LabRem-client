@@ -1,0 +1,30 @@
+[
+    {
+        "Header": "#",
+        "accessor": "index"
+    },
+    {
+        "Header": "Fecha",
+        "accessor": "Fecha"
+    },
+    {
+        "Header": "Hora",
+        "accessor": "Hora"
+    },
+    {
+        "Header": "Frecuencia",
+        "accessor": "frecuencia"
+    },
+    {
+        "Header": "Memoria",
+        "accessor": "memoria"
+    },
+    {
+        "Header": "Accion",
+        "accessor": "accion"
+    },
+    {
+        "Header": "Datos",
+        "accessor": "datos"
+    }
+]

@@ -7,15 +7,20 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
 
-import LabInformation from "../../components/digital/LabInformation";
+import LabInformation from "../../components/common/LabInformation";
 import LabVideoStreaming from "../../components/LabVideoStreaming";
 
 import FormI2C from "../../components/digital/FormI2C";
-import TableQueryPaginated from "../../components/digital/TableQueryPaginated";
-import image from "../../assets/i2c.webp";
-import { headersi2c as tableHeaders } from "../../libs/tableHeaders";
+
+import TableQueryPaginated from "../../components/common/TableQueryPaginated";
 import ExportResults from "../../components/common/ExportResults"
-import { useEnsayosUsuario, useEnsayos } from "../../hooks/digital"
+
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/digital";
+
+import { headersI2C as tableHeaders } from "../../libs/tableHeaders";
+
+import imgI2C from "../../assets/i2c.webp";
+
 
 
 /**
@@ -41,7 +46,11 @@ function TxRxI2C() {
    */
   return (
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
-      <LabInformation imagen={image} idLabActual={idLabActual}></LabInformation>
+      <LabInformation
+        imagen={imgI2C}
+        idLabActual={idLabActual}
+        useInfoLaboratorio={useInfoLaboratorio}
+      ></LabInformation>
       <hr />
 
       <Row className="m-2">

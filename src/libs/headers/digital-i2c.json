@@ -1,0 +1,34 @@
+[
+    {
+        "Header": "#",
+        "accessor": "index"
+    },
+    {
+        "Header": "Fecha",
+        "accessor": "Fecha"
+    },
+    {
+        "Header": "Hora",
+        "accessor": "Hora"
+    },
+    {
+        "Header": "Velocidad",
+        "accessor": "velocidad"
+    },
+    {
+        "Header": "CantidadBitDato",
+        "accessor": "cantidadBitDato"
+    },
+    {
+        "Header": "Paridad",
+        "accessor": "paridad"
+    },
+    {
+        "Header": "CantidadBitParada",
+        "accessor": "cantidadBitParada"
+    },
+    {
+        "Header": "Mensaje",
+        "accessor": "mensaje"
+    }
+]

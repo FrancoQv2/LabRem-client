@@ -7,7 +7,7 @@ function LabVideoStreaming() {
   //   className="img-thumbnail border"
   // />
   
-  );
+  )
 }
 
-export default LabVideoStreaming;
+export default LabVideoStreaming

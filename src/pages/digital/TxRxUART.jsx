@@ -7,18 +7,19 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
 
-import LabInformation from "../../components/digital/LabInformation";
+import LabInformation from "../../components/common/LabInformation";
 import LabVideoStreaming from "../../components/LabVideoStreaming";
 
 import FormUART from "../../components/digital/FormUART";
 
-import TableQueryPaginated from "../../components/digital/TableQueryPaginated";
-import image from "../../assets/uart.png";
+import TableQueryPaginated from "../../components/common/TableQueryPaginated";
+import ExportResults from "../../components/common/ExportResults"
+
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/digital";
 
 import { headersUART as tableHeaders } from "../../libs/tableHeaders";
-import { useInfoLaboratorio } from "../../hooks/digital";
-import ExportResults from "../../components/common/ExportResults"
-import { useEnsayosUsuario, useEnsayos } from "../../hooks/digital"
+
+import imgUART from "../../assets/uart.png";
 
 
 /**
@@ -45,11 +46,11 @@ function TxRxUART() {
    */
   return (
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
-      <LabInformation 
-        imagen={image} 
-        idLabActual={idLabActual}>
+      <LabInformation
+        imagen={imgUART}
+        idLabActual={idLabActual}
         useInfoLaboratorio={useInfoLaboratorio}
-      </LabInformation>
+      ></LabInformation>
       <hr />
 
       <Row className="m-2">

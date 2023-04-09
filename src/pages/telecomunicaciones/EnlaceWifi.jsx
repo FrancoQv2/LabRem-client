@@ -1,26 +1,29 @@
-import { useState, useRef } from "react";
+import { useState } from "react"
 
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container"
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
 
-import Card from "react-bootstrap/Card";
-import Nav from "react-bootstrap/Nav";
+import Card from "react-bootstrap/Card"
+import Nav from "react-bootstrap/Nav"
 
-import LabInformation from "../../components/LabInformation";
-import LabVideoStreaming from "../../components/LabVideoStreaming";
-import FormWifi from "../../components/telecomunicaciones/FormWifi";
-import TableQueryPaginated from "../../components/TableQueryPaginated";
+import LabInformation from "../../components/common/LabInformation"
+import LabVideoStreaming from "../../components/LabVideoStreaming"
 
-import { useInfoLaboratorio } from "../../hooks/telecomunicaciones";
+import FormWifi from "../../components/telecomunicaciones/FormWifi"
 
-import { headersWifi as tableHeaders } from "../../libs/tableHeaders";
-import imgWifi from "../../assets/teleco_wifi.jpg";
-
+import TableQueryPaginated from "../../components/common/TableQueryPaginated"
 import ExportResults from "../../components/common/ExportResults"
 
-import { useEnsayosUsuario, useEnsayos } from "../../hooks/telecomunicaciones"
+import {
+    useInfoLaboratorio,
+    useEnsayosUsuario,
+    useEnsayos,
+} from "../../hooks/telecomunicaciones"
+
+import { headersWifi as tableHeaders } from "../../libs/tableHeaders"
+
+import imgWifi from "../../assets/teleco_wifi.jpg"
 
 /**
  * -----------------------------------------------------
@@ -29,110 +32,112 @@ import { useEnsayosUsuario, useEnsayos } from "../../hooks/telecomunicaciones"
  * @return Pagina del laboratorio de Enlace Wifi
  */
 function EnlaceWifi() {
-  const [showForm, setShowForm] = useState(true);
-  const [showResults, setShowResults] = useState(false);
+    const [showForm, setShowForm] = useState(true)
+    const [showResults, setShowResults] = useState(false)
 
-  const idLabActual = 1;
-  const idUsuarioActual = 2;
-  const prof = 1;//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area;
+    const idLaboratorio = 1
+    const idUsuario = 2
 
-  const onClickTabs = () => {
-    setShowForm(!showForm);
-    setShowResults(!showResults);
-  };
+    // TODO: Definir con Atilio como me lo manda para saber que es un profesor de fisica y no de otra area
+    const prof = 1
 
-  const [componentRef, setComponentRef] = useState({});
+    const onClickTabs = () => {
+        setShowForm(!showForm)
+        setShowResults(!showResults)
+    }
 
-  /**
-   * -----------------------------------------------------
-   * Renderizado del componente
-   * -----------------------------------------------------
-   */
-  return (
-    <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
-      <LabInformation
-        imagen={imgWifi}
-        idLabActual={idLabActual}
-        useInfoLaboratorio={useInfoLaboratorio}
-      ></LabInformation>
-      <hr />
+    const [componentRef, setComponentRef] = useState({})
 
-      {/* <Row className="m-2" style={{height: 600}}> */}
-      <Row className="m-2">
-        <Col
-          className="d-flex justify-content-center align-items-center"
-          sm={12}
-          lg={5}
-        >
-          <LabVideoStreaming />
-        </Col>
+    /**
+     * -----------------------------------------------------
+     * Renderizado del componente
+     * -----------------------------------------------------
+     */
+    return (
+        <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
+            <LabInformation
+                imagen={imgWifi}
+                idLaboratorio={idLaboratorio}
+                useInfoLaboratorio={useInfoLaboratorio}
+            ></LabInformation>
+            <hr />
 
-        <Col sm={12} lg={7}>
-          <Card>
-            <Card.Header>
-              <Nav fill variant="tabs" defaultActiveKey="#lab-form">
-                <Nav.Item>
-                  <Nav.Link
-                    eventKey="#lab-form"
-                    onClick={showForm ? null : onClickTabs}
-                  >
-                    Formulario
-                  </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link
-                    eventKey="#lab-results"
-                    onClick={showResults ? null : onClickTabs}
-                  >
-                    Resultados
-                  </Nav.Link>
-                </Nav.Item>
-              </Nav>
-            </Card.Header>
+            {/* <Row className="m-2" style={{height: 600}}> */}
+            <Row className="m-2">
+                <Col
+                    className="d-flex justify-content-center align-items-center"
+                    sm={12}
+                    lg={5}
+                >
+                    <LabVideoStreaming />
+                </Col>
 
-            {/* <Card.Body style={{height: 525}}> */}
-            <Card.Body>
-              {showForm ? (
-                <Card id="lab-form">
-                  <Card.Body>
-                    <Card.Title>Ingrese los datos</Card.Title>
-                    <FormWifi idUsuario={idUsuarioActual} />
-                  </Card.Body>
-                </Card>
-              ) : null}
+                <Col sm={12} lg={7}>
+                    <Card>
+                        <Card.Header>
+                            <Nav fill variant="tabs" defaultActiveKey="#lab-form">
+                                <Nav.Item>
+                                    <Nav.Link
+                                        eventKey="#lab-form"
+                                        onClick={showForm ? null : onClickTabs}
+                                    >
+                                        Formulario
+                                    </Nav.Link>
+                                </Nav.Item>
+                                <Nav.Item>
+                                    <Nav.Link
+                                        eventKey="#lab-results"
+                                        onClick={showResults ? null : onClickTabs}
+                                    >
+                                        Resultados
+                                    </Nav.Link>
+                                </Nav.Item>
+                            </Nav>
+                        </Card.Header>
 
-              {showResults ? (
-                <Card id="lab-results">
-                  <Card.Body>
-                    <Card.Title>Ensayos realizados</Card.Title>
-                    <TableQueryPaginated
-                      idLaboratorio={idLabActual}
-                      idUsuario={idUsuarioActual}
-                      tableHeaders={tableHeaders}
-                      setComponentRef={setComponentRef}
-                    />
-                  </Card.Body>
-                </Card>
-              ) : null}
+                        {/* <Card.Body style={{height: 525}}> */}
+                        <Card.Body>
+                            {showForm ? (
+                                <Card id="lab-form">
+                                    <Card.Body>
+                                        <Card.Title>Ingrese los datos</Card.Title>
+                                        <FormWifi idUsuario={idUsuario} />
+                                    </Card.Body>
+                                </Card>
+                            ) : null}
 
-            </Card.Body>
+                            {showResults ? (
+                                <Card id="lab-results">
+                                    <Card.Body>
+                                        <Card.Title>Ensayos realizados</Card.Title>
+                                        <TableQueryPaginated
+                                            idLaboratorio={idLaboratorio}
+                                            idUsuario={idUsuario}
+                                            tableHeaders={tableHeaders}
+                                            useHook={useEnsayosUsuario}
+                                            setComponentRef={setComponentRef}
+                                        />
+                                    </Card.Body>
+                                </Card>
+                            ) : null}
+                        </Card.Body>
 
-            <Card.Footer>
-              <ExportResults 
-                useHook={useEnsayosUsuario}
-                exportToProfe={useEnsayos}
-                idLaboratorio={idLabActual}
-                idUsuario={idUsuarioActual}
-                prof={prof}
-                filename={"ensayos-wifi"}
-                componentRef={componentRef}
-              />
-            </Card.Footer>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
-  );
+                        <Card.Footer>
+                            <ExportResults
+                                useHook={useEnsayosUsuario}
+                                exportToProfe={useEnsayos}
+                                idLaboratorio={idLaboratorio}
+                                idUsuario={idUsuario}
+                                prof={prof}
+                                filename={"ensayos-wifi"}
+                                componentRef={componentRef}
+                            />
+                        </Card.Footer>
+                    </Card>
+                </Col>
+            </Row>
+        </Container>
+    )
 }
 
-export default EnlaceWifi;
+export default EnlaceWifi

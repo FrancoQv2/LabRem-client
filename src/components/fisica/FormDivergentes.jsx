@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import FormSelect from "../../components/FormSelect";
+import FormSelect from "../common/FormSelect";
 import { usePostEnsayoDivergentes } from "../../hooks/fisica";
 import { submitSuccess, submitError } from "../../libs/alerts";
 import FormSaveDivergente from "./FormSaveDivergente";

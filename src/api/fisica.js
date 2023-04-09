@@ -1,8 +1,8 @@
-import axios from "axios";
-import { process, submitSuccess, submitErrorDato, saveSuccess } from "../libs/alerts";
+import axios from "axios"
+import { process, submitSuccess, submitErrorDato } from "../libs/alerts"
 
-// const API = process.env.API_FISICA || "http://localhost:3030/api/teleco";
-const API_FISICA = "http://192.168.100.75:3032/api/fisica";
+// const API = process.env.API_FISICA || "http://localhost:3030/api/teleco"
+const API_FISICA = "http://localhost:3032/api/fisica"
 
 //-----------------------------------------------------
 // Laboratorios - Fisica
@@ -13,30 +13,30 @@ const API_FISICA = "http://192.168.100.75:3032/api/fisica";
  *
  */
 export const getInformationLab = async ({ queryKey }) => {
-  const [_, { idLaboratorio }] = queryKey;
+    const [_, { idLaboratorio }] = queryKey
 
-  const { data } = await axios.get(`${API_FISICA}/${idLaboratorio}`, {
-    idLaboratorio: idLaboratorio,
-  });
-  return data;
-};
+    const { data } = await axios.get(`${API_FISICA}/${idLaboratorio}`, {
+        idLaboratorio: idLaboratorio,
+    })
+    return data
+}
 
 /**
  * getEnsayosUsuario
  *
  */
 export const getEnsayosUsuario = async ({ queryKey }) => {
-  const [_, { idLaboratorio, idUsuario }] = queryKey;
+    const [_, { idLaboratorio, idUsuario }] = queryKey
 
-  const url = `${API_FISICA}/${idLaboratorio}/${idUsuario}`;
+    const url = `${API_FISICA}/${idLaboratorio}/${idUsuario}`
 
-  const { data } = await axios.get(url, {
-    idLaboratorio: idLaboratorio,
-    idUsuario: idUsuario,
-  });
+    const { data } = await axios.get(url, {
+        idLaboratorio: idLaboratorio,
+        idUsuario: idUsuario,
+    })
 
-  return data;
-};
+    return data
+}
 
 //-----------------------------------------------------
 // Laboratorio - Lentes Convergentes
@@ -47,16 +47,16 @@ export const getEnsayosUsuario = async ({ queryKey }) => {
  * @returns Todos los ensayos realizados dependiendo del id de lab
  */
 export const getEnsayos = async ({ queryKey }) => {
-  const [_, { idLaboratorio }] = queryKey;
-  
-  const url = `${API_FISICA}/ensayos/${idLaboratorio}`;
- 
-  const { data } = await axios.get(url, {
-    idLaboratorio: idLaboratorio
-  });
+    const [_, { idLaboratorio }] = queryKey
 
-  return data;
-};
+    const url = `${API_FISICA}/ensayos/${idLaboratorio}`
+
+    const { data } = await axios.get(url, {
+        idLaboratorio: idLaboratorio
+    })
+
+    return data
+}
 
 /**
  * postEnsayoConvergentes
@@ -126,9 +126,9 @@ export const postEnsayoConvergentesSave = async ({
  *
  */
 export const getEnsayosDivergente = async () => {
-  const { data } = await axios.get(`${API_FISICA}/divergente`);
-  return data;
-};
+    const { data } = await axios.get(`${API_FISICA}/divergente`)
+    return data
+}
 
 /**
  * postEnsayoDivergentes

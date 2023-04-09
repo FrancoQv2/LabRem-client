@@ -1,0 +1,26 @@
+[
+    {
+        "Header": "#",
+        "accessor": "index"
+    },
+    {
+        "Header": "Fecha",
+        "accessor": "Fecha"
+    },
+    {
+        "Header": "Hora",
+        "accessor": "Hora"
+    },
+    {
+        "Header": "Elevación",
+        "accessor": "Elevacion"
+    },
+    {
+        "Header": "Azimut",
+        "accessor": "Azimut"
+    },
+    {
+        "Header": "Señal",
+        "accessor": "Signal"
+    }
+]

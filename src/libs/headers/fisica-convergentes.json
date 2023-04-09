@@ -1,0 +1,26 @@
+[
+    {
+        "Header": "#",
+        "accessor": "index"
+    },
+    {
+        "Header": "Fecha",
+        "accessor": "Fecha"
+    },
+    {
+        "Header": "Hora",
+        "accessor": "Hora"
+    },
+    {
+        "Header": "Distancia Lente",
+        "accessor": "distanciaLente"
+    },
+    {
+        "Header": "Distancia Pantalla",
+        "accessor": "distanciaPantalla"
+    },
+    {
+        "Header": "Diafragma",
+        "accessor": "diafragma"
+    }
+]
