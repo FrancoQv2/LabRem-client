@@ -151,7 +151,6 @@ function FormDivergentes({ idUsuario }) {
           Iniciar experiencia
         </Button>
         </Col>):null
-
         }
         
         <Col className="text-center">

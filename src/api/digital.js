@@ -62,24 +62,19 @@ export const getEnsayos = async ({ queryKey }) => {
 export const postEnsayoUART = async ({
     idUsuario,
     velocidad,
-    pulsador1,
-    pulsador2,
-    pulsador3,
-    pulsador4,
+    cantidadBitDato,
+    paridad,// false par, true impar
+    cantidadBitParada,
     mensaje,
     setcambio,
 }) => {
 
-  const pulsadores = [];
-  pulsadores.push(parseInt(pulsador1));
-  pulsadores.push(parseInt(pulsador2));
-  pulsadores.push(parseInt(pulsador3));
-  pulsadores.push(parseInt(pulsador4));
-
   const newEnsayo = {
     idUsuario: idUsuario,
     velocidad: parseInt(velocidad),
-    pulsadores: pulsadores,
+    cantidadBitDato: cantidadBitDato,
+    paridad: paridad,
+    cantidadBitParada: cantidadBitParada,
     mensaje: mensaje,
   };
   process();
@@ -97,27 +92,22 @@ export const postEnsayoUART = async ({
 export const postEnsayoUARTSave = async ({
   idUsuario,
   velocidad,
-  pulsador1,
-  pulsador2,
-  pulsador3,
-  pulsador4,
+  cantidadBitDato,
+  paridad,// false par, true impar
+  cantidadBitParada,
   mensaje,
 }) => {
-
-const pulsadores = [];
-pulsadores.push(parseInt(pulsador1));
-pulsadores.push(parseInt(pulsador2));
-pulsadores.push(parseInt(pulsador3));
-pulsadores.push(parseInt(pulsador4));
 
 const newEnsayo = {
   idUsuario: idUsuario,
   velocidad: parseInt(velocidad),
-  pulsadores: pulsadores,
+  cantidadBitDato: cantidadBitDato,
+  paridad: paridad,
+  cantidadBitParada: cantidadBitParada,
   mensaje: mensaje,
 };
 const { data } = await axios.post(`${API_DIGITAL}/uartsave`, newEnsayo);
-if (data === "laboratorio ok") {
+if (data === "guardado en base de datos") {
   saveSuccess();
 } else {
   submitErrorDato(data);
@@ -146,7 +136,8 @@ export const postEnsayoI2C = async ({
     frecuencia,
     memoria,
     accion,
-    datos
+    datos,
+    setcambio
 }) => {
     const newEnsayo = {
         idUsuario: idUsuario,
@@ -155,8 +146,36 @@ export const postEnsayoI2C = async ({
         memoria: memoria,
         datos: datos,
     }
-
+    process();
     const { data } = await axios.post(`${API_DIGITAL}/i2c`, newEnsayo)
-    console.log(data)
-    return data
-}
+    setcambio(current=>!current);
+  if (data === "laboratorio ok") {
+    submitSuccess();
+  } else {
+    submitErrorDato(data);
+  } 
+  return data;
+};
+export const postEnsayoI2CSave = async ({
+  idUsuario,
+  frecuencia,
+  memoria,
+  accion,
+  datos
+}) => {
+  const newEnsayo = {
+      idUsuario: idUsuario,
+      accion: accion,
+      frecuencia: frecuencia,
+      memoria: memoria,
+      datos: datos,
+  }
+
+  const { data } = await axios.post(`${API_DIGITAL}/i2csave`, newEnsayo)
+  if (data === "guardado en base de datos") {
+    saveSuccess();
+  } else {
+    submitErrorDato(data);
+  } 
+  return data;
+  };

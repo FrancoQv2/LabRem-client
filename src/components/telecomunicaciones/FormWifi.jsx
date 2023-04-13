@@ -4,6 +4,8 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
+import FormSaveWifi from "./FormSaveWifi"
+import DownloadImage from "../DownloadImage"
 
 import { usePostEnsayoWifi } from "../../hooks/telecomunicaciones"
 import { submitSuccess, submitError } from "../../libs/alerts"
@@ -11,17 +13,18 @@ import { submitSuccess, submitError } from "../../libs/alerts"
 function FormWifi({ idUsuario }) {
     const [elevacion, setElevacion] = useState(0)
     const [azimut, setAzimut] = useState(0)
+    const [cambio,setcambio] =useState(true);
 
     const { mutate, error, isLoading } = usePostEnsayoWifi()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+        setcambio(current =>!current);
         mutate(
-            { idUsuario, elevacion, azimut },
+            { idUsuario, elevacion, azimut,setcambio },
             {
                 onSuccess: () => {
-                    submitSuccess()
+
                 },
                 onError: () => {
                     submitError()
@@ -95,9 +98,25 @@ function FormWifi({ idUsuario }) {
             </Row>
 
             <Row>
-                <Button variant="primary" type="submit">
-                    Iniciar experiencia
-                </Button>
+                { cambio ? (
+                <Col className="text-center">
+                    <Button variant="primary" type="submit">
+                        Iniciar experiencia
+                    </Button>
+                </Col>):null
+                }
+        
+                <Col className="text-center">
+                    <FormSaveWifi
+                        idUsuario={idUsuario}
+                        elevacion={elevacion}
+                        azimut={azimut}
+                    />
+                </Col>
+
+                <Col className="text-center">
+                    <DownloadImage />
+                </Col>
             </Row>
         </Form>
     )

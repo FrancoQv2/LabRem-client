@@ -48,7 +48,7 @@ function TxRxI2C() {
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
       <LabInformation
         imagen={imgI2C}
-        idLabActual={idLabActual}
+        idLaboratorio={idLabActual}
         useInfoLaboratorio={useInfoLaboratorio}
       ></LabInformation>
       <hr />
@@ -103,6 +103,7 @@ function TxRxI2C() {
                       idLaboratorio={idLabActual}
                       idUsuario={idUsuarioActual}
                       tableHeaders={tableHeaders}
+                      useHook={useEnsayosUsuario}
                       setComponentRef={setComponentRef}
                     />
                   </Card.Body>
@@ -115,7 +116,7 @@ function TxRxI2C() {
                       exportToProfe={useEnsayos}
                       idLaboratorio={idLabActual}
                       idUsuario={idUsuarioActual}
-                      prof={prof}
+                      Prof={prof}
                       filename={"ensayos-i2c"}
                       componentRef={componentRef}
                     />

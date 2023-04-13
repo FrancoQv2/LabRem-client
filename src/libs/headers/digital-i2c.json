@@ -12,23 +12,19 @@
         "accessor": "Hora"
     },
     {
-        "Header": "Velocidad",
-        "accessor": "velocidad"
+        "Header": "Frecuencia",
+        "accessor": "frecuencia"
     },
     {
-        "Header": "CantidadBitDato",
-        "accessor": "cantidadBitDato"
+        "Header": "Memoria",
+        "accessor": "memoria"
     },
     {
-        "Header": "Paridad",
-        "accessor": "paridad"
+        "Header": "Accion",
+        "accessor": "accion"
     },
     {
-        "Header": "CantidadBitParada",
-        "accessor": "cantidadBitParada"
-    },
-    {
-        "Header": "Mensaje",
-        "accessor": "mensaje"
+        "Header": "Datos",
+        "accessor": "datos"
     }
 ]

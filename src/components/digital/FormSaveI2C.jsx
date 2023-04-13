@@ -1,15 +1,15 @@
 import Button from "react-bootstrap/Button";
-import { usePostEnsayoUARTSave } from "../../hooks/digital";
+import { usePostEnsayoI2CSave } from "../../hooks/digital";
 import { submitSuccess, submitError } from "../../libs/alerts"; 
 
-function FormSave({ idUsuario,velocidad,cantidadBitDato,paridad,cantidadBitParada,mensaje }) {
+function FormSave({ idUsuario, frecuencia, memoria, accion, datos }) {
   
-  const { mutate, error, isLoading } = usePostEnsayoUARTSave();
+  const { mutate, error, isLoading } = usePostEnsayoI2CSave();
   const handleSubmit = async (e) => {
     e.preventDefault();
     
     mutate(
-      { idUsuario,velocidad,cantidadBitDato,paridad,cantidadBitParada,mensaje },
+      { idUsuario, frecuencia, memoria, accion, datos },
       {
         onSuccess: () => {
          

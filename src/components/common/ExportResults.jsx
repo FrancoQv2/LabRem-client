@@ -8,7 +8,7 @@ import BtnDownloadPng from "./BtnDownloadPng"
 import BtnDownloadCsv from "./BtnDownloadCsv"
 
 // Necesario para no realizar la query más de una vez
-import BtnDownloadCsvProf from "./BtnDownloadCsvProf.jsx"
+import BtnDownloadCsvProf from "./BtnDownloadCsvProf"
 
 /**
  * Este componente realiza dos acciones:
@@ -26,8 +26,8 @@ function ExportResults({ useHook, idLaboratorio, idUsuario, Prof, filename, expo
         idUsuario: idUsuario
     }, options)
 
-    const id = idLaboratorio.toString()
-
+    const id = idLaboratorio.toString();
+    
     return (
         <>
             <Row>
@@ -58,10 +58,10 @@ function ExportResults({ useHook, idLaboratorio, idUsuario, Prof, filename, expo
       {Prof ? <BtnDownloadCsvProf 
           useHookProf={exportToProfe}
           idLaboratorio={id}
-          filename={"ensayos-convergentes"}
+          filename={filename}
           /> 
         :null
-      } */}
+      }
 
         </>
     )

@@ -6,6 +6,7 @@ import {
     getEnsayos,
     postEnsayoWifi,
     postEnsayoRadio,
+    postEnsayoWifiSave,
 } from "../api/telecomunicaciones"
 
 const key = "telecomunicaciones"
@@ -35,6 +36,10 @@ export function useEnsayos({ idLaboratorio }) {
 
 export function usePostEnsayoWifi() {
     return useMutation(postEnsayoWifi)
+}
+
+export function usePostEnsayoWifiSave() {
+    return useMutation(postEnsayoWifiSave)
 }
 
 export function usePostEnsayoRadio() {

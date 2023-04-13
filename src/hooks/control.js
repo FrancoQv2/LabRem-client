@@ -4,7 +4,8 @@ import {
     getInformationLab,
     getEnsayosUsuario,
     getEnsayos,
-    postEnsayoEstroboscopica
+    postEnsayoEstroboscopica,
+    postEnsayoEstroboscopicaSave
 } from "../api/control"
 
 const key = "control"
@@ -25,6 +26,9 @@ export function useEnsayos({ idLaboratorio }) {
 }
 export function usePostEnsayoEstroboscopica() {
     return useMutation(postEnsayoEstroboscopica)
+}
+export function usePostEnsayoEstroboscopicaSave() {
+    return useMutation(postEnsayoEstroboscopicaSave)
 }
 export function usePostEnsayoPosicion() {
   return useMutation(postEnsayoEstroboscopica);

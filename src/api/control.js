@@ -1,5 +1,5 @@
 import axios from "axios"
-
+import { process, submitSuccess, submitErrorDato, saveSuccess } from "../libs/alerts";
 // const API = process.env.API_CONTROL || "http://localhost:3030/api/teleco"
 const API_CONTROL = "http://localhost:3031/api/control"
 
@@ -13,7 +13,6 @@ const API_CONTROL = "http://localhost:3031/api/control"
  */
 export const getInformationLab = async ({ queryKey }) => {
 	const [_, { idLaboratorio }] = queryKey
-
 	const { data } = await axios.get(`${API_CONTROL}/${idLaboratorio}`, {
 		idLaboratorio: idLaboratorio,
 	})
@@ -61,6 +60,29 @@ export const postEnsayoEstroboscopica = async ({
 	idUsuario,
 	FrecuenciaAgua,
 	FrecuenciaLuz,
+	caidaAgua,
+	setcambio
+}) => {
+	const newEnsayoEstroboscopica = {
+		idUsuario: idUsuario,
+		FrecuenciaCaidaAgua: parseInt(FrecuenciaAgua),
+		FrecuenciaLuz: parseInt(FrecuenciaLuz),
+		CaidaAgua: caidaAgua
+	}
+	 process();
+	const { data } = await axios.post(`${API_CONTROL}/estroboscopico`,newEnsayoEstroboscopica)
+	setcambio(current=>!current);
+  	if (data === "laboratorio ok") {
+    	submitSuccess();
+  	} else {
+    	submitErrorDato(data);
+  	} 
+	return data;
+}
+export const postEnsayoEstroboscopicaSave = async ({
+	idUsuario,
+	FrecuenciaAgua,
+	FrecuenciaLuz,
 	caidaAgua
 }) => {
 	const newEnsayoEstroboscopica = {
@@ -70,9 +92,11 @@ export const postEnsayoEstroboscopica = async ({
 		CaidaAgua: caidaAgua
 	}
 
-	const { data } = await axios.post(
-		`${API_CONTROL}/estroboscopico`,
-		newEnsayoEstroboscopica
-	)
-	return data
+	const { data } = await axios.post(`${API_CONTROL}/estroboscopicosave`,newEnsayoEstroboscopica)
+	if (data === "guardado en base de datos") {
+  		saveSuccess();
+	} else {
+  		submitErrorDato(data);
+	} 
+	return data;
 }

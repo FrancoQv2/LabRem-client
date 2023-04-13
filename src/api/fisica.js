@@ -1,5 +1,5 @@
 import axios from "axios"
-import { process, submitSuccess, submitErrorDato } from "../libs/alerts"
+import { process, submitSuccess, submitErrorDato,saveSuccess } from "../libs/alerts"
 
 // const API = process.env.API_FISICA || "http://localhost:3030/api/teleco"
 const API_FISICA = "http://localhost:3032/api/fisica"

@@ -34,9 +34,6 @@ export function usePostEnsayoConvergentesSave() {
 	return useMutation(postEnsayoConvergentesSave);
 }
 
-export function usePostEnsayoConvergentesSave() {
-  return useMutation(postEnsayoConvergentesSave);
-}
 
 export function usePostEnsayoDivergentes() {
 	return useMutation(postEnsayoDivergentes)

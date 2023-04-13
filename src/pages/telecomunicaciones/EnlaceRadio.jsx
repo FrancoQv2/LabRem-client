@@ -33,7 +33,7 @@ function EnlaceRadio() {
 
     const idLabActual = 2
     const idUsuarioActual = 2
-    const prof = 1//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area
+    const prof = true//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area
 
     const onClickTabs = () => {
         setShowForm(!showForm)
@@ -51,7 +51,7 @@ function EnlaceRadio() {
         <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
             <LabInformation
                 imagen={imgRadio}
-                idLabActual={idLabActual}
+                idLaboratorio={idLabActual}
                 useInfoLaboratorio={useInfoLaboratorio}
             ></LabInformation>
             <hr />
@@ -120,7 +120,7 @@ function EnlaceRadio() {
                                 exportToProfe={useEnsayos}
                                 idLaboratorio={idLabActual}
                                 idUsuario={idUsuarioActual}
-                                prof={prof}
+                                Prof={prof}
                                 filename={"ensayos-radio"}
                                 componentRef={componentRef}
                             />

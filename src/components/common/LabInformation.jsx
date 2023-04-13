@@ -11,7 +11,7 @@ import Col from "react-bootstrap/Col"
  */
 function LabInformation({ imagen, idLaboratorio, useInfoLaboratorio }) {
 	const { data, isLoading } = useInfoLaboratorio(idLaboratorio)
-
+	
 	return (
 		<>
 			{!isLoading ? (

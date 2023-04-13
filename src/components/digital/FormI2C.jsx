@@ -9,6 +9,8 @@ import FormSelect from "../common/FormSelect";
 
 import { usePostEnsayoI2C } from "../../hooks/digital";
 import { submitSuccess, submitError } from "../../libs/alerts";
+import FormSaveI2C from "./FormSaveI2C.jsx";
+import DownloadImage from "../DownloadImage"
 
 function FormI2C({ idUsuario }) {
   const valuesLectura = ["lectura","escritura"]; // bps
@@ -22,23 +24,15 @@ function FormI2C({ idUsuario }) {
   const [memoria, setMemoria] = useState("");
   const [datos, setDatos] = useState("");
   const { mutate, error, isLoading } = usePostEnsayoI2C();
+  const [cambio,setcambio] =useState(true);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setcambio(current =>!current);
     mutate(
-      {
-        idUsuario,
-        frecuencia,
-        memoria,
-        accion,
-        datos
-      },
+      { idUsuario, frecuencia, memoria, accion, datos, setcambio},
       {
         onSuccess: () => {
-          setFrecuencia("");
-          setMemoria(0);
-          submitSuccess();
         },
         onError: () => {
           submitError();
@@ -115,9 +109,26 @@ function FormI2C({ idUsuario }) {
         </Form.Group>
       </Row>
       <Row>
-        <Button variant="primary" type="submit">
-          Iniciar experiencia
-        </Button>
+        { cambio ? (
+          <Col className="text-center">
+            <Button variant="primary" type="submit">
+              Iniciar experiencia
+            </Button>
+          </Col>):null
+        }
+        <Col className="text-center">
+          <FormSaveI2C
+            idUsuario={idUsuario}
+            frecuencia={frecuencia}
+            memoria={memoria} 
+            accion={accion}
+            datos={datos}
+            
+          />
+        </Col>
+        <Col className="text-center">
+          <DownloadImage />
+        </Col>
       </Row>
     </Form>
   );

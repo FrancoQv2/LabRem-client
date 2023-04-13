@@ -45,8 +45,9 @@ const [componentRef, setComponentRef] = useState({});
   return (
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
       <LabInformation
-        imagen={imgRadio}
-        idLabActual={idLabActual}
+        imagen={imgDiv}
+        idLaboratorio={idLabActual}
+        useInfoLaboratorio={useInfoLaboratorio}
       ></LabInformation>
       <hr />
 

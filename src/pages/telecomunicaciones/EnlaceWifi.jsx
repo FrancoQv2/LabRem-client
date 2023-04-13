@@ -128,7 +128,7 @@ function EnlaceWifi() {
                                 exportToProfe={useEnsayos}
                                 idLaboratorio={idLaboratorio}
                                 idUsuario={idUsuario}
-                                prof={prof}
+                                Prof={prof}
                                 filename={"ensayos-wifi"}
                                 componentRef={componentRef}
                             />

@@ -7,6 +7,7 @@ import {
   postEnsayoUART,
   postEnsayoUARTSave,
   postEnsayoI2C,
+  postEnsayoI2CSave,
 } from "../api/digital";
 
 const key = "digital"
@@ -31,10 +32,11 @@ export function usePostEnsayoUART() {
 export function usePostEnsayoUARTSave() {
 	return useMutation(postEnsayoUARTSave);
 }
-export function usePostEnsayoUARTSave() {
-  return useMutation(postEnsayoUARTSave);
-}
 
 export function usePostEnsayoI2C() {
 	return useMutation(postEnsayoI2C)
 }
+export function usePostEnsayoI2CSave() {
+	return useMutation(postEnsayoI2CSave)
+}
+

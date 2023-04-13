@@ -31,7 +31,7 @@ function TxRxUART() {
 
   const idLabActual = 1;
   const idUsuarioActual = 2;
-  const prof = 1;//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area;
+  const prof = true;//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area;
 
   const onClickTabs = () => {
     setShowForm(!showForm);
@@ -48,7 +48,7 @@ function TxRxUART() {
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
       <LabInformation
         imagen={imgUART}
-        idLabActual={idLabActual}
+        idLaboratorio={idLabActual}
         useInfoLaboratorio={useInfoLaboratorio}
       ></LabInformation>
       <hr />
@@ -103,6 +103,7 @@ function TxRxUART() {
                       idLaboratorio={idLabActual}
                       idUsuario={idUsuarioActual}
                       tableHeaders={tableHeaders}
+                      useHook={useEnsayosUsuario}
                       setComponentRef={setComponentRef}
                     />
                   </Card.Body>
@@ -115,7 +116,7 @@ function TxRxUART() {
                 exportToProfe={useEnsayos}
                 idLaboratorio={idLabActual}
                 idUsuario={idUsuarioActual}
-                prof={prof}
+                Prof={prof}
                 filename={"ensayos-uart"}
                 componentRef={componentRef}
               />

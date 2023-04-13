@@ -4,9 +4,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-
 import FormSelect from "../common/FormSelect";
-
+import FormSaveETB from "./FormSaveETB"
+import DownloadImage from "../DownloadImage"
 import { usePostEnsayoEstroboscopica } from "../../hooks/control";
 import { submitSuccess, submitError } from "../../libs/alerts"; 
 
@@ -14,7 +14,7 @@ function FormETB({ idUsuario }) {
   // Definicion de valores posibles
   const valuesCaida = ["cae agua","no cae agua" ]; // bps
   const defaultCaida = valuesCaida[0];
-
+  const [cambio,setcambio] =useState(true);
   // Definicion de Hooks
 
   const [FrecuenciaAgua, setFrecuenciaAgua] = useState("");
@@ -26,17 +26,17 @@ function FormETB({ idUsuario }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setcambio(current =>!current);
     mutate(
       {
         idUsuario,
         FrecuenciaAgua,
         FrecuenciaLuz,
-        caidaAgua
+        caidaAgua,
+        setcambio
       },
       {
         onSuccess: () => {
-          submitSuccess();
         },
         onError: () => {
           submitError();
@@ -97,9 +97,26 @@ function FormETB({ idUsuario }) {
       />
 
       <Row>
-        <Button variant="primary" type="submit">
-          Iniciar experiencia
-        </Button>
+                { cambio ? (
+                <Col className="text-center">
+                    <Button variant="primary" type="submit">
+                        Iniciar experiencia
+                    </Button>
+                </Col>):null
+                }
+        
+                <Col className="text-center">
+                    <FormSaveETB
+                        idUsuario={idUsuario}
+                        FrecuenciaAgua={FrecuenciaAgua}
+                        FrecuenciaLuz={FrecuenciaLuz}
+                        caidaAgua={caidaAgua}
+                    />
+                </Col>
+
+                <Col className="text-center">
+                    <DownloadImage />
+                </Col>
       </Row>
     </Form>
   );

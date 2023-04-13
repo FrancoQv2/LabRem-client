@@ -46,7 +46,7 @@ function LentesConvergentes() {
         <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
             <LabInformation
                 imagen={imgConv}
-                idLabActual={idLabActual}
+                idLaboratorio={idLabActual}
                 useInfoLaboratorio={useInfoLaboratorio}
             ></LabInformation>
             <hr />

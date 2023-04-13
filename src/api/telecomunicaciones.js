@@ -1,5 +1,5 @@
 import axios from "axios"
-
+import { process, submitSuccess, submitErrorDato,saveSuccess } from "../libs/alerts"
 // const API = process.env.API_TELECO || "http://localhost:3030/api/teleco"
 const API_TELECO = "http://localhost:3033/api/teleco"
 
@@ -50,6 +50,29 @@ export const getEnsayos = async ({ queryKey }) => {
         idLaboratorio: idLaboratorio
     })
 
+    return data;
+}
+/**
+ *
+ * @param {Object} newEnsayo
+ * @param {number} newEnsayo.idUsuario
+ * @param {number} newEnsayo.elevacion
+ * @param {number} newEnsayo.azimut
+ */
+export const postEnsayoWifi = async ({ idUsuario, elevacion, azimut, setcambio }) => {
+    const newEnsayoWifi = {
+        idUsuario: idUsuario,
+        elevacion: parseInt(elevacion),
+        azimut: parseInt(azimut),
+    }
+    process();
+    const { data } = await axios.post(`${API_TELECO}/wifi`, newEnsayoWifi)
+    setcambio(current=>!current);
+    if (data === "laboratorio ok") {
+        submitSuccess();
+      } else {
+        submitErrorDato(data);
+      } 
     return data
 }
 /**
@@ -59,17 +82,21 @@ export const getEnsayos = async ({ queryKey }) => {
  * @param {number} newEnsayo.elevacion
  * @param {number} newEnsayo.azimut
  */
-export const postEnsayoWifi = async ({ idUsuario, elevacion, azimut }) => {
-    const newEnsayoWifi = {
+export const postEnsayoWifiSave = async ({ idUsuario, elevacion, azimut }) => {
+    const newEnsayoWifiSave = {
         idUsuario: idUsuario,
         elevacion: parseInt(elevacion),
         azimut: parseInt(azimut),
     }
-
-    const { data } = await axios.post(`${API_TELECO}/wifi`, newEnsayoWifi)
-    return data
+    process();
+    const { data } = await axios.post(`${API_TELECO}/wifisave`, newEnsayoWifiSave)
+    if (data === "guardado en base de datos") {
+        saveSuccess();
+      } else {
+        submitErrorDato(data);
+      } 
+    return data;
 }
-
 //-----------------------------------------------------
 // Laboratorio - Enlace Radio
 //-----------------------------------------------------

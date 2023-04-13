@@ -1,15 +1,15 @@
 import Button from "react-bootstrap/Button";
-import { usePostEnsayoUARTSave } from "../../hooks/digital";
+import { usePostEnsayoWifiSave } from "../../hooks/telecomunicaciones";
 import { submitSuccess, submitError } from "../../libs/alerts"; 
 
-function FormSave({ idUsuario,velocidad,cantidadBitDato,paridad,cantidadBitParada,mensaje }) {
+function FormSaveWifi({ idUsuario, elevacion, azimut }) {
   
-  const { mutate, error, isLoading } = usePostEnsayoUARTSave();
+  const { mutate, error, isLoading } = usePostEnsayoWifiSave();
   const handleSubmit = async (e) => {
     e.preventDefault();
     
     mutate(
-      { idUsuario,velocidad,cantidadBitDato,paridad,cantidadBitParada,mensaje },
+      {idUsuario, elevacion, azimut },
       {
         onSuccess: () => {
          
@@ -28,4 +28,4 @@ function FormSave({ idUsuario,velocidad,cantidadBitDato,paridad,cantidadBitParad
   );
 }
 
-export default FormSave;
+export default FormSaveWifi;
