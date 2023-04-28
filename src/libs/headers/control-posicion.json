@@ -1,0 +1,34 @@
+[
+    {
+        "Header": "#",
+        "accessor": "index"
+    },
+    {
+        "Header": "Fecha",
+        "accessor": "Fecha"
+    },
+    {
+        "Header": "Hora",
+        "accessor": "Hora"
+    },
+    {
+        "Header": "Rapidez de Motor",
+        "accessor": "Rapidez"
+    },
+    {
+        "Header": "Angulo de Salida",
+        "accessor": "anguloSalida"
+    },
+    {
+        "Header": "Modificacion del driver",
+        "accessor": "Modificacion"
+    },
+    {
+        "Header": "Rapidez del Controlador",
+        "accessor": "RapidezControl"
+    },
+    {
+        "Header": "Angulo de Salida del Controlador",
+        "accessor": "anguloSalidaControl"
+    }
+]

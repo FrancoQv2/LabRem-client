@@ -5,7 +5,9 @@ import {
     getEnsayosUsuario,
     getEnsayos,
     postEnsayoEstroboscopica,
-    postEnsayoEstroboscopicaSave
+    postEnsayoEstroboscopicaSave,
+    postEnsayoPosicion,
+    postEnsayoPosicionSave
 } from "../api/control"
 
 const key = "control"
@@ -31,5 +33,8 @@ export function usePostEnsayoEstroboscopicaSave() {
     return useMutation(postEnsayoEstroboscopicaSave)
 }
 export function usePostEnsayoPosicion() {
-  return useMutation(postEnsayoEstroboscopica);
+  return useMutation(postEnsayoPosicion);
 }
+export function usePostEnsayoPosicionSave() {
+    return useMutation(postEnsayoPosicionSave);
+  }

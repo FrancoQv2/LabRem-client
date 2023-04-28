@@ -79,6 +79,8 @@ export const postEnsayoEstroboscopica = async ({
   	} 
 	return data;
 }
+
+
 export const postEnsayoEstroboscopicaSave = async ({
 	idUsuario,
 	FrecuenciaAgua,
@@ -93,6 +95,60 @@ export const postEnsayoEstroboscopicaSave = async ({
 	}
 
 	const { data } = await axios.post(`${API_CONTROL}/estroboscopicosave`,newEnsayoEstroboscopica)
+	if (data === "guardado en base de datos") {
+  		saveSuccess();
+	} else {
+  		submitErrorDato(data);
+	} 
+	return data;
+}
+
+export const postEnsayoPosicion = async ({
+	idUsuario,
+    Rapidez,
+    anguloSalida,
+    Modificacion,
+    RapidezControl,
+    anguloSalidaControl,
+	setcambio
+}) => {
+	const newEnsayoPosicion = {
+		idUsuario: idUsuario,
+		Rapidez: parseInt(Rapidez),
+		anguloSalida: anguloSalida,
+		Modificacion: Modificacion,
+		RapidezControl: parseInt(RapidezControl),
+		anguloSalidaControl: anguloSalidaControl
+	}
+	 process();
+	const { data } = await axios.post(`${API_CONTROL}/posicion`,newEnsayoPosicion)
+	setcambio(current=>!current);
+  	if (data === "laboratorio ok") {
+    	submitSuccess();
+  	} else {
+    	submitErrorDato(data);
+  	} 
+	return data;
+}
+
+export const postEnsayoPosicionSave = async ({
+	idUsuario,
+    Rapidez,
+    anguloSalida,
+    Modificacion,
+    RapidezControl,
+    anguloSalidaControl,
+}) => {
+	const newEnsayoPosicion = {
+		idUsuario: idUsuario,
+		Rapidez: parseInt(Rapidez),
+		anguloSalida: anguloSalida,
+		Modificacion: Modificacion,
+		RapidezControl: parseInt(RapidezControl),
+		anguloSalidaControl: anguloSalidaControl
+	}
+
+	const { data } = await axios.post(`${API_CONTROL}/posicionsave`,newEnsayoPosicion)
 	if (data === "guardado en base de datos") {
   		saveSuccess();
 	} else {

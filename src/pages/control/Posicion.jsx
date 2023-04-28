@@ -13,7 +13,7 @@ import LabVideoStreaming from "../../components/LabVideoStreaming";
 import FormPOS from "../../components/control/FormPOS";
 import TableQueryPaginated from "../../components/control/TableQueryPaginated";
 import image from "../../assets/i2c.webp";
-import { headersEstroboscopico as tableHeaders } from "../../libs/tableHeaders";
+import { headersPosicion as tableHeaders } from "../../libs/tableHeaders";
 import ExportResults from "../../components/common/ExportResults"
 import { useEnsayosUsuario,useEnsayos } from "../../hooks/control"
 
@@ -24,9 +24,9 @@ function Estroboscopica() {
   const [showForm, setShowForm] = useState(true);
   const [showResults, setShowResults] = useState(false);
 
-  const idLabActual = 1;
+  const idLabActual = 2;
   const idUsuarioActual = 2;
-  const prof = 1//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area;
+  const prof = true//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area;
   const onClickTabs = () => {
     setShowForm(!showForm);
     setShowResults(!showResults);
@@ -105,7 +105,7 @@ function Estroboscopica() {
                 exportToProfe={useEnsayos}
                 idLaboratorio={idLabActual}
                 idUsuario={idUsuarioActual}
-                prof={prof}
+                Prof={prof}
                 filename={"ensayos-Posicion"}
                 componentRef={componentRef}
               />

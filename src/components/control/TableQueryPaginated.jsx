@@ -19,6 +19,7 @@ const TableQueryPaginated = ({ idLaboratorio, idUsuario, tableHeaders, setCompon
     idLaboratorio: idLaboratorio,
     idUsuario: idUsuario,
   });
+  console.log(tableData)
   // Ref for download table as image
   const innerRef = useRef();
   useEffect(() => {
