@@ -16,16 +16,16 @@
         "accessor": "velocidad"
     },
     {
-        "Header": "CantidadBitDato",
-        "accessor": "cantidadBitDato"
+        "Header": "bitsDatos",
+        "accessor": "bitsDatos"
+    },
+    {
+        "Header": "bitsParada",
+        "accessor": "bitsParada"
     },
     {
         "Header": "Paridad",
         "accessor": "paridad"
-    },
-    {
-        "Header": "CantidadBitParada",
-        "accessor": "cantidadBitParada"
     },
     {
         "Header": "Mensaje",
