@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "react-query"
 
 import {
-  getInformationLab,
+  getInfoLaboratorio,
   getEnsayosUsuario,
   getEnsayos,
   postEnsayoConvergentes,
@@ -13,7 +13,7 @@ import {
 const key = "fisica"
 
 export function useInfoLaboratorio(idLabActual) {
-	return useQuery([key, { idLaboratorio: idLabActual }], getInformationLab)
+	return useQuery([key, { idLaboratorio: idLabActual }], getInfoLaboratorio)
 }
 
 export function useEnsayosUsuario({ idLaboratorio, idUsuario }) {

@@ -1,139 +1,112 @@
-import { useState } from "react";
+import { useState } from "react"
 
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import FormSelect from "../common/FormSelect";
-import { usePostEnsayoConvergentes } from "../../hooks/fisica";
-import { submitSuccess, submitError } from "../../libs/alerts"; 
-import FormSaveConvergente from "./FormSaveConvergente";
-import DownloadImage from "../DownloadImage"
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
+import Form from "react-bootstrap/Form"
+import Button from "react-bootstrap/Button"
 
+import FormSelect from "../common/FormSelect"
+import FormRange from "../common/FormRange"
+
+import { usePostEnsayoConvergentes } from "../../hooks/fisica"
+import { submitSuccess, submitError } from "../../libs/alerts" 
+
+import FormSaveConvergente from "./FormSaveConvergente"
+import BtnDownloadImage from "../common/BtnDownloadImage"
+
+/**
+ * 
+ */
 function FormConvergentes({ idUsuario }) {
-  const tipoDiafragma = ["sin diafragma","diafragma central","diafragma periferico","filtro rojo" ]; 
-  const defaultDiafragma = tipoDiafragma[0];
+  const tipoDiafragma = ["Sin diafragma","Central","Periférico","Filtro rojo"] 
+  const defaultDiafragma = tipoDiafragma[0]
   
-  const [distanciaLente, setDistanciaLente] = useState(120);
-  const [distanciaPantalla, setDistanciaPantalla] = useState(70);
-  const [diafragma, setDiafragma] = useState(defaultDiafragma);
-  const { mutate, error, isLoading } = usePostEnsayoConvergentes();
-  const [cambio,setcambio] =useState(true);
+  const [distanciaFL, setDistanciaFL] = useState(120)
+  const [distanciaLP, setDistanciaLP] = useState(70)
+  const [diafragma, setDiafragma] = useState(defaultDiafragma)
+  
+  const { mutate, error, isLoading } = usePostEnsayoConvergentes()
+  const [cambio,setcambio] =useState(true)
+  
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setcambio(current =>!current);
+    e.preventDefault()
+    setcambio(current =>!current)
+
     mutate(
-      { idUsuario, distanciaLente, distanciaPantalla, diafragma,setcambio },
+      { idUsuario, distanciaFL, distanciaLP, diafragma, setcambio },
       {
         onSuccess: () => {
          
         },
         onError: () => {
-          submitError();
+          submitError()
         },
       }
-    );
-  };
+    )
+  }
 
   return (
     <Form className="m-3" onSubmit={handleSubmit}>
-      <Row className="my-3">
-        <Form.Group
-          className="border border-secondary rounded"
-          controlId="formdistanciaLenteRange"
-        >
-          <Row className="m-2">
-            <Col>
-              <Form.Range
-                min="120"
-                max="970"
-                step="5"
-                name="range-distanciaLente"
-                value={distanciaLente}
-                onChange={(changeEvent) =>
-                  setDistanciaLente(changeEvent.target.value)
-                }
-              />
-            </Col>
-          </Row>
-          <Row className="my-3">
-            <Col sm={4} lg={6}>
-              <span className="input-group-text" htmlFor="range-distanciaLente">
-                Distancia Foco - Lente [ mm ]
-              </span>
-            </Col>
-            <Col sm={4} lg={6}>
-              <Form.Control disabled type="text" value={distanciaLente} />
-            </Col>
-          </Row>
-        </Form.Group>
-      </Row>
-
-      <Row className="my-3">
-        <Form.Group
-          className="border border-secondary rounded"
-          controlId="formdistanciaPantallaRange"
-        >
-          <Row className="m-2">
-            <Col>
-              <Form.Range
-                min="70"
-                max="970"
-                step="5"
-                name="range-distanciaPantalla"
-                value={distanciaPantalla}
-                onChange={(changeEvent) =>
-                  setDistanciaPantalla(changeEvent.target.value)
-                }
-              />
-            </Col>
-          </Row>
-          <Row className="my-3">
-            <Col sm={4} lg={6}>
-              <span
-                className="input-group-text"
-                htmlFor="range-distanciaPantalla"
-              >
-                Distancia Lente - Pantalla [ mm ]
-              </span>
-            </Col>
-            <Col sm={4} lg={6}>
-              <Form.Control disabled type="text" value={distanciaPantalla} />
-            </Col>
-          </Row>
-        </Form.Group>
-      </Row>
-      <FormSelect
-            name="Diafragma"
-            values={tipoDiafragma}
-            defaultValue={defaultDiafragma}
-            setState={setDiafragma}
+      <FormRange 
+        name="distancia-lente"
+        description="Distancia Foco - Lente"
+        minValue="120"
+        maxValue="970"
+        step="5"
+        unit="mm"
+        state={distanciaFL}
+        setState={setDistanciaFL}
       />
+      
+      <FormRange 
+        name="distancia-pantalla"
+        description="Distancia Lente - Pantalla"
+        minValue="70"
+        maxValue="970"
+        step="5"
+        unit="mm"
+        state={distanciaLP}
+        setState={setDistanciaLP}
+      />
+
+      <FormSelect
+        name="Diafragma"
+        values={tipoDiafragma}
+        defaultValue={defaultDiafragma}
+        setState={setDiafragma}
+      />
+
       <Row>
         { cambio ? (
-          <Col className="text-center">
+          <Col className="text-center d-grid gap-2">
             <Button variant="primary" type="submit">
-              Iniciar experiencia
+              Iniciar ensayo
             </Button>
-          </Col>):null
-        }
+          </Col>
+        ) : (
+          <Col className="text-center d-grid gap-2">
+            <Button disabled variant="primary" type="submit">
+              Iniciar ensayo
+            </Button>
+          </Col>
+        ) }
         
-        <Col className="text-center">
+        {/* <Col className="text-center">
           <FormSaveConvergente
             idUsuario={idUsuario}
-            distanciaLente={distanciaLente}
-            distanciaPantalla={distanciaPantalla}
+            distanciaFL={distanciaFL}
+            distanciaLP={distanciaLP}
             diafragma={diafragma}
           />
+        </Col> */}
+
+        <Col className="text-center d-grid gap-2">
+          <BtnDownloadImage />
         </Col>
-        <Col className="text-center">
-        <DownloadImage
-        />
-        </Col>
-      </Row>
         
+      </Row>
     </Form>
-  );
+  )
 }
 
-export default FormConvergentes;
+export default FormConvergentes

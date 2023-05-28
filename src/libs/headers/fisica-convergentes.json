@@ -13,11 +13,11 @@
     },
     {
         "Header": "Distancia Lente",
-        "accessor": "distanciaLente"
+        "accessor": "distanciaFL"
     },
     {
         "Header": "Distancia Pantalla",
-        "accessor": "distanciaPantalla"
+        "accessor": "distanciaLP"
     },
     {
         "Header": "Diafragma",

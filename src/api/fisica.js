@@ -1,5 +1,5 @@
 import axios from "axios"
-import { process, submitSuccess, submitErrorDato,saveSuccess } from "../libs/alerts"
+import { process, submitSuccess, submitErrorDato, saveSuccess } from "../libs/alerts"
 
 // const API = process.env.API_FISICA || "http://localhost:3030/api/teleco"
 const API_FISICA = "http://localhost:3032/api/fisica"
@@ -8,44 +8,32 @@ const API_FISICA = "http://localhost:3032/api/fisica"
 // Laboratorios - Fisica
 //-----------------------------------------------------
 
-/**
- * getInformationLab
- *
- */
-export const getInformationLab = async ({ queryKey }) => {
+export const getInfoLaboratorio = async ({ queryKey }) => {
     const [_, { idLaboratorio }] = queryKey
 
-    const { data } = await axios.get(`${API_FISICA}/${idLaboratorio}`, {
+    const URL = `${API_FISICA}/${idLaboratorio}`
+
+    const { data } = await axios.get(URL, {
         idLaboratorio: idLaboratorio,
     })
     return data
 }
 
-/**
- * getEnsayosUsuario
- *
- */
 export const getEnsayosUsuario = async ({ queryKey }) => {
     const [_, { idLaboratorio, idUsuario }] = queryKey
 
-    const url = `${API_FISICA}/${idLaboratorio}/${idUsuario}`
+    const URL = `${API_FISICA}/${idLaboratorio}/${idUsuario}`
+    console.log(idLaboratorio, idUsuario)
 
-    const { data } = await axios.get(url, {
+    const { data } = await axios.get(URL, {
         idLaboratorio: idLaboratorio,
         idUsuario: idUsuario,
     })
+    console.log(data)
 
     return data
 }
 
-//-----------------------------------------------------
-// Laboratorio - Lentes Convergentes
-//-----------------------------------------------------
-
-/**
- *
- * @returns Todos los ensayos realizados dependiendo del id de lab
- */
 export const getEnsayos = async ({ queryKey }) => {
     const [_, { idLaboratorio }] = queryKey
 
@@ -58,135 +46,116 @@ export const getEnsayos = async ({ queryKey }) => {
     return data
 }
 
-/**
- * postEnsayoConvergentes
- *
- */
-export const postEnsayoConvergentes = async ({
-  idUsuario,
-  distanciaLente,
-  distanciaPantalla,
-  diafragma,
-  setcambio
-}) => {
-  const newEnsayoConvergente = {
-    idUsuario: idUsuario,
-    distanciaLente: parseInt(distanciaLente),
-    distanciaPantalla: parseInt(distanciaPantalla),
-    diafragma: diafragma,
-  };
-  process();
-  const { data } = await axios.post(
-    `${API_FISICA}/convergente`,
-    newEnsayoConvergente
-  );
-  setcambio(current=>!current);
-  if (data === "laboratorio ok") {
-    submitSuccess();
-  } else {
-    submitErrorDato(data);
-  } 
-  return data;
-};
+//-----------------------------------------------------
+// Laboratorio - Lentes Convergentes
+//-----------------------------------------------------
 
-/**
- * postEnsayoConvergentes
- *
- */
-export const postEnsayoConvergentesSave = async ({
-  idUsuario,
-  distanciaLente,
-  distanciaPantalla,
-  diafragma
+export const postEnsayoConvergentes = async ({
+    idUsuario,
+    distanciaFL,
+    distanciaLP,
+    diafragma,
+    setcambio
 }) => {
-  const newEnsayoConvergente = {
-    idUsuario: idUsuario,
-    distanciaLente: parseInt(distanciaLente),
-    distanciaPantalla: parseInt(distanciaPantalla),
-    diafragma: diafragma,
-  };
-  const { data } = await axios.post(
-    `${API_FISICA}/convergentesave`,
-    newEnsayoConvergente
-  );
-  if (data === "guardado en base de datos") {
-    saveSuccess();
-  } else {
-    submitErrorDato(data);
-  } 
-  return data;
-};
+    const newEnsayoConvergente = {
+        idUsuario: idUsuario,
+        distanciaFL: parseInt(distanciaFL),
+        distanciaLP: parseInt(distanciaLP),
+        diafragma: diafragma,
+    }
+    process()
+    const { data } = await axios.post(
+        `${API_FISICA}/convergente`,
+        newEnsayoConvergente
+    )
+    console.log(data)
+    setcambio(current => !current)
+    if (data === "laboratorio ok") {
+        submitSuccess()
+    } else {
+        submitErrorDato(data)
+    }
+    return data
+}
+
+export const postEnsayoConvergentesSave = async ({
+    idUsuario,
+    distanciaFL,
+    distanciaLP,
+    diafragma
+}) => {
+    const newEnsayoConvergente = {
+        idUsuario: idUsuario,
+        distanciaFL: parseInt(distanciaFL),
+        distanciaLP: parseInt(distanciaLP),
+        diafragma: diafragma,
+    }
+    const { data } = await axios.post(
+        `${API_FISICA}/convergentesave`,
+        newEnsayoConvergente
+    )
+    if (data === "guardado en base de datos") {
+        saveSuccess()
+    } else {
+        submitErrorDato(data)
+    }
+    return data
+}
 
 //-----------------------------------------------------
 // Laboratorio - Lentes Divergentes
 //-----------------------------------------------------
 
-/**
- * getEnsayosRadio
- *
- */
-export const getEnsayosDivergente = async () => {
-    const { data } = await axios.get(`${API_FISICA}/divergente`)
+export const postEnsayoDivergentes = async ({
+    idUsuario,
+    distanciaFL,
+    distanciaLL,
+    distanciaLP,
+    diafragma,
+    setcambio,
+}) => {
+    const newEnsayoDivergente = {
+        idUsuario: idUsuario,
+        distanciaFL: parseInt(distanciaFL),
+        distanciaLL: parseInt(distanciaLL),
+        distanciaLP: parseInt(distanciaLP),
+        diafragma: diafragma,
+    }
+    process()
+    const { data } = await axios.post(`${API_FISICA}/divergente`, newEnsayoDivergente)
+
+    setcambio(current => !current)
+    if (data === "laboratorio ok") {
+        submitSuccess()
+    } else {
+        submitErrorDato(data)
+    }
     return data
 }
 
-/**
- * postEnsayoDivergentes
- *
- */
-export const postEnsayoDivergentes = async ({
-  idUsuario,
-  distanciaLente,
-  distanciaLenteLente,
-  distanciaPantalla,
-  diafragma,
-  setcambio,
-}) => {
-  const newEnsayoDivergente = {
-    idUsuario: idUsuario,
-    distanciaLente: parseInt(distanciaLente),
-    distanciaLenteLente: parseInt(distanciaLenteLente),
-    distanciaPantalla: parseInt(distanciaPantalla),
-    diafragma: diafragma,
-  };
-  process();
-  const { data } = await axios.post(`${API_FISICA}/divergente`,newEnsayoDivergente);
-  
-  setcambio(current=>!current);
-  if (data === "laboratorio ok") {
-    submitSuccess();
-  } else {
-    submitErrorDato(data);
-  } 
-  return data;
-};
-/**
- * postEnsayoDivergentes
- *
- */
 export const postEnsayoDivergentesSave = async ({
-  idUsuario,
-  distanciaLente,
-  distanciaLenteLente,
-  distanciaPantalla,
-  diafragma,
+    idUsuario,
+    distanciaFL,
+    distanciaLL,
+    distanciaLP,
+    diafragma,
 }) => {
-  const newEnsayoDivergente = {
-    idUsuario: idUsuario,
-    distanciaLente: parseInt(distanciaLente),
-    distanciaLenteLente: parseInt(distanciaLenteLente),
-    distanciaPantalla: parseInt(distanciaPantalla),
-    diafragma: diafragma,
-  };
-  const { data } = await axios.post(
-    `${API_FISICA}/divergentesave`,
-    newEnsayoDivergente
-  );
+    const newEnsayoDivergente = {
+        idUsuario: idUsuario,
+        distanciaFL: parseInt(distanciaFL),
+        distanciaLL: parseInt(distanciaLL),
+        distanciaLP: parseInt(distanciaLP),
+        diafragma: diafragma,
+    }
+    const { data } = await axios.post(
+        `${API_FISICA}/divergentesave`,
+        newEnsayoDivergente
+    )
 
-  if (data === "guardado en base de datos") {
-    saveSuccess();
-  } else {
-    submitErrorDato(data);
-  } 
-  return data;
-};
+    if (data === "guardado en base de datos") {
+        saveSuccess()
+    } else {
+        submitErrorDato(data)
+    }
+    return data
+}
