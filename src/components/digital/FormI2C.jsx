@@ -1,137 +1,135 @@
-import { useState } from "react";
+import { useState } from "react"
 
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
+import Form from "react-bootstrap/Form"
+import Button from "react-bootstrap/Button"
 
-import FormSelect from "../common/FormSelect";
+import { usePostEnsayoI2C } from "../../hooks/digital"
+import { submitSuccess, submitError } from "../../libs/alerts"
 
-import { usePostEnsayoI2C } from "../../hooks/digital";
-import { submitSuccess, submitError } from "../../libs/alerts";
-import FormSaveI2C from "./FormSaveI2C.jsx";
-import DownloadImage from "../DownloadImage"
+import FormSelect from "../common/FormSelect"
+import FormBtnGroup from "../common/FormBtnGroup"
+import BtnDownloadImage from "../common/BtnDownloadImage" 
+import FormTextHexa from "../common/FormTextHexa"
+import FormTextBinary from "../common/FormTextBinary"
 
 function FormI2C({ idUsuario }) {
-  const valuesLectura = ["lectura","escritura"]; // bps
-  const defaultLectura = valuesLectura[0];
+
+  // Definicion de valores de variables
+
+  const valuesAccion = ["Lectura","Escritura"]
+  const defaultAccion = valuesAccion[0]
+
+  const valuesFrecuencia = [ 100, 400, 1000 ] // KHz
+  const defaultFrecuencia = valuesFrecuencia[0]
+
+  const defaultPulsadores = [0, 0, 0, 0]
+
+  const defaultDireccionMemoria = ""
+  const defaultDatos = ""
 
   // Definicion de Hooks
 
-  const [accion, setLectura] = useState(defaultLectura);
+  const [cambio, setCambio] = useState(true)
 
-  const [frecuencia, setFrecuencia] = useState("");
-  const [memoria, setMemoria] = useState("");
-  const [datos, setDatos] = useState("");
-  const { mutate, error, isLoading } = usePostEnsayoI2C();
-  const [cambio,setcambio] =useState(true);
+  const [accion, setLectura] = useState(defaultAccion)  
+  const [frecuencia, setFrecuencia] = useState(defaultFrecuencia)
+  const [direccionMemoria, setDireccionMemoria] = useState(defaultDireccionMemoria) 
+  const [datos, setDatos] = useState(defaultDatos)
+
+  const [pulsadores, setPulsadores] = useState(defaultPulsadores)
+
+  const { mutate, error, isLoading } = usePostEnsayoI2C()
+
+  // Definicion de funciones Handle
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setcambio(current =>!current);
+    e.preventDefault()
+    setCambio(current =>!current)
     mutate(
-      { idUsuario, frecuencia, memoria, accion, datos, setcambio},
+      { idUsuario, frecuencia, direccionMemoria, accion, datos, setCambio },
       {
         onSuccess: () => {
+          submitSuccess()
         },
         onError: () => {
-          submitError();
+          submitError()
         },
       }
-    );
-  };
+    )
+  }
 
   return (
     <Form className="m-3" onSubmit={handleSubmit}>
 
-      <Row className="my-3">
-        <Form.Group
-          className="border border-secondary rounded"
-          controlId="formMensaje"
-          onChange={(changeEvent) => setFrecuencia(changeEvent.target.value)}
-        >
-          <Row className="my-3">
-            <Col sm={4} lg={6}>
-              <span className="input-group-text" htmlFor="mensaje">
-                Frecuencia
-              </span>
-            </Col>
-            <Col sm={4} lg={6}>
-              <Form.Control type="text" aria-describedby="text-mensaje" />
-              <Form.Text id="text-mensaje"></Form.Text>
-            </Col>
-          </Row>
-        </Form.Group>
-      </Row>
-      <Row className="my-3">
-        <Form.Group
-          className="border border-secondary rounded"
-          controlId="formMensaje"
-          onChange={(changeEvent) => setMemoria(changeEvent.target.value)}
-        >
-          <Row className="my-3">
-            <Col sm={4} lg={6}>
-              <span className="input-group-text" htmlFor="mensaje">
-                Memoria
-              </span>
-            </Col>
-            <Col sm={4} lg={6}>
-              <Form.Control type="text" aria-describedby="text-mensaje" />
-              <Form.Text id="text-mensaje"></Form.Text>
-            </Col>
-          </Row>
-        </Form.Group>
-      </Row>
       <FormSelect
-        name="accion"
-        values={valuesLectura}
-        defaultValue={defaultLectura}
+        name="Acción a realizar"
+        values={valuesAccion}
+        defaultValue={defaultAccion}
         setState={setLectura}
       />
 
-      <Row className="my-3">
-        <Form.Group
-          className="border border-secondary rounded"
-          controlId="formMensaje"
-          onChange={(changeEvent) => setDatos(changeEvent.target.value)}
-        >
-          <Row className="my-3">
-            <Col sm={4} lg={6}>
-              <span className="input-group-text" htmlFor="mensaje">
-                Datos
-              </span>
-            </Col>
-            <Col sm={4} lg={6}>
-              <Form.Control type="text" aria-describedby="text-mensaje" />
-              <Form.Text id="text-mensaje"></Form.Text>
-            </Col>
-          </Row>
-        </Form.Group>
-      </Row>
+      <FormSelect
+        name="Frecuencia [KHz]"
+        values={valuesFrecuencia}
+        defaultValue={defaultFrecuencia}
+        setState={setFrecuencia}
+      />
+
+      <FormTextHexa 
+        name="Dirección de Memoria [0x]"
+        limit={8}
+        state={direccionMemoria}
+        setState={setDireccionMemoria}
+      />
+
+      {accion === valuesAccion[0] ? (
+        <FormTextBinary 
+          name="Datos a escribir [0b]"
+          limit={8}
+          state={datos}
+          setState={setDatos}
+          disabled={true}
+        />
+      ) : (
+        <FormTextBinary 
+          name="Datos a escribir [0b]"
+          limit={8}
+          state={datos}
+          setState={setDatos}
+        />
+      )}
+      
+      <FormBtnGroup 
+        name="Pulsadores"
+        state={pulsadores}
+        setState={setPulsadores}
+      />
+
       <Row>
+
         { cambio ? (
-          <Col className="text-center">
+          <Col className="text-center d-grid gap-2">
             <Button variant="primary" type="submit">
-              Iniciar experiencia
+              Iniciar ensayo
             </Button>
-          </Col>):null
-        }
-        <Col className="text-center">
-          <FormSaveI2C
-            idUsuario={idUsuario}
-            frecuencia={frecuencia}
-            memoria={memoria} 
-            accion={accion}
-            datos={datos}
-            
-          />
+          </Col>
+        ) : (
+          <Col className="text-center d-grid gap-2">
+            <Button disabled variant="primary" type="submit">
+              Iniciar ensayo
+            </Button>
+          </Col>
+        ) }
+
+        <Col className="text-center d-grid gap-2">
+          <BtnDownloadImage />
         </Col>
-        <Col className="text-center">
-          <DownloadImage />
-        </Col>
+
       </Row>
     </Form>
-  );
+  )
 }
 
-export default FormI2C;
+export default FormI2C

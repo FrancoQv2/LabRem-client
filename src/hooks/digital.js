@@ -1,19 +1,19 @@
 import { useMutation, useQuery } from "react-query"
 
 import {
-  getInformationLab,
+  getInfoLaboratorio,
   getEnsayosUsuario,
   getEnsayos,
   postEnsayoUART,
-  postEnsayoUARTSave,
+//   postEnsayoUARTSave,
   postEnsayoI2C,
-  postEnsayoI2CSave,
+//   postEnsayoI2CSave,
 } from "../api/digital";
 
 const key = "digital"
 
 export function useInfoLaboratorio(idLabActual) {
-	return useQuery([key, { idLaboratorio: idLabActual }], getInformationLab)
+	return useQuery([key, { idLaboratorio: idLabActual }], getInfoLaboratorio)
 }
 
 export function useEnsayosUsuario({ idLaboratorio, idUsuario }) {
@@ -29,14 +29,16 @@ export function useEnsayos({ idLaboratorio }) {
 export function usePostEnsayoUART() {
 	return useMutation(postEnsayoUART)
 }
-export function usePostEnsayoUARTSave() {
-	return useMutation(postEnsayoUARTSave);
-}
+
+// export function usePostEnsayoUARTSave() {
+// 	return useMutation(postEnsayoUARTSave);
+// }
 
 export function usePostEnsayoI2C() {
 	return useMutation(postEnsayoI2C)
 }
-export function usePostEnsayoI2CSave() {
-	return useMutation(postEnsayoI2CSave)
-}
+
+// export function usePostEnsayoI2CSave() {
+// 	return useMutation(postEnsayoI2CSave)
+// }
 

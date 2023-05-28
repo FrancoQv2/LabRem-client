@@ -12,16 +12,16 @@
         "accessor": "Hora"
     },
     {
+        "Header": "Accion",
+        "accessor": "accion"
+    },
+    {
         "Header": "Frecuencia",
         "accessor": "frecuencia"
     },
     {
-        "Header": "Memoria",
-        "accessor": "memoria"
-    },
-    {
-        "Header": "Accion",
-        "accessor": "accion"
+        "Header": "Dirección",
+        "accessor": "direccion"
     },
     {
         "Header": "Datos",
