@@ -13,14 +13,14 @@
     },
     {
         "Header": "Distancia Lente",
-        "accessor": "distanciaLente"
+        "accessor": "distanciaFL"
     },
     {
         "Header": "Distancia 1°Lente 2°Lente",
-        "accessor": "distanciaLenteLente"
+        "accessor": "distanciaLL"
     },
     {
         "Header": "Distancia Pantalla",
-        "accessor": "distanciaPantalla"
+        "accessor": "distanciaLP"
     }
 ]
