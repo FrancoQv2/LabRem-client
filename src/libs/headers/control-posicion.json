@@ -13,22 +13,22 @@
     },
     {
         "Header": "Rapidez de Motor",
-        "accessor": "Rapidez"
+        "accessor": "rapidezMotor"
     },
     {
         "Header": "Angulo de Salida",
-        "accessor": "anguloSalida"
+        "accessor": "anguloMotor"
     },
     {
-        "Header": "Modificacion del driver",
-        "accessor": "Modificacion"
+        "Header": "Modificación del driver",
+        "accessor": "driver"
     },
     {
         "Header": "Rapidez del Controlador",
-        "accessor": "RapidezControl"
+        "accessor": "rapidezControlador"
     },
     {
         "Header": "Angulo de Salida del Controlador",
-        "accessor": "anguloSalidaControl"
+        "accessor": "anguloControlador"
     }
 ]
