@@ -11,7 +11,7 @@ import LentesDivergentes from "./pages/fisica/LentesDivergentes"
 import TxRxUART from "./pages/digital/TxRxUART"
 import TxRxI2C from "./pages/digital/TxRxI2C"
 
-import Estroboscopica from "./pages/control/Estroboscopica"
+import Submuestreo from "./pages/control/Submuestreo.jsx"
 import Posicion from "./pages/control/Posicion"
 
 import HomePage from "./pages/HomePage"
@@ -19,9 +19,8 @@ import HomePage from "./pages/HomePage"
 import Cookies from 'js-cookie'
 
 function App() {
-	// let { userId } = useParams();
-	let params = useParams();
-	console.log(params);
+	// let params = useParams();
+	// console.log(params);
 
 	Cookies.set('idLaboratorio', '1')
 	Cookies.set('idUsuario', '2')
@@ -38,7 +37,6 @@ function App() {
 			<RootLayout session={session}>
 				<Routes>
 					<Route exact path="/" element={<HomePage />}></Route>
-					<Route path="users/:userId" element={<EnlaceWifi />} />
 
 					<Route exact path="/telecomunicaciones/enlace-wifi" element={<EnlaceWifi />}></Route>
 					<Route exact path="/telecomunicaciones/enlace-radio" element={<EnlaceRadio />}></Route>
@@ -49,8 +47,8 @@ function App() {
 					<Route exact path="/digital/uart" element={<TxRxUART />}></Route>
 					<Route exact path="/digital/i2c" element={<TxRxI2C />}></Route>
 
-					<Route exact path="/control/Estroboscopica" element={<Estroboscopica />}></Route>
-					<Route exact path="/control/Posicion" element={<Posicion />}></Route>
+					<Route exact path="/control/submuestreo" element={<Submuestreo />}></Route>
+					<Route exact path="/control/posicion" element={<Posicion />}></Route>
 				</Routes>
 			</RootLayout>
 		</BrowserRouter>

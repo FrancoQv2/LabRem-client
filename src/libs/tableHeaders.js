@@ -7,7 +7,7 @@ import headersDivergentes from "./headers/fisica-divergentes.json"
 import headersI2C from "./headers/digital-i2c.json";
 import headersUART from "./headers/digital-uart.json";
 
-import headersEstroboscopico from "./headers/control-estroboscopico.json";
+import headersSubmuestreo from "./headers/control-submuestreo.json";
 import headersPosicion from "./headers/control-posicion.json";
 
-export { headersWifi, headersRadio, headersConvergentes, headersDivergentes, headersI2C, headersUART, headersEstroboscopico, headersPosicion }
+export { headersWifi, headersRadio, headersConvergentes, headersDivergentes, headersI2C, headersUART, headersSubmuestreo, headersPosicion }

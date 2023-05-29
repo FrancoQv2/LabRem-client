@@ -13,7 +13,7 @@
     },
     {
         "Header": "Modulación",
-        "accessor": "tipoModulacion"
+        "accessor": "Modulacion"
     },
     {
         "Header": "Codificación",

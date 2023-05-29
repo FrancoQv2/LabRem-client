@@ -29,10 +29,10 @@ function HomePage() {
         navigate("/digital/i2c")
     }
     const navigateETB = () => {
-        navigate("/control/estroboscopica")
+        navigate("/control/submuestreo")
     }
     const navigatePOS = () => {
-        navigate("/control/Posicion")
+        navigate("/control/posicion")
     }
     return (
         <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
@@ -86,7 +86,7 @@ function HomePage() {
             </Row>
             <hr />
             <Row className="m-2">
-                <h1>automatización y control</h1>
+                <h1>Automatización y Control</h1>
                 <hr />
                 <Col sm={12} lg={6}>
                     <Button variant="primary" size="lg" onClick={navigateETB}>
