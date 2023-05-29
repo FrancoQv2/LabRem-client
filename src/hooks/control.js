@@ -1,19 +1,19 @@
 import { useMutation, useQuery } from "react-query"
 
 import {
-    getInformationLab,
+    getInfoLaboratorio,
     getEnsayosUsuario,
     getEnsayos,
-    postEnsayoEstroboscopica,
-    postEnsayoEstroboscopicaSave,
+    postEnsayoSubmuestreo,
+    postEnsayoSubmuestreoSave,
     postEnsayoPosicion,
     postEnsayoPosicionSave
 } from "../api/control"
 
 const key = "control"
 
-export function useInformationLab(idLabActual) {
-    return useQuery([key, { idLaboratorio: idLabActual }], getInformationLab)
+export function useInfoLaboratorio(idLabActual) {
+    return useQuery([key, { idLaboratorio: idLabActual }], getInfoLaboratorio)
 }
 
 export function useEnsayosUsuario({ idLaboratorio, idUsuario }) {
@@ -22,19 +22,25 @@ export function useEnsayosUsuario({ idLaboratorio, idUsuario }) {
         getEnsayosUsuario
     )
 }
+
 export function useEnsayos({ idLaboratorio }) {
     return useQuery(
-        [key, { idLaboratorio: idLaboratorio }], getEnsayos)
+        [key, { idLaboratorio: idLaboratorio }], 
+        getEnsayos
+    )
 }
-export function usePostEnsayoEstroboscopica() {
-    return useMutation(postEnsayoEstroboscopica)
+export function usePostEnsayoSubmuestreo() {
+    return useMutation(postEnsayoSubmuestreo)
 }
-export function usePostEnsayoEstroboscopicaSave() {
-    return useMutation(postEnsayoEstroboscopicaSave)
+
+export function usePostEnsayoSubmuestreoSave() {
+    return useMutation(postEnsayoSubmuestreoSave)
 }
+
 export function usePostEnsayoPosicion() {
-  return useMutation(postEnsayoPosicion);
+    return useMutation(postEnsayoPosicion);
 }
+
 export function usePostEnsayoPosicionSave() {
     return useMutation(postEnsayoPosicionSave);
-  }
+}

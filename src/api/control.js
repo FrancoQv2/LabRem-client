@@ -1,17 +1,13 @@
 import axios from "axios"
-import { process, submitSuccess, submitErrorDato, saveSuccess } from "../libs/alerts";
-// const API = process.env.API_CONTROL || "http://localhost:3030/api/teleco"
+import { process, submitSuccess, submitErrorDato, saveSuccess } from "../libs/alerts"
+
 const API_CONTROL = "http://localhost:3031/api/control"
 
 //-----------------------------------------------------
-// Laboratorios - Fisica
+// Laboratorios - Control
 //-----------------------------------------------------
 
-/**
- * getInformationLab
- *
- */
-export const getInformationLab = async ({ queryKey }) => {
+export const getInfoLaboratorio = async ({ queryKey }) => {
 	const [_, { idLaboratorio }] = queryKey
 	const { data } = await axios.get(`${API_CONTROL}/${idLaboratorio}`, {
 		idLaboratorio: idLaboratorio,
@@ -19,140 +15,136 @@ export const getInformationLab = async ({ queryKey }) => {
 	return data
 }
 
-/**
- * getEnsayosUsuario
- *
- */
 export const getEnsayosUsuario = async ({ queryKey }) => {
-	const [_, { idLaboratorio, idUsuario }] = queryKey
+    try {
+        const [_, { idLaboratorio, idUsuario }] = queryKey
+        const URL = `${API_CONTROL}/${idLaboratorio}/${idUsuario}`
+        
+        const { data } = await axios.get(URL, {
+            idLaboratorio: idLaboratorio,
+            idUsuario: idUsuario,
+        })
 
-	const url = `${API_CONTROL}/${idLaboratorio}/${idUsuario}`
-
-	const { data } = await axios.get(url, {
-		idLaboratorio: idLaboratorio,
-		idUsuario: idUsuario,
-	})
-
-	return data
+        console.log(data)
+        return data
+    } catch (error) {
+        console.error(error)
+        return []
+    }
 }
 
-/**
- *
- * @returns Todos los ensayos realizados dependiendo del id de lab
- */
 export const getEnsayos = async ({ queryKey }) => {
 	const [_, { idLaboratorio }] = queryKey
 
-	const url = `${API_CONTROL}/ensayos/${idLaboratorio}`
+	const URL = `${API_CONTROL}/ensayos/${idLaboratorio}`
 
-	const { data } = await axios.get(url, {
+	const { data } = await axios.get(URL, {
 		idLaboratorio: idLaboratorio
 	})
 
 	return data
 }
 
-/**
- * postEnsayoConvergentes
- *
- */
-export const postEnsayoEstroboscopica = async ({
+export const postEnsayoSubmuestreo = async ({
 	idUsuario,
-	FrecuenciaAgua,
-	FrecuenciaLuz,
+	frecuenciaAgua,
+	frecuenciaLuz,
 	caidaAgua,
-	setcambio
+	setCambio
 }) => {
-	const newEnsayoEstroboscopica = {
-		idUsuario: idUsuario,
-		FrecuenciaCaidaAgua: parseInt(FrecuenciaAgua),
-		FrecuenciaLuz: parseInt(FrecuenciaLuz),
-		CaidaAgua: caidaAgua
+	const newEnsayoSubmuestreo = {
+		idUsuario: 		idUsuario,
+		frecuenciaAgua: parseInt(frecuenciaAgua),
+		frecuenciaLuz: 	parseInt(frecuenciaLuz),
+		caidaAgua: 		caidaAgua
 	}
-	 process();
-	const { data } = await axios.post(`${API_CONTROL}/estroboscopico`,newEnsayoEstroboscopica)
-	setcambio(current=>!current);
-  	if (data === "laboratorio ok") {
-    	submitSuccess();
-  	} else {
-    	submitErrorDato(data);
-  	} 
-	return data;
+	console.log(newEnsayoSubmuestreo)
+
+	process()
+	const { data } = await axios.post(`${API_CONTROL}/submuestreo`, newEnsayoSubmuestreo)
+	setCambio(current => !current)
+	
+	if (data === "laboratorio ok") {
+		submitSuccess()
+	} else {
+		submitErrorDato(data)
+	}
+	return data
 }
 
-
-export const postEnsayoEstroboscopicaSave = async ({
+export const postEnsayoSubmuestreoSave = async ({
 	idUsuario,
-	FrecuenciaAgua,
-	FrecuenciaLuz,
+	frecuenciaAgua,
+	frecuenciaLuz,
 	caidaAgua
 }) => {
-	const newEnsayoEstroboscopica = {
-		idUsuario: idUsuario,
-		FrecuenciaCaidaAgua: parseInt(FrecuenciaAgua),
-		FrecuenciaLuz: parseInt(FrecuenciaLuz),
-		CaidaAgua: caidaAgua
+	const newEnsayoSubmuestreo = {
+		idUsuario: 		idUsuario,
+		frecuenciaAgua: parseInt(frecuenciaAgua),
+		frecuenciaLuz: 	parseInt(frecuenciaLuz),
+		caidaAgua: 		caidaAgua
 	}
 
-	const { data } = await axios.post(`${API_CONTROL}/estroboscopicosave`,newEnsayoEstroboscopica)
+	const { data } = await axios.post(`${API_CONTROL}/estroboscopicosave`, newEnsayoSubmuestreo)
 	if (data === "guardado en base de datos") {
-  		saveSuccess();
+		saveSuccess()
 	} else {
-  		submitErrorDato(data);
-	} 
-	return data;
+		submitErrorDato(data)
+	}
+	return data
 }
 
 export const postEnsayoPosicion = async ({
 	idUsuario,
-    Rapidez,
-    anguloSalida,
-    Modificacion,
-    RapidezControl,
-    anguloSalidaControl,
-	setcambio
+	rapidezMotor,
+	anguloMotor,
+	modificacionesDriver,
+	rapidezControlador,
+	anguloControlador,
+	setCambio
 }) => {
 	const newEnsayoPosicion = {
-		idUsuario: idUsuario,
-		Rapidez: parseInt(Rapidez),
-		anguloSalida: anguloSalida,
-		Modificacion: Modificacion,
-		RapidezControl: parseInt(RapidezControl),
-		anguloSalidaControl: anguloSalidaControl
+		idUsuario: 		      idUsuario,
+		rapidezMotor: 	      parseInt(rapidezMotor),
+		anguloMotor: 	      anguloMotor,
+		modificacionesDriver: modificacionesDriver,
+		rapidezControlador:   parseInt(rapidezControlador),
+		anguloControlador: 	  anguloControlador
 	}
-	 process();
-	const { data } = await axios.post(`${API_CONTROL}/posicion`,newEnsayoPosicion)
-	setcambio(current=>!current);
-  	if (data === "laboratorio ok") {
-    	submitSuccess();
-  	} else {
-    	submitErrorDato(data);
-  	} 
-	return data;
+	// process()
+	const { data } = await axios.post(`${API_CONTROL}/posicion`, newEnsayoPosicion)
+	setCambio(current => !current)
+	
+	if (data === "laboratorio ok") {
+		submitSuccess()
+	} else {
+		submitErrorDato(data)
+	}
+	return data
 }
 
 export const postEnsayoPosicionSave = async ({
 	idUsuario,
-    Rapidez,
-    anguloSalida,
-    Modificacion,
-    RapidezControl,
-    anguloSalidaControl,
+	rapidezMotor,
+	anguloMotor,
+	modificacionesDriver,
+	rapidezControlador,
+	anguloControlador,
 }) => {
 	const newEnsayoPosicion = {
-		idUsuario: idUsuario,
-		Rapidez: parseInt(Rapidez),
-		anguloSalida: anguloSalida,
-		Modificacion: Modificacion,
-		RapidezControl: parseInt(RapidezControl),
-		anguloSalidaControl: anguloSalidaControl
+		idUsuario: 		      idUsuario,
+		rapidezMotor: 	      parseInt(rapidezMotor),
+		anguloMotor: 	      anguloMotor,
+		modificacionesDriver: modificacionesDriver,
+		rapidezControlador:   parseInt(rapidezControlador),
+		anguloControlador: 	  anguloControlador
 	}
 
-	const { data } = await axios.post(`${API_CONTROL}/posicionsave`,newEnsayoPosicion)
+	const { data } = await axios.post(`${API_CONTROL}/posicionsave`, newEnsayoPosicion)
 	if (data === "guardado en base de datos") {
-  		saveSuccess();
+		saveSuccess()
 	} else {
-  		submitErrorDato(data);
-	} 
-	return data;
+		submitErrorDato(data)
+	}
+	return data
 }
