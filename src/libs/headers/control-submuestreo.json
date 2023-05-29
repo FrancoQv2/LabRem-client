@@ -12,15 +12,15 @@
         "accessor": "Hora"
     },
     {
-        "Header": "Frecuencia de caida de agua",
-        "accessor": "FrecuenciaCaidaAgua"
+        "Header": "Frecuencia de caída del Agua",
+        "accessor": "frecuenciaAgua"
     },
     {
-        "Header": "Frecuencia de la luz",
-        "accessor": "FrecuenciaLuz"
+        "Header": "Frecuencia de la Luz",
+        "accessor": "frecuenciaLuz"
     },
     {
-        "Header": "Caida Agua",
-        "accessor": "CaidaAgua"
+        "Header": "Caída de Agua",
+        "accessor": "caidaAgua"
     }
 ]

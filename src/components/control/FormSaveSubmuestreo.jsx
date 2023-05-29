@@ -1,10 +1,10 @@
 import Button from "react-bootstrap/Button";
-import { usePostEnsayoEstroboscopicaSave } from "../../hooks/control";
+import { usePostEnsayoSubmuestreoSave } from "../../hooks/control";
 import { submitSuccess, submitError } from "../../libs/alerts"; 
 
 function FormSave({ idUsuario,FrecuenciaAgua,FrecuenciaLuz, caidaAgua }) {
   
-  const { mutate, error, isLoading } = usePostEnsayoEstroboscopicaSave();
+  const { mutate, error, isLoading } = usePostEnsayoSubmuestreoSave();
   const handleSubmit = async (e) => {
     e.preventDefault();
     
