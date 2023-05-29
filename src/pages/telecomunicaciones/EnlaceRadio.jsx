@@ -114,7 +114,7 @@ function EnlaceRadio() {
                             ) : null}
                         </Card.Body>
 
-                        <Card.Footer>
+                        {/* <Card.Footer>
                             <ExportResults
                                 useHook={useEnsayosUsuario}
                                 exportToProfe={useEnsayos}
@@ -124,7 +124,7 @@ function EnlaceRadio() {
                                 filename={"ensayos-radio"}
                                 componentRef={componentRef}
                             />
-                        </Card.Footer>
+                        </Card.Footer> */}
                     </Card>
                 </Col>
             </Row>
