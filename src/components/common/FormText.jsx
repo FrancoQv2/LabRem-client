@@ -2,7 +2,7 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 
-function FormText({ name, limit, state, setState }) {
+function FormText({ name, limit, showLimit=true, state, setState }) {
 
     const handleTextChange = (changeEvent) => {
       const state = changeEvent.target.value
@@ -20,13 +20,13 @@ function FormText({ name, limit, state, setState }) {
           controlId={`form-${name.toString().toLowerCase().replace(/ /g, "-")}`}
         >
           <Row className="my-3">
-            <Col sm={4} lg={6}>
+            <Col sm={4} md={6} lg={6}>
               <span className="input-group-text" htmlFor={name.toString().toLowerCase().replace(/ /g, "-")}>
                 {name}
-                {` - (${state.length} / ${limit})`}
+                {(showLimit) ? ` - (${state.length} / ${limit})` : null}
               </span>
             </Col>
-            <Col sm={4} lg={6}>
+            <Col sm={4} md={6} lg={6}>
               <Form.Control
                 type="text"
                 aria-describedby="text-state"

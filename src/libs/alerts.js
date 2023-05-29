@@ -12,10 +12,11 @@ const Toast = Swal.mixin({
     }
 })
 
-export function submitSuccess() {
+export function submitSuccess(message) {
     Toast.fire({
         icon: 'success',
-        title: 'Ensayo realizado exitosamente.'
+        // title: 'Ensayo realizado exitosamente.'
+        title: message
     })
 }
 
@@ -72,18 +73,20 @@ export function downloadCsvError() {
 export function process() {
     Toast.fire({
         icon: 'info',
-        title: 'realizando ensayo, espere a que termine.'
+        title: 'Realizando ensayo, espere a que termine.'
     })
 }
-export function submitErrorDato(Msj) {
+
+export function submitErrorDato(message) {
     Toast.fire({
         icon: 'error',
-        title: Msj
+        title: message
     })
 }
+
 export function saveSuccess() {
     Toast.fire({
         icon: 'success',
-        title: 'valores guardados.'
+        title: 'Valores guardados.'
     })
 }
