@@ -111,7 +111,7 @@ function TxRxUART() {
               ) : null}
             </Card.Body>
 
-            <Card.Footer>
+            {/* <Card.Footer>
               <ExportResults 
                 useHook={useEnsayosUsuario}
                 exportToProfe={useEnsayos}
@@ -121,7 +121,7 @@ function TxRxUART() {
                 filename={"ensayos-uart"}
                 componentRef={componentRef}
               />
-            </Card.Footer>
+            </Card.Footer> */}
           </Card>
         </Col>
       </Row>

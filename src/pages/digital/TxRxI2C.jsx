@@ -111,7 +111,7 @@ function TxRxI2C() {
               ) : null}
             </Card.Body>
 
-            <Card.Footer>
+            {/* <Card.Footer>
               <ExportResults 
                 useHook={useEnsayosUsuario}
                 exportToProfe={useEnsayos}
@@ -121,7 +121,7 @@ function TxRxI2C() {
                 filename={"ensayos-i2c"}
                 componentRef={componentRef}
               />
-            </Card.Footer>
+            </Card.Footer> */}
           </Card>
         </Col>
       </Row>
