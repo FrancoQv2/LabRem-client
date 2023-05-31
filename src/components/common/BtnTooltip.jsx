@@ -2,10 +2,10 @@ import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
-const BtnTooltip = (info) => {
+const BtnTooltip = ({description, name }) => {  
   const renderTooltip = (props) => (
     <Tooltip {...props}>
-      {info.info}
+      {description}
     </Tooltip>
   )
 
@@ -16,7 +16,7 @@ const BtnTooltip = (info) => {
       overlay={renderTooltip}
     >
       <span>
-        {info.cont}
+        {name}
         <FontAwesomeIcon icon={faInfoCircle} className="info-icon" />
       </span>
     </OverlayTrigger>

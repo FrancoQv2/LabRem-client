@@ -1,6 +1,7 @@
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
+import BtnTooltip from "./BtnTooltip"
 
 /**
  *
@@ -10,7 +11,7 @@ import Form from "react-bootstrap/Form"
  * @param {Function} setState Función Set del Hook del campo que se utiliza
  * @returns
  */
-function FormSelect({ name, values, defaultValue, setState }) {
+function FormSelect({ name, values, defaultValue, setState,ayuda }) {
   return (
     <Row className="my-3">
       <Form.Group
@@ -24,7 +25,12 @@ function FormSelect({ name, values, defaultValue, setState }) {
               className="input-group-text"
               htmlFor={name.toString().toLowerCase().replace(/ /g, "-")}
             >
-              {name}
+              
+              <BtnTooltip
+                description={ayuda}
+                name={name}
+              >
+              </BtnTooltip>
             </span>
           </Col>
 

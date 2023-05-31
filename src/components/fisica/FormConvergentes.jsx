@@ -45,6 +45,12 @@ function FormConvergentes({ idUsuario }) {
     )
   }
 
+  const informacion = {
+    distanciaLente: 'distancia entre el lente y el foco',
+    distanciaPantalla: 'distancia entre el lente y la pantalla',
+    diaframa: 'objeto utilizado para corregir aberraciones de la lentes'
+  }
+
   return (
     <Form className="m-3" onSubmit={handleSubmit}>
       <FormRange 
@@ -56,6 +62,7 @@ function FormConvergentes({ idUsuario }) {
         unit="mm"
         state={distanciaFL}
         setState={setDistanciaFL}
+        ayuda={informacion.distanciaLente}
       />
       
       <FormRange 
@@ -67,6 +74,7 @@ function FormConvergentes({ idUsuario }) {
         unit="mm"
         state={distanciaLP}
         setState={setDistanciaLP}
+        ayuda={informacion.distanciaPantalla}
       />
 
       <FormSelect
@@ -74,6 +82,7 @@ function FormConvergentes({ idUsuario }) {
         values={tipoDiafragma}
         defaultValue={defaultDiafragma}
         setState={setDiafragma}
+        ayuda={informacion.diaframa}
       />
 
       <Row>
@@ -91,14 +100,14 @@ function FormConvergentes({ idUsuario }) {
           </Col>
         ) }
         
-        {/* <Col className="text-center">
+        <Col className="text-center">
           <FormSaveConvergente
             idUsuario={idUsuario}
             distanciaFL={distanciaFL}
             distanciaLP={distanciaLP}
             diafragma={diafragma}
           />
-        </Col> */}
+        </Col>
 
         <Col className="text-center d-grid gap-2">
           <BtnDownloadImage />

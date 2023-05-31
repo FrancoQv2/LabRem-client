@@ -2,7 +2,7 @@ import axios from "axios"
 import { process, submitSuccess, submitErrorDato, saveSuccess } from "../libs/alerts"
 
 // const API = process.env.API_FISICA || "http://localhost:3030/api/teleco"
-const API_FISICA = "http://localhost:3032/api/fisica"
+const API_FISICA = "http://localhost:3002/api/fisica"
 
 //-----------------------------------------------------
 // Laboratorios - Fisica
@@ -70,8 +70,8 @@ export const postEnsayoConvergentes = async ({
     )
     console.log(data)
     setcambio(current => !current)
-    if (data === "laboratorio ok") {
-        submitSuccess()
+    if (data.msg === "Parámetros correctos. Guardado en DB") {
+        submitSuccess("Ensayo Realizado con Exito")
     } else {
         submitErrorDato(data)
     }

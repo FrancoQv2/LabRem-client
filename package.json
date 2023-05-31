@@ -10,6 +10,9 @@
     "Gianluca Berarducci <gianlucaberarducci@gmail.com> (https://github.com/Gian1110)"
   ],
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "axios": "0.27.2",
     "babel-core": "^7.0.0-bridge.0",
     "bootstrap": "5.2.1",

@@ -1,3 +1,4 @@
+import React from 'react';
 import Container from "react-bootstrap/Container"
 import Accordion from "react-bootstrap/Accordion"
 import Row from "react-bootstrap/Row"
@@ -39,7 +40,12 @@ function LabInformation({ imagen, idLaboratorio, useInfoLaboratorio }) {
 									</Col>
 									<Col sm={12} lg={8}>
 										<div>
-											<p>{data.descripcion}</p>
+											{data.descripcion.split('\\n').map((line, index) => (
+												<React.Fragment key={index}>
+													{line}
+													<br />
+												</React.Fragment>
+											))}
 										</div>
 									</Col>
 								</Row>
