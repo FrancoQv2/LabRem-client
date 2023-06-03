@@ -1,5 +1,6 @@
 import axios from "axios"
 import { process, submitSuccess, submitErrorDato, saveSuccess } from "../libs/alerts"
+import Cookies from 'js-cookie'
 
 // const API = process.env.API_FISICA || "http://localhost:3030/api/teleco"
 const API_FISICA = "http://localhost:3032/api/fisica"
@@ -13,7 +14,10 @@ export const getInfoLaboratorio = async ({ queryKey }) => {
 
     const URL = `${API_FISICA}/${idLaboratorio}`
 
-    const { data } = await axios.get(URL, {
+    const { data } = await axios.get(URL, {headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      }}, {
+        datos: false,
         idLaboratorio: idLaboratorio,
     })
     return data
@@ -25,7 +29,10 @@ export const getEnsayosUsuario = async ({ queryKey }) => {
     const URL = `${API_FISICA}/${idLaboratorio}/${idUsuario}`
     console.log(idLaboratorio, idUsuario)
 
-    const { data } = await axios.get(URL, {
+    const { data } = await axios.get(URL,{headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      }}, {
+        datos: false,
         idLaboratorio: idLaboratorio,
         idUsuario: idUsuario,
     })
@@ -39,7 +46,10 @@ export const getEnsayos = async ({ queryKey }) => {
 
     const url = `${API_FISICA}/ensayos/${idLaboratorio}`
 
-    const { data } = await axios.get(url, {
+    const { data } = await axios.get(url,{headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      }}, {
+        datos: false,
         idLaboratorio: idLaboratorio
     })
 
@@ -63,14 +73,15 @@ export const postEnsayoConvergentes = async ({
         distanciaFL: parseInt(distanciaFL),
         distanciaLP: parseInt(distanciaLP),
         diafragma: diafragma,
-        guardar:guardar
+        guardar:guardar,
+        datos: false
     }
     
     process()
     const { data } = await axios.post(
-        `${API_FISICA}/convergente`,
-        newEnsayoConvergente
-    )
+        `${API_FISICA}/convergente`,newEnsayoConvergente,{headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+          }})
     console.log(data)
     setcambio(current => !current)
     if (data.msg === "Parámetros correctos. Guardado en DB") {
@@ -103,7 +114,9 @@ export const postEnsayoDivergentes = async ({
         diafragma: diafragma,
     }
     process()
-    const { data } = await axios.post(`${API_FISICA}/divergente`, newEnsayoDivergente)
+    const { data } = await axios.post(`${API_FISICA}/divergente`,{headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      }}, newEnsayoDivergente)
 
     setcambio(current => !current)
     if (data === "laboratorio ok") {
@@ -140,3 +153,19 @@ export const postEnsayoDivergentesSave = async ({
     }
     return data
 }
+
+export const validarToken = async () => {
+    const dat = {
+        datos: true,
+    }
+    const headers ={
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
+    }
+    const respuesta = await axios.post("http://localhost:3032/api/fisica/verificar",dat,headers)
+      Cookies.remove('nombreUsuario')
+      Cookies.remove('profesor')
+      
+      Cookies.set('nombreUsuario', respuesta.data['nombreUsuario'])
+      Cookies.set('profesor', respuesta.data['profesor'])
+    return respuesta.status == 200
+  }

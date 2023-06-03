@@ -15,18 +15,49 @@ import FormConvergentes from "../../components/fisica/FormConvergentes"
 import TableQueryPaginated from "../../components/common/TableQueryPaginated"
 import ExportResults from "../../components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/fisica"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos, ValidarToken } from "../../hooks/fisica"
 
 import { headersConvergentes as tableHeaders } from "../../libs/tableHeaders"
 
 import imgConv from "../../assets/lente-convergente.jpg"
 
+import Button from "react-bootstrap/Button"
+import Badge from 'react-bootstrap/Badge';
+import {useLocation } from 'react-router-dom';
+import Cookies from 'js-cookie'
 /**
  * 
  */
 function LentesConvergentes() {
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
+
+//logica de token
+const searchParams = new URLSearchParams(useLocation().search);
+let token = searchParams.get('token');
+
+if (token == null) {
+    token=localStorage.getItem('token')
+}
+localStorage.setItem('token',token)
+const [validacion, setValidar] = useState(false)
+
+ValidarToken().then( response => {
+    setValidar(response)  
+});
+
+if (!validacion) {
+    Cookies.remove('nombreUsuario')
+}
+// console.log(!Cookies.get('reload'))
+if (!Cookies.get('reload')){
+    Cookies.set('reload','cargado')
+    window.location.reload();
+}
+const handler = async () => {
+    window.location.href = 'https://www.google.com.ar'
+};
+//final de logica token
 
   const idLabActual = 1;
   const idUsuarioActual = 2;
