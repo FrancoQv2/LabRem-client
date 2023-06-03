@@ -31,12 +31,12 @@ function FormConvergentes({ idUsuario }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setcambio(current =>!current)
-
+    const guardar = false
     mutate(
-      { idUsuario, distanciaFL, distanciaLP, diafragma, setcambio },
+      { idUsuario, distanciaFL, distanciaLP, diafragma, setcambio,guardar },
       {
         onSuccess: () => {
-         
+         console.log(distanciaFL)
         },
         onError: () => {
           submitError()
@@ -92,13 +92,7 @@ function FormConvergentes({ idUsuario }) {
               Iniciar ensayo
             </Button>
           </Col>
-        ) : (
-          <Col className="text-center d-grid gap-2">
-            <Button disabled variant="primary" type="submit">
-              Iniciar ensayo
-            </Button>
-          </Col>
-        ) }
+        ) :null }
         
         <Col className="text-center">
           <FormSaveConvergente
@@ -106,6 +100,7 @@ function FormConvergentes({ idUsuario }) {
             distanciaFL={distanciaFL}
             distanciaLP={distanciaLP}
             diafragma={diafragma}
+            setcambio={setcambio}
           />
         </Col>
 

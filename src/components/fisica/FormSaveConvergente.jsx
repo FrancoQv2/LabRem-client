@@ -1,15 +1,16 @@
 import Button from "react-bootstrap/Button";
-import { usePostEnsayoConvergentesSave } from "../../hooks/fisica";
+import { usePostEnsayoConvergentes } from "../../hooks/fisica";
 import { submitSuccess, submitError } from "../../libs/alerts"; 
 
-function FormSave({ idUsuario, distanciaLente, distanciaPantalla, diafragma }) {
+function FormSave({ idUsuario, distanciaFL, distanciaLP, diafragma,setcambio }) {
   
-  const { mutate, error, isLoading } = usePostEnsayoConvergentesSave();
+  const { mutate, error, isLoading } = usePostEnsayoConvergentes();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    setcambio(current =>!current)
+    const guardar = true
     mutate(
-      { idUsuario, distanciaLente, distanciaPantalla, diafragma },
+      { idUsuario, distanciaFL, distanciaLP, diafragma, setcambio, guardar },
       {
         onSuccess: () => {
          

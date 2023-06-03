@@ -2,7 +2,7 @@ import axios from "axios"
 import { process, submitSuccess, submitErrorDato, saveSuccess } from "../libs/alerts"
 
 // const API = process.env.API_FISICA || "http://localhost:3030/api/teleco"
-const API_FISICA = "http://localhost:3002/api/fisica"
+const API_FISICA = "http://localhost:3032/api/fisica"
 
 //-----------------------------------------------------
 // Laboratorios - Fisica
@@ -55,14 +55,17 @@ export const postEnsayoConvergentes = async ({
     distanciaFL,
     distanciaLP,
     diafragma,
-    setcambio
+    setcambio,
+    guardar
 }) => {
     const newEnsayoConvergente = {
         idUsuario: idUsuario,
         distanciaFL: parseInt(distanciaFL),
         distanciaLP: parseInt(distanciaLP),
         diafragma: diafragma,
+        guardar:guardar
     }
+    
     process()
     const { data } = await axios.post(
         `${API_FISICA}/convergente`,
@@ -71,32 +74,10 @@ export const postEnsayoConvergentes = async ({
     console.log(data)
     setcambio(current => !current)
     if (data.msg === "Parámetros correctos. Guardado en DB") {
+        submitSuccess("Ensayo Guardado con Exito")
+    } else if (data.msg === "Parámetros correctos. ejecutando en arduino") {
         submitSuccess("Ensayo Realizado con Exito")
-    } else {
-        submitErrorDato(data)
-    }
-    return data
-}
-
-export const postEnsayoConvergentesSave = async ({
-    idUsuario,
-    distanciaFL,
-    distanciaLP,
-    diafragma
-}) => {
-    const newEnsayoConvergente = {
-        idUsuario: idUsuario,
-        distanciaFL: parseInt(distanciaFL),
-        distanciaLP: parseInt(distanciaLP),
-        diafragma: diafragma,
-    }
-    const { data } = await axios.post(
-        `${API_FISICA}/convergentesave`,
-        newEnsayoConvergente
-    )
-    if (data === "guardado en base de datos") {
-        saveSuccess()
-    } else {
+    }else {
         submitErrorDato(data)
     }
     return data
