@@ -141,7 +141,7 @@ const handler = async () => {
               ) : null}
             </Card.Body>
 
-            {/* <Card.Footer>
+            <Card.Footer>
                             <ExportResults
                                 useHook={useEnsayosUsuario}
                                 exportToProfe={useEnsayos}
@@ -151,7 +151,7 @@ const handler = async () => {
                                 filename={"ensayos-convergentes"}
                                 componentRef={componentRef}
                             />
-                        </Card.Footer> */}
+                        </Card.Footer>
           </Card>
         </Col>
       </Row>
