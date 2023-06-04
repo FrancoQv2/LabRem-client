@@ -51,6 +51,7 @@ function FormUART({ idUsuario }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setCambio(current => !current)
+
     mutate({ idUsuario, velocidad, bitsDatos, bitsParada, paridad, pulsadores, mensaje, setCambio},
       {
         onSuccess: () => {
@@ -64,7 +65,14 @@ function FormUART({ idUsuario }) {
     )
   }
  
-  
+  const informacion = {
+    velocidad: 'velocidad de comunicacion',
+    CantBitDatos: 'cantidad de bits de los datos',
+    parada: 'cantidad de bits de parada',
+    paridad: 'indica si es una cantidad par o impar de bits',
+    pulsadores: 'manda el comando al pulsador que se desea presionar si se estuviera presencial',
+    text: 'texto que se desea enviar para pruebas'
+  }
   return (
     <Form className="m-3" onSubmit={handleSubmit}>
 
@@ -73,6 +81,7 @@ function FormUART({ idUsuario }) {
         values={valuesVelocidad}
         defaultValue={defaultVelocidad}
         setState={setVelocidad}
+        ayuda={informacion.velocidad}
       />
 
       <FormSelect
@@ -80,6 +89,7 @@ function FormUART({ idUsuario }) {
         values={valuesBitsDatos}
         defaultValue={defaultBitsDatos}
         setState={setBitsDatos}
+        ayuda={informacion.CantBitDatos}
       />
 
       <FormSelect
@@ -87,6 +97,7 @@ function FormUART({ idUsuario }) {
         values={valuesBitsParada}
         defaultValue={defaultBitsParada}
         setState={setBitsParada}
+        ayuda={informacion.parada}
       />
 
       <FormSelect
@@ -94,12 +105,14 @@ function FormUART({ idUsuario }) {
         values={valuesParidad}
         defaultValue={defaultParidad}
         setState={setParidad}
+        ayuda={informacion.paridad}
       />
 
       <FormBtnGroup 
         name="Pulsadores"
         state={pulsadores}
         setState={setPulsadores}
+        ayuda={informacion.pulsadores}
       />
 
       <FormText 
@@ -107,6 +120,7 @@ function FormUART({ idUsuario }) {
         limit={100}
         state={mensaje}
         setState={setMensaje}
+        ayuda={informacion.text}
       />
       
       <Row>

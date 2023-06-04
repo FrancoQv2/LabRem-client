@@ -1,5 +1,6 @@
 import axios from "axios"
 import { process, submitSuccess, submitErrorDato, saveSuccess } from "../libs/alerts"
+import Cookies from 'js-cookie'
 
 const API_DIGITAL = "http://localhost:3034/api/digital"
 
@@ -12,7 +13,9 @@ export const getInfoLaboratorio = async ({ queryKey }) => {
 
     const URL = `${API_DIGITAL}/${idLaboratorio}`
 
-    const { data } = await axios.get(URL, {
+    const { data } = await axios.get(URL, {headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      }}, {
         idLaboratorio: idLaboratorio,
     })
     console.log(data)
@@ -25,7 +28,9 @@ export const getEnsayosUsuario = async ({ queryKey }) => {
 
     const URL = `${API_DIGITAL}/${idLaboratorio}/${idUsuario}`
 
-    const { data } = await axios.get(URL, {
+    const { data } = await axios.get(URL, {headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      }}, {
         idLaboratorio: idLaboratorio,
         idUsuario: idUsuario,
     })
@@ -39,7 +44,9 @@ export const getEnsayos = async ({ queryKey }) => {
 
     const URL = `${API_DIGITAL}/ensayos/${idLaboratorio}`
 
-    const { data } = await axios.get(URL, {
+    const { data } = await axios.get(URL, {headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      }}, {
         idLaboratorio: idLaboratorio
     })
 
@@ -69,13 +76,16 @@ export const postEnsayoUART = async ({
         paridad:    paridad,
         pulsadores: pulsadores,
         mensaje:    mensaje,
+        datos: false
     }
 
     console.log(newEnsayo)
 
     process()
 
-    const { data } = await axios.post(`${API_DIGITAL}/uart`, newEnsayo)
+    const { data } = await axios.post(`${API_DIGITAL}/uart`, newEnsayo,{headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      }})
 
     setCambio(current => !current)
 
@@ -127,3 +137,19 @@ export const postEnsayoI2C = async ({
 
     return data
 }
+
+export const validarToken = async () => {
+    const dat = {
+        datos: true,
+    }
+    const headers ={
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
+    }
+    const respuesta = await axios.post("http://localhost:3032/api/fisica/verificar",dat,headers)
+      Cookies.remove('nombreUsuario')
+      Cookies.remove('profesor')
+      
+      Cookies.set('nombreUsuario', respuesta.data['nombreUsuario'])
+      Cookies.set('profesor', respuesta.data['profesor'])
+    return respuesta.status == 200
+  }

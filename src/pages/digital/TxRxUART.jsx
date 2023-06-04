@@ -15,12 +15,16 @@ import FormUART from "../../components/digital/FormUART"
 import TableQueryPaginated from "../../components/common/TableQueryPaginated"
 import ExportResults from "../../components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/digital"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos, ValidarToken } from "../../hooks/digital"
 
 import { headersUART as tableHeaders } from "../../libs/tableHeaders"
 
 import imgUART from "../../assets/uart.png"
 
+import Button from "react-bootstrap/Button"
+import Badge from 'react-bootstrap/Badge';
+import {useLocation } from 'react-router-dom';
+import Cookies from 'js-cookie'
 /**
  * 
  */
@@ -28,10 +32,37 @@ function TxRxUART() {
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
 
+//logica de token
+const searchParams = new URLSearchParams(useLocation().search);
+let token = searchParams.get('token');
+
+if (token == null) {
+    token=localStorage.getItem('token')
+}
+localStorage.setItem('token',token)
+const [validacion, setValidar] = useState(false)
+
+ValidarToken().then( response => {
+    setValidar(response)  
+});
+
+if (!validacion) {
+    Cookies.remove('nombreUsuario')
+}
+// console.log(!Cookies.get('reload'))
+if (!Cookies.get('reload')){
+    Cookies.set('reload','cargado')
+    window.location.reload();
+}
+const handler = async () => {
+    window.location.href = 'https://www.google.com.ar'
+};
+//final de logica token
+
   const idLabActual = 1
   const idUsuarioActual = 2
 
-  const prof = true //definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area
+  const prof = Cookies.get('profesor'); //definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area
 
   const onClickTabs = () => {
     setShowForm(!showForm)
@@ -45,6 +76,7 @@ function TxRxUART() {
    * -----------------------------------------------------
    */
   return (
+    validacion ?(
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
       <LabInformation
         imagen={imgUART}
@@ -111,7 +143,7 @@ function TxRxUART() {
               ) : null}
             </Card.Body>
 
-            {/* <Card.Footer>
+            <Card.Footer>
               <ExportResults 
                 useHook={useEnsayosUsuario}
                 exportToProfe={useEnsayos}
@@ -121,10 +153,18 @@ function TxRxUART() {
                 filename={"ensayos-uart"}
                 componentRef={componentRef}
               />
-            </Card.Footer> */}
+            </Card.Footer>
           </Card>
         </Col>
       </Row>
+    </Container>):
+    <Container>
+      <h2>
+        <Badge bg="secondary">No autorizado o Token expirado</Badge>
+      </h2>
+      <Button variant="primary" size="lg" onClick={handler}>
+        Login
+      </Button>
     </Container>
   )
 }

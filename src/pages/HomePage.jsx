@@ -55,11 +55,11 @@ function HomePage() {
         navigate(`/telecomunicaciones/enlace-radio/?token=${token.data}`);
     };
     const handlerUART = async () => {
-        const token= await axios.get("http://localhost:3035/api/arduino/generate");
+        const token= await axios.get("http://localhost:5034/digital/token");
         navigate(`/digital/uart/?token=${token.data}`);
     };
     const handlerI2C = async () => {
-        const token= await axios.get("http://localhost:3035/api/arduino/generate");
+        const token= await axios.get("http://localhost:5034/digital/token");
         navigate(`/digital/i2c/?token=${token.data}`);
     };
     const handlerETB = async () => {

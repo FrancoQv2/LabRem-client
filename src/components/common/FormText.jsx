@@ -1,8 +1,9 @@
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
+import BtnTooltip from "./BtnTooltip"
 
-function FormText({ name, limit, showLimit=true, state, setState }) {
+function FormText({ name, limit, showLimit=true, state, setState, ayuda }) {
 
     const handleTextChange = (changeEvent) => {
       const state = changeEvent.target.value
@@ -22,8 +23,10 @@ function FormText({ name, limit, showLimit=true, state, setState }) {
           <Row className="my-3">
             <Col sm={4} md={6} lg={6}>
               <span className="input-group-text" htmlFor={name.toString().toLowerCase().replace(/ /g, "-")}>
-                {name}
-                {(showLimit) ? ` - (${state.length} / ${limit})` : null}
+                <BtnTooltip
+                  description={ayuda}
+                  name={`${name}  ${(showLimit) ? ` - (${state.length} / ${limit})` : null}`}>
+                </BtnTooltip>
               </span>
             </Col>
             <Col sm={4} md={6} lg={6}>

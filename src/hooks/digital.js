@@ -5,9 +5,8 @@ import {
   getEnsayosUsuario,
   getEnsayos,
   postEnsayoUART,
-//   postEnsayoUARTSave,
   postEnsayoI2C,
-//   postEnsayoI2CSave,
+  validarToken
 } from "../api/digital";
 
 const key = "digital"
@@ -30,15 +29,10 @@ export function usePostEnsayoUART() {
 	return useMutation(postEnsayoUART)
 }
 
-// export function usePostEnsayoUARTSave() {
-// 	return useMutation(postEnsayoUARTSave);
-// }
-
 export function usePostEnsayoI2C() {
 	return useMutation(postEnsayoI2C)
 }
 
-// export function usePostEnsayoI2CSave() {
-// 	return useMutation(postEnsayoI2CSave)
-// }
-
+export function ValidarToken() {
+	return validarToken();
+}
