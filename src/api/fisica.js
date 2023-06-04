@@ -24,34 +24,43 @@ export const getInfoLaboratorio = async ({ queryKey }) => {
 }
 
 export const getEnsayosUsuario = async ({ queryKey }) => {
-    const [_, { idLaboratorio, idUsuario }] = queryKey
+    try {
+        const [_, { idLaboratorio, idUsuario }] = queryKey
+        const URL = `${API_FISICA}/${idLaboratorio}/${idUsuario}`
 
-    const URL = `${API_FISICA}/${idLaboratorio}/${idUsuario}`
+        const { data } = await axios.get(URL,{headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }}, {
+            datos: false,
+            idLaboratorio: idLaboratorio,
+            idUsuario: idUsuario,
+        })
 
-    const { data } = await axios.get(URL,{headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('token')
-      }}, {
-        datos: false,
-        idLaboratorio: idLaboratorio,
-        idUsuario: idUsuario,
-    })
-
-    return data
+        return data 
+    } catch (error) {
+        console.error(error)
+        return []
+    }
+    
 }
 
 export const getEnsayos = async ({ queryKey }) => {
-    const [_, { idLaboratorio }] = queryKey
+    try {
+        const [_, { idLaboratorio }] = queryKey
+        const url = `${API_FISICA}/ensayos/${idLaboratorio}`
 
-    const url = `${API_FISICA}/ensayos/${idLaboratorio}`
+        const { data } = await axios.get(url,{headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }}, {
+            datos: false,
+            idLaboratorio: idLaboratorio
+        })
 
-    const { data } = await axios.get(url,{headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('token')
-      }}, {
-        datos: false,
-        idLaboratorio: idLaboratorio
-    })
-
-    return data
+        return data
+    } catch (error) {
+        console.error(error)
+        return []
+    }
 }
 
 //-----------------------------------------------------
