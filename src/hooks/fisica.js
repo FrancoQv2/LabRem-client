@@ -6,7 +6,6 @@ import {
   getEnsayos,
   postEnsayoConvergentes,
   postEnsayoDivergentes,
-  postEnsayoDivergentesSave,
   validarToken
 } from "../api/fisica";
 
@@ -32,9 +31,6 @@ export function usePostEnsayoConvergentes() {
 
 export function usePostEnsayoDivergentes() {
 	return useMutation(postEnsayoDivergentes)
-}
-export function usePostEnsayoDivergentesSave() {
-	return useMutation(postEnsayoDivergentesSave);
 }
 
 export function ValidarToken() {

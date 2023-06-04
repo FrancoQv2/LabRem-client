@@ -60,7 +60,7 @@ const handler = async () => {
   const idLabActual = 2;
   const idUsuarioActual = 2;
   const prof = Cookies.get('profesor');//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area;
-
+  
   const onClickTabs = () => {
     setShowForm(!showForm);
     setShowResults(!showResults);

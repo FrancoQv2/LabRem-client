@@ -56,7 +56,7 @@ function ExportResults({ useHook, idLaboratorio, idUsuario, Prof, filename, expo
         </Col>
       </Row>
 
-      {Prof ?
+      {Prof==="true" ?
         <BtnDownloadCsvProf
           useHookProf={exportToProfe}
           idLaboratorio={id}

@@ -33,10 +33,9 @@ function FormConvergentes({ idUsuario }) {
     setcambio(current =>!current)
     const guardar = false
     mutate(
-      { idUsuario, distanciaFL, distanciaLP, diafragma, setcambio,guardar },
+      { idUsuario, distanciaFL, distanciaLP, diafragma, setcambio, guardar },
       {
         onSuccess: () => {
-         console.log(distanciaFL)
         },
         onError: () => {
           submitError()

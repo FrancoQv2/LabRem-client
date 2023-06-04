@@ -32,9 +32,9 @@ function FormDivergentes({ idUsuario }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setcambio(current => !current)
-
+    const guardar = false
     mutate(
-      { idUsuario, distanciaFL, distanciaLL, distanciaLP, diafragma, setcambio },
+      { idUsuario, distanciaFL, distanciaLL, distanciaLP, diafragma, setcambio, guardar },
       {
         onSuccess: () => {
         },
@@ -43,6 +43,13 @@ function FormDivergentes({ idUsuario }) {
         },
       }
     )
+  }
+
+  const informacion = {
+    distanciaLente: 'distancia entre el lente y el foco',
+    distanciaPantalla: 'distancia entre el lente y la pantalla',
+    distanciaLenteLente: 'distancia entre el lente  convergente y divergente',
+    diaframa: 'objeto utilizado para corregir aberraciones de la lentes'
   }
 
   return (
@@ -56,6 +63,7 @@ function FormDivergentes({ idUsuario }) {
         unit="mm"
         state={distanciaFL}
         setState={setDistanciaFL}
+        ayuda={informacion.distanciaLente}
       />
 
       <FormRange 
@@ -67,6 +75,7 @@ function FormDivergentes({ idUsuario }) {
         unit="mm"
         state={distanciaLL}
         setState={setDistanciaLL}
+        ayuda={informacion.distanciaLenteLente}
       />
       
       <FormRange 
@@ -78,6 +87,7 @@ function FormDivergentes({ idUsuario }) {
         unit="mm"
         state={distanciaLP}
         setState={setDistanciaLP}
+        ayuda={informacion.distanciaPantalla}
       />
 
       <FormSelect
@@ -85,6 +95,7 @@ function FormDivergentes({ idUsuario }) {
         values={tipoDiafragma}
         defaultValue={defaultDiafragma}
         setState={setDiafragma}
+        ayuda={informacion.diaframa}
       />
 
       <Row>
@@ -102,15 +113,16 @@ function FormDivergentes({ idUsuario }) {
           </Col>
         ) }
 
-        {/* <Col className="text-center">
+        <Col className="text-center">
           <FormSaveDivergente
             idUsuario={idUsuario}
             distanciaFL={distanciaFL}
             distanciaLL={distanciaLL}
             distanciaLP={distanciaLP}
             diafragma={diafragma}
+            setcambio={setcambio}
           />
-        </Col> */}
+        </Col>
 
         <Col className="text-center d-grid gap-2">
           <BtnDownloadImage />

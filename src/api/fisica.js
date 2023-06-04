@@ -80,7 +80,7 @@ export const postEnsayoConvergentes = async ({
         `${API_FISICA}/convergente`,newEnsayoConvergente,{headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('token')
           }})
-    console.log(data)
+    
     setcambio(current => !current)
     if (data.msg === "Parámetros correctos. Guardado en DB") {
         submitSuccess("Ensayo Guardado con Exito")
@@ -103,6 +103,7 @@ export const postEnsayoDivergentes = async ({
     distanciaLP,
     diafragma,
     setcambio,
+    guardar
 }) => {
     const newEnsayoDivergente = {
         idUsuario: idUsuario,
@@ -110,43 +111,20 @@ export const postEnsayoDivergentes = async ({
         distanciaLL: parseInt(distanciaLL),
         distanciaLP: parseInt(distanciaLP),
         diafragma: diafragma,
+        guardar:guardar,
+        datos: false
     }
     process()
-    const { data } = await axios.post(`${API_FISICA}/divergente`,{headers: {
+    const { data } = await axios.post(`${API_FISICA}/divergente`,newEnsayoDivergente,{headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('token')
-      }}, newEnsayoDivergente)
+      }})
 
     setcambio(current => !current)
-    if (data === "laboratorio ok") {
-        submitSuccess()
-    } else {
-        submitErrorDato(data)
-    }
-    return data
-}
-
-export const postEnsayoDivergentesSave = async ({
-    idUsuario,
-    distanciaFL,
-    distanciaLL,
-    distanciaLP,
-    diafragma,
-}) => {
-    const newEnsayoDivergente = {
-        idUsuario: idUsuario,
-        distanciaFL: parseInt(distanciaFL),
-        distanciaLL: parseInt(distanciaLL),
-        distanciaLP: parseInt(distanciaLP),
-        diafragma: diafragma,
-    }
-    const { data } = await axios.post(
-        `${API_FISICA}/divergentesave`,
-        newEnsayoDivergente
-    )
-
-    if (data === "guardado en base de datos") {
-        saveSuccess()
-    } else {
+    if (data.msg === "Parámetros correctos. Guardado en DB") {
+        submitSuccess("Ensayo Guardado con Exito")
+    } else if (data.msg === "Parámetros correctos. ejecutando en arduino") {
+        submitSuccess("Ensayo Realizado con Exito")
+    }else {
         submitErrorDato(data)
     }
     return data
