@@ -61,7 +61,7 @@ const handler = async () => {
 
   const idLabActual = 1;
   const idUsuarioActual = 2;
-  const prof = true; // Definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area
+  const prof = Cookies.get('profesor'); // Definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area
 
   const onClickTabs = () => {
     setShowForm(!showForm);
@@ -75,6 +75,7 @@ const handler = async () => {
    * -----------------------------------------------------
    */
   return (
+    validacion ?(
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
       <LabInformation
         imagen={imgConv}
@@ -155,6 +156,14 @@ const handler = async () => {
           </Card>
         </Col>
       </Row>
+    </Container>):
+    <Container>
+      <h2>
+        <Badge bg="secondary">No autorizado o Token expirado</Badge>
+      </h2>
+      <Button variant="primary" size="lg" onClick={handler}>
+        Login
+      </Button>
     </Container>
   )
 }

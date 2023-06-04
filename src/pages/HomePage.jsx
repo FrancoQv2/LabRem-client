@@ -43,7 +43,7 @@ function HomePage() {
         navigate(`fisica/lentes-convergentes/?token=${token.data}`);
     };
     const handlerDivergente = async () => {
-        const token= await axios.get("http://localhost:3035/api/arduino/generate");
+        const token= await axios.get("http://localhost:5032/fisica/token");
         navigate(`fisica/lentes-divergentes/?token=${token.data}`);
     };
     const handlerWifi = async () => {

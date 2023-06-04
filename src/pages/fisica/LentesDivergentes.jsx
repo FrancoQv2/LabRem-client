@@ -15,12 +15,14 @@ import FormDivergentes from "../../components/fisica/FormDivergentes"
 import TableQueryPaginated from "../../components/common/TableQueryPaginated"
 import ExportResults from "../../components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/fisica"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos, ValidarToken } from "../../hooks/fisica"
 
 import { headersDivergentes as tableHeaders } from "../../libs/tableHeaders"
 
 import imgDiv from "../../assets/lente-divergente.png"
 
+import {useLocation } from 'react-router-dom';
+import Cookies from 'js-cookie'
 /**
  * 
  */
@@ -28,9 +30,36 @@ function LentesDivergentes() {
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
 
+//logica de token
+const searchParams = new URLSearchParams(useLocation().search);
+let token = searchParams.get('token');
+
+if (token == null) {
+    token=localStorage.getItem('token')
+}
+localStorage.setItem('token',token)
+const [validacion, setValidar] = useState(false)
+
+ValidarToken().then( response => {
+    setValidar(response)  
+});
+
+if (!validacion) {
+    Cookies.remove('nombreUsuario')
+}
+// console.log(!Cookies.get('reload'))
+if (!Cookies.get('reload')){
+    Cookies.set('reload','cargado')
+    window.location.reload();
+}
+const handler = async () => {
+    window.location.href = 'https://www.google.com.ar'
+};
+//final de logica token
+
   const idLabActual = 2;
   const idUsuarioActual = 2;
-  const prof = false;//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area;
+  const prof = Cookies.get('profesor');//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area;
 
   const onClickTabs = () => {
     setShowForm(!showForm);
@@ -109,7 +138,7 @@ function LentesDivergentes() {
               ) : null}
             </Card.Body>
 
-            {/* <Card.Footer>
+            <Card.Footer>
               <ExportResults
                 useHook={useEnsayosUsuario}
                 exportToProfe={useEnsayos}
@@ -119,7 +148,7 @@ function LentesDivergentes() {
                 filename={"ensayos-divergentes"}
                 componentRef={componentRef}
               />
-            </Card.Footer> */}
+            </Card.Footer>
           </Card>
         </Col>
       </Row>

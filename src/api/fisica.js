@@ -27,7 +27,6 @@ export const getEnsayosUsuario = async ({ queryKey }) => {
     const [_, { idLaboratorio, idUsuario }] = queryKey
 
     const URL = `${API_FISICA}/${idLaboratorio}/${idUsuario}`
-    console.log(idLaboratorio, idUsuario)
 
     const { data } = await axios.get(URL,{headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('token')
@@ -36,7 +35,6 @@ export const getEnsayosUsuario = async ({ queryKey }) => {
         idLaboratorio: idLaboratorio,
         idUsuario: idUsuario,
     })
-    console.log(data)
 
     return data
 }
