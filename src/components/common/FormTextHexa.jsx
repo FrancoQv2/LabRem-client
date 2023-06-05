@@ -2,8 +2,9 @@ import React from "react"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
+import BtnTooltip from "./BtnTooltip"
 
-function FormTextHexa({ name, limit, state, setState }) {
+function FormTextHexa({ name, limit, state, setState,ayuda }) {
   const handleTextChange = (changeEvent) => {
     const value = changeEvent.target.value
     const hexValue = value.replace(/[^a-fA-F0-9]/g, "") // Filtrar solo caracteres hexadecimales
@@ -27,7 +28,11 @@ function FormTextHexa({ name, limit, state, setState }) {
               className="input-group-text"
               htmlFor={name.toString().toLowerCase().replace(/ /g, "-")}
             >
-              {name}
+              <BtnTooltip
+                  description={ayuda}
+                  name={name}>
+                </BtnTooltip>
+             
               {/* {` - (${state.length} / ${limit})`} */}
             </span>
           </Col>

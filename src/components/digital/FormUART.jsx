@@ -35,7 +35,7 @@ function FormUART({ idUsuario }) {
   
   // Definicion de Hooks
 
-  const [cambio, setCambio] = useState(true)
+  
 
   const [velocidad, setVelocidad] = useState(defaultVelocidad)
   const [bitsDatos, setBitsDatos] = useState(defaultBitsDatos)
@@ -45,18 +45,18 @@ function FormUART({ idUsuario }) {
   const [mensaje, setMensaje] = useState(defaultMensaje)
 
   const { mutate, error, isLoading } = usePostEnsayoUART()
-
+  const [cambio, setCambio] = useState(true)
   // Definicion de funciones Handle
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setCambio(current => !current)
 
-    mutate({ idUsuario, velocidad, bitsDatos, bitsParada, paridad, pulsadores, mensaje, setCambio},
+    mutate(
+      { idUsuario, velocidad, bitsDatos, bitsParada, paridad, pulsadores, mensaje, setCambio },
       {
         onSuccess: () => {
-          setMensaje("")
-          submitSuccess()
+          
         },
         onError: () => {
           submitError()

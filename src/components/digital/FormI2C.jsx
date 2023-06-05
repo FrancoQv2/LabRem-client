@@ -51,7 +51,7 @@ function FormI2C({ idUsuario }) {
       { idUsuario, frecuencia, direccionMemoria, accion, datos, setCambio },
       {
         onSuccess: () => {
-          submitSuccess()
+          
         },
         onError: () => {
           submitError()
@@ -60,6 +60,14 @@ function FormI2C({ idUsuario }) {
     )
   }
 
+  const informacion = {
+    accion: 'se debe seleccionar si se desea escribir o leer en memoria',
+    frecuencia: 'frecuencia en la que trabaja la comunicacion',
+    direccion: 'direccion de memoria en hexadecimal que se desea',
+    datosE: 'datos que se desean guardar, tiene que estar en binario y hasta 8 caracteres',
+    pulsadores: 'manda el comando al pulsador que se desea presionar si se estuviera presencial',
+    
+  }
   return (
     <Form className="m-3" onSubmit={handleSubmit}>
 
@@ -68,6 +76,7 @@ function FormI2C({ idUsuario }) {
         values={valuesAccion}
         defaultValue={defaultAccion}
         setState={setLectura}
+        ayuda={informacion.accion}
       />
 
       <FormSelect
@@ -75,6 +84,7 @@ function FormI2C({ idUsuario }) {
         values={valuesFrecuencia}
         defaultValue={defaultFrecuencia}
         setState={setFrecuencia}
+        ayuda={informacion.frecuencia}
       />
 
       <FormTextHexa 
@@ -82,6 +92,7 @@ function FormI2C({ idUsuario }) {
         limit={8}
         state={direccionMemoria}
         setState={setDireccionMemoria}
+        ayuda={informacion.direccion}
       />
 
       {accion === valuesAccion[0] ? (
@@ -91,6 +102,7 @@ function FormI2C({ idUsuario }) {
           state={datos}
           setState={setDatos}
           disabled={true}
+          ayuda={informacion.datosE}
         />
       ) : (
         <FormTextBinary 
@@ -98,6 +110,7 @@ function FormI2C({ idUsuario }) {
           limit={8}
           state={datos}
           setState={setDatos}
+          ayuda={informacion.datosE}
         />
       )}
       
@@ -105,6 +118,7 @@ function FormI2C({ idUsuario }) {
         name="Pulsadores"
         state={pulsadores}
         setState={setPulsadores}
+        ayuda={informacion.pulsadores}
       />
 
       <Row>

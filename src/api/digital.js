@@ -12,13 +12,12 @@ export const getInfoLaboratorio = async ({ queryKey }) => {
     const [_, { idLaboratorio }] = queryKey
 
     const URL = `${API_DIGITAL}/${idLaboratorio}`
-
     const { data } = await axios.get(URL, {headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('token')
       }}, {
+        siguiente: false,
         idLaboratorio: idLaboratorio,
     })
-    console.log(data)
     
     return data
 }
@@ -28,9 +27,10 @@ export const getEnsayosUsuario = async ({ queryKey }) => {
         const [_, { idLaboratorio, idUsuario }] = queryKey
         const URL = `${API_DIGITAL}/${idLaboratorio}/${idUsuario}`
 
-        const { data } = await axios.get(URL, {headers: {
+        const { data } = await axios.get(URL ,{headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         }}, {
+            siguiente: false,
             idLaboratorio: idLaboratorio,
             idUsuario: idUsuario,
         })
@@ -51,6 +51,7 @@ export const getEnsayos = async ({ queryKey }) => {
         const { data } = await axios.get(URL, {headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         }}, {
+            siguiente: false,
             idLaboratorio: idLaboratorio
         })
 
@@ -76,7 +77,7 @@ export const postEnsayoUART = async ({
     setCambio,
 }) => {
 
-    const newEnsayo = {
+    const newEnsayoUart = {
         idUsuario:  idUsuario,
         velocidad:  parseInt(velocidad),
         bitsDatos:  bitsDatos,
@@ -84,22 +85,20 @@ export const postEnsayoUART = async ({
         paridad:    paridad,
         pulsadores: pulsadores,
         mensaje:    mensaje,
-        datos: false
+        siguiente: false
     }
 
-    console.log(newEnsayo)
-
-    process()
-
-    const { data } = await axios.post(`${API_DIGITAL}/uart`, newEnsayo,{headers: {
+    // process()
+    const { data } = await axios.post(`${API_DIGITAL}/uart`, newEnsayoUart,{headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('token')
       }})
 
     setCambio(current => !current)
-
-    if (data === "laboratorio ok") {
-        submitSuccess()
+    if (data.msg === "Parámetros correctos. Guardado en DB") {
+        let msj = 'Ensayo Realizado con Exito'
+        submitSuccess(msj)
     } else {
+        console.log("entra por incorrecto")
         submitErrorDato(data)
     }
     return data
@@ -122,6 +121,8 @@ export const postEnsayoI2C = async ({
         accion:     accion,
         frecuencia: frecuencia,
         direccion:    direccionMemoria,
+        datos: datos,
+        siguiente: false
     }
 
     if (accion === "Lectura") {
@@ -133,12 +134,14 @@ export const postEnsayoI2C = async ({
     }
 
     // process()
-    const { data } = await axios.post(`${API_DIGITAL}/i2c`, newEnsayo)
+    const { data } = await axios.post(`${API_DIGITAL}/i2c`, newEnsayo,{headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      }})
 
     setCambio(current => !current)
-
-    if (data === "laboratorio ok") {
-        submitSuccess()
+    console.log(data)
+    if (data === "guardado en base de datos") {
+         submitSuccess("realizado con exito")
     } else {
         submitErrorDato(data)
     }
@@ -148,12 +151,12 @@ export const postEnsayoI2C = async ({
 
 export const validarToken = async () => {
     const dat = {
-        datos: true,
+        siguiente: true
     }
     const headers ={
         headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
     }
-    const respuesta = await axios.post("http://localhost:3032/api/fisica/verificar",dat,headers)
+    const respuesta = await axios.post("http://localhost:3034/api/digital/verificar",dat,headers)
       Cookies.remove('nombreUsuario')
       Cookies.remove('profesor')
       
