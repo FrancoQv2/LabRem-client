@@ -15,7 +15,7 @@ import FormRadio from "../../components/telecomunicaciones/FormRadio"
 import TableQueryPaginated from "../../components/common/TableQueryPaginated"
 import ExportResults from "../../components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/telecomunicaciones"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/hooksTeleco"
 
 import { headersRadio as tableHeaders } from "../../libs/tableHeaders"
 import imgRadio from "../../assets/teleco_radio.png"

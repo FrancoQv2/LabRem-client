@@ -15,7 +15,7 @@ import FormDivergentes from "../../components/fisica/FormDivergentes"
 import TableQueryPaginated from "../../components/common/TableQueryPaginated"
 import ExportResults from "../../components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos, ValidarToken } from "../../hooks/fisica"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos, ValidarToken } from "../../hooks/hooksFisica"
 
 import { headersDivergentes as tableHeaders } from "../../libs/tableHeaders"
 

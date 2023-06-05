@@ -18,7 +18,7 @@ import image from "../../assets/i2c.webp"
 import { headersSubmuestreo as tableHeaders } from "../../libs/tableHeaders"
 import ExportResults from "../../components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/control"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/hooksControl"
 
 /**
  * 

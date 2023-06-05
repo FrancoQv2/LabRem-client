@@ -19,7 +19,7 @@ import {
   useInfoLaboratorio,
   useEnsayosUsuario,
   // useEnsayos,
-} from "../../hooks/telecomunicaciones"
+} from "../../hooks/hooksTeleco"
 
 import { headersWifi as tableHeaders } from "../../libs/tableHeaders"
 

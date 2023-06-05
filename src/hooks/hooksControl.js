@@ -8,7 +8,7 @@ import {
     postEnsayoSubmuestreoSave,
     postEnsayoPosicion,
     postEnsayoPosicionSave
-} from "../api/control"
+} from "../api/apiControl"
 
 const key = "control"
 

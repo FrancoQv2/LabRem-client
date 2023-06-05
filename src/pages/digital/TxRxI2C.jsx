@@ -15,7 +15,7 @@ import FormI2C from "../../components/digital/FormI2C"
 import TableQueryPaginated from "../../components/common/TableQueryPaginated"
 import ExportResults from "../../components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos, ValidarToken } from "../../hooks/digital"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos, ValidarToken } from "../../hooks/hooksDigital"
 
 import { headersI2C as tableHeaders } from "../../libs/tableHeaders"
 

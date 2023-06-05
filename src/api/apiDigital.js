@@ -12,13 +12,15 @@ export const getInfoLaboratorio = async ({ queryKey }) => {
     const [_, { idLaboratorio }] = queryKey
 
     const URL = `${API_DIGITAL}/${idLaboratorio}`
-    const { data } = await axios.get(URL, {headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('token')
-      }}, {
+    const { data } = await axios.get(URL, {
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+    }, {
         siguiente: false,
         idLaboratorio: idLaboratorio,
     })
-    
+
     return data
 }
 
@@ -27,9 +29,11 @@ export const getEnsayosUsuario = async ({ queryKey }) => {
         const [_, { idLaboratorio, idUsuario }] = queryKey
         const URL = `${API_DIGITAL}/${idLaboratorio}/${idUsuario}`
 
-        const { data } = await axios.get(URL ,{headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-        }}, {
+        const { data } = await axios.get(URL, {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        }, {
             siguiente: false,
             idLaboratorio: idLaboratorio,
             idUsuario: idUsuario,
@@ -41,21 +45,23 @@ export const getEnsayosUsuario = async ({ queryKey }) => {
         console.error(error)
         return []
     }
-    
+
 }
 
 export const getEnsayos = async ({ queryKey }) => {
     try {
         const [_, { idLaboratorio }] = queryKey
         const URL = `${API_DIGITAL}/ensayos/${idLaboratorio}`
-        const { data } = await axios.get(URL, {headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-        }}, {
+        const { data } = await axios.get(URL, {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        }, {
             siguiente: false,
             idLaboratorio: idLaboratorio
         })
 
-        return data  
+        return data
     } catch (error) {
         console.error(error)
         return []
@@ -78,20 +84,22 @@ export const postEnsayoUART = async ({
 }) => {
 
     const newEnsayoUart = {
-        idUsuario:  idUsuario,
-        velocidad:  parseInt(velocidad),
-        bitsDatos:  bitsDatos,
+        idUsuario: idUsuario,
+        velocidad: parseInt(velocidad),
+        bitsDatos: bitsDatos,
         bitsParada: bitsParada,
-        paridad:    paridad,
+        paridad: paridad,
         pulsadores: pulsadores,
-        mensaje:    mensaje,
+        mensaje: mensaje,
         siguiente: false
     }
 
     // process()
-    const { data } = await axios.post(`${API_DIGITAL}/uart`, newEnsayoUart,{headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('token')
-      }})
+    const { data } = await axios.post(`${API_DIGITAL}/uart`, newEnsayoUart, {
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+    })
 
     setCambio(current => !current)
     if (data.msg === "Parámetros correctos. Guardado en DB") {
@@ -117,10 +125,10 @@ export const postEnsayoI2C = async ({
     setCambio
 }) => {
     let newEnsayo = {
-        idUsuario:  idUsuario,
-        accion:     accion,
+        idUsuario: idUsuario,
+        accion: accion,
         frecuencia: frecuencia,
-        direccion:    direccionMemoria,
+        direccion: direccionMemoria,
         datos: datos,
         siguiente: false
     }
@@ -134,14 +142,16 @@ export const postEnsayoI2C = async ({
     }
 
     // process()
-    const { data } = await axios.post(`${API_DIGITAL}/i2c`, newEnsayo,{headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('token')
-      }})
+    const { data } = await axios.post(`${API_DIGITAL}/i2c`, newEnsayo, {
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+    })
 
     setCambio(current => !current)
     console.log(data)
     if (data === "guardado en base de datos") {
-         submitSuccess("realizado con exito")
+        submitSuccess("realizado con exito")
     } else {
         submitErrorDato(data)
     }
@@ -153,14 +163,14 @@ export const validarToken = async () => {
     const dat = {
         siguiente: true
     }
-    const headers ={
-        headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
+    const headers = {
+        headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') },
     }
-    const respuesta = await axios.post("http://localhost:3034/api/digital/verificar",dat,headers)
-      Cookies.remove('nombreUsuario')
-      Cookies.remove('profesor')
-      
-      Cookies.set('nombreUsuario', respuesta.data['nombreUsuario'])
-      Cookies.set('profesor', respuesta.data['profesor'])
+    const respuesta = await axios.post("http://localhost:3034/api/digital/verificar", dat, headers)
+    Cookies.remove('nombreUsuario')
+    Cookies.remove('profesor')
+
+    Cookies.set('nombreUsuario', respuesta.data['nombreUsuario'])
+    Cookies.set('profesor', respuesta.data['profesor'])
     return respuesta.status == 200
-  }
+}

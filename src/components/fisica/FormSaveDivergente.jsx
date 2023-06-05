@@ -1,5 +1,5 @@
 import Button from "react-bootstrap/Button";
-import { usePostEnsayoDivergentes } from "../../hooks/fisica";
+import { usePostEnsayoDivergentes } from "../../hooks/hooksFisica";
 import { submitSuccess, submitError } from "../../libs/alerts"; 
 
 function FormSaveDivergente({ idUsuario, distanciaFL, distanciaLL, distanciaLP, diafragma, setcambio}) {

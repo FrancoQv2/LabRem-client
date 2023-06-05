@@ -14,7 +14,7 @@ import FormSelect from "../common/FormSelect"
 import BtnDownloadImage from "../common/BtnDownloadImage"
 import FormSavePosicion from "./FormSavePosicion"
 
-import { usePostEnsayoPosicion } from "../../hooks/control"
+import { usePostEnsayoPosicion } from "../../hooks/hooksControl"
 import { submitSuccess, submitError } from "../../libs/alerts"
 
 /**

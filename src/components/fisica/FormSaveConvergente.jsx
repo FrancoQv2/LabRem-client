@@ -1,5 +1,5 @@
 import Button from "react-bootstrap/Button";
-import { usePostEnsayoConvergentes } from "../../hooks/fisica";
+import { usePostEnsayoConvergentes } from "../../hooks/hooksFisica";
 import { submitSuccess, submitError } from "../../libs/alerts"; 
 
 function FormSave({ idUsuario, distanciaFL, distanciaLP, diafragma,setcambio }) {

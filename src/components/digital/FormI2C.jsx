@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 
-import { usePostEnsayoI2C } from "../../hooks/digital"
+import { usePostEnsayoI2C } from "../../hooks/hooksDigital"
 import { submitSuccess, submitError } from "../../libs/alerts"
 
 import FormSelect from "../common/FormSelect"

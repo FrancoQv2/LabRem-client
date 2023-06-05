@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 
-import { usePostEnsayoUART } from "../../hooks/digital"
+import { usePostEnsayoUART } from "../../hooks/hooksDigital"
 import { submitSuccess, submitError } from "../../libs/alerts"
 
 import FormText from "../common/FormText"

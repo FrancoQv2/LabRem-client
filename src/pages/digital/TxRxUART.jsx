@@ -15,7 +15,7 @@ import FormUART from "../../components/digital/FormUART"
 import TableQueryPaginated from "../../components/common/TableQueryPaginated"
 import ExportResults from "../../components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos, ValidarToken } from "../../hooks/digital"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos, ValidarToken } from "../../hooks/hooksDigital"
 
 import { headersUART as tableHeaders } from "../../libs/tableHeaders"
 

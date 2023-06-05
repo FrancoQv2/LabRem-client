@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button"
 import FormRange from "../common/FormRange"
 import BtnDownloadImage from "../common/BtnDownloadImage"
 
-import { usePostEnsayoWifi } from "../../hooks/telecomunicaciones"
+import { usePostEnsayoWifi } from "../../hooks/hooksTeleco"
 import { submitSuccess, submitError } from "../../libs/alerts"
 
 /**

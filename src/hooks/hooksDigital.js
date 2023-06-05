@@ -4,12 +4,12 @@ import {
   getInfoLaboratorio,
   getEnsayosUsuario,
   getEnsayos,
-  postEnsayoConvergentes,
-  postEnsayoDivergentes,
+  postEnsayoUART,
+  postEnsayoI2C,
   validarToken
-} from "../api/fisica";
+} from "../api/apiDigital";
 
-const key = "fisica"
+const key = "digital"
 
 export function useInfoLaboratorio(idLabActual) {
 	return useQuery([key, { idLaboratorio: idLabActual }], getInfoLaboratorio)
@@ -25,12 +25,12 @@ export function useEnsayos({ idLaboratorio }) {
 	return useQuery(
 		[key, { idLaboratorio: idLaboratorio }], getEnsayos)
 }
-export function usePostEnsayoConvergentes() {
-	return useMutation(postEnsayoConvergentes)
+export function usePostEnsayoUART() {
+	return useMutation(postEnsayoUART)
 }
 
-export function usePostEnsayoDivergentes() {
-	return useMutation(postEnsayoDivergentes)
+export function usePostEnsayoI2C() {
+	return useMutation(postEnsayoI2C)
 }
 
 export function ValidarToken() {

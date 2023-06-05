@@ -9,7 +9,7 @@ import FormSelect from "../common/FormSelect"
 import FormSaveETB from "./FormSaveSubmuestreo"
 import BtnDownloadImage from "../common/BtnDownloadImage"
 
-import { usePostEnsayoSubmuestreo } from "../../hooks/control"
+import { usePostEnsayoSubmuestreo } from "../../hooks/hooksControl"
 import { submitSuccess, submitError } from "../../libs/alerts"
 import FormText from "../common/FormText"
 

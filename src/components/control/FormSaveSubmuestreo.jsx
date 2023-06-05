@@ -1,5 +1,5 @@
 import Button from "react-bootstrap/Button";
-import { usePostEnsayoSubmuestreoSave } from "../../hooks/control";
+import { usePostEnsayoSubmuestreoSave } from "../../hooks/hooksControl";
 import { submitSuccess, submitError } from "../../libs/alerts"; 
 
 function FormSave({ idUsuario,FrecuenciaAgua,FrecuenciaLuz, caidaAgua }) {

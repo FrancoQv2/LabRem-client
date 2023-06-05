@@ -1,5 +1,5 @@
 import Button from "react-bootstrap/Button";
-import { usePostEnsayoPosicionSave } from "../../hooks/control";
+import { usePostEnsayoPosicionSave } from "../../hooks/hooksControl";
 import { submitSuccess, submitError } from "../../libs/alerts"; 
 
 function FormSave({ idUsuario,Rapidez,anguloSalida,Modificacion,RapidezControl,anguloSalidaControl }) {

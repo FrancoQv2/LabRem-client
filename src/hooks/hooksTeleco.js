@@ -6,7 +6,7 @@ import {
     getEnsayos,
     postEnsayoWifi,
     postEnsayoRadio
-} from "../api/telecomunicaciones"
+} from "../api/apiTeleco"
 
 const key = "telecomunicaciones"
 

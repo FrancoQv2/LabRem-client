@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button"
 import FormSelect from "../common/FormSelect"
 import FormRange from "../common/FormRange"
 
-import { usePostEnsayoDivergentes } from "../../hooks/fisica"
+import { usePostEnsayoDivergentes } from "../../hooks/hooksFisica"
 import { submitSuccess, submitError } from "../../libs/alerts"
 
 import FormSaveDivergente from "./FormSaveDivergente"
