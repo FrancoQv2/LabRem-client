@@ -4,11 +4,11 @@ import Button from "react-bootstrap/Button"
 
 import { getDateNow } from "../../libs/datetime.js"
 
-import BtnDownloadPng from "./BtnDownloadPng"
-import BtnDownloadCsv from "./BtnDownloadCsv"
+import BtnDownloadPng from "../_button/BtnDownloadPng.jsx"
+import BtnDownloadCsv from "../_button/BtnDownloadCsv.jsx"
 
 // Necesario para no realizar la query más de una vez
-import BtnDownloadCsvProf from "./BtnDownloadCsvProf"
+import BtnDownloadCsvProf from "../_button/BtnDownloadCsvProf.jsx"
 
 /**
  * Este componente realiza dos acciones:

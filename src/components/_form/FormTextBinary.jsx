@@ -2,17 +2,17 @@ import React from "react"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
-import BtnTooltip from "./BtnTooltip"
+import BtnTooltip from "../_button/BtnTooltip"
 
-function FormTextHexa({ name, limit, state, setState,ayuda }) {
+function FormTextBinary({ name, limit, state, setState, disabled=false,ayuda }) {
   const handleTextChange = (changeEvent) => {
     const value = changeEvent.target.value
-    const hexValue = value.replace(/[^a-fA-F0-9]/g, "") // Filtrar solo caracteres hexadecimales
+    const binaryValue = value.replace(/[^01]/g, "") // Filtrar solo caracteres binarios
 
-    if (hexValue.length <= limit) {
-      setState(hexValue)
+    if (binaryValue.length <= limit) {
+      setState(binaryValue)
     } else {
-      setState(hexValue.substring(0, limit))
+      setState(binaryValue.substring(0, limit))
     }
   }
 
@@ -28,11 +28,11 @@ function FormTextHexa({ name, limit, state, setState,ayuda }) {
               className="input-group-text"
               htmlFor={name.toString().toLowerCase().replace(/ /g, "-")}
             >
-              <BtnTooltip
+               <BtnTooltip
                   description={ayuda}
                   name={name}>
                 </BtnTooltip>
-             
+      
               {/* {` - (${state.length} / ${limit})`} */}
             </span>
           </Col>
@@ -42,6 +42,7 @@ function FormTextHexa({ name, limit, state, setState,ayuda }) {
               aria-describedby="text-state"
               value={state}
               onChange={handleTextChange}
+              disabled={disabled}
             />
             <Form.Text id="text-state"></Form.Text>
           </Col>
@@ -51,4 +52,4 @@ function FormTextHexa({ name, limit, state, setState,ayuda }) {
   )
 }
 
-export default FormTextHexa
+export default FormTextBinary

@@ -3,7 +3,7 @@ import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import ToggleButton from "react-bootstrap/ToggleButton"
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup"
-import BtnTooltip from "./BtnTooltip"
+import BtnTooltip from "../_button/BtnTooltip"
 
 function FormBtnGroup({ name, state, setState,ayuda }) {
   const handleButtonClick = (index) => {
