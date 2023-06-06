@@ -14,7 +14,7 @@ import TxRxI2C from "./pages/digital/TxRxI2C"
 import Submuestreo from "./pages/control/Submuestreo.jsx"
 import Posicion from "./pages/control/Posicion"
 
-import HomePage from "./pages/HomePage"
+import HomePage from "./pages/home/HomePage.jsx"
 
 import Cookies from 'js-cookie'
 

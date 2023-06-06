@@ -10,7 +10,7 @@ import Nav from "react-bootstrap/Nav"
 import LabInformation from "../../components/common/LabInformation"
 import LabVideoStreaming from "../../components/LabVideoStreaming"
 
-import FormWifi from "../../components/telecomunicaciones/FormWifi"
+import FormWifi from "../../components/teleco/FormWifi"
 
 import TableQueryPaginated from "../../components/common/TableQueryPaginated"
 import ExportResults from "../../components/common/ExportResults"
