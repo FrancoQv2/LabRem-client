@@ -2,8 +2,8 @@ import { BrowserRouter, Routes, Route, useParams } from "react-router-dom"
 
 import RootLayout from "./components/RootLayout.jsx"
 
-import EnlaceWifi from "./pages/telecomunicaciones/EnlaceWifi"
-import EnlaceRadio from "./pages/telecomunicaciones/EnlaceRadio"
+import EnlaceWifi from "./pages/teleco/EnlaceWifi.jsx"
+import EnlaceRadio from "./pages/teleco/EnlaceRadio.jsx"
 
 import LentesConvergentes from "./pages/fisica/LentesConvergentes"
 import LentesDivergentes from "./pages/fisica/LentesDivergentes"
@@ -41,14 +41,14 @@ function App() {
 					<Route exact path="/telecomunicaciones/enlace-wifi" element={<EnlaceWifi />}></Route>
 					<Route exact path="/telecomunicaciones/enlace-radio" element={<EnlaceRadio />}></Route>
 
-					<Route exact path="/fisica/lentes-convergentes" element={<LentesConvergentes />}></Route>
-					<Route exact path="/fisica/lentes-divergentes" element={<LentesDivergentes />}></Route>
+					<Route exact path="/fisica-experimental-basica/lentes-convergentes" element={<LentesConvergentes />}></Route>
+					<Route exact path="/fisica-experimental-basica/lentes-divergentes" element={<LentesDivergentes />}></Route>
 
-					<Route exact path="/digital/uart" element={<TxRxUART />}></Route>
-					<Route exact path="/digital/i2c" element={<TxRxI2C />}></Route>
+					<Route exact path="/sistemas-digitales/uart" element={<TxRxUART />}></Route>
+					<Route exact path="/sistemas-digitales/i2c" element={<TxRxI2C />}></Route>
 
-					<Route exact path="/control/submuestreo" element={<Submuestreo />}></Route>
-					<Route exact path="/control/posicion" element={<Posicion />}></Route>
+					<Route exact path="/automatizacion-control/submuestreo" element={<Submuestreo />}></Route>
+					<Route exact path="/automatizacion-control/posicion" element={<Posicion />}></Route>
 				</Routes>
 			</RootLayout>
 		</BrowserRouter>

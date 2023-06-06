@@ -17,194 +17,175 @@ function HomePage() {
     }
 
     const navigateConvergente = () => {
-        navigate("/fisica/lentes-convergentes")
+        navigate("/fisica-experimental-basica/lentes-convergentes")
     }
     const navigateDivergente = () => {
-        navigate("/fisica/lentes-divergentes")
+        navigate("/fisica-experimental-basica/lentes-divergentes")
     }
 
     const navigateUART = () => {
-        navigate("/digital/uart")
+        navigate("/sistemas-digitales/uart")
     }
     const navigateI2C = () => {
-        navigate("/digital/i2c")
+        navigate("/sistemas-digitales/i2c")
     }
-    const navigateETB = () => {
-        navigate("/control/submuestreo")
+
+    const navigateSubmuestreo = () => {
+        navigate("/automatizacion-control/submuestreo")
     }
-    const navigatePOS = () => {
-        navigate("/control/posicion")
+    const navigatePosicion = () => {
+        navigate("/automatizacion-control/posicion")
     }
-     // es para generar, esto se debe eliminar
-    //gettokengenerar()
+
+    // Es para generar, esto se debe eliminar
+    // gettokengenerar()
     
-    const handlerConvergente = async () => {
-        const token= await axios.get("http://localhost:5032/fisica/token");
-        navigate(`fisica/lentes-convergentes/?token=${token.data}`);
-    };
-    const handlerDivergente = async () => {
-        const token= await axios.get("http://localhost:5032/fisica/token");
-        navigate(`fisica/lentes-divergentes/?token=${token.data}`);
-    };
     const handlerWifi = async () => {
-        const token= await axios.get("http://localhost:3035/api/arduino/generate");
-        navigate(`telecomunicaciones/enlace-wifi/?token=${token.data}`);
-    };
+        const token= await axios.get("http://localhost:3035/api/arduino/generate")
+        navigate(`telecomunicaciones/enlace-wifi/?token=${token.data}`)
+    }
     const handlerRadio = async () => {
-        const token= await axios.get("http://localhost:3035/api/arduino/generate");
-        navigate(`/telecomunicaciones/enlace-radio/?token=${token.data}`);
-    };
+        const token= await axios.get("http://localhost:3035/api/arduino/generate")
+        navigate(`/telecomunicaciones/enlace-radio/?token=${token.data}`)
+    }
+    const handlerConvergente = async () => {
+        const token= await axios.get("http://localhost:5032/fisica/token")
+        navigate(`fisica-experimental-basica/lentes-convergentes/?token=${token.data}`)
+    }
+    const handlerDivergente = async () => {
+        const token= await axios.get("http://localhost:5032/fisica/token")
+        navigate(`fisica-experimental-basica/lentes-divergentes/?token=${token.data}`)
+    }
     const handlerUART = async () => {
-        const token= await axios.get("http://localhost:5034/digital/token");
-        navigate(`/digital/uart/?token=${token.data}`);
-    };
+        const token= await axios.get("http://localhost:5034/digital/token")
+        navigate(`/sistemas-digitales/uart/?token=${token.data}`)
+    }
     const handlerI2C = async () => {
-        const token= await axios.get("http://localhost:5034/digital/token");
-        navigate(`/digital/i2c/?token=${token.data}`);
-    };
-    const handlerETB = async () => {
-        const token= await axios.get("http://localhost:3035/api/arduino/generate");
-        navigate(`/control/estroboscopica/?token=${token.data}`);
-    };
-    const handlerPOS = async () => {
-        const token= await axios.get("http://localhost:3035/api/arduino/generate");
-        navigate(`/control/Posicion/?token=${token.data}`);
-    };
-    // fin
+        const token= await axios.get("http://localhost:5034/digital/token")
+        navigate(`/sistemas-digitales/i2c/?token=${token.data}`)
+    }
+    const handlerSubmuestreo = async () => {
+        const token= await axios.get("http://localhost:3035/api/arduino/generate")
+        navigate(`/automatizacion-control/submuestreo/?token=${token.data}`)
+    }
+    const handlerPosicion = async () => {
+        const token= await axios.get("http://localhost:3035/api/arduino/generate")
+        navigate(`/automatizacion-control/posicion/?token=${token.data}`)
+    }
+    
     return (
         <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
             <hr />
             <Row className="m-2">
                 <h1>Telecomunicaciones</h1>
                 <hr />
-                <Col sm={12} lg={6}>
+                <Col sm={12} lg={3} className="d-grid gap-2">
                     <Button variant="primary" size="lg" onClick={navigateWifi}>
                         Enlace Wifi punto a punto
                     </Button>
                 </Col>
+                <Col sm={12} lg={3} className="d-grid gap-2">
+                    <Button variant="dark" size="lg" onClick={handlerWifi}>
+                        Wifi - Token
+                    </Button>
+                </Col>
 
-                <Col sm={12} lg={6}>
+                <Col sm={12} lg={3} className="d-grid gap-2">
                     <Button variant="primary" size="lg" onClick={navigateRadio}>
                         Enlace Radio punto a punto
                     </Button>
                 </Col>
+                <Col sm={12} lg={3} className="d-grid gap-2">
+                    <Button variant="dark" size="lg" onClick={handlerRadio}>
+                        Radio - Token
+                    </Button>
+                </Col>
             </Row>
+            
             <hr />
+
             <Row className="m-2">
                 <h1>Física Experimental Básica</h1>
                 <hr />
-                <Col sm={12} lg={6}>
+                <Col sm={12} lg={3} className="d-grid gap-2">
                     <Button variant="primary" size="lg" onClick={navigateConvergente}>
                         Lentes Convergentes
                     </Button>
                 </Col>
+                <Col sm={12} lg={3} className="d-grid gap-2">
+                    <Button variant="dark" size="lg" onClick={handlerConvergente}>
+                        Convergentes - Token
+                    </Button>
+                </Col>
 
-                <Col sm={12} lg={6}>
+                <Col sm={12} lg={3} className="d-grid gap-2">
                     <Button variant="primary" size="lg" onClick={navigateDivergente}>
                         Lentes Divergentes
                     </Button>
                 </Col>
+                <Col sm={12} lg={3} className="d-grid gap-2">
+                    <Button variant="dark" size="lg" onClick={handlerDivergente}>
+                        Divergentes - Token
+                    </Button>
+                </Col>
             </Row>
+
             <hr />
+
             <Row className="m-2">
                 <h1>Sistemas Digitales</h1>
                 <hr />
-                <Col sm={12} lg={6}>
+                <Col sm={12} lg={3} className="d-grid gap-2">
                     <Button variant="primary" size="lg" onClick={navigateUART}>
                         Transmisor/Receptor UART
                     </Button>
                 </Col>
+                <Col sm={12} lg={3} className="d-grid gap-2">
+                    <Button variant="dark" size="lg" onClick={handlerUART}>
+                        UART - Token
+                    </Button>
+                </Col>
 
-                <Col sm={12} lg={6}>
+                <Col sm={12} lg={3} className="d-grid gap-2">
                     <Button variant="primary" size="lg" onClick={navigateI2C}>
                         Transmisor/Receptor I2C
                     </Button>
                 </Col>
+                <Col sm={12} lg={3} className="d-grid gap-2">
+                    <Button variant="dark" size="lg" onClick={handlerI2C}>
+                        I2C - Token
+                    </Button>
+                </Col>
             </Row>
+
             <hr />
+
             <Row className="m-2">
                 <h1>Automatización y Control</h1>
                 <hr />
-                <Col sm={12} lg={6}>
-                    <Button variant="primary" size="lg" onClick={navigateETB}>
+                <Col sm={12} lg={3} className="d-grid gap-2">
+                    <Button variant="primary" size="lg" onClick={navigateSubmuestreo}>
                         Submuestreo, aliasing y efecto estroboscópico
                     </Button>
                 </Col>
+                <Col sm={12} lg={3} className="d-grid gap-2">
+                    <Button variant="dark" size="lg" onClick={handlerSubmuestreo}>
+                        Submuestreo - Token
+                    </Button>
+                </Col>
 
-                <Col sm={12} lg={6}>
-                    <Button variant="primary" size="lg" onClick={navigatePOS}>
+                <Col sm={12} lg={3} className="d-grid gap-2">
+                    <Button variant="primary" size="lg" onClick={navigatePosicion}>
                         Sistema de control automático de posición
+                    </Button>
+                </Col>
+                <Col sm={12} lg={3} className="d-grid gap-2">
+                    <Button variant="dark" size="lg" onClick={handlerPosicion}>
+                        Posición - Token
                     </Button>
                 </Col>
             </Row>
             <hr />
-            {/* token */}
-            <Row className="m-2">
-                <hr />
-                <h1>Con Token</h1>
-                <hr /><hr />
-                <h2>Telecomunicaciones</h2>
-                <hr />
-                <Col sm={12} lg={6}>
-                    <Button variant="primary" size="lg" onClick={handlerWifi}>
-                    Enlace Wifi punto a punto
-                    </Button>
-                </Col>
-
-                <Col sm={12} lg={6}>
-                    <Button variant="primary" size="lg" onClick={handlerRadio}>
-                    Enlace Radio punto a punto
-                    </Button>
-                </Col>
-            </Row>
-            <Row className="m-2">
-                <hr />
-                <h2>Fisica Experimental Basica</h2>
-                <hr />
-                <Col sm={12} lg={6}>
-                    <Button variant="primary" size="lg" onClick={handlerConvergente}>
-                        Lentes Convergentes
-                    </Button>
-                </Col>
-
-                <Col sm={12} lg={6}>
-                    <Button variant="primary" size="lg" onClick={handlerDivergente}>
-                        Lentes Divegentes
-                    </Button>
-                </Col>
-            </Row>
-            <Row className="m-2">
-                <hr />
-                <h2>Sistemas Digitales</h2>
-                <hr />
-                <Col sm={12} lg={6}>
-                    <Button variant="primary" size="lg" onClick={handlerUART}>
-                        LTransmisor/Receptor UART
-                    </Button>
-                </Col>
-
-                <Col sm={12} lg={6}>
-                    <Button variant="primary" size="lg" onClick={handlerI2C}>
-                        Transmisor/Receptor I2C
-                    </Button>
-                </Col>
-            </Row>
-            <Row className="m-2">
-                <hr />
-                <h2>automatización y control</h2>
-                <hr />
-                <Col sm={12} lg={6}>
-                    <Button variant="primary" size="lg" onClick={handlerETB}>
-                    Submuestreo, aliasing y efecto estroboscópico
-                    </Button>
-                </Col>
-
-                <Col sm={12} lg={6}>
-                    <Button variant="primary" size="lg" onClick={handlerPOS}>
-                    Sistema de control automático de posición
-                    </Button>
-                </Col>
-            </Row>
         </Container>
     )
 }
