@@ -59,6 +59,7 @@ function FormSubmuestreo({ idUsuario }) {
     )
   }
 
+  const helpText = "Texto de ayuda"
 
   return (
     <Form className="m-3" onSubmit={handleSubmit}>
@@ -69,6 +70,7 @@ function FormSubmuestreo({ idUsuario }) {
         showLimit={false}
         state={frecuenciaAgua}
         setState={setFrecuenciaAgua}
+        helpText={helpText}
       />
 
       <FormText
@@ -77,6 +79,7 @@ function FormSubmuestreo({ idUsuario }) {
         showLimit={false}
         state={frecuenciaLuz}
         setState={setFrecuenciaLuz}
+        helpText={helpText}
       />
 
       <FormSelect
@@ -84,6 +87,7 @@ function FormSubmuestreo({ idUsuario }) {
         values={valuesCaida}
         defaultValue={defaultCaida}
         setState={setCaida}
+        helpText={helpText}
       />
 
       <Row>

@@ -3,9 +3,8 @@ import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import ToggleButton from "react-bootstrap/ToggleButton"
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup"
-import BtnTooltip from "../_button/BtnTooltip"
 
-function FormBtnGroup({ name, state, setState,ayuda }) {
+function FormBtnGroup({ name, state, setState, ayuda }) {
   const handleButtonClick = (index) => {
     const updatedState = [...state]
     updatedState[index] = updatedState[index] === 1 ? 0 : 1
@@ -24,11 +23,7 @@ function FormBtnGroup({ name, state, setState,ayuda }) {
               className="input-group-text"
               htmlFor={name.toString().toLowerCase()}
             >
-              <BtnTooltip
-                description={ayuda}
-                name={name}>
-              </BtnTooltip>
-              
+              {name}
             </span>
           </Col>
 

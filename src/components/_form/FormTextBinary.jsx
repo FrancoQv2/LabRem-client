@@ -2,9 +2,9 @@ import React from "react"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
-import BtnTooltip from "../_button/BtnTooltip"
+import FormTooltip from "./FormTooltip"
 
-function FormTextBinary({ name, limit, state, setState, disabled=false,ayuda }) {
+function FormTextBinary({ name, limit, state, setState, disabled = false, helpText }) {
   const handleTextChange = (changeEvent) => {
     const value = changeEvent.target.value
     const binaryValue = value.replace(/[^01]/g, "") // Filtrar solo caracteres binarios
@@ -28,11 +28,10 @@ function FormTextBinary({ name, limit, state, setState, disabled=false,ayuda }) 
               className="input-group-text"
               htmlFor={name.toString().toLowerCase().replace(/ /g, "-")}
             >
-               <BtnTooltip
-                  description={ayuda}
-                  name={name}>
-                </BtnTooltip>
-      
+              <FormTooltip
+                helpText={helpText}
+              ></FormTooltip>
+              {name}
               {/* {` - (${state.length} / ${limit})`} */}
             </span>
           </Col>

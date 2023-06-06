@@ -16,6 +16,7 @@ import BtnSaveLaboratorio from "../_button/BtnSaveLaboratorio"
 
 import { usePostEnsayoPosicion } from "../../hooks/hooksControl"
 import { submitSuccess, submitError } from "../../libs/alerts"
+import FormTooltip from "../_form/FormTooltip"
 
 /**
  * 
@@ -68,12 +69,19 @@ function FormPosicion({ idUsuario }) {
     )
   }
 
+  const helpText = "Texto de ayuda"
 
   return (
     <Form className="m-3" onSubmit={handleSubmit}>
 
       <Container className="border border-secondary rounded px-4 pt-3">
-        <Card.Subtitle>Motor y Tren reductor</Card.Subtitle>
+        <Card.Subtitle>
+          <FormTooltip
+            helpText={helpText}
+          >
+          </FormTooltip>
+          Motor y Tren reductor
+        </Card.Subtitle>
         <FormRange
           name="elevacion"
           description="Ángulo de Salida"
@@ -83,6 +91,7 @@ function FormPosicion({ idUsuario }) {
           unit="°"
           state={anguloMotor}
           setState={setAnguloMotor}
+          helpText={helpText}
         />
         <FormText
           name="Rapidez de cambio"
@@ -90,25 +99,39 @@ function FormPosicion({ idUsuario }) {
           showLimit={false}
           state={rapidezMotor}
           setState={setRapidezMotor}
+          helpText={helpText}
         />
       </Container>
 
       <hr />
 
       <Container className="border border-secondary rounded px-4 pt-3">
-        <Card.Subtitle>Driver del Motor</Card.Subtitle>
+        <Card.Subtitle>
+          <FormTooltip
+            helpText={helpText}
+          >
+          </FormTooltip>
+          Driver del Motor
+        </Card.Subtitle>
         <FormSelect
           name="Modificaciones agregadas"
           values={valueDriver}
           defaultValue={defaultDriver}
           setState={setModificacionesDriver}
+          helpText={helpText}
         />
       </Container>
 
       <hr />
 
       <Container className="border border-secondary rounded px-4 pt-3">
-        <Card.Subtitle>Controlador</Card.Subtitle>
+        <Card.Subtitle>
+          <FormTooltip
+            helpText={helpText}
+          >
+          </FormTooltip>
+          Controlador
+        </Card.Subtitle>
         <FormRange
           name="elevacion"
           description="Ángulo de Salida"
@@ -118,6 +141,7 @@ function FormPosicion({ idUsuario }) {
           unit="°"
           state={anguloControlador}
           setState={setAnguloControlador}
+          helpText={helpText}
         />
         <FormText
           name="Rapidez de cambio"
@@ -125,6 +149,7 @@ function FormPosicion({ idUsuario }) {
           showLimit={false}
           state={rapidezControlador}
           setState={setRapidezControlador}
+          helpText={helpText}
         />
       </Container>
 

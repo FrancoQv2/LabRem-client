@@ -1,26 +1,28 @@
-import { OverlayTrigger, Tooltip } from 'react-bootstrap'
+import Tooltip from 'react-bootstrap/Tooltip'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
-const BtnTooltip = ({description, name }) => {  
+const FormTooltip = ({ helpName, helpText }) => {
   const renderTooltip = (props) => (
     <Tooltip {...props}>
-      {description}
+      {helpText}
     </Tooltip>
   )
 
   return (
     <OverlayTrigger
-      trigger={['hover', 'focus']}
       placement="top"
+      trigger={['hover', 'focus']}
+      delay={{ show: 150, hide: 200 }}
       overlay={renderTooltip}
     >
       <span>
-        {name}
-        <FontAwesomeIcon icon={faInfoCircle} className="info-icon" />
+        <FontAwesomeIcon icon={faInfoCircle} className="info-icon mx-2" />
       </span>
     </OverlayTrigger>
   )
 }
 
-export default BtnTooltip
+export default FormTooltip

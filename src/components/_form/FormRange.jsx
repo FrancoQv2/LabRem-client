@@ -1,9 +1,9 @@
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
-import BtnTooltip from "../_button/BtnTooltip"
+import FormTooltip from "./FormTooltip"
 
-function FormRange({ name, description, minValue, maxValue, step, unit, state, setState,ayuda }) {
+function FormRange({ name, description, minValue, maxValue, step, unit, state, setState, helpText }) {
   return (
     <Row className="my-3">
       <Form.Group
@@ -28,10 +28,10 @@ function FormRange({ name, description, minValue, maxValue, step, unit, state, s
 
           <Col sm={9} md={8} lg={8}>
             <span className="input-group-text" htmlFor={`form-${name}-range`}>
-              <BtnTooltip
-                description={ayuda}
-                name={`${description} [ ${unit} ]`}>
-              </BtnTooltip>
+              <FormTooltip 
+                helpText={helpText}
+              />
+              {`${description} [ ${unit} ]`}
             </span>
           </Col>
 
