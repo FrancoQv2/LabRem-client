@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button"
 
 import { usePostEnsayoRadio } from "../../hooks/hooksTeleco"
 import { submitSuccess, submitError } from "../../libs/alerts"
-import FormSelect from "../common/FormSelect"
+import FormSelect from "../_form/FormSelect"
 
 /**
  * 

@@ -8,11 +8,11 @@ import Button from "react-bootstrap/Button"
 import { usePostEnsayoI2C } from "../../hooks/hooksDigital"
 import { submitSuccess, submitError } from "../../libs/alerts"
 
-import FormSelect from "../common/FormSelect"
-import FormBtnGroup from "../common/FormBtnGroup"
-import BtnDownloadImage from "../common/BtnDownloadImage" 
-import FormTextHexa from "../common/FormTextHexa"
-import FormTextBinary from "../common/FormTextBinary"
+import FormSelect from "../_form/FormSelect"
+import FormBtnGroup from "../_form/FormBtnGroup"
+import BtnDownloadImage from "../_button/BtnDownloadImage" 
+import FormTextHexa from "../_form/FormTextHexa"
+import FormTextBinary from "../_form/FormTextBinary"
 
 function FormI2C({ idUsuario }) {
 

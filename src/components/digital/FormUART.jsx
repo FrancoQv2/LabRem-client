@@ -8,10 +8,10 @@ import Button from "react-bootstrap/Button"
 import { usePostEnsayoUART } from "../../hooks/hooksDigital"
 import { submitSuccess, submitError } from "../../libs/alerts"
 
-import FormText from "../common/FormText"
-import FormSelect from "../common/FormSelect"
-import FormBtnGroup from "../common/FormBtnGroup"
-import BtnDownloadImage from "../common/BtnDownloadImage"
+import FormText from "../_form/FormText"
+import FormSelect from "../_form/FormSelect"
+import FormBtnGroup from "../_form/FormBtnGroup"
+import BtnDownloadImage from "../_button/BtnDownloadImage"
 
 function FormUART({ idUsuario }) {
 

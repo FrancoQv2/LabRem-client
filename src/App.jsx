@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom"
 
-import RootLayout from "./components/RootLayout.jsx"
+import RootLayout from "./layouts/RootLayout.jsx"
 
 import EnlaceWifi from "./pages/teleco/EnlaceWifi.jsx"
 import EnlaceRadio from "./pages/teleco/EnlaceRadio.jsx"

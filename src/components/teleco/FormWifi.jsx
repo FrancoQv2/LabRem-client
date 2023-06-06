@@ -5,8 +5,8 @@ import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 
-import FormRange from "../common/FormRange"
-import BtnDownloadImage from "../common/BtnDownloadImage"
+import FormRange from "../_form/FormRange"
+import BtnDownloadImage from "../_button/BtnDownloadImage"
 
 import { usePostEnsayoWifi } from "../../hooks/hooksTeleco"
 import { submitSuccess, submitError } from "../../libs/alerts"

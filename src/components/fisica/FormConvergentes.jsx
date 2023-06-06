@@ -5,14 +5,14 @@ import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 
-import FormSelect from "../common/FormSelect"
-import FormRange from "../common/FormRange"
+import FormSelect from "../_form/FormSelect"
+import FormRange from "../_form/FormRange"
 
 import { usePostEnsayoConvergentes } from "../../hooks/hooksFisica"
 import { submitSuccess, submitError } from "../../libs/alerts" 
 
-import FormSaveConvergente from "./FormSaveConvergente"
-import BtnDownloadImage from "../common/BtnDownloadImage"
+import BtnDownloadImage from "../_button/BtnDownloadImage"
+import BtnSaveLaboratorio from "../_button/BtnSaveLaboratorio"
 
 /**
  * 
@@ -26,14 +26,14 @@ function FormConvergentes({ idUsuario }) {
   const [diafragma, setDiafragma] = useState(defaultDiafragma)
   
   const { mutate, error, isLoading } = usePostEnsayoConvergentes()
-  const [cambio,setcambio] =useState(true)
+  const [cambio, setCambio] =useState(true)
   
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setcambio(current =>!current)
+    setCambio(current =>!current)
     const guardar = false
     mutate(
-      { idUsuario, distanciaFL, distanciaLP, diafragma, setcambio, guardar },
+      { idUsuario, distanciaFL, distanciaLP, diafragma, setCambio, guardar },
       {
         onSuccess: () => {
         },
@@ -94,12 +94,13 @@ function FormConvergentes({ idUsuario }) {
         ) :null }
         
         <Col className="text-center">
-          <FormSaveConvergente
+          <BtnSaveLaboratorio
             idUsuario={idUsuario}
+            setCambio={setCambio}
+            useHook={usePostEnsayoConvergentes}
             distanciaFL={distanciaFL}
             distanciaLP={distanciaLP}
             diafragma={diafragma}
-            setcambio={setcambio}
           />
         </Col>
 

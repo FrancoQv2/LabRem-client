@@ -7,12 +7,12 @@ import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import Container from "react-bootstrap/Container"
 
-import FormText from "../common/FormText"
-import FormRange from "../common/FormRange"
-import FormSelect from "../common/FormSelect"
+import FormText from "../_form/FormText"
+import FormRange from "../_form/FormRange"
+import FormSelect from "../_form/FormSelect"
 
-import BtnDownloadImage from "../common/BtnDownloadImage"
-import FormSavePosicion from "./FormSavePosicion"
+import BtnDownloadImage from "../_button/BtnDownloadImage"
+import BtnSaveLaboratorio from "../_button/BtnSaveLaboratorio"
 
 import { usePostEnsayoPosicion } from "../../hooks/hooksControl"
 import { submitSuccess, submitError } from "../../libs/alerts"
@@ -143,16 +143,18 @@ function FormPosicion({ idUsuario }) {
           </Col>
         )}
 
-        {/* <Col className="text-center">
-          <FormSavePosicion
-          idUsuario={idUsuario}
-          rapidezMotor={rapidezMotor}
-          anguloMotor={anguloMotor}
+        <Col className="text-center">
+          <BtnSaveLaboratorio
+            idUsuario={idUsuario}
+            setCambio={setCambio}
+            useHook={usePostEnsayoPosicion}
+            rapidezMotor={rapidezMotor}
+            anguloMotor={anguloMotor}
             modificacionesDriver={modificacionesDriver}
             rapidezControlador={rapidezControlador}
             anguloControlador={anguloControlador}
           />
-        </Col> */}
+        </Col>
 
         <Col className="text-center d-grid gap-2">
           <BtnDownloadImage />

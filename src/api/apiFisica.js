@@ -72,7 +72,7 @@ export const postEnsayoConvergentes = async ({
     distanciaFL,
     distanciaLP,
     diafragma,
-    setcambio,
+    setCambio,
     guardar
 }) => {
     const newEnsayoConvergente = {
@@ -86,11 +86,14 @@ export const postEnsayoConvergentes = async ({
     
     process()
     const { data } = await axios.post(
-        `${API_FISICA}/convergente`,newEnsayoConvergente,{headers: {
+        `${API_FISICA}/convergente`,newEnsayoConvergente,{
+            headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('token')
-          }})
+            }
+        }
+    )
     
-    setcambio(current => !current)
+    setCambio(current => !current)
     if (data.msg === "Parámetros correctos. Guardado en DB") {
         submitSuccess("Ensayo Guardado con Exito")
     } else if (data.msg === "Parámetros correctos. ejecutando en arduino") {
@@ -111,7 +114,7 @@ export const postEnsayoDivergentes = async ({
     distanciaLL,
     distanciaLP,
     diafragma,
-    setcambio,
+    setCambio,
     guardar
 }) => {
     const newEnsayoDivergente = {
@@ -128,7 +131,7 @@ export const postEnsayoDivergentes = async ({
         'Authorization': 'Bearer ' + localStorage.getItem('token')
       }})
 
-    setcambio(current => !current)
+    setCambio(current => !current)
     if (data.msg === "Parámetros correctos. Guardado en DB") {
         submitSuccess("Ensayo Guardado con Exito")
     } else if (data.msg === "Parámetros correctos. ejecutando en arduino") {

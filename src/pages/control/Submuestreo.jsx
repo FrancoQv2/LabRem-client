@@ -8,7 +8,7 @@ import Card from "react-bootstrap/Card"
 import Nav from "react-bootstrap/Nav"
 
 import LabInformation from "../../components/common/LabInformation"
-import LabVideoStreaming from "../../components/LabVideoStreaming"
+import LabVideoStreaming from "../../components/common/LabVideoStreaming"
 
 import FormSubmuestreo from "../../components/control/FormSubmuestreo"
 

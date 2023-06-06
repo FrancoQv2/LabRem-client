@@ -5,14 +5,14 @@ import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 
-import FormSelect from "../common/FormSelect"
-import FormRange from "../common/FormRange"
+import FormSelect from "../_form/FormSelect"
+import FormRange from "../_form/FormRange"
 
 import { usePostEnsayoDivergentes } from "../../hooks/hooksFisica"
 import { submitSuccess, submitError } from "../../libs/alerts"
 
-import FormSaveDivergente from "./FormSaveDivergente"
-import BtnDownloadImage from "../common/BtnDownloadImage"
+import BtnDownloadImage from "../_button/BtnDownloadImage"
+import BtnSaveLaboratorio from "../_button/BtnSaveLaboratorio"
 
 /**
  * 
@@ -27,14 +27,14 @@ function FormDivergentes({ idUsuario }) {
   const [diafragma, setDiafragma] = useState(defaultDiafragma)
 
   const { mutate, error, isLoading } = usePostEnsayoDivergentes()
-  const [cambio, setcambio] = useState(true)
+  const [cambio, setCambio] = useState(true)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setcambio(current => !current)
+    setCambio(current => !current)
     const guardar = false
     mutate(
-      { idUsuario, distanciaFL, distanciaLL, distanciaLP, diafragma, setcambio, guardar },
+      { idUsuario, distanciaFL, distanciaLL, distanciaLP, diafragma, setCambio, guardar },
       {
         onSuccess: () => {
         },
@@ -114,13 +114,14 @@ function FormDivergentes({ idUsuario }) {
         ) }
 
         <Col className="text-center">
-          <FormSaveDivergente
+        <BtnSaveLaboratorio
             idUsuario={idUsuario}
+            setCambio={setCambio}
+            useHook={usePostEnsayoDivergentes}
             distanciaFL={distanciaFL}
             distanciaLL={distanciaLL}
             distanciaLP={distanciaLP}
             diafragma={diafragma}
-            setcambio={setcambio}
           />
         </Col>
 

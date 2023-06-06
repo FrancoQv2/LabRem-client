@@ -5,13 +5,15 @@ import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 
-import FormSelect from "../common/FormSelect"
-import FormSaveETB from "./FormSaveSubmuestreo"
-import BtnDownloadImage from "../common/BtnDownloadImage"
+import FormSelect from "../_form/FormSelect"
+import FormText from "../_form/FormText"
+
+import BtnDownloadImage from "../_button/BtnDownloadImage"
+import BtnSaveLaboratorio from "../_button/BtnSaveLaboratorio"
 
 import { usePostEnsayoSubmuestreo } from "../../hooks/hooksControl"
 import { submitSuccess, submitError } from "../../libs/alerts"
-import FormText from "../common/FormText"
+
 
 /**
  * 
@@ -99,14 +101,16 @@ function FormSubmuestreo({ idUsuario }) {
           </Col>
         )}
 
-        {/* <Col className="text-center">
-          <FormSaveETB
+        <Col className="text-center">
+          <BtnSaveLaboratorio
             idUsuario={idUsuario}
+            setCambio={setCambio}
+            useHook={usePostEnsayoSubmuestreo}
             frecuenciaAgua={frecuenciaAgua}
             frecuenciaLuz={frecuenciaLuz}
             caidaAgua={caidaAgua}
           />
-        </Col> */}
+        </Col>
 
         <Col className="text-center d-grid gap-2">
           <BtnDownloadImage />
