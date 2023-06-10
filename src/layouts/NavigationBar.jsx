@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { UserContext } from "../App"
+import { UserContext } from "../context/UserContext"
 
 import Container from "react-bootstrap/Container"
 import Navbar from "react-bootstrap/Navbar"
@@ -27,7 +27,7 @@ function NavigationBar() {
 				<Navbar.Toggle />
 				<Navbar.Collapse className="justify-content-end">
 					<Navbar.Text>
-						<b>{user.nombreUsuario}</b>
+						<b>{user.nombreApellido}</b>
 					</Navbar.Text>
 				</Navbar.Collapse>
 			</Container>

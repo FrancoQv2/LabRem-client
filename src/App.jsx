@@ -1,5 +1,5 @@
-import { createContext } from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { UserContext } from "./context/UserContext.js"
 
 import RootLayout from "./layouts/RootLayout.jsx"
 
@@ -19,24 +19,24 @@ import HomePage from "./pages/home/HomePage.jsx"
 
 import Cookies from 'js-cookie'
 
-export const UserContext = createContext()
-
 function App() {
-	Cookies.set('idLaboratorio', '1')
-	Cookies.set('idUsuario', '2')
-	Cookies.set('nombreUsuario', 'Nombre Apellido')
+	// Cookies.set('idLaboratorio', '1')
+	// Cookies.set('idUsuario', '2')
+	// Cookies.set('nombreApellido', 'Nombre Apellido')
+	// Cookies.set('esProfesor', 'true')
 
-	const session = {
-		idLaboratorio: Cookies.get('idLaboratorio'),
-		idUsuario: Cookies.get('idUsuario'),
-		nombreUsuario: Cookies.get('nombreUsuario')
-	}
+	// const user = {
+	// 	idLaboratorio: 	Cookies.get('idLaboratorio'),
+	// 	idUsuario: 		Cookies.get('idUsuario'),
+	// 	nombreApellido: 	Cookies.get('nombreApellido'),
+	// 	esProfesor: 	Cookies.get('esProfesor')
+	// }
 
 	const user = {
-		idLaboratorio: 1,
-		idUsuario: 2,
-		nombreUsuario: "Franco Quevedo",
-		esProfesor: true
+		idLaboratorio:  1,
+		idUsuario: 		2,
+		nombreApellido: "Nombre Apellido",
+		esProfesor: 	true
 	}
 
 	return (
