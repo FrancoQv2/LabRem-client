@@ -1,3 +1,6 @@
+import { useContext } from "react"
+import { UserContext } from "../App"
+
 import Container from "react-bootstrap/Container"
 import Navbar from "react-bootstrap/Navbar"
 
@@ -5,7 +8,9 @@ import logoUNT from "../assets/logoUNT.png"
 
 const title = "Laboratorios Remotos"
 
-function NavigationBar({ session }) {
+function NavigationBar() {
+	const user = useContext(UserContext)
+
 	return (
 		<Navbar className="bg-light">
 			<Container fluid>
@@ -22,7 +27,7 @@ function NavigationBar({ session }) {
 				<Navbar.Toggle />
 				<Navbar.Collapse className="justify-content-end">
 					<Navbar.Text>
-						<b>{session.nombreUsuario}</b>
+						<b>{user.nombreUsuario}</b>
 					</Navbar.Text>
 				</Navbar.Collapse>
 			</Container>
