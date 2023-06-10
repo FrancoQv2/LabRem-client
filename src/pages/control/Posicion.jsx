@@ -1,40 +1,41 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { UserContext } from "../../context/UserContext"
 
 import Container from "react-bootstrap/Container"
+import Card from "react-bootstrap/Card"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
-
-import Card from "react-bootstrap/Card"
-import Nav from "react-bootstrap/Nav"
 
 import LabInformation from "../../components/common/LabInformation"
 import LabVideoStreaming from "../../components/common/LabVideoStreaming"
 
+import FormHeader from "../../components/_form/FormHeader"
 import FormPosicion from "../../components/control/FormPosicion"
-import TableQueryPaginated from "../../components/common/TableQueryPaginated"
 
-import image from "../../assets/i2c.webp"
-import { headersPosicion as tableHeaders } from "../../libs/tableHeaders"
+import TableQueryPaginated from "../../components/common/TableQueryPaginated"
 import ExportResults from "../../components/common/ExportResults"
 
-import { useEnsayosUsuario, useEnsayos, useInfoLaboratorio } from "../../hooks/hooksControl"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/hooksControl"
+
+import { headersPosicion as tableHeaders } from "../../libs/tableHeaders"
+
+import image from "../../assets/i2c.webp"
 
 /**
  * 
  */
 function Estroboscopica() {
+  const { idLaboratorio, idUsuario, esProfesor } = useContext(UserContext)
+
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
+  const [componentRef, setComponentRef] = useState({})
 
-  const idLabActual = 2
-  const idUsuarioActual = 2
-  const prof = true//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area
   const onClickTabs = () => {
     setShowForm(!showForm)
     setShowResults(!showResults)
   }
 
-  const [componentRef, setComponentRef] = useState({})
   /**
    * -----------------------------------------------------
    * Renderizado del componente
@@ -44,7 +45,7 @@ function Estroboscopica() {
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
       <LabInformation
         imagen={image}
-        idLaboratorio={idLabActual}
+        idLaboratorio={idLaboratorio}
         useInfoLaboratorio={useInfoLaboratorio}
       ></LabInformation>
       <hr />
@@ -60,33 +61,18 @@ function Estroboscopica() {
 
         <Col sm={12} lg={7}>
           <Card>
-            <Card.Header>
-              <Nav fill variant="tabs" defaultActiveKey="#lab-form">
-                <Nav.Item>
-                  <Nav.Link
-                    eventKey="#lab-form"
-                    onClick={showForm ? null : onClickTabs}
-                  >
-                    Parámetros de Entrada
-                  </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link
-                    eventKey="#lab-results"
-                    onClick={showResults ? null : onClickTabs}
-                  >
-                    Resultados
-                  </Nav.Link>
-                </Nav.Item>
-              </Nav>
-            </Card.Header>
+            <FormHeader
+              onClickTabs={onClickTabs}
+              showForm={showForm}
+              showResults={showResults}
+            />
 
             <Card.Body>
               {showForm ? (
                 <Card id="lab-form">
                   <Card.Body>
                     {/* <Card.Title>Ingrese los datos</Card.Title> */}
-                    <FormPosicion idUsuario={idUsuarioActual} />
+                    <FormPosicion idUsuario={idUsuario} />
                   </Card.Body>
                 </Card>
               ) : null}
@@ -96,8 +82,8 @@ function Estroboscopica() {
                   <Card.Body>
                     <Card.Title>Ensayos realizados</Card.Title>
                     <TableQueryPaginated
-                      idLaboratorio={idLabActual}
-                      idUsuario={idUsuarioActual}
+                      idLaboratorio={idLaboratorio}
+                      idUsuario={idUsuario}
                       tableHeaders={tableHeaders}
                       useHook={useEnsayosUsuario}
                       setComponentRef={setComponentRef}
@@ -111,9 +97,9 @@ function Estroboscopica() {
               <ExportResults 
                 useHook={useEnsayosUsuario}
                 exportToProfe={useEnsayos}
-                idLaboratorio={idLabActual}
-                idUsuario={idUsuarioActual}
-                Prof={prof}
+                idLaboratorio={idLaboratorio}
+                idUsuario={idUsuario}
+                esProfesor={esProfesor}
                 filename={"ensayos-Posicion"}
                 componentRef={componentRef}
               />

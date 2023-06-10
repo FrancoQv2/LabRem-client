@@ -1,15 +1,14 @@
 import { useState } from "react"
 
 import Container from "react-bootstrap/Container"
+import Card from "react-bootstrap/Card"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
-
-import Card from "react-bootstrap/Card"
-import Nav from "react-bootstrap/Nav"
 
 import LabInformation from "../../components/common/LabInformation"
 import LabVideoStreaming from "../../components/common/LabVideoStreaming"
 
+import FormHeader from "../../components/_form/FormHeader"
 import FormWifi from "../../components/teleco/FormWifi"
 
 import TableQueryPaginated from "../../components/common/TableQueryPaginated"
@@ -75,26 +74,11 @@ function EnlaceWifi() {
 
         <Col sm={12} lg={7}>
           <Card>
-            <Card.Header>
-              <Nav fill variant="tabs" defaultActiveKey="#lab-form">
-                <Nav.Item>
-                  <Nav.Link
-                    eventKey="#lab-form"
-                    onClick={showForm ? null : onClickTabs}
-                  >
-                    Formulario
-                  </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link
-                    eventKey="#lab-results"
-                    onClick={showResults ? null : onClickTabs}
-                  >
-                    Resultados
-                  </Nav.Link>
-                </Nav.Item>
-              </Nav>
-            </Card.Header>
+            <FormHeader
+              onClickTabs={onClickTabs}
+              showForm={showForm}
+              showResults={showResults}
+            />
 
             {/* <Card.Body style={{height: 525}}> */}
             <Card.Body>

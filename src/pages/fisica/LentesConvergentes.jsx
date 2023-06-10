@@ -1,15 +1,15 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { UserContext } from "../../context/UserContext"
 
 import Container from "react-bootstrap/Container"
+import Card from "react-bootstrap/Card"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
-
-import Card from "react-bootstrap/Card"
-import Nav from "react-bootstrap/Nav"
 
 import LabInformation from "../../components/common/LabInformation"
 import LabVideoStreaming from "../../components/common/LabVideoStreaming"
 
+import FormHeader from "../../components/_form/FormHeader"
 import FormConvergentes from "../../components/fisica/FormConvergentes"
 
 import TableQueryPaginated from "../../components/common/TableQueryPaginated"
@@ -21,8 +21,6 @@ import { headersConvergentes as tableHeaders } from "../../libs/tableHeaders"
 
 import imgConv from "../../assets/lente-convergente.jpg"
 
-import Button from "react-bootstrap/Button"
-import Badge from 'react-bootstrap/Badge'
 import { useLocation } from 'react-router-dom'
 import Cookies from 'js-cookie'
 
@@ -32,45 +30,43 @@ import Error503 from "../../components/errors/Error403"
  * 
  */
 function LentesConvergentes() {
+  const { idLaboratorio, idUsuario, esProfesor } = useContext(UserContext)
+
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
+  const [componentRef, setComponentRef] = useState({})
 
-  //logica de token
-  const searchParams = new URLSearchParams(useLocation().search)
-  let token = searchParams.get('token')
+  // //logica de token
+  // const searchParams = new URLSearchParams(useLocation().search)
+  // let token = searchParams.get('token')
 
-  if (token == null) {
-    token = localStorage.getItem('token')
-  }
-  localStorage.setItem('token', token)
-  const [validacion, setValidar] = useState(false)
+  // if (token == null) {
+  //   token = localStorage.getItem('token')
+  // }
+  // localStorage.setItem('token', token)
+  // const [validacion, setValidar] = useState(false)
 
-  ValidarToken().then(response => {
-    setValidar(response)
-  })
+  // ValidarToken().then(response => {
+  //   setValidar(response)
+  // })
 
-  if (!validacion) {
-    Cookies.remove('nombreUsuario')
-  }
-  // console.log(!Cookies.get('reload'))
-  if (!Cookies.get('reload')) {
-    Cookies.set('reload', 'cargado')
-    window.location.reload()
-  }
-  const handler = async () => {
-    window.location.href = 'https://www.google.com.ar'
-  }
-  //final de logica token
-
-  const idLabActual = 1
-  const idUsuarioActual = 2
-  const prof = Cookies.get('profesor') // Definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area
+  // if (!validacion) {
+  //   Cookies.remove('nombreUsuario')
+  // }
+  // // console.log(!Cookies.get('reload'))
+  // if (!Cookies.get('reload')) {
+  //   Cookies.set('reload', 'cargado')
+  //   window.location.reload()
+  // }
+  // const handler = async () => {
+  //   window.location.href = 'https://www.google.com.ar'
+  // }
+  // //final de logica token
 
   const onClickTabs = () => {
     setShowForm(!showForm)
     setShowResults(!showResults)
   }
-  const [componentRef, setComponentRef] = useState({})
 
   /**
    * -----------------------------------------------------
@@ -78,89 +74,73 @@ function LentesConvergentes() {
    * -----------------------------------------------------
    */
   return (
-    validacion ? (
-      <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
-        <LabInformation
-          imagen={imgConv}
-          idLaboratorio={idLabActual}
-          useInfoLaboratorio={useInfoLaboratorio}
-        ></LabInformation>
-        <hr />
+    // validacion ? (
+    <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
+      <LabInformation
+        imagen={imgConv}
+        idLaboratorio={idLaboratorio}
+        useInfoLaboratorio={useInfoLaboratorio}
+      ></LabInformation>
+      <hr />
 
-        <Row className="m-2">
-          <Col
-            className="d-flex justify-content-center align-items-center"
-            sm={12}
-            lg={5}
-          >
-            <LabVideoStreaming />
-          </Col>
+      <Row className="m-2">
+        <Col
+          className="d-flex justify-content-center align-items-center"
+          sm={12}
+          lg={5}
+        >
+          <LabVideoStreaming />
+        </Col>
 
-          <Col sm={12} lg={7}>
-            <Card>
-              <Card.Header>
-                <Nav fill variant="tabs" defaultActiveKey="#lab-form">
-                  <Nav.Item>
-                    <Nav.Link
-                      eventKey="#lab-form"
-                      onClick={showForm ? null : onClickTabs}
-                    >
-                      Formulario
-                    </Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link
-                      eventKey="#lab-results"
-                      onClick={showResults ? null : onClickTabs}
-                    >
-                      Resultados
-                    </Nav.Link>
-                  </Nav.Item>
-                </Nav>
-              </Card.Header>
+        <Col sm={12} lg={7}>
+          <Card>
+            <FormHeader
+              onClickTabs={onClickTabs}
+              showForm={showForm}
+              showResults={showResults}
+            />
 
-              <Card.Body>
-                {showForm ? (
-                  <Card id="lab-form">
-                    <Card.Body>
-                      <Card.Title>Ingrese los datos</Card.Title>
-                      <FormConvergentes idUsuario={idUsuarioActual} />
-                    </Card.Body>
-                  </Card>
-                ) : null}
+            <Card.Body>
+              {showForm ? (
+                <Card id="lab-form">
+                  <Card.Body>
+                    <FormConvergentes idUsuario={idUsuario} />
+                  </Card.Body>
+                </Card>
+              ) : null}
 
-                {showResults ? (
-                  <Card id="lab-results">
-                    <Card.Body>
-                      <Card.Title>Ensayos realizados</Card.Title>
-                      <TableQueryPaginated
-                        idLaboratorio={idLabActual}
-                        idUsuario={idUsuarioActual}
-                        tableHeaders={tableHeaders}
-                        useHook={useEnsayosUsuario}
-                        setComponentRef={setComponentRef}
-                      />
-                    </Card.Body>
-                  </Card>
-                ) : null}
-              </Card.Body>
+              {showResults ? (
+                <Card id="lab-results">
+                  <Card.Body>
+                    <TableQueryPaginated
+                      idLaboratorio={idLaboratorio}
+                      idUsuario={idUsuario}
+                      tableHeaders={tableHeaders}
+                      useHook={useEnsayosUsuario}
+                      setComponentRef={setComponentRef}
+                    />
+                  </Card.Body>
+                </Card>
+              ) : null}
+            </Card.Body>
 
-              <Card.Footer>
-                <ExportResults
+            <Card.Footer>
+              {/* <ExportResults
                   useHook={useEnsayosUsuario}
                   exportToProfe={useEnsayos}
-                  idLaboratorio={idLabActual}
-                  idUsuario={idUsuarioActual}
-                  Prof={prof}
+                  idLaboratorio={idLaboratorio}
+                  idUsuario={idUsuario}
+                  Prof={esProfesor}
                   filename={"ensayos-convergentes"}
                   componentRef={componentRef}
-                />
-              </Card.Footer>
-            </Card>
-          </Col>
-        </Row>
-      </Container>) :
-      <Error503 handler={handler} />
+                /> */}
+            </Card.Footer>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
+    // ) :
+    // <Error503 handler={handler} />
   )
 }
 

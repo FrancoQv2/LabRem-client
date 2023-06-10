@@ -1,87 +1,51 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { UserContext } from "../../context/UserContext"
 
 import Container from "react-bootstrap/Container"
+import Card from "react-bootstrap/Card"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
-
-import Card from "react-bootstrap/Card"
-import Nav from "react-bootstrap/Nav"
 
 import LabInformation from "../../components/common/LabInformation"
 import LabVideoStreaming from "../../components/common/LabVideoStreaming"
 
+import FormHeader from "../../components/_form/FormHeader"
 import FormI2C from "../../components/digital/FormI2C"
 
 import TableQueryPaginated from "../../components/common/TableQueryPaginated"
 import ExportResults from "../../components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos, ValidarToken } from "../../hooks/hooksDigital"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/hooksDigital"
 
 import { headersI2C as tableHeaders } from "../../libs/tableHeaders"
 
 import imgI2C from "../../assets/i2c.webp"
 
-import Button from "react-bootstrap/Button"
-import Badge from 'react-bootstrap/Badge';
-import {useLocation } from 'react-router-dom';
-import Cookies from 'js-cookie'
-
 /**
  * 
  */
 function TxRxI2C() {
+  const { idLaboratorio, idUsuario, esProfesor } = useContext(UserContext)
+
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
+  const [componentRef, setComponentRef] = useState({})
 
-//logica de token
-const searchParams = new URLSearchParams(useLocation().search);
-let token = searchParams.get('token');
-
-if (token == null) {
-    token=localStorage.getItem('token')
-}
-localStorage.setItem('token',token)
-const [validacion, setValidar] = useState(false)
-
-ValidarToken().then( response => {
-    setValidar(response)  
-});
-
-if (!validacion) {
-    Cookies.remove('nombreUsuario')
-}
-// console.log(!Cookies.get('reload'))
-if (!Cookies.get('reload')){
-    Cookies.set('reload','cargado')
-    window.location.reload();
-}
-const handler = async () => {
-    window.location.href = 'https://www.google.com.ar'
-};
-//final de logica token
-
-  const idLabActual = 2
-  const idUsuarioActual = 2
-
-  const prof = Cookies.get('profesor'); //definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area
-  
   const onClickTabs = () => {
     setShowForm(!showForm)
     setShowResults(!showResults)
   }
 
-  const [componentRef, setComponentRef] = useState({})
   /**
    * -----------------------------------------------------
    * Renderizado del componente
    * -----------------------------------------------------
    */
   return (
-    validacion ?(
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
       <LabInformation
         imagen={imgI2C}
-        idLaboratorio={idLabActual}
+        idLaboratorio={idLaboratorio}
         useInfoLaboratorio={useInfoLaboratorio}
       ></LabInformation>
       <hr />
@@ -97,33 +61,18 @@ const handler = async () => {
 
         <Col sm={12} lg={7}>
           <Card>
-            <Card.Header>
-              <Nav fill variant="tabs" defaultActiveKey="#lab-form">
-                <Nav.Item>
-                  <Nav.Link
-                    eventKey="#lab-form"
-                    onClick={showForm ? null : onClickTabs}
-                  >
-                    Formulario
-                  </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link
-                    eventKey="#lab-results"
-                    onClick={showResults ? null : onClickTabs}
-                  >
-                    Resultados
-                  </Nav.Link>
-                </Nav.Item>
-              </Nav>
-            </Card.Header>
+            <FormHeader
+              onClickTabs={onClickTabs}
+              showForm={showForm}
+              showResults={showResults}
+            />
 
             <Card.Body>
               {showForm ? (
                 <Card id="lab-form">
                   <Card.Body>
                     <Card.Title>Ingrese los datos</Card.Title>
-                    <FormI2C idUsuario={idUsuarioActual} />
+                    <FormI2C idUsuario={idUsuario} />
                   </Card.Body>
                 </Card>
               ) : null}
@@ -133,8 +82,8 @@ const handler = async () => {
                   <Card.Body>
                     <Card.Title>Ensayos realizados</Card.Title>
                     <TableQueryPaginated
-                      idLaboratorio={idLabActual}
-                      idUsuario={idUsuarioActual}
+                      idLaboratorio={idLaboratorio}
+                      idUsuario={idUsuario}
                       tableHeaders={tableHeaders}
                       useHook={useEnsayosUsuario}
                       setComponentRef={setComponentRef}
@@ -145,27 +94,19 @@ const handler = async () => {
             </Card.Body>
 
             <Card.Footer>
-              <ExportResults 
+              {/* <ExportResults
                 useHook={useEnsayosUsuario}
                 exportToProfe={useEnsayos}
-                idLaboratorio={idLabActual}
-                idUsuario={idUsuarioActual}
-                Prof={prof}
+                idLaboratorio={idLaboratorio}
+                idUsuario={idUsuario}
+                esProfesor={esProfesor}
                 filename={"ensayos-i2c"}
                 componentRef={componentRef}
-              />
+              /> */}
             </Card.Footer>
           </Card>
         </Col>
       </Row>
-    </Container>):
-    <Container>
-      <h2>
-        <Badge bg="secondary">No autorizado o Token expirado</Badge>
-      </h2>
-      <Button variant="primary" size="lg" onClick={handler}>
-        Login
-      </Button>
     </Container>
   )
 }
