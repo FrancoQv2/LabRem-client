@@ -33,7 +33,7 @@ function EnlaceRadio() {
 
     const idLabActual = 2
     const idUsuarioActual = 2
-    const prof = true//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area
+    const prof = false//definir con atilio como me lo manda para saber que es un profesor de fisica y no de otra area
 
     const onClickTabs = () => {
         setShowForm(!showForm)
@@ -114,7 +114,7 @@ function EnlaceRadio() {
                             ) : null}
                         </Card.Body>
 
-                        {/* <Card.Footer>
+                        <Card.Footer>
                             <ExportResults
                                 useHook={useEnsayosUsuario}
                                 exportToProfe={useEnsayos}
@@ -124,7 +124,7 @@ function EnlaceRadio() {
                                 filename={"ensayos-radio"}
                                 componentRef={componentRef}
                             />
-                        </Card.Footer> */}
+                        </Card.Footer>
                     </Card>
                 </Col>
             </Row>

@@ -33,10 +33,10 @@ function App() {
 	// }
 
 	const user = {
-		idLaboratorio:  1,
+		idLaboratorio:  2,
 		idUsuario: 		2,
 		nombreApellido: "Nombre Apellido",
-		esProfesor: 	true
+		esProfesor: 	false
 	}
 
 	return (

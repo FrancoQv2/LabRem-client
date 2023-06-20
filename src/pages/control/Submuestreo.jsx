@@ -19,7 +19,7 @@ import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/h
 
 import { headersSubmuestreo as tableHeaders } from "../../libs/tableHeaders"
 
-import image from "../../assets/i2c.webp"
+import image from "../../assets/estroboscopico.jpg"
 
 /**
  * 
@@ -93,17 +93,17 @@ function Submuestreo() {
               ) : null}
             </Card.Body>
 
-            {/* <Card.Footer>
+            <Card.Footer>
               <ExportResults
                 useHook={useEnsayosUsuario}
                 exportToProfe={useEnsayos}
                 idLaboratorio={idLaboratorio}
                 idUsuario={idUsuario}
-                esProfesor={esProfesor}
+                Prof={esProfesor}
                 filename={"ensayos-Estroboscopico"}
                 componentRef={componentRef}
               />
-            </Card.Footer> */}
+            </Card.Footer>
           </Card>
         </Col>
       </Row>

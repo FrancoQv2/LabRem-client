@@ -21,6 +21,7 @@ export const getInfoLaboratorio = async ({ queryKey }) => {
 }
 
 export const getEnsayosUsuario = async ({ queryKey }) => {
+    try {
     const [_, { idLaboratorio, idUsuario }] = queryKey
 
     const URL = `${API_TELECO}/${idLaboratorio}/${idUsuario}`
@@ -32,9 +33,14 @@ export const getEnsayosUsuario = async ({ queryKey }) => {
     console.log(data)
 
     return data
+    } catch (error) {
+        console.error(error)
+        return []
+    }
 }
 
 export const getEnsayos = async ({ queryKey }) => {
+    try {
     const [_, { idLaboratorio }] = queryKey
 
     const URL = `${API_TELECO}/ensayos/${idLaboratorio}`
@@ -44,6 +50,10 @@ export const getEnsayos = async ({ queryKey }) => {
     })
 
     return data
+    } catch (error) {
+        console.error(error)
+        return []
+    }
 }
 
 //-----------------------------------------------------

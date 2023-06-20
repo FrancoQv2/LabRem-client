@@ -150,10 +150,5 @@ export const validarToken = async () => {
         headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
     }
     const respuesta = await axios.post("http://localhost:3032/api/fisica/verificar",dat,headers)
-      Cookies.remove('nombreUsuario')
-      Cookies.remove('profesor')
-      
-      Cookies.set('nombreUsuario', respuesta.data['nombreUsuario'])
-      Cookies.set('profesor', respuesta.data['profesor'])
     return respuesta.status == 200
   }

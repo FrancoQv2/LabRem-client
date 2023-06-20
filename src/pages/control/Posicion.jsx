@@ -19,7 +19,7 @@ import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/h
 
 import { headersPosicion as tableHeaders } from "../../libs/tableHeaders"
 
-import image from "../../assets/i2c.webp"
+import image from "../../assets/posicion.jpg"
 
 /**
  * 
@@ -93,17 +93,17 @@ function Estroboscopica() {
               ) : null}
             </Card.Body>
 
-            {/* <Card.Footer>
+            <Card.Footer>
               <ExportResults 
                 useHook={useEnsayosUsuario}
                 exportToProfe={useEnsayos}
                 idLaboratorio={idLaboratorio}
                 idUsuario={idUsuario}
-                esProfesor={esProfesor}
+                Prof={esProfesor}
                 filename={"ensayos-Posicion"}
                 componentRef={componentRef}
               />
-            </Card.Footer> */}
+            </Card.Footer>
           </Card>
         </Col>
       </Row>

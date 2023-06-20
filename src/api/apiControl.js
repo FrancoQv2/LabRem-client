@@ -34,6 +34,7 @@ export const getEnsayosUsuario = async ({ queryKey }) => {
 }
 
 export const getEnsayos = async ({ queryKey }) => {
+	try {
 	const [_, { idLaboratorio }] = queryKey
 
 	const URL = `${API_CONTROL}/ensayos/${idLaboratorio}`
@@ -43,6 +44,10 @@ export const getEnsayos = async ({ queryKey }) => {
 	})
 
 	return data
+} catch (error) {
+	console.error(error)
+	return []
+}
 }
 
 export const postEnsayoSubmuestreo = async ({

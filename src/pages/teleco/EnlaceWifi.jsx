@@ -17,7 +17,7 @@ import ExportResults from "../../components/common/ExportResults"
 import {
   useInfoLaboratorio,
   useEnsayosUsuario,
-  // useEnsayos,
+  useEnsayos,
 } from "../../hooks/hooksTeleco"
 
 import { headersWifi as tableHeaders } from "../../libs/tableHeaders"
@@ -39,7 +39,7 @@ function EnlaceWifi() {
   const idUsuario = 2
 
   // TODO: Definir con Atilio como me lo manda para saber que es un profesor de fisica y no de otra area
-  const prof = 1
+  const prof = false
 
   const onClickTabs = () => {
     setShowForm(!showForm)
@@ -107,7 +107,7 @@ function EnlaceWifi() {
               ) : null}
             </Card.Body>
 
-            {/* <Card.Footer>
+            <Card.Footer>
               <ExportResults
                   useHook={useEnsayosUsuario}
                   exportToProfe={useEnsayos}
@@ -117,7 +117,7 @@ function EnlaceWifi() {
                   filename={"ensayos-wifi"}
                   componentRef={componentRef}
               />
-            </Card.Footer> */}
+            </Card.Footer>
           </Card>
         </Col>
       </Row>

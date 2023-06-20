@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
-
+import BtnDownloadImage from "../_button/BtnDownloadImage"
 import { usePostEnsayoRadio } from "../../hooks/hooksTeleco"
 import { submitSuccess, submitError } from "../../libs/alerts"
 import FormSelect from "../_form/FormSelect"
@@ -150,9 +150,14 @@ function FormRadio({ idUsuario }) {
       </Row>
 
       <Row>
-        <Button variant="primary" type="submit">
-          Iniciar experiencia
-        </Button>
+      <Col className="text-center d-grid gap-2">
+            <Button disabled variant="primary" type="submit">
+              Iniciar ensayo
+            </Button>
+          </Col>
+          <Col className="text-center d-grid gap-2">
+          <BtnDownloadImage />
+        </Col>
       </Row>
     </Form>
   )
