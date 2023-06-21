@@ -5,9 +5,9 @@ import {
     getEnsayosUsuario,
     getEnsayos,
     postEnsayoSubmuestreo,
-    postEnsayoSubmuestreoSave,
+    // postEnsayoSubmuestreoSave,
     postEnsayoPosicion,
-    postEnsayoPosicionSave
+    // postEnsayoPosicionSave
 } from "../api/apiControl"
 
 const key = "control"
@@ -33,14 +33,14 @@ export function usePostEnsayoSubmuestreo() {
     return useMutation(postEnsayoSubmuestreo)
 }
 
-export function usePostEnsayoSubmuestreoSave() {
-    return useMutation(postEnsayoSubmuestreoSave)
-}
+// export function usePostEnsayoSubmuestreoSave() {
+//     return useMutation(postEnsayoSubmuestreoSave)
+// }
 
 export function usePostEnsayoPosicion() {
     return useMutation(postEnsayoPosicion);
 }
 
-export function usePostEnsayoPosicionSave() {
-    return useMutation(postEnsayoPosicionSave);
-}
+// export function usePostEnsayoPosicionSave() {
+//     return useMutation(postEnsayoPosicionSave);
+// }

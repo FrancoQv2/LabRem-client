@@ -30,7 +30,7 @@ function FormPosicion({ idUsuario }) {
 
   // Definicion de Hooks
 
-  const [cambio, setCambio] = useState(true)
+  const [submitActivo, setSubmitActivo] = useState(true)
 
   const [anguloMotor, setAnguloMotor] = useState(0)
   const [rapidezMotor, setRapidezMotor] = useState("")
@@ -46,24 +46,31 @@ function FormPosicion({ idUsuario }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setCambio(current => !current)
+    setSubmitActivo(current => !current)
 
     mutate(
       {
         idUsuario,
-        rapidezMotor,
         anguloMotor,
+        rapidezMotor,
         modificacionesDriver,
-        rapidezControlador,
         anguloControlador,
-        setCambio
+        rapidezControlador
       },
       {
-        onSuccess: () => {
-          submitSuccess()
+        onSuccess: (e) => {
+          setTimeout(() => {
+            setSubmitActivo(current => !current)
+          }, 5000);
+          
+          submitSuccess(e)
         },
-        onError: () => {
-          submitError()
+        onError: (e) => {
+          setTimeout(() => {
+            setSubmitActivo(current => !current)
+          }, 5000);
+
+          submitError(e.response.data)
         },
       }
     )
@@ -154,7 +161,7 @@ function FormPosicion({ idUsuario }) {
       </Container>
 
       <Row className="mt-4">
-        {cambio ? (
+        {submitActivo ? (
           <Col className="text-center d-grid gap-2">
             <Button variant="primary" type="submit">
               Iniciar ensayo
@@ -171,7 +178,7 @@ function FormPosicion({ idUsuario }) {
         <Col className="text-center">
           <BtnSaveLaboratorio
             idUsuario={idUsuario}
-            setCambio={setCambio}
+            setSubmitActivo={setSubmitActivo}
             useHook={usePostEnsayoPosicion}
             rapidezMotor={rapidezMotor}
             anguloMotor={anguloMotor}

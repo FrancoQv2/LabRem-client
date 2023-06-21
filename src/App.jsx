@@ -20,18 +20,6 @@ import HomePage from "./pages/home/HomePage.jsx"
 import Cookies from 'js-cookie'
 
 function App() {
-	// Cookies.set('idLaboratorio', '1')
-	// Cookies.set('idUsuario', '2')
-	// Cookies.set('nombreApellido', 'Nombre Apellido')
-	// Cookies.set('esProfesor', 'true')
-
-	// const user = {
-	// 	idLaboratorio: 	Cookies.get('idLaboratorio'),
-	// 	idUsuario: 		Cookies.get('idUsuario'),
-	// 	nombreApellido: 	Cookies.get('nombreApellido'),
-	// 	esProfesor: 	Cookies.get('esProfesor')
-	// }
-
 	const user = {
 		idLaboratorio:  2,
 		idUsuario: 		2,

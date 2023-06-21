@@ -15,15 +15,14 @@ const Toast = Swal.mixin({
 export function submitSuccess(message) {
     Toast.fire({
         icon: 'success',
-        // title: 'Ensayo realizado exitosamente.'
         title: message
     })
 }
 
-export function submitError() {
+export function submitError(message) {
     Toast.fire({
         icon: 'error',
-        title: 'Parámetros incorrectos.'
+        title: message
     })
 }
 

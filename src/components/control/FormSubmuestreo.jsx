@@ -27,33 +27,41 @@ function FormSubmuestreo({ idUsuario }) {
 
   // Definicion de Hooks
 
-  const [cambio, setCambio] = useState(true)
+  const [submitActivo, setSubmitActivo] = useState(true)
 
   const [frecuenciaAgua, setFrecuenciaAgua] = useState("")
   const [frecuenciaLuz, setFrecuenciaLuz] = useState("")
   const [caidaAgua, setCaida] = useState(defaultCaida)
 
-  const { mutate, error, isLoading } = usePostEnsayoSubmuestreo()
+  const { mutate } = usePostEnsayoSubmuestreo()
 
   // Definicion de funciones Handle
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setCambio(current => !current)
+    setSubmitActivo(current => !current)
+    
     mutate(
       {
         idUsuario,
         frecuenciaAgua,
         frecuenciaLuz,
-        caidaAgua,
-        setCambio
+        caidaAgua
       },
       {
-        onSuccess: () => {
-
+        onSuccess: (e) => {
+          setTimeout(() => {
+            setSubmitActivo(current => !current)
+          }, 5000);
+          
+          submitSuccess(e)
         },
-        onError: () => {
-          submitError()
+        onError: (e) => {
+          setTimeout(() => {
+            setSubmitActivo(current => !current)
+          }, 5000);
+
+          submitError(e.response.data)
         },
       }
     )
@@ -91,7 +99,7 @@ function FormSubmuestreo({ idUsuario }) {
       />
 
       <Row>
-        {cambio ? (
+        {submitActivo ? (
           <Col className="text-center d-grid gap-2">
             <Button variant="primary" type="submit">
               Iniciar ensayo
@@ -108,7 +116,7 @@ function FormSubmuestreo({ idUsuario }) {
         <Col className="text-center">
           <BtnSaveLaboratorio
             idUsuario={idUsuario}
-            setCambio={setCambio}
+            setSubmitActivo={setSubmitActivo}
             useHook={usePostEnsayoSubmuestreo}
             frecuenciaAgua={frecuenciaAgua}
             frecuenciaLuz={frecuenciaLuz}

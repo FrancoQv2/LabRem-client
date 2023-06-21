@@ -1,6 +1,5 @@
 import axios from "axios"
 import { process, submitSuccess, submitErrorDato, saveSuccess } from "../libs/alerts"
-import Cookies from 'js-cookie'
 
 const API_DIGITAL = "http://localhost:3034/api/digital"
 
@@ -10,14 +9,9 @@ const API_DIGITAL = "http://localhost:3034/api/digital"
 
 export const getInfoLaboratorio = async ({ queryKey }) => {
     const [_, { idLaboratorio }] = queryKey
-
     const URL = `${API_DIGITAL}/${idLaboratorio}`
+
     const { data } = await axios.get(URL, {
-        headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-        }
-    }, {
-        siguiente: false,
         idLaboratorio: idLaboratorio,
     })
 
@@ -30,22 +24,15 @@ export const getEnsayosUsuario = async ({ queryKey }) => {
         const URL = `${API_DIGITAL}/${idLaboratorio}/${idUsuario}`
 
         const { data } = await axios.get(URL, {
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
-            }
-        }, {
-            siguiente: false,
             idLaboratorio: idLaboratorio,
             idUsuario: idUsuario,
         })
-        console.log(data)
 
         return data
     } catch (error) {
         console.error(error)
         return []
     }
-
 }
 
 export const getEnsayos = async ({ queryKey }) => {
@@ -53,11 +40,6 @@ export const getEnsayos = async ({ queryKey }) => {
         const [_, { idLaboratorio }] = queryKey
         const URL = `${API_DIGITAL}/ensayos/${idLaboratorio}`
         const { data } = await axios.get(URL, {
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
-            }
-        }, {
-            siguiente: false,
             idLaboratorio: idLaboratorio
         })
 
@@ -82,7 +64,6 @@ export const postEnsayoUART = async ({
     mensaje,
     setCambio,
 }) => {
-
     const newEnsayoUart = {
         idUsuario: idUsuario,
         velocidad: parseInt(velocidad),
@@ -94,12 +75,7 @@ export const postEnsayoUART = async ({
         siguiente: false
     }
 
-    // process()
-    const { data } = await axios.post(`${API_DIGITAL}/uart`, newEnsayoUart, {
-        headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-        }
-    })
+    const { data } = await axios.post(`${API_DIGITAL}/uart`, newEnsayoUart)
 
     setCambio(current => !current)
     if (data.msg === "Parámetros correctos. Guardado en DB") {
@@ -109,6 +85,7 @@ export const postEnsayoUART = async ({
         console.log("entra por incorrecto")
         submitErrorDato(data)
     }
+    
     return data
 }
 

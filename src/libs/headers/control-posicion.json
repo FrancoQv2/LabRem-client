@@ -21,7 +21,7 @@
     },
     {
         "Header": "Modificación del driver",
-        "accessor": "driver"
+        "accessor": "modificacionesDriver"
     },
     {
         "Header": "Rapidez del Controlador",
