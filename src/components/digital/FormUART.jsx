@@ -13,29 +13,31 @@ import FormSelect from "../_form/FormSelect"
 import FormBtnGroup from "../_form/FormBtnGroup"
 import BtnDownloadImage from "../_button/BtnDownloadImage"
 
+
+/**
+ * 
+ */
 function FormUART({ idUsuario }) {
 
   // Definicion de valores de variables
 
-  const valuesVelocidad = [ 300, 600, 1200, 2400, 4800, 9600, 19200, 38400, 57600, 115200, 230400, 460800, 921600 ] // bps
+  const valuesVelocidad = [300, 600, 1200, 2400, 4800, 9600, 19200, 38400, 57600, 115200, 230400, 460800, 921600] // bps
   const defaultVelocidad = valuesVelocidad[5]
-  
-  const valuesBitsDatos = [5,6,7,8,9]
-  const defaultBitsDatos = valuesBitsDatos[2]
-  
-  const valuesParidad = ["Par","Impar"]
-  const defaultParidad = valuesParidad[0]
-  
-  const valuesBitsParada = [1,2]
-  const defaultBitsParada = valuesBitsParada[0]
-  
-  const defaultPulsadores = [0, 0, 0, 0]
-  
-  const defaultMensaje = ""
-  
-  // Definicion de Hooks
 
-  
+  const valuesBitsDatos = [5, 6, 7, 8, 9]
+  const defaultBitsDatos = valuesBitsDatos[2]
+
+  const valuesParidad = ["Par", "Impar"]
+  const defaultParidad = valuesParidad[0]
+
+  const valuesBitsParada = [1, 2]
+  const defaultBitsParada = valuesBitsParada[0]
+
+  const defaultPulsadores = [0, 0, 0, 0]
+
+  const defaultMensaje = ""
+
+  // Definicion de Hooks
 
   const [velocidad, setVelocidad] = useState(defaultVelocidad)
   const [bitsDatos, setBitsDatos] = useState(defaultBitsDatos)
@@ -45,34 +47,55 @@ function FormUART({ idUsuario }) {
   const [mensaje, setMensaje] = useState(defaultMensaje)
 
   const { mutate, error, isLoading } = usePostEnsayoUART()
-  const [cambio, setCambio] = useState(true)
+
+  const [submitActivo, setSubmitActivo] = useState(true)
+
+  // Definicion de textos de ayuda para tooltip
+
+  const helpText = {
+    velocidad:  'Velocidad de comunicacion',
+    bitsDatos:  'Cantidad de bits de los datos',
+    parada:     'Cantidad de bits de parada',
+    paridad:    'Indica si es una cantidad par o impar de bits',
+    pulsadores: 'Manda el comando al pulsador que se desea presionar si se estuviera presencial',
+    text:       'Texto que se desea enviar para pruebas'
+  }
+
   // Definicion de funciones Handle
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setCambio(current => !current)
+    setSubmitActivo(current => !current)
 
     mutate(
-      { idUsuario, velocidad, bitsDatos, bitsParada, paridad, pulsadores, mensaje, setCambio },
       {
-        onSuccess: () => {
-          
+        idUsuario,
+        velocidad,
+        bitsDatos,
+        bitsParada,
+        paridad,
+        pulsadores,
+        mensaje
+      },
+      {
+        onSuccess: (e) => {
+          setTimeout(() => {
+            setSubmitActivo(current => !current)
+          }, 5000)
+
+          submitSuccess(e)
         },
-        onError: () => {
-          submitError()
-        },
+        onError: (e) => {
+          setTimeout(() => {
+            setSubmitActivo(current => !current)
+          }, 5000)
+
+          submitError(e.response.data)
+        }
       }
     )
   }
- 
-  const informacion = {
-    velocidad: 'velocidad de comunicacion',
-    CantBitDatos: 'cantidad de bits de los datos',
-    parada: 'cantidad de bits de parada',
-    paridad: 'indica si es una cantidad par o impar de bits',
-    pulsadores: 'manda el comando al pulsador que se desea presionar si se estuviera presencial',
-    text: 'texto que se desea enviar para pruebas'
-  }
+
   return (
     <Form className="m-3" onSubmit={handleSubmit}>
 
@@ -81,7 +104,7 @@ function FormUART({ idUsuario }) {
         values={valuesVelocidad}
         defaultValue={defaultVelocidad}
         setState={setVelocidad}
-        ayuda={informacion.velocidad}
+        helpText={helpText.velocidad}
       />
 
       <FormSelect
@@ -89,7 +112,7 @@ function FormUART({ idUsuario }) {
         values={valuesBitsDatos}
         defaultValue={defaultBitsDatos}
         setState={setBitsDatos}
-        ayuda={informacion.CantBitDatos}
+        helpText={helpText.bitsDatos}
       />
 
       <FormSelect
@@ -97,7 +120,7 @@ function FormUART({ idUsuario }) {
         values={valuesBitsParada}
         defaultValue={defaultBitsParada}
         setState={setBitsParada}
-        ayuda={informacion.parada}
+        helpText={helpText.parada}
       />
 
       <FormSelect
@@ -105,26 +128,26 @@ function FormUART({ idUsuario }) {
         values={valuesParidad}
         defaultValue={defaultParidad}
         setState={setParidad}
-        ayuda={informacion.paridad}
+        helpText={helpText.paridad}
       />
 
-      <FormBtnGroup 
+      <FormBtnGroup
         name="Pulsadores"
         state={pulsadores}
         setState={setPulsadores}
-        ayuda={informacion.pulsadores}
+        helpText={helpText.pulsadores}
       />
 
-      <FormText 
+      <FormText
         name="Cadena a transmitir"
         limit={100}
         state={mensaje}
         setState={setMensaje}
-        ayuda={informacion.text}
+        helpText={helpText.text}
       />
-      
+
       <Row>
-        { cambio ? (
+        {submitActivo ? (
           <Col className="text-center d-grid gap-2">
             <Button variant="primary" type="submit">
               Iniciar ensayo
@@ -136,12 +159,12 @@ function FormUART({ idUsuario }) {
               Iniciar ensayo
             </Button>
           </Col>
-        ) }
-          
+        )}
+
         <Col className="text-center d-grid gap-2">
           <BtnDownloadImage />
         </Col>
-        
+
       </Row>
     </Form>
   )

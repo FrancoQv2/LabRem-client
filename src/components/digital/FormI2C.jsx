@@ -14,6 +14,9 @@ import BtnDownloadImage from "../_button/BtnDownloadImage"
 import FormTextHexa from "../_form/FormTextHexa"
 import FormTextBinary from "../_form/FormTextBinary"
 
+/**
+ * 
+ */
 function FormI2C({ idUsuario }) {
 
   // Definicion de valores de variables
@@ -31,7 +34,7 @@ function FormI2C({ idUsuario }) {
 
   // Definicion de Hooks
 
-  const [cambio, setCambio] = useState(true)
+  const [submitActivo, setSubmitActivo] = useState(true)
 
   const [accion, setLectura] = useState(defaultAccion)  
   const [frecuencia, setFrecuencia] = useState(defaultFrecuencia)
@@ -42,32 +45,50 @@ function FormI2C({ idUsuario }) {
 
   const { mutate, error, isLoading } = usePostEnsayoI2C()
 
+  // Definicion de textos de ayuda para tooltip
+
+  const helpText = {
+    accion:     'Se debe seleccionar si se desea escribir o leer en memoria',
+    frecuencia: 'Frecuencia en la que trabaja la comunicación',
+    direccion:  'Dirección de memoria en hexadecimal que se desea',
+    datosE:     'Datos que se desean guardar, debe ser en formato binario y hasta 8 caracteres',
+    pulsadores: 'Manda el comando al pulsador que se desea presionar si se estuviera presencial'
+  }
+
   // Definicion de funciones Handle
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setCambio(current =>!current)
+    setSubmitActivo(current =>!current)
+
     mutate(
-      { idUsuario, frecuencia, direccionMemoria, accion, datos, setCambio },
+      { 
+        idUsuario, 
+        frecuencia, 
+        direccionMemoria, 
+        accion, 
+        datos,
+        pulsadores,
+      },
       {
-        onSuccess: () => {
+        onSuccess: (e) => {
+          setTimeout(() => {
+            setSubmitActivo(current => !current)
+          }, 5000);
           
+          submitSuccess(e)
         },
-        onError: () => {
-          submitError()
-        },
+        onError: (e) => {
+          setTimeout(() => {
+            setSubmitActivo(current => !current)
+          }, 5000);
+
+          submitError(e.response.data)
+        }
       }
     )
-  }
+  }  
 
-  const informacion = {
-    accion: 'se debe seleccionar si se desea escribir o leer en memoria',
-    frecuencia: 'frecuencia en la que trabaja la comunicacion',
-    direccion: 'direccion de memoria en hexadecimal que se desea',
-    datosE: 'datos que se desean guardar, tiene que estar en binario y hasta 8 caracteres',
-    pulsadores: 'manda el comando al pulsador que se desea presionar si se estuviera presencial',
-    
-  }
   return (
     <Form className="m-3" onSubmit={handleSubmit}>
 
@@ -76,7 +97,7 @@ function FormI2C({ idUsuario }) {
         values={valuesAccion}
         defaultValue={defaultAccion}
         setState={setLectura}
-        ayuda={informacion.accion}
+        helpText={helpText.accion}
       />
 
       <FormSelect
@@ -84,7 +105,7 @@ function FormI2C({ idUsuario }) {
         values={valuesFrecuencia}
         defaultValue={defaultFrecuencia}
         setState={setFrecuencia}
-        ayuda={informacion.frecuencia}
+        helpText={helpText.frecuencia}
       />
 
       <FormTextHexa 
@@ -92,7 +113,7 @@ function FormI2C({ idUsuario }) {
         limit={8}
         state={direccionMemoria}
         setState={setDireccionMemoria}
-        ayuda={informacion.direccion}
+        helpText={helpText.direccion}
       />
 
       {accion === valuesAccion[0] ? (
@@ -102,7 +123,7 @@ function FormI2C({ idUsuario }) {
           state={datos}
           setState={setDatos}
           disabled={true}
-          ayuda={informacion.datosE}
+          helpText={helpText.datosE}
         />
       ) : (
         <FormTextBinary 
@@ -110,7 +131,7 @@ function FormI2C({ idUsuario }) {
           limit={8}
           state={datos}
           setState={setDatos}
-          ayuda={informacion.datosE}
+          helpText={helpText.datosE}
         />
       )}
       
@@ -118,12 +139,12 @@ function FormI2C({ idUsuario }) {
         name="Pulsadores"
         state={pulsadores}
         setState={setPulsadores}
-        ayuda={informacion.pulsadores}
+        helpText={helpText.pulsadores}
       />
 
       <Row>
 
-        { cambio ? (
+        { submitActivo ? (
           <Col className="text-center d-grid gap-2">
             <Button variant="primary" type="submit">
               Iniciar ensayo

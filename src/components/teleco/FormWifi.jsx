@@ -15,33 +15,54 @@ import { submitSuccess, submitError } from "../../libs/alerts"
  * 
  */
 function FormWifi({ idUsuario }) {
+  const [submitActivo, setSubmitActivo] = useState(true)
+
   const [elevacion, setElevacion] = useState(0)
   const [azimut, setAzimut] = useState(0)
-  const [cambio, setcambio] = useState(true)
 
   const { mutate, error, isLoading, isError, isSuccess } = usePostEnsayoWifi()
 
+  // Definicion de textos de ayuda para tooltip
+
+  const helpText = {
+    elevacion: 'Se debe seleccionar si se desea escribir o leer en memoria',
+    azimut: 'Frecuencia en la que trabaja la comunicación'
+  }
+
+  // Definicion de funciones Handle
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    setcambio(current => !current);
+    setSubmitActivo(current => !current);
 
     mutate(
-      { idUsuario, elevacion, azimut, setcambio },
       {
-        onSuccess: () => {
-          // submitSuccess()
+        idUsuario,
+        elevacion,
+        azimut
+      },
+      {
+        onSuccess: (e) => {
+          setTimeout(() => {
+            setSubmitActivo(current => !current)
+          }, 5000);
+
+          submitSuccess(e)
         },
-        onError: () => {
-          // submitError()
-        },
+        onError: (e) => {
+          setTimeout(() => {
+            setSubmitActivo(current => !current)
+          }, 5000);
+
+          submitError(e.response.data)
+        }
       }
     )
   }
 
   return (
     <Form className="m-3" onSubmit={handleSubmit}>
-      <FormRange 
+      <FormRange
         name="elevacion"
         description="Ángulo de Elevación"
         minValue="0"
@@ -50,9 +71,10 @@ function FormWifi({ idUsuario }) {
         unit="°"
         state={elevacion}
         setState={setElevacion}
+        helpText={helpText.elevacion}
       />
 
-      <FormRange 
+      <FormRange
         name="azimut"
         description="Ángulo de Azimut"
         minValue="0"
@@ -61,10 +83,11 @@ function FormWifi({ idUsuario }) {
         unit="°"
         state={azimut}
         setState={setAzimut}
+        helpText={helpText.azimut}
       />
 
       <Row>
-        { cambio ? (
+        {submitActivo ? (
           <Col className="text-center d-grid gap-2">
             <Button variant="primary" type="submit">
               Iniciar ensayo
@@ -76,8 +99,9 @@ function FormWifi({ idUsuario }) {
               Iniciar ensayo
             </Button>
           </Col>
-        ) }
-         <Col className="text-center d-grid gap-2">
+        )}
+
+        <Col className="text-center d-grid gap-2">
           <BtnDownloadImage />
         </Col>
       </Row>

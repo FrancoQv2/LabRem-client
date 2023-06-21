@@ -14,6 +14,7 @@ import { submitSuccess, submitError } from "../../libs/alerts"
 import BtnDownloadImage from "../_button/BtnDownloadImage"
 import BtnSaveLaboratorio from "../_button/BtnSaveLaboratorio"
 
+
 /**
  * 
  */
@@ -27,29 +28,49 @@ function FormDivergentes({ idUsuario }) {
   const [diafragma, setDiafragma] = useState(defaultDiafragma)
 
   const { mutate, error, isLoading } = usePostEnsayoDivergentes()
-  const [cambio, setCambio] = useState(true)
+
+  const [submitActivo, setSubmitActivo] = useState(true)
+
+  // Definicion de textos de helpText para tooltip
+
+  const helpText = {
+    distanciaFL:  'Distancia entre el lente y el foco',
+    distanciaLL:  'Distancia entre el lente y la pantalla',
+    distanciaLP:  'Distancia entre el lente  convergente y divergente',
+    diaframa:     'Objeto utilizado para corregir aberraciones de la lentes'
+  }
+
+  // Definicion de funciones Handle
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setCambio(current => !current)
-    const guardar = false
+    setSubmitActivo(current => !current)
+
     mutate(
-      { idUsuario, distanciaFL, distanciaLL, distanciaLP, diafragma, setCambio, guardar },
+      { 
+        idUsuario, 
+        distanciaFL, 
+        distanciaLL, 
+        distanciaLP, 
+        diafragma
+      },
       {
-        onSuccess: () => {
+        onSuccess: (e) => {
+          setTimeout(() => {
+            setSubmitActivo(current => !current)
+          }, 5000)
+
+          submitSuccess(e)
         },
-        onError: () => {
-          submitError()
-        },
+        onError: (e) => {
+          setTimeout(() => {
+            setSubmitActivo(current => !current)
+          }, 5000)
+
+          submitError(e.response.data)
+        }
       }
     )
-  }
-
-  const informacion = {
-    distanciaLente: 'distancia entre el lente y el foco',
-    distanciaPantalla: 'distancia entre el lente y la pantalla',
-    distanciaLenteLente: 'distancia entre el lente  convergente y divergente',
-    diaframa: 'objeto utilizado para corregir aberraciones de la lentes'
   }
 
   return (
@@ -63,7 +84,7 @@ function FormDivergentes({ idUsuario }) {
         unit="mm"
         state={distanciaFL}
         setState={setDistanciaFL}
-        ayuda={informacion.distanciaLente}
+        helpText={helpText.distanciaFL}
       />
 
       <FormRange 
@@ -75,7 +96,7 @@ function FormDivergentes({ idUsuario }) {
         unit="mm"
         state={distanciaLL}
         setState={setDistanciaLL}
-        ayuda={informacion.distanciaLenteLente}
+        helpText={helpText.distanciaLP}
       />
       
       <FormRange 
@@ -87,7 +108,7 @@ function FormDivergentes({ idUsuario }) {
         unit="mm"
         state={distanciaLP}
         setState={setDistanciaLP}
-        ayuda={informacion.distanciaPantalla}
+        helpText={helpText.distanciaLL}
       />
 
       <FormSelect
@@ -95,11 +116,11 @@ function FormDivergentes({ idUsuario }) {
         values={tipoDiafragma}
         defaultValue={defaultDiafragma}
         setState={setDiafragma}
-        ayuda={informacion.diaframa}
+        helpText={helpText.diaframa}
       />
 
       <Row>
-        { cambio ? (
+        { submitActivo ? (
           <Col className="text-center d-grid gap-2">
             <Button variant="primary" type="submit">
               Iniciar ensayo
@@ -116,7 +137,7 @@ function FormDivergentes({ idUsuario }) {
         <Col className="text-center">
         <BtnSaveLaboratorio
             idUsuario={idUsuario}
-            setCambio={setCambio}
+            setSubmitActivo={setSubmitActivo}
             useHook={usePostEnsayoDivergentes}
             distanciaFL={distanciaFL}
             distanciaLL={distanciaLL}

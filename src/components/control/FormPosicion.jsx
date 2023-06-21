@@ -42,6 +42,16 @@ function FormPosicion({ idUsuario }) {
 
   const { mutate, error, isLoading } = usePostEnsayoPosicion()
 
+  // Definicion de textos de ayuda para tooltip
+
+  const helpText = {
+    accion:     'Se debe seleccionar si se desea escribir o leer en memoria',
+    frecuencia: 'Frecuencia en la que trabaja la comunicación',
+    direccion:  'Dirección de memoria en hexadecimal que se desea',
+    datosE:     'Datos que se desean guardar, debe ser en formato binario y hasta 8 caracteres',
+    pulsadores: 'Manda el comando al pulsador que se desea presionar si se estuviera presencial'
+  }
+
   // Definicion de funciones Handle
 
   const handleSubmit = async (e) => {
@@ -71,12 +81,10 @@ function FormPosicion({ idUsuario }) {
           }, 5000);
 
           submitError(e.response.data)
-        },
+        }
       }
     )
   }
-
-  const helpText = "Texto de ayuda"
 
   return (
     <Form className="m-3" onSubmit={handleSubmit}>

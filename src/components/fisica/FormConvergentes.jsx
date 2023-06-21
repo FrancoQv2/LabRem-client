@@ -9,50 +9,70 @@ import FormSelect from "../_form/FormSelect"
 import FormRange from "../_form/FormRange"
 
 import { usePostEnsayoConvergentes } from "../../hooks/hooksFisica"
-import { submitSuccess, submitError } from "../../libs/alerts" 
+import { submitSuccess, submitError } from "../../libs/alerts"
 
 import BtnDownloadImage from "../_button/BtnDownloadImage"
 import BtnSaveLaboratorio from "../_button/BtnSaveLaboratorio"
+
 
 /**
  * 
  */
 function FormConvergentes({ idUsuario }) {
-  const tipoDiafragma = ["Sin diafragma","Central","Periférico","Filtro rojo"] 
+  const tipoDiafragma = ["Sin diafragma", "Central", "Periférico", "Filtro rojo"]
   const defaultDiafragma = tipoDiafragma[0]
-  
+
   const [distanciaFL, setDistanciaFL] = useState(120)
   const [distanciaLP, setDistanciaLP] = useState(70)
   const [diafragma, setDiafragma] = useState(defaultDiafragma)
-  
+
   const { mutate, error, isLoading } = usePostEnsayoConvergentes()
-  const [cambio, setCambio] =useState(true)
-  
+
+  const [submitActivo, setSubmitActivo] = useState(true)
+
+  // Definicion de textos de helpText para tooltip
+
+  const helpText = {
+    distanciaFL:  'Distancia entre el lente y el foco',
+    distanciaLP:  'Distancia entre el lente y la pantalla',
+    diaframa:     'Objeto utilizado para corregir aberraciones de la lentes'
+  }
+
+  // Definicion de funciones Handle
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setCambio(current =>!current)
-    const guardar = false
+    setSubmitActivo(current => !current)
+
     mutate(
-      { idUsuario, distanciaFL, distanciaLP, diafragma, setCambio, guardar },
       {
-        onSuccess: () => {
+        idUsuario,
+        distanciaFL,
+        distanciaLP,
+        diafragma
+      },
+      {
+        onSuccess: (e) => {
+          setTimeout(() => {
+            setSubmitActivo(current => !current)
+          }, 5000)
+
+          submitSuccess(e)
         },
-        onError: () => {
-          submitError()
-        },
+        onError: (e) => {
+          setTimeout(() => {
+            setSubmitActivo(current => !current)
+          }, 5000)
+
+          submitError(e.response.data)
+        }
       }
     )
   }
 
-  const informacion = {
-    distanciaLente: 'distancia entre el lente y el foco',
-    distanciaPantalla: 'distancia entre el lente y la pantalla',
-    diaframa: 'objeto utilizado para corregir aberraciones de la lentes'
-  }
-
   return (
     <Form className="m-3" onSubmit={handleSubmit}>
-      <FormRange 
+      <FormRange
         name="distancia-lente"
         description="Distancia Foco - Lente"
         minValue="120"
@@ -61,10 +81,10 @@ function FormConvergentes({ idUsuario }) {
         unit="mm"
         state={distanciaFL}
         setState={setDistanciaFL}
-        ayuda={informacion.distanciaLente}
+        helpText={helpText.distanciaFL}
       />
-      
-      <FormRange 
+
+      <FormRange
         name="distancia-pantalla"
         description="Distancia Lente - Pantalla"
         minValue="70"
@@ -73,7 +93,7 @@ function FormConvergentes({ idUsuario }) {
         unit="mm"
         state={distanciaLP}
         setState={setDistanciaLP}
-        ayuda={informacion.distanciaPantalla}
+        helpText={helpText.distanciaLP}
       />
 
       <FormSelect
@@ -81,22 +101,22 @@ function FormConvergentes({ idUsuario }) {
         values={tipoDiafragma}
         defaultValue={defaultDiafragma}
         setState={setDiafragma}
-        ayuda={informacion.diaframa}
+        helpText={helpText.diaframa}
       />
 
       <Row>
-        { cambio ? (
+        {submitActivo ? (
           <Col className="text-center d-grid gap-2">
             <Button variant="primary" type="submit">
               Iniciar ensayo
             </Button>
           </Col>
-        ) :null }
-        
+        ) : null}
+
         <Col className="text-center">
           <BtnSaveLaboratorio
             idUsuario={idUsuario}
-            setCambio={setCambio}
+            setSubmitActivo={setSubmitActivo}
             useHook={usePostEnsayoConvergentes}
             distanciaFL={distanciaFL}
             distanciaLP={distanciaLP}
@@ -107,7 +127,7 @@ function FormConvergentes({ idUsuario }) {
         <Col className="text-center d-grid gap-2">
           <BtnDownloadImage />
         </Col>
-        
+
       </Row>
     </Form>
   )
