@@ -76,13 +76,6 @@ export function process() {
     })
 }
 
-export function submitErrorDato(message) {
-    Toast.fire({
-        icon: 'error',
-        title: message
-    })
-}
-
 export function saveSuccess() {
     Toast.fire({
         icon: 'success',
