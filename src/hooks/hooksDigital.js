@@ -5,8 +5,7 @@ import {
   getEnsayosUsuario,
   getEnsayos,
   postEnsayoUART,
-  postEnsayoI2C,
-  validarToken
+  postEnsayoI2C
 } from "../api/apiDigital";
 
 const key = "digital"
@@ -21,18 +20,16 @@ export function useEnsayosUsuario({ idLaboratorio, idUsuario }) {
 		getEnsayosUsuario
 	)
 }
+
 export function useEnsayos({ idLaboratorio }) {
 	return useQuery(
 		[key, { idLaboratorio: idLaboratorio }], getEnsayos)
 }
+
 export function usePostEnsayoUART() {
 	return useMutation(postEnsayoUART)
 }
 
 export function usePostEnsayoI2C() {
 	return useMutation(postEnsayoI2C)
-}
-
-export function ValidarToken() {
-	return validarToken();
 }

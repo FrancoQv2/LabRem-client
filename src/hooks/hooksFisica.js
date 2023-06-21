@@ -5,8 +5,7 @@ import {
   getEnsayosUsuario,
   getEnsayos,
   postEnsayoConvergentes,
-  postEnsayoDivergentes,
-  validarToken
+  postEnsayoDivergentes
 } from "../api/apiFisica";
 
 const key = "fisica"
@@ -31,8 +30,4 @@ export function usePostEnsayoConvergentes() {
 
 export function usePostEnsayoDivergentes() {
 	return useMutation(postEnsayoDivergentes)
-}
-
-export function ValidarToken() {
-	return validarToken();
 }
