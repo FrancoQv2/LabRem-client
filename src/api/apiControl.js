@@ -76,6 +76,10 @@ export const postEnsayoSubmuestreo = async ({
     return response.data
 }
 
+//-----------------------------------------------------
+// Laboratorio - Posicion
+//-----------------------------------------------------
+
 export const postEnsayoPosicion = async ({
     idUsuario,
     anguloMotor,

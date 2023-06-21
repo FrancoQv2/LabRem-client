@@ -1,5 +1,4 @@
 import axios from "axios"
-import { process, submitSuccess, submitErrorDato, saveSuccess } from "../libs/alerts"
 
 const API_DIGITAL = "http://localhost:3034/api/digital"
 
@@ -14,6 +13,7 @@ export const getInfoLaboratorio = async ({ queryKey }) => {
     const { data } = await axios.get(URL, {
         idLaboratorio: idLaboratorio,
     })
+    console.log(data)
 
     return data
 }
@@ -27,6 +27,7 @@ export const getEnsayosUsuario = async ({ queryKey }) => {
             idLaboratorio: idLaboratorio,
             idUsuario: idUsuario,
         })
+        console.log(data)
 
         return data
     } catch (error) {
@@ -39,9 +40,11 @@ export const getEnsayos = async ({ queryKey }) => {
     try {
         const [_, { idLaboratorio }] = queryKey
         const URL = `${API_DIGITAL}/ensayos/${idLaboratorio}`
+
         const { data } = await axios.get(URL, {
             idLaboratorio: idLaboratorio
         })
+        console.log(data)
 
         return data
     } catch (error) {
@@ -61,32 +64,23 @@ export const postEnsayoUART = async ({
     paridad,
     bitsParada,
     pulsadores,
-    mensaje,
-    setCambio,
+    mensaje
 }) => {
     const newEnsayoUart = {
-        idUsuario: idUsuario,
-        velocidad: parseInt(velocidad),
-        bitsDatos: bitsDatos,
+        idUsuario:  idUsuario,
+        velocidad:  parseInt(velocidad),
+        bitsDatos:  bitsDatos,
         bitsParada: bitsParada,
-        paridad: paridad,
+        paridad:    paridad,
         pulsadores: pulsadores,
-        mensaje: mensaje,
-        siguiente: false
+        mensaje:    mensaje,
+        siguiente:  false
     }
+    console.log(newEnsayoUart)
 
-    const { data } = await axios.post(`${API_DIGITAL}/uart`, newEnsayoUart)
+    const response = await axios.post(`${API_DIGITAL}/uart`, newEnsayoUart)
 
-    setCambio(current => !current)
-    if (data.msg === "Parámetros correctos. Guardado en DB") {
-        let msj = 'Ensayo Realizado con Exito'
-        submitSuccess(msj)
-    } else {
-        console.log("entra por incorrecto")
-        submitErrorDato(data)
-    }
-    
-    return data
+    return response.data
 }
 
 //-----------------------------------------------------
@@ -99,50 +93,24 @@ export const postEnsayoI2C = async ({
     direccionMemoria,
     accion,
     datos,
-    setCambio
+    pulsadores
 }) => {
-    let newEnsayo = {
-        idUsuario: idUsuario,
-        accion: accion,
+    const newEnsayo = {
+        idUsuario:  idUsuario,
+        accion:     accion,
         frecuencia: frecuencia,
-        direccion: direccionMemoria,
-        datos: datos,
-        siguiente: false
+        direccion:  direccionMemoria,
+        datos:      datos,
+        pulsadores: pulsadores,
     }
-
-    if (accion === "Lectura") {
-        newEnsayo.datos = "-"
-    }
-
+    
     if (accion === "Escritura") {
         newEnsayo.datos = datos.padStart(8, "0")
     }
+    
+    console.log(newEnsayo)
+    
+    const response = await axios.post(`${API_DIGITAL}/i2c`, newEnsayo)
 
-    // process()
-    const { data } = await axios.post(`${API_DIGITAL}/i2c`, newEnsayo, {
-        headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-        }
-    })
-
-    setCambio(current => !current)
-    console.log(data)
-    if (data === "guardado en base de datos") {
-        submitSuccess("realizado con exito")
-    } else {
-        submitErrorDato(data)
-    }
-
-    return data
-}
-
-export const validarToken = async () => {
-    const dat = {
-        siguiente: true
-    }
-    const headers = {
-        headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') },
-    }
-    const respuesta = await axios.post("http://localhost:3034/api/digital/verificar", dat, headers)
-    return respuesta.status == 200
+    return response.data
 }

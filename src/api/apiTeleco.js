@@ -1,5 +1,4 @@
 import axios from "axios"
-import { process, submitSuccess, submitErrorDato, saveSuccess } from "../libs/alerts"
 
 const API_TELECO = "http://localhost:3033/api/teleco"
 
@@ -8,31 +7,34 @@ const API_TELECO = "http://localhost:3033/api/teleco"
 //-----------------------------------------------------
 
 export const getInfoLaboratorio = async ({ queryKey }) => {
-    const [_, { idLaboratorio }] = queryKey
-
-    const URL = `${API_TELECO}/${idLaboratorio}`
-
-    const { data } = await axios.get(URL, {
-        idLaboratorio: idLaboratorio,
-    })
-
-    console.log(data);
-    return data
+    try {
+        
+        const [_, { idLaboratorio }] = queryKey
+        const URL = `${API_TELECO}/${idLaboratorio}`
+        
+        const { data } = await axios.get(URL, {
+            idLaboratorio: idLaboratorio,
+        })
+        console.log(data)
+        
+        return data
+    } catch (error) {
+        console.error(error)
+    }
 }
 
 export const getEnsayosUsuario = async ({ queryKey }) => {
     try {
-    const [_, { idLaboratorio, idUsuario }] = queryKey
+        const [_, { idLaboratorio, idUsuario }] = queryKey
+        const URL = `${API_TELECO}/${idLaboratorio}/${idUsuario}`
 
-    const URL = `${API_TELECO}/${idLaboratorio}/${idUsuario}`
+        const { data } = await axios.get(URL, {
+            idLaboratorio: idLaboratorio,
+            idUsuario: idUsuario,
+        })
+        console.log(data)
 
-    const { data } = await axios.get(URL, {
-        idLaboratorio: idLaboratorio,
-        idUsuario: idUsuario,
-    })
-    console.log(data)
-
-    return data
+        return data
     } catch (error) {
         console.error(error)
         return []
@@ -41,15 +43,15 @@ export const getEnsayosUsuario = async ({ queryKey }) => {
 
 export const getEnsayos = async ({ queryKey }) => {
     try {
-    const [_, { idLaboratorio }] = queryKey
+        const [_, { idLaboratorio }] = queryKey
+        const URL = `${API_TELECO}/ensayos/${idLaboratorio}`
 
-    const URL = `${API_TELECO}/ensayos/${idLaboratorio}`
+        const { data } = await axios.get(URL, {
+            idLaboratorio: idLaboratorio
+        })
+        console.log(data)
 
-    const { data } = await axios.get(URL, {
-        idLaboratorio: idLaboratorio
-    })
-
-    return data
+        return data
     } catch (error) {
         console.error(error)
         return []
@@ -60,63 +62,55 @@ export const getEnsayos = async ({ queryKey }) => {
 // Laboratorio - Enlace Wifi
 //-----------------------------------------------------
 
-export const postEnsayoWifi = async ({ idUsuario, elevacion, azimut, setcambio }) => {
+export const postEnsayoWifi = async ({ 
+    idUsuario, 
+    elevacion, 
+    azimut 
+}) => {
     const newEnsayoWifi = {
-        idUsuario: idUsuario,
-        elevacion: parseInt(elevacion),
-        azimut: parseInt(azimut),
+        idUsuario:  idUsuario,
+        elevacion:  parseInt(elevacion),
+        azimut:     parseInt(azimut),
     }
+    console.log(newEnsayoWifi)
 
-    process()
-
-    let response
+    const { data } = await axios.post(`${API_TELECO}/wifi`, newEnsayoWifi)
     
-    try {
-        response = await axios.post(`${API_TELECO}/wifi`, newEnsayoWifi)
-        console.log(response)
-        console.log(response.data)
+    return data
 
-        if (response.status === 200) {
-            setcambio(current => !current)
-            submitSuccess(response.data.msg)
-        } else {
-            submitErrorDato(response.data.msg)
-        }
-
-    } catch (error) {
-        console.log(error)
-    }
-
-    return response
+    // process()
+    // let response
+    // try {
+    //     response = await axios.post(`${API_TELECO}/wifi`, newEnsayoWifi)
+    //     console.log(response)
+    //     console.log(response.data)
+    // } catch (error) {
+    //     console.log(error)
+    // }
+    // return response
 }
 
 //-----------------------------------------------------
 // Laboratorio - Enlace Radio
 //-----------------------------------------------------
 
-// export const getEnsayosRadio = async () => {
-//     const { data } = await axios.get(`${API_TELECO}/radio`)
-//     return data
-// }
-
 export const postEnsayoRadio = async ({
     idUsuario,
     modulacion,
     codificacion,
     intensidadMin,
-    intensidadMax,
+    intensidadMax
 }) => {
     const newEnsayoRadio = {
-        idUsuario: idUsuario,
-        tipoModulacion: parseInt(modulacion),
-        tipoCodificacion: parseInt(codificacion),
-        intensidadMin: parseInt(intensidadMin),
-        intensidadMax: parseInt(intensidadMax),
+        idUsuario:          idUsuario,
+        tipoModulacion:     modulacion,
+        tipoCodificacion:   parseInt(codificacion),
+        intensidadMin:      parseInt(intensidadMin),
+        intensidadMax:      parseInt(intensidadMax),
     }
-
     console.log(newEnsayoRadio)
 
     const { data } = await axios.post(`${API_TELECO}/radio`, newEnsayoRadio)
-    console.log(data)
+    
     return data
 }
