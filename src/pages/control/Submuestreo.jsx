@@ -21,6 +21,7 @@ import { headersSubmuestreo as tableHeaders } from "../../libs/tableHeaders"
 
 import image from "../../assets/estroboscopico.jpg"
 
+
 /**
  * 
  */
@@ -71,7 +72,6 @@ function Submuestreo() {
               {showForm ? (
                 <Card id="lab-form">
                   <Card.Body>
-                    {/* <Card.Title>Ingrese los datos</Card.Title> */}
                     <FormSubmuestreo idUsuario={idUsuario} />
                   </Card.Body>
                 </Card>

@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { UserContext } from "../../context/UserContext"
 
 import Container from "react-bootstrap/Container"
 import Card from "react-bootstrap/Card"
@@ -26,20 +27,13 @@ import imgWifi from "../../assets/teleco_wifi.jpg"
 
 
 /**
- * -----------------------------------------------------
- * Componente EnlaceWifi
- * -----------------------------------------------------
- * @return Pagina del laboratorio de Enlace Wifi
+ * 
  */
 function EnlaceWifi() {
+  const { idLaboratorio, idUsuario, esProfesor } = useContext(UserContext)
+
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
-
-  const idLaboratorio = 1
-  const idUsuario = 2
-
-  // TODO: Definir con Atilio como me lo manda para saber que es un profesor de fisica y no de otra area
-  const prof = false
 
   const onClickTabs = () => {
     setShowForm(!showForm)
@@ -85,7 +79,6 @@ function EnlaceWifi() {
               {showForm ? (
                 <Card id="lab-form">
                   <Card.Body>
-                    <Card.Title>Ingrese los datos</Card.Title>
                     <FormWifi idUsuario={idUsuario} />
                   </Card.Body>
                 </Card>
@@ -94,7 +87,6 @@ function EnlaceWifi() {
               {showResults ? (
                 <Card id="lab-results">
                   <Card.Body>
-                    <Card.Title>Ensayos realizados</Card.Title>
                     <TableQueryPaginated
                       idLaboratorio={idLaboratorio}
                       idUsuario={idUsuario}
@@ -113,7 +105,7 @@ function EnlaceWifi() {
                   exportToProfe={useEnsayos}
                   idLaboratorio={idLaboratorio}
                   idUsuario={idUsuario}
-                  Prof={prof}
+                  esProfesor={esProfesor}
                   filename={"ensayos-wifi"}
                   componentRef={componentRef}
               />

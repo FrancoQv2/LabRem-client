@@ -21,6 +21,7 @@ import { headersPosicion as tableHeaders } from "../../libs/tableHeaders"
 
 import image from "../../assets/posicion.jpg"
 
+
 /**
  * 
  */
@@ -71,7 +72,6 @@ function Estroboscopica() {
               {showForm ? (
                 <Card id="lab-form">
                   <Card.Body>
-                    {/* <Card.Title>Ingrese los datos</Card.Title> */}
                     <FormPosicion idUsuario={idUsuario} />
                   </Card.Body>
                 </Card>

@@ -15,53 +15,22 @@ import FormDivergentes from "../../components/fisica/FormDivergentes"
 import TableQueryPaginated from "../../components/common/TableQueryPaginated"
 import ExportResults from "../../components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos, ValidarToken } from "../../hooks/hooksFisica"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/hooksFisica"
 
 import { headersDivergentes as tableHeaders } from "../../libs/tableHeaders"
 
-import { useLocation } from 'react-router-dom'
-
 import imgDiv from "../../assets/lente-divergente.png"
-import Button from "react-bootstrap/Button"
-import Badge from 'react-bootstrap/Badge';
+
 
 /**
  * 
  */
 function LentesDivergentes() {
   const { idLaboratorio, idUsuario, esProfesor } = useContext(UserContext)
+
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
   const [componentRef, setComponentRef] = useState({})
-
-
-   //logica de token
-   const searchParams = new URLSearchParams(useLocation().search)
-   let token = searchParams.get('token')
-   
-   if (token == null) {
-     token = localStorage.getItem('token')
-   }
-   localStorage.setItem('token', token)
-   const [validacion, setValidar] = useState(false)
- 
-   ValidarToken().then(response => {
-     setValidar(response)
-   })
- 
-   // if (!validacion) {
-   //   Cookies.remove('nombreUsuario')
-   // }
-   // console.log(!Cookies.get('reload'))
-   // if (!Cookies.get('reload')) {
-   //   Cookies.set('reload', 'cargado')
-   //   window.location.reload()
-   // }
-   const handler = async () => {
-     window.location.href = 'https://www.google.com.ar'
-   }
-   //final de logica token
-
 
   const onClickTabs = () => {
     setShowForm(!showForm)
@@ -74,7 +43,6 @@ function LentesDivergentes() {
    * -----------------------------------------------------
    */
   return (
-    validacion ? (
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
       <LabInformation
         imagen={imgDiv}
@@ -139,15 +107,6 @@ function LentesDivergentes() {
         </Col>
       </Row>
     </Container>
-    ) :
-    <Container>
-    <h2>
-      <Badge bg="secondary">No autorizado o Token expirado</Badge>
-    </h2>
-    <Button variant="primary" size="lg" onClick={handler}>
-      Login
-    </Button>
-  </Container>
   )
 }
 

@@ -17,11 +17,9 @@ import Posicion from "./pages/control/Posicion"
 
 import HomePage from "./pages/home/HomePage.jsx"
 
-import Cookies from 'js-cookie'
-
 function App() {
 	const user = {
-		idLaboratorio:  2,
+		idLaboratorio:  1,
 		idUsuario: 		2,
 		nombreApellido: "Nombre Apellido",
 		esProfesor: 	false
