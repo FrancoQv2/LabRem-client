@@ -1,5 +1,5 @@
 import Button from "react-bootstrap/Button"
-import { getDateNow } from "../../libs/datetime.js"
+import { getDateNow } from "@libs/datetime.js"
 
 function BtnDownloadImage() {
   const url = 'http://192.168.100.126:8080/photo.jpg'

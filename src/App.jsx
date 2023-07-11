@@ -1,21 +1,21 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { UserContext } from "./context/UserContext.js"
+import { UserContext } from "@context/UserContext.js"
 
-import RootLayout from "./layouts/RootLayout.jsx"
+import RootLayout from "@layouts/RootLayout.jsx"
 
-import EnlaceWifi from "./pages/teleco/EnlaceWifi.jsx"
-import EnlaceRadio from "./pages/teleco/EnlaceRadio.jsx"
+import EnlaceWifi from "@pages/teleco/EnlaceWifi.jsx"
+import EnlaceRadio from "@pages/teleco/EnlaceRadio.jsx"
 
-import LentesConvergentes from "./pages/fisica/LentesConvergentes"
-import LentesDivergentes from "./pages/fisica/LentesDivergentes"
+import LentesConvergentes from "@pages/fisica/LentesConvergentes"
+import LentesDivergentes from "@pages/fisica/LentesDivergentes"
 
-import TxRxUART from "./pages/digital/TxRxUART"
-import TxRxI2C from "./pages/digital/TxRxI2C"
+import TxRxUART from "@pages/digital/TxRxUART"
+import TxRxI2C from "@pages/digital/TxRxI2C"
 
-import Submuestreo from "./pages/control/Submuestreo.jsx"
-import Posicion from "./pages/control/Posicion"
+import Submuestreo from "@pages/control/Submuestreo.jsx"
+import Posicion from "@pages/control/Posicion"
 
-import HomePage from "./pages/home/HomePage.jsx"
+import HomePage from "@pages/home/HomePage.jsx"
 
 function App() {
 	const user = {

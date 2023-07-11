@@ -6,7 +6,7 @@ import {
     getEnsayos,
     postEnsayoSubmuestreo,
     postEnsayoPosicion
-} from "../api/apiControl"
+} from "@api/apiControl"
 
 const key = "control"
 

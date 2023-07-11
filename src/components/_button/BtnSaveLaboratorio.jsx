@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button"
 
-import { submitSuccess, submitError } from "../../libs/alerts"
+import { submitSuccess, submitError } from "@libs/alerts"
 
 function FormSave({ idUsuario, setCambio, useHook, ...params }) {
   const { mutate, error, isLoading } = useHook()

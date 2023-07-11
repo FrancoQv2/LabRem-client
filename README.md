@@ -21,13 +21,22 @@
 Esto facilita un poco el trabajo, pero tendría más sentido si los componentes como el `form` y `table` fueran genéricos, de manera que se puedan renderizar solamente con los parámetros que se les pasen como props.
 Actualmente tenemos un par de estos componentes para cada laboratorio.
 
-### Inicializar el proyecto
+---
 
+# Desarrollo
+
+### Instalar dependencias del proyecto y correrlo
+
+```bash
+pnpm install
+
+pnpm start
 ```
-npm install
-npm start
+
+### Compilar el proyecto para producción y visualizarlo en el navegador
+
+```bash
+pnpm run build
+
+pnpm run preview
 ```
-
-### Build para deployar
-
-Próximamente...

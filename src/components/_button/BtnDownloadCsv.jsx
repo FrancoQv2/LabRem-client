@@ -6,7 +6,7 @@ import {
     downloadCsvSuccess,
     downloadCsvInfo,
     downloadCsvError,
-} from "../../libs/alerts"
+} from "@libs/alerts"
 
 
 /**

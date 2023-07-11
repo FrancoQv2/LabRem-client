@@ -5,13 +5,13 @@ import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 
-import { usePostEnsayoUART } from "../../hooks/hooksDigital"
-import { submitSuccess, submitError } from "../../libs/alerts"
+import { usePostEnsayoUART } from "@hooks/hooksDigital"
+import { submitSuccess, submitError } from "@libs/alerts"
 
-import FormText from "../_form/FormText"
-import FormSelect from "../_form/FormSelect"
-import FormBtnGroup from "../_form/FormBtnGroup"
-import BtnDownloadImage from "../_button/BtnDownloadImage"
+import FormText from "@components/_form/FormText"
+import FormSelect from "@components/_form/FormSelect"
+import FormBtnGroup from "@components/_form/FormBtnGroup"
+import BtnDownloadImage from "@components/_button/BtnDownloadImage"
 
 
 /**

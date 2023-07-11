@@ -6,7 +6,7 @@ import {
     downloadPngSuccess,
     downloadPngInfo,
     downloadPngError,
-} from "../../libs/alerts"
+} from "@libs/alerts"
 
 
 /**

@@ -6,7 +6,7 @@ import {
   getEnsayos,
   postEnsayoConvergentes,
   postEnsayoDivergentes
-} from "../api/apiFisica";
+} from "@api/apiFisica";
 
 const key = "fisica"
 

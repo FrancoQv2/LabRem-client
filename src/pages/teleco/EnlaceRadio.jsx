@@ -1,25 +1,25 @@
 import { useContext, useState } from "react"
-import { UserContext } from "../../context/UserContext"
+import { UserContext } from "@context/UserContext"
 
 import Container from "react-bootstrap/Container"
 import Card from "react-bootstrap/Card"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 
-import LabInformation from "../../components/common/LabInformation"
-import LabVideoStreaming from "../../components/common/LabVideoStreaming"
+import LabInformation from "@components/common/LabInformation"
+import LabVideoStreaming from "@components/common/LabVideoStreaming"
 
-import FormHeader from "../../components/_form/FormHeader"
-import FormRadio from "../../components/teleco/FormRadio"
+import FormHeader from "@components/_form/FormHeader"
+import FormRadio from "@components/teleco/FormRadio"
 
-import TableQueryPaginated from "../../components/common/TableQueryPaginated"
-import ExportResults from "../../components/common/ExportResults"
+import TableQueryPaginated from "@components/common/TableQueryPaginated"
+import ExportResults from "@components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/hooksTeleco"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "@hooks/hooksTeleco"
 
-import { headersRadio as tableHeaders } from "../../libs/tableHeaders"
+import { headersRadio as tableHeaders } from "@libs/tableHeaders"
 
-import imgRadio from "../../assets/teleco_radio.png"
+import imgRadio from "@assets/teleco_radio.png"
 
 
 /**

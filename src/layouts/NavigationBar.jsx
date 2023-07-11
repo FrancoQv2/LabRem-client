@@ -1,10 +1,10 @@
 import { useContext } from "react"
-import { UserContext } from "../context/UserContext"
+import { UserContext } from "@context/UserContext"
 
 import Container from "react-bootstrap/Container"
 import Navbar from "react-bootstrap/Navbar"
 
-import logoUNT from "../assets/logoUNT.png"
+import logoUNT from "@assets/logoUNT.png"
 
 const title = "Laboratorios Remotos"
 

@@ -1,25 +1,25 @@
 import { useContext, useState } from "react"
-import { UserContext } from "../../context/UserContext"
+import { UserContext } from "@context/UserContext"
 
 import Container from "react-bootstrap/Container"
 import Card from "react-bootstrap/Card"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 
-import LabInformation from "../../components/common/LabInformation"
-import LabVideoStreaming from "../../components/common/LabVideoStreaming"
+import LabInformation from "@components/common/LabInformation"
+import LabVideoStreaming from "@components/common/LabVideoStreaming"
 
-import FormHeader from "../../components/_form/FormHeader"
-import FormConvergentes from "../../components/fisica/FormConvergentes"
+import FormHeader from "@components/_form/FormHeader"
+import FormConvergentes from "@components/fisica/FormConvergentes"
 
-import TableQueryPaginated from "../../components/common/TableQueryPaginated"
-import ExportResults from "../../components/common/ExportResults"
+import TableQueryPaginated from "@components/common/TableQueryPaginated"
+import ExportResults from "@components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/hooksFisica"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "@hooks/hooksFisica"
 
-import { headersConvergentes as tableHeaders } from "../../libs/tableHeaders"
+import { headersConvergentes as tableHeaders } from "@libs/tableHeaders"
 
-import imgConv from "../../assets/lente-convergente.jpg"
+import imgConv from "@assets/lente-convergente.jpg"
 
 
 /**

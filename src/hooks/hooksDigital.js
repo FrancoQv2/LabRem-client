@@ -6,7 +6,7 @@ import {
   getEnsayos,
   postEnsayoUART,
   postEnsayoI2C
-} from "../api/apiDigital";
+} from "@api/apiDigital";
 
 const key = "digital"
 

@@ -5,14 +5,14 @@ import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 
-import { usePostEnsayoI2C } from "../../hooks/hooksDigital"
-import { submitSuccess, submitError } from "../../libs/alerts"
+import { usePostEnsayoI2C } from "@hooks/hooksDigital"
+import { submitSuccess, submitError } from "@libs/alerts"
 
-import FormSelect from "../_form/FormSelect"
-import FormBtnGroup from "../_form/FormBtnGroup"
-import BtnDownloadImage from "../_button/BtnDownloadImage" 
-import FormTextHexa from "../_form/FormTextHexa"
-import FormTextBinary from "../_form/FormTextBinary"
+import FormSelect from "@components/_form/FormSelect"
+import FormBtnGroup from "@components/_form/FormBtnGroup"
+import BtnDownloadImage from "@components/_button/BtnDownloadImage" 
+import FormTextHexa from "@components/_form/FormTextHexa"
+import FormTextBinary from "@components/_form/FormTextBinary"
 
 /**
  * 

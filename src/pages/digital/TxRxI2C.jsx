@@ -1,25 +1,25 @@
 import { useContext, useState } from "react"
-import { UserContext } from "../../context/UserContext"
+import { UserContext } from "@context/UserContext"
 
 import Container from "react-bootstrap/Container"
 import Card from "react-bootstrap/Card"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 
-import LabInformation from "../../components/common/LabInformation"
-import LabVideoStreaming from "../../components/common/LabVideoStreaming"
+import LabInformation from "@components/common/LabInformation"
+import LabVideoStreaming from "@components/common/LabVideoStreaming"
 
-import FormHeader from "../../components/_form/FormHeader"
-import FormI2C from "../../components/digital/FormI2C"
+import FormHeader from "@components/_form/FormHeader"
+import FormI2C from "@components/digital/FormI2C"
 
-import TableQueryPaginated from "../../components/common/TableQueryPaginated"
-import ExportResults from "../../components/common/ExportResults"
+import TableQueryPaginated from "@components/common/TableQueryPaginated"
+import ExportResults from "@components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/hooksDigital"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "@hooks/hooksDigital"
 
-import { headersI2C as tableHeaders } from "../../libs/tableHeaders"
+import { headersI2C as tableHeaders } from "@libs/tableHeaders"
 
-import imgI2C from "../../assets/i2c.webp"
+import imgI2C from "@assets/i2c.webp"
 
 
 /**

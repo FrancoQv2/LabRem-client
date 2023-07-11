@@ -7,16 +7,16 @@ import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import Container from "react-bootstrap/Container"
 
-import FormText from "../_form/FormText"
-import FormRange from "../_form/FormRange"
-import FormSelect from "../_form/FormSelect"
+import FormText from "@components/_form/FormText"
+import FormRange from "@components/_form/FormRange"
+import FormSelect from "@components/_form/FormSelect"
 
-import BtnDownloadImage from "../_button/BtnDownloadImage"
-import BtnSaveLaboratorio from "../_button/BtnSaveLaboratorio"
+import BtnDownloadImage from "@components/_button/BtnDownloadImage"
+import BtnSaveLaboratorio from "@components/_button/BtnSaveLaboratorio"
 
-import { usePostEnsayoPosicion } from "../../hooks/hooksControl"
-import { submitSuccess, submitError } from "../../libs/alerts"
-import FormTooltip from "../_form/FormTooltip"
+import { usePostEnsayoPosicion } from "@hooks/hooksControl"
+import { submitSuccess, submitError } from "@libs/alerts"
+import FormTooltip from "@components/_form/FormTooltip"
 
 /**
  * 

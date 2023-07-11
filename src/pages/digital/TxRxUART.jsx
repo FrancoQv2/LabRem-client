@@ -1,25 +1,25 @@
 import { useContext, useState } from "react"
-import { UserContext } from "../../context/UserContext"
+import { UserContext } from "@context/UserContext"
 
 import Container from "react-bootstrap/Container"
 import Card from "react-bootstrap/Card"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 
-import LabInformation from "../../components/common/LabInformation"
-import LabVideoStreaming from "../../components/common/LabVideoStreaming"
+import LabInformation from "@components/common/LabInformation"
+import LabVideoStreaming from "@components/common/LabVideoStreaming"
 
-import FormHeader from "../../components/_form/FormHeader"
-import FormUART from "../../components/digital/FormUART"
+import FormHeader from "@components/_form/FormHeader"
+import FormUART from "@components/digital/FormUART"
 
-import TableQueryPaginated from "../../components/common/TableQueryPaginated"
-import ExportResults from "../../components/common/ExportResults"
+import TableQueryPaginated from "@components/common/TableQueryPaginated"
+import ExportResults from "@components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/hooksDigital"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "@hooks/hooksDigital"
 
-import { headersUART as tableHeaders } from "../../libs/tableHeaders"
+import { headersUART as tableHeaders } from "@libs/tableHeaders"
 
-import imgUART from "../../assets/uart.png"
+import imgUART from "@assets/uart.png"
 
 
 /**

@@ -2,7 +2,7 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Button from "react-bootstrap/Button"
 
-import { getDateNow } from "../../libs/datetime.js"
+import { getDateNow } from "@libs/datetime.js"
 
 import BtnDownloadPng from "./BtnDownloadPng.jsx"
 import BtnDownloadCsv from "./BtnDownloadCsv.jsx"

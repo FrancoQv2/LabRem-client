@@ -1,29 +1,29 @@
 import { useContext, useState } from "react"
-import { UserContext } from "../../context/UserContext"
+import { UserContext } from "@context/UserContext"
 
 import Container from "react-bootstrap/Container"
 import Card from "react-bootstrap/Card"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 
-import LabInformation from "../../components/common/LabInformation"
-import LabVideoStreaming from "../../components/common/LabVideoStreaming"
+import LabInformation from "@components/common/LabInformation"
+import LabVideoStreaming from "@components/common/LabVideoStreaming"
 
-import FormHeader from "../../components/_form/FormHeader"
-import FormWifi from "../../components/teleco/FormWifi"
+import FormHeader from "@components/_form/FormHeader"
+import FormWifi from "@components/teleco/FormWifi"
 
-import TableQueryPaginated from "../../components/common/TableQueryPaginated"
-import ExportResults from "../../components/common/ExportResults"
+import TableQueryPaginated from "@components/common/TableQueryPaginated"
+import ExportResults from "@components/common/ExportResults"
 
 import {
   useInfoLaboratorio,
   useEnsayosUsuario,
   useEnsayos,
-} from "../../hooks/hooksTeleco"
+} from "@hooks/hooksTeleco"
 
-import { headersWifi as tableHeaders } from "../../libs/tableHeaders"
+import { headersWifi as tableHeaders } from "@libs/tableHeaders"
 
-import imgWifi from "../../assets/teleco_wifi.jpg"
+import imgWifi from "@assets/teleco_wifi.jpg"
 
 
 /**

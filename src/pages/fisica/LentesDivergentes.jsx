@@ -1,25 +1,25 @@
 import { useContext, useState } from "react"
-import { UserContext } from "../../context/UserContext"
+import { UserContext } from "@context/UserContext"
 
 import Container from "react-bootstrap/Container"
 import Card from "react-bootstrap/Card"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 
-import LabInformation from "../../components/common/LabInformation"
-import LabVideoStreaming from "../../components/common/LabVideoStreaming"
+import LabInformation from "@components/common/LabInformation"
+import LabVideoStreaming from "@components/common/LabVideoStreaming"
 
-import FormHeader from "../../components/_form/FormHeader"
-import FormDivergentes from "../../components/fisica/FormDivergentes"
+import FormHeader from "@components/_form/FormHeader"
+import FormDivergentes from "@components/fisica/FormDivergentes"
 
-import TableQueryPaginated from "../../components/common/TableQueryPaginated"
-import ExportResults from "../../components/common/ExportResults"
+import TableQueryPaginated from "@components/common/TableQueryPaginated"
+import ExportResults from "@components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/hooksFisica"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "@hooks/hooksFisica"
 
-import { headersDivergentes as tableHeaders } from "../../libs/tableHeaders"
+import { headersDivergentes as tableHeaders } from "@libs/tableHeaders"
 
-import imgDiv from "../../assets/lente-divergente.png"
+import imgDiv from "@assets/lente-divergente.png"
 
 
 /**

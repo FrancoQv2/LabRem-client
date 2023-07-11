@@ -5,14 +5,14 @@ import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 
-import FormSelect from "../_form/FormSelect"
-import FormRange from "../_form/FormRange"
+import FormSelect from "@components/_form/FormSelect"
+import FormRange from "@components/_form/FormRange"
 
-import { usePostEnsayoDivergentes } from "../../hooks/hooksFisica"
-import { submitSuccess, submitError } from "../../libs/alerts"
+import { usePostEnsayoDivergentes } from "@hooks/hooksFisica"
+import { submitSuccess, submitError } from "@libs/alerts"
 
-import BtnDownloadImage from "../_button/BtnDownloadImage"
-import BtnSaveLaboratorio from "../_button/BtnSaveLaboratorio"
+import BtnDownloadImage from "@components/_button/BtnDownloadImage"
+import BtnSaveLaboratorio from "@components/_button/BtnSaveLaboratorio"
 
 
 /**

@@ -1,25 +1,25 @@
 import { useContext, useState } from "react"
-import { UserContext } from "../../context/UserContext"
+import { UserContext } from "@context/UserContext"
 
 import Container from "react-bootstrap/Container"
 import Card from "react-bootstrap/Card"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 
-import LabInformation from "../../components/common/LabInformation"
-import LabVideoStreaming from "../../components/common/LabVideoStreaming"
+import LabInformation from "@components/common/LabInformation"
+import LabVideoStreaming from "@components/common/LabVideoStreaming"
 
-import FormHeader from "../../components/_form/FormHeader"
-import FormPosicion from "../../components/control/FormPosicion"
+import FormHeader from "@components/_form/FormHeader"
+import FormPosicion from "@components/control/FormPosicion"
 
-import TableQueryPaginated from "../../components/common/TableQueryPaginated"
-import ExportResults from "../../components/common/ExportResults"
+import TableQueryPaginated from "@components/common/TableQueryPaginated"
+import ExportResults from "@components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "../../hooks/hooksControl"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "@hooks/hooksControl"
 
-import { headersPosicion as tableHeaders } from "../../libs/tableHeaders"
+import { headersPosicion as tableHeaders } from "@libs/tableHeaders"
 
-import image from "../../assets/posicion.jpg"
+import image from "@assets/posicion.jpg"
 
 
 /**

@@ -2,13 +2,13 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Button from "react-bootstrap/Button"
 
-import { getDateNow } from "../../libs/datetime.js"
+import { getDateNow } from "@libs/datetime.js"
 
-import BtnDownloadPng from "../_button/BtnDownloadPng.jsx"
-import BtnDownloadCsv from "../_button/BtnDownloadCsv.jsx"
+import BtnDownloadPng from "@components/_button/BtnDownloadPng.jsx"
+import BtnDownloadCsv from "@components/_button/BtnDownloadCsv.jsx"
 
 // Necesario para no realizar la query más de una vez
-import BtnDownloadCsvProf from "../_button/BtnDownloadCsvProf.jsx"
+import BtnDownloadCsvProf from "@components/_button/BtnDownloadCsvProf.jsx"
 
 /**
  * Este componente realiza dos acciones:

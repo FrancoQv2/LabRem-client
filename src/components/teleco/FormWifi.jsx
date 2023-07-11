@@ -5,11 +5,11 @@ import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 
-import FormRange from "../_form/FormRange"
-import BtnDownloadImage from "../_button/BtnDownloadImage"
+import FormRange from "@components/_form/FormRange"
+import BtnDownloadImage from "@components/_button/BtnDownloadImage"
 
-import { usePostEnsayoWifi } from "../../hooks/hooksTeleco"
-import { submitSuccess, submitError } from "../../libs/alerts"
+import { usePostEnsayoWifi } from "@hooks/hooksTeleco"
+import { submitSuccess, submitError } from "@libs/alerts"
 
 /**
  * 
