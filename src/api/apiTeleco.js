@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API_TELECO = "http://localhost:3033/api/teleco"
+const API_TELECO = import.meta.env.VITE_API_TELECO
 
 //-----------------------------------------------------
 // Laboratorios - Teleco

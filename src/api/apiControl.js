@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API_CONTROL = "http://localhost:3031/api/control"
+const API_CONTROL = import.meta.env.VITE_API_CONTROL
 
 //-----------------------------------------------------
 // Laboratorios - Automatización y Control

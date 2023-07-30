@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API_DIGITAL = "http://localhost:3034/api/digital"
+const API_DIGITAL = import.meta.env.VITE_API_DIGITAL
 
 //-----------------------------------------------------
 // Laboratorios - Sistemas Digitales

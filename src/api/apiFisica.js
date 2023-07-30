@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API_FISICA = "http://localhost:3032/api/fisica"
+const API_FISICA = import.meta.env.VITE_API_FISICA
 
 //-----------------------------------------------------
 // Laboratorios - Fisica
