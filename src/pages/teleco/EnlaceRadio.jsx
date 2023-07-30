@@ -26,7 +26,8 @@ import imgRadio from "@assets/teleco_radio.png"
  * 
  */
 function EnlaceRadio() {
-  const { idLaboratorio, idUsuario, esProfesor } = useContext(UserContext)
+  const idLaboratorio = 2
+  const { idUsuario, esProfesor } = useContext(UserContext)
 
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
@@ -58,7 +59,7 @@ function EnlaceRadio() {
           sm={12}
           lg={5}
         >
-          <LabVideoStreaming />
+          <LabVideoStreaming url={import.meta.env.VITE_CAMERA_TELECO} />
         </Col>
 
         <Col sm={12} lg={7}>

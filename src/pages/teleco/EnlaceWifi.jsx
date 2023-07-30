@@ -30,7 +30,8 @@ import imgWifi from "@assets/teleco_wifi.jpg"
  * 
  */
 function EnlaceWifi() {
-  const { idLaboratorio, idUsuario, esProfesor } = useContext(UserContext)
+  const idLaboratorio = 1
+  const { idUsuario, esProfesor } = useContext(UserContext)
 
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
@@ -63,7 +64,7 @@ function EnlaceWifi() {
           sm={12}
           lg={5}
         >
-          <LabVideoStreaming />
+          <LabVideoStreaming url={import.meta.env.VITE_CAMERA_TELECO} />
         </Col>
 
         <Col sm={12} lg={7}>

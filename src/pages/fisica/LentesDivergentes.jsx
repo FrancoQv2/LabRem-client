@@ -21,12 +21,14 @@ import { headersDivergentes as tableHeaders } from "@libs/tableHeaders"
 
 import imgDiv from "@assets/lente-divergente.png"
 
+import VideoPlayer from "@components/common/VideoPlayer"
 
 /**
  * 
  */
 function LentesDivergentes() {
-  const { idLaboratorio, idUsuario, esProfesor } = useContext(UserContext)
+  const idLaboratorio = 2
+  const { idUsuario, esProfesor } = useContext(UserContext)
 
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
@@ -36,6 +38,8 @@ function LentesDivergentes() {
     setShowForm(!showForm)
     setShowResults(!showResults)
   }
+
+  const camera_url = import.meta.env.VITE_CAMERA_FISICA
 
   /**
    * -----------------------------------------------------
@@ -57,7 +61,8 @@ function LentesDivergentes() {
           sm={12}
           lg={5}
         >
-          <LabVideoStreaming />
+          {/* <LabVideoStreaming url={camera_url} /> */}
+          <VideoPlayer camera_url={camera_url}/>
         </Col>
 
         <Col sm={12} lg={7}>
