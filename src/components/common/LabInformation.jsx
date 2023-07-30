@@ -1,8 +1,9 @@
-import { Fragment } from 'react'
 import Container from "react-bootstrap/Container"
 import Accordion from "react-bootstrap/Accordion"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
+
+import parse from 'html-react-parser'
 
 /**
  * @param {object} Lab
@@ -39,14 +40,7 @@ function LabInformation({ imagen, idLaboratorio, useInfoLaboratorio }) {
 										/>
 									</Col>
 									<Col sm={12} lg={8}>
-										<div>
-											{data.descripcion.split('\\n').map((line, index) => (
-												<Fragment key={index}>
-													{line}
-													<br />
-												</Fragment>
-											))}
-										</div>
+										{parse(data.descripcion)}
 									</Col>
 								</Row>
 							</Accordion.Body>
