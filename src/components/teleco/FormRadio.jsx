@@ -39,10 +39,10 @@ function FormRadio({ idUsuario }) {
   // Definicion de textos de ayuda para tooltip
 
   const helpText = {
-    modulacion:     'Se debe seleccionar si se desea escribir o leer en memoria',
-    codificacion:   'Frecuencia en la que trabaja la comunicación',
-    intensidadMin:  'Dirección de memoria en hexadecimal que se desea',
-    intensidadMax:  'Datos que se desean guardar, debe ser en formato binario y hasta 8 caracteres',
+    modulacion:     'Es la modulación en ampliturd, frecuencia o fase establecida para la comunicación.',
+    codificacion:   'Tipo codificación que utiliza la comunicación',
+    intensidadMin:  'Potencia mínima a utilizar por el transmisor.',
+    intensidadMax:  'Potencia máxima a utilizar por el transmisor.',
   }
   
   // Definicion de funciones Handle
@@ -97,7 +97,7 @@ function FormRadio({ idUsuario }) {
       />
 
       <FormSelect
-        name="Intensidad Mínima [ dB ]"
+        name="Intensidad Mínima [ dBm ]"
         values={tipoIntensidadMin}
         defaultValue={defaultIntensidadMin}
         setState={setIntensidadMin}
@@ -105,7 +105,7 @@ function FormRadio({ idUsuario }) {
       />
 
       <FormSelect
-        name="Intensidad Máxima [ dB ]"
+        name="Intensidad Máxima [ dBm ]"
         values={tipoIntensidadMax}
         defaultValue={defaultIntensidadMax}
         setState={setIntensidadMax}
@@ -126,10 +126,6 @@ function FormRadio({ idUsuario }) {
             </Button>
           </Col>
         )}
-
-        <Col className="text-center d-grid gap-2">
-          <BtnDownloadImage />
-        </Col>
       </Row>
     </Form>
   )

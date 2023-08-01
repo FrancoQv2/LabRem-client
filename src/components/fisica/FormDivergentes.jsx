@@ -36,7 +36,7 @@ function FormDivergentes({ idUsuario }) {
   const helpText = {
     distanciaFL:  'Distancia entre el lente y el foco',
     distanciaLL:  'Distancia entre el lente y la pantalla',
-    distanciaLP:  'Distancia entre el lente  convergente y divergente',
+    distanciaLP:  'Distancia entre el lente convergente y divergente',
     diaframa:     'Objeto utilizado para corregir aberraciones de la lentes'
   }
 

@@ -4,10 +4,11 @@ import Button from "react-bootstrap/Button"
 
 import { getDateNow } from "@libs/datetime.js"
 
-import BtnDownloadPng from "./BtnDownloadPng.jsx"
 import BtnDownloadCsv from "./BtnDownloadCsv.jsx"
 
-
+/**
+ * 
+ */
 function BtnDownloadCsvProf({ useHookProf, idLaboratorio, filename, componentRef }) {
     const options = {
         staleTime: Infinity,
@@ -22,9 +23,9 @@ function BtnDownloadCsvProf({ useHookProf, idLaboratorio, filename, componentRef
         <>
             <br></br>
             <Row>
-                <Col>
+                <Col className="text-center d-grid gap-2">
                     <Button variant="secondary" disabled>
-                        todos los resultados
+                        Exportar todos los resultados
                     </Button>
                 </Col>
 
@@ -37,7 +38,7 @@ function BtnDownloadCsvProf({ useHookProf, idLaboratorio, filename, componentRef
                         />
                     ) : (
                         <Button variant="secondary" className="mx-2" disabled>
-                            csv total
+                            csv
                         </Button>
                     )}
                 </Col>

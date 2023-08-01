@@ -67,7 +67,11 @@ function FormSubmuestreo({ idUsuario }) {
     )
   }
 
-  const helpText = "Texto de ayuda"
+  const helpText = {
+    frecuenciaAgua: 'Valor de frecuencia de oscilación lateral del agua.',
+    frecuenciaLuz: 'Valor de frecuencia de la luz estroboscópica a la que se ilumina el agua.',
+    caidaAgua: 'Control para dejar o no pasar el agua.',
+  }
 
   return (
     <Form className="m-3" onSubmit={handleSubmit}>
@@ -78,7 +82,7 @@ function FormSubmuestreo({ idUsuario }) {
         showLimit={false}
         state={frecuenciaAgua}
         setState={setFrecuenciaAgua}
-        helpText={helpText}
+        helpText={helpText.frecuenciaAgua}
       />
 
       <FormText
@@ -87,7 +91,7 @@ function FormSubmuestreo({ idUsuario }) {
         showLimit={false}
         state={frecuenciaLuz}
         setState={setFrecuenciaLuz}
-        helpText={helpText}
+        helpText={helpText.frecuenciaLuz}
       />
 
       <FormSelect
@@ -95,7 +99,7 @@ function FormSubmuestreo({ idUsuario }) {
         values={valuesCaida}
         defaultValue={defaultCaida}
         setState={setCaida}
-        helpText={helpText}
+        helpText={helpText.caidaAgua}
       />
 
       <Row>

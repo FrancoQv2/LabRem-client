@@ -21,8 +21,8 @@ function App() {
 	const user = {
 		idLaboratorio:  1,
 		idUsuario: 		2,
-		nombreApellido: "Nombre Apellido",
-		esProfesor: 	false
+		nombreApellido: "Franco Quevedo",
+		esProfesor: 	true
 	}
 
 	return (

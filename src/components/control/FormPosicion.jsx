@@ -42,16 +42,6 @@ function FormPosicion({ idUsuario }) {
 
   const { mutate, error, isLoading } = usePostEnsayoPosicion()
 
-  // Definicion de textos de ayuda para tooltip
-
-  const helpText = {
-    accion:     'Se debe seleccionar si se desea escribir o leer en memoria',
-    frecuencia: 'Frecuencia en la que trabaja la comunicación',
-    direccion:  'Dirección de memoria en hexadecimal que se desea',
-    datosE:     'Datos que se desean guardar, debe ser en formato binario y hasta 8 caracteres',
-    pulsadores: 'Manda el comando al pulsador que se desea presionar si se estuviera presencial'
-  }
-
   // Definicion de funciones Handle
 
   const handleSubmit = async (e) => {
@@ -86,16 +76,29 @@ function FormPosicion({ idUsuario }) {
     )
   }
 
+  // Definicion de textos de ayuda para tooltip
+
+  const helpText = {
+    motor: "Motor",
+    driver: "A la electrónica del driver del motor se le pueden agregar modificaciones por software",
+    controlador: "El controlador también es configurable por software. Recibe las señales temporales de referencia y de feedback.",
+    anguloMotor: 'Posición angular del eje de salida.',
+    rapidezMotor: 'Rapidez de cambio del motor.',
+    modificacionesDriver: 'Modificaciones que se le pueden agregar al driver.',
+    anguloControlador: '-',
+    rapidezControlador: '-'
+  }
+
   return (
     <Form className="m-3" onSubmit={handleSubmit}>
 
       <Container className="border border-secondary rounded px-4 pt-3">
         <Card.Subtitle>
           <FormTooltip
-            helpText={helpText}
+            helpText={helpText.motor}
           >
           </FormTooltip>
-          Motor y Tren reductor
+          Motor eléctrico y Tren reductor
         </Card.Subtitle>
         <FormRange
           name="elevacion"
@@ -106,7 +109,7 @@ function FormPosicion({ idUsuario }) {
           unit="°"
           state={anguloMotor}
           setState={setAnguloMotor}
-          helpText={helpText}
+          helpText={helpText.anguloMotor}
         />
         <FormText
           name="Rapidez de cambio"
@@ -114,7 +117,7 @@ function FormPosicion({ idUsuario }) {
           showLimit={false}
           state={rapidezMotor}
           setState={setRapidezMotor}
-          helpText={helpText}
+          helpText={helpText.rapidezMotor}
         />
       </Container>
 
@@ -123,7 +126,7 @@ function FormPosicion({ idUsuario }) {
       <Container className="border border-secondary rounded px-4 pt-3">
         <Card.Subtitle>
           <FormTooltip
-            helpText={helpText}
+            helpText={helpText.driver}
           >
           </FormTooltip>
           Driver del Motor
@@ -133,7 +136,7 @@ function FormPosicion({ idUsuario }) {
           values={valueDriver}
           defaultValue={defaultDriver}
           setState={setModificacionesDriver}
-          helpText={helpText}
+          helpText={helpText.modificacionesDriver}
         />
       </Container>
 
@@ -142,7 +145,7 @@ function FormPosicion({ idUsuario }) {
       <Container className="border border-secondary rounded px-4 pt-3">
         <Card.Subtitle>
           <FormTooltip
-            helpText={helpText}
+            helpText={helpText.controlador}
           >
           </FormTooltip>
           Controlador
@@ -156,7 +159,7 @@ function FormPosicion({ idUsuario }) {
           unit="°"
           state={anguloControlador}
           setState={setAnguloControlador}
-          helpText={helpText}
+          helpText={helpText.anguloControlador}
         />
         <FormText
           name="Rapidez de cambio"
@@ -164,7 +167,7 @@ function FormPosicion({ idUsuario }) {
           showLimit={false}
           state={rapidezControlador}
           setState={setRapidezControlador}
-          helpText={helpText}
+          helpText={helpText.rapidezControlador}
         />
       </Container>
 

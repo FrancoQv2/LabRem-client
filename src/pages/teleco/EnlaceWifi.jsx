@@ -8,6 +8,7 @@ import Col from "react-bootstrap/Col"
 
 import LabInformation from "@components/common/LabInformation"
 import LabVideoStreaming from "@components/common/LabVideoStreaming"
+import VideoPlayer from "@components/common/VideoPlayer"
 
 import FormHeader from "@components/_form/FormHeader"
 import FormWifi from "@components/teleco/FormWifi"
@@ -43,6 +44,8 @@ function EnlaceWifi() {
 
   const [componentRef, setComponentRef] = useState({})
 
+  const camera_url = import.meta.env.VITE_CAMERA_DIGITAL
+
   /**
    * -----------------------------------------------------
    * Renderizado del componente
@@ -58,13 +61,15 @@ function EnlaceWifi() {
       <hr />
 
       {/* <Row className="m-2" style={{height: 600}}> */}
-      <Row className="m-2">
+      <Row className="m-2 d-flex justify-content-center">
+
         <Col
           className="d-flex justify-content-center align-items-center"
           sm={12}
           lg={5}
         >
-          <LabVideoStreaming url={import.meta.env.VITE_CAMERA_TELECO} />
+          {/* <LabVideoStreaming url={camera_url} /> */}
+          <VideoPlayer camera_url={camera_url}/>
         </Col>
 
         <Col sm={12} lg={7}>

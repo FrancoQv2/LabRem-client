@@ -20,7 +20,7 @@ import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "@hooks/hooksC
 
 import { headersSubmuestreo as tableHeaders } from "@libs/tableHeaders"
 
-import image from "@assets/estroboscopico.jpg"
+import image from "@assets/estroboscopico.png"
 
 
 /**

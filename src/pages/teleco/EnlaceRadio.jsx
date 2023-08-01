@@ -53,16 +53,9 @@ function EnlaceRadio() {
       ></LabInformation>
       <hr />
 
-      <Row className="m-2">
-        <Col
-          className="d-flex justify-content-center align-items-center"
-          sm={12}
-          lg={5}
-        >
-          <LabVideoStreaming url={import.meta.env.VITE_CAMERA_TELECO} />
-        </Col>
+      <Row className="m-2 d-flex justify-content-center">
 
-        <Col sm={12} lg={7}>
+        <Col sm={12} lg={10}>
           <Card>
             <FormHeader
               onClickTabs={onClickTabs}

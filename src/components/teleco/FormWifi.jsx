@@ -25,8 +25,8 @@ function FormWifi({ idUsuario }) {
   // Definicion de textos de ayuda para tooltip
 
   const helpText = {
-    elevacion: 'Se debe seleccionar si se desea escribir o leer en memoria',
-    azimut: 'Frecuencia en la que trabaja la comunicación'
+    elevacion: 'Es el ángulo vertical medido desde el plano horizontal hasta la línea de visión entre las dos antenas.',
+    azimut: 'Es el ángulo horizontal medido desde una referencia fija (generalmente el norte) en sentido horario hasta la dirección en la que apunta la antena.'
   }
 
   // Definicion de funciones Handle
@@ -100,10 +100,6 @@ function FormWifi({ idUsuario }) {
             </Button>
           </Col>
         )}
-
-        <Col className="text-center d-grid gap-2">
-          <BtnDownloadImage />
-        </Col>
       </Row>
     </Form>
   )
