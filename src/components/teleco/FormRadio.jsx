@@ -126,6 +126,9 @@ function FormRadio({ idUsuario }) {
             </Button>
           </Col>
         )}
+        <Col className="text-center d-grid gap-2">
+          <BtnDownloadImage />
+        </Col>
       </Row>
     </Form>
   )

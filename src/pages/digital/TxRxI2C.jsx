@@ -77,7 +77,6 @@ function TxRxI2C() {
               {showForm ? (
                 <Card id="lab-form">
                   <Card.Body>
-                    <Card.Title>Ingrese los datos</Card.Title>
                     <FormI2C idUsuario={idUsuario} />
                   </Card.Body>
                 </Card>

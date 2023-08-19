@@ -8,6 +8,7 @@ import Col from "react-bootstrap/Col"
 
 import LabInformation from "@components/common/LabInformation"
 import LabVideoStreaming from "@components/common/LabVideoStreaming"
+import VideoPlayer from "@components/common/VideoPlayer"
 
 import FormHeader from "@components/_form/FormHeader"
 import FormRadio from "@components/teleco/FormRadio"
@@ -39,6 +40,8 @@ function EnlaceRadio() {
 
   const [componentRef, setComponentRef] = useState({})
 
+  const camera_url = import.meta.env.VITE_CAMERA_DIGITAL
+
   /**
    * -----------------------------------------------------
    * Renderizado del componente
@@ -55,7 +58,16 @@ function EnlaceRadio() {
 
       <Row className="m-2 d-flex justify-content-center">
 
-        <Col sm={12} lg={10}>
+        <Col
+          className="d-flex justify-content-center align-items-center"
+          sm={12}
+          lg={5}
+        >
+          {/* <LabVideoStreaming url={camera_url} /> */}
+          <VideoPlayer camera_url={camera_url}/>
+        </Col>
+
+        <Col sm={12} lg={7}>
           <Card>
             <FormHeader
               onClickTabs={onClickTabs}
