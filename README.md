@@ -28,15 +28,15 @@ Actualmente tenemos un par de estos componentes para cada laboratorio.
 ### Instalar dependencias del proyecto y correrlo
 
 ```bash
-pnpm install
+npm install
 
-pnpm start
+npm start
 ```
 
 ### Compilar el proyecto para producción y visualizarlo en el navegador
 
 ```bash
-pnpm run build
+npm run build
 
-pnpm run preview
+npm run preview
 ```

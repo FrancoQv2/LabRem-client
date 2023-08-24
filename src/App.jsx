@@ -18,36 +18,68 @@ import Posicion from "@pages/control/Posicion"
 import HomePage from "@pages/home/HomePage.jsx"
 
 function App() {
-	const user = {
-		idLaboratorio:  1,
-		idUsuario: 		2,
-		nombreApellido: "Franco Quevedo",
-		esProfesor: 	true
-	}
+  const user = {
+    idLaboratorio: 1,
+    idUsuario: 2,
+    nombreApellido: "Franco Quevedo",
+    esProfesor: true,
+  }
 
-	return (
-		<BrowserRouter>
-			<UserContext.Provider value={user}>
-				<RootLayout>
-					<Routes>
-						<Route exact path="/" element={<HomePage />}></Route>
+  return (
+    <BrowserRouter>
+      <UserContext.Provider value={user}>
+        <RootLayout>
+          <Routes>
+            <Route exact path="/" element={<HomePage />}></Route>
 
-						<Route exact path="/telecomunicaciones/enlace-wifi" element={<EnlaceWifi />}></Route>
-						<Route exact path="/telecomunicaciones/enlace-radio" element={<EnlaceRadio />}></Route>
+            <Route
+              exact
+              path="/telecomunicaciones/enlace-wifi"
+              element={<EnlaceWifi />}
+            ></Route>
+            <Route
+              exact
+              path="/telecomunicaciones/enlace-radio"
+              element={<EnlaceRadio />}
+            ></Route>
 
-						<Route exact path="/fisica-experimental-basica/lentes-convergentes" element={<LentesConvergentes />}></Route>
-						<Route exact path="/fisica-experimental-basica/lentes-divergentes" element={<LentesDivergentes />}></Route>
+            <Route
+              exact
+              path="/fisica-experimental-basica/lentes-convergentes"
+              element={<LentesConvergentes />}
+            ></Route>
+            <Route
+              exact
+              path="/fisica-experimental-basica/lentes-divergentes"
+              element={<LentesDivergentes />}
+            ></Route>
 
-						<Route exact path="/sistemas-digitales/uart" element={<TxRxUART />}></Route>
-						<Route exact path="/sistemas-digitales/i2c" element={<TxRxI2C />}></Route>
+            <Route
+              exact
+              path="/sistemas-digitales/uart"
+              element={<TxRxUART />}
+            ></Route>
+            <Route
+              exact
+              path="/sistemas-digitales/i2c"
+              element={<TxRxI2C />}
+            ></Route>
 
-						<Route exact path="/automatizacion-control/submuestreo" element={<Submuestreo />}></Route>
-						<Route exact path="/automatizacion-control/posicion" element={<Posicion />}></Route>
-					</Routes>
-				</RootLayout>
-			</UserContext.Provider>
-		</BrowserRouter>
-	)
+            <Route
+              exact
+              path="/automatizacion-control/submuestreo"
+              element={<Submuestreo />}
+            ></Route>
+            <Route
+              exact
+              path="/automatizacion-control/posicion"
+              element={<Posicion />}
+            ></Route>
+          </Routes>
+        </RootLayout>
+      </UserContext.Provider>
+    </BrowserRouter>
+  )
 }
 
 export default App

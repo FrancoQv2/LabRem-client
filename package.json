@@ -9,12 +9,18 @@
     "Franco Quevedo <francoq96@gmail.com> (https://github.com/FrancoQv2)",
     "Gianluca Berarducci <gianlucaberarducci@gmail.com> (https://github.com/Gian1110)"
   ],
+  "scripts": {
+    "start": "vite",
+    "build": "vite build --mode production",
+    "preview": "vite preview"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "6.4.0",
     "@fortawesome/free-solid-svg-icons": "6.4.0",
     "@fortawesome/react-fontawesome": "0.2.0",
     "axios": "0.27.2",
     "bootstrap": "5.3.0",
+    "dotenv": "^16.3.1",
     "html-react-parser": "^4.2.0",
     "jsmpeg-player": "^3.0.3",
     "react": "18.2.0",
@@ -28,11 +34,6 @@
     "react-table": "7.8.0",
     "sweetalert2": "11.7.12",
     "vite-plugin-svgr": "3.2.0"
-  },
-  "scripts": {
-    "start": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "4.0.1",
