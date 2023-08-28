@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API_FISICA = `${import.meta.env.VITE_URL_LABREM}/api/fisica`
+const API_FISICA = import.meta.env.VITE_API_FISICA
 
 //-----------------------------------------------------
 // Laboratorios - Fisica
