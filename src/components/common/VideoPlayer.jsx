@@ -7,6 +7,7 @@ const VideoPlayer = ({camera_url}) => {
     // const url = `ws://${document.location.hostname}:8082/`
     const url = `ws://${camera_url}/`
     const player = new JSMpeg.Player(url, { canvas: canvas })
+    console.log(url);
 
     return () => {
       player.destroy() // Clean up the player when the component unmounts
