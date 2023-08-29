@@ -18,12 +18,12 @@ import Posicion from "@pages/control/Posicion"
 import HomePage from "@pages/home/HomePage.jsx"
 
 function App() {
-  // const user = {
-  //   idLaboratorio: 1,
-  //   idUsuario: 2,
-  //   nombreApellido: "Franco Quevedo",
-  //   esProfesor: true,
-  // }
+  const user = {
+    idLaboratorio: 1,
+    idUsuario: 2,
+    nombreApellido: "Franco Quevedo",
+    esProfesor: true,
+  }
 
   const params = new URLSearchParams(window.location.search)
   const token = params.get('token')
@@ -60,7 +60,7 @@ function App() {
       break;
   }
 
-  const user = {
+  const user2 = {
     idUsuario:      decodedToken.usuario.idUsuario,
     nombreApellido: `${decodedToken.usuario.nombre} ${decodedToken.usuario.apellido}`,
     // esProfesor:     decodedToken.usuario.rolSuperior,
@@ -68,7 +68,7 @@ function App() {
     idLaboratorio:  idLaboratorio,
   }
 
-  console.log(user)
+  console.log(user2)
 
   return (
     <BrowserRouter>
