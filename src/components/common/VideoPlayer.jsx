@@ -5,7 +5,7 @@ const VideoPlayer = ({camera_url}) => {
   useEffect(() => {
     const canvas = document.getElementById('video-canvas')
     // const url = `ws://${document.location.hostname}:8082/`
-    const url = `ws://${camera_url}/`
+    const url = camera_url
     const player = new JSMpeg.Player(url, { canvas: canvas })
     console.log(url);
 
