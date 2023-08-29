@@ -44,7 +44,7 @@ function EnlaceWifi() {
 
   const [componentRef, setComponentRef] = useState({})
 
-  const camera_url = import.meta.env.VITE_CAMERA_DIGITAL
+  const camera_url = import.meta.env.VITE_CAMERA_TELECO
 
   /**
    * -----------------------------------------------------
