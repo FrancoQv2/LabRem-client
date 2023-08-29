@@ -17,6 +17,8 @@ import Posicion from "@pages/control/Posicion"
 
 import HomePage from "@pages/home/HomePage.jsx"
 
+import jwt from 'jsonwebtoken'
+
 function App() {
   const user = {
     idLaboratorio: 1,
