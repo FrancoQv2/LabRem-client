@@ -17,13 +17,60 @@ import Posicion from "@pages/control/Posicion"
 
 import HomePage from "@pages/home/HomePage.jsx"
 
+// import jwt from 'jsonwebtoken'
+
 function App() {
   const user = {
     idLaboratorio: 1,
     idUsuario: 2,
-    nombreApellido: "Franco Quevedo",
-    esProfesor: true,
+    nombreApellido: "Nombre Apellido",
+    esProfesor: false,
   }
+
+  // const params = new URLSearchParams(window.location.search)
+  // const token = params.get('token')
+
+  // const decodedToken = jwt.decode(token)
+  // console.log(decodedToken)
+
+  // let idLaboratorio
+
+  // switch (decodedToken.experiencia.idExperiencia) {
+  //   case 1:
+  //     idLaboratorio = 1 // UART
+  //     break;
+  //   case 2:
+  //     idLaboratorio = 2 // I2C
+  //     break;
+  //   case 3:
+  //     idLaboratorio = 1 // Submuestreo
+  //     break;
+  //   case 4:
+  //     idLaboratorio = 2 // Posicion
+  //     break;
+  //   case 5:
+  //     idLaboratorio = 1 // WiFi
+  //     break;
+  //   case 6:
+  //     idLaboratorio = 2 // Radio
+  //     break;
+  //   case 7:
+  //     idLaboratorio = 1 // Convergentes
+  //     break;
+  //   case 8:
+  //     idLaboratorio = 2 // Divergentes
+  //     break;
+  // }
+
+  // const user2 = {
+  //   idUsuario:      decodedToken.usuario.idUsuario,
+  //   nombreApellido: `${decodedToken.usuario.nombre} ${decodedToken.usuario.apellido}`,
+  //   // esProfesor:     decodedToken.usuario.rolSuperior,
+  //   esProfesor:     false,
+  //   idLaboratorio:  idLaboratorio,
+  // }
+
+  // console.log(user2)
 
   return (
     <BrowserRouter>
