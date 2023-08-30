@@ -63,18 +63,6 @@ function FormWifi({ idUsuario }) {
   return (
     <Form className="m-3" onSubmit={handleSubmit}>
       <FormRange
-        name="elevacion"
-        description="Ángulo de Elevación"
-        minValue="0"
-        maxValue="180"
-        step="5"
-        unit="°"
-        state={elevacion}
-        setState={setElevacion}
-        helpText={helpText.elevacion}
-      />
-
-      <FormRange
         name="azimut"
         description="Ángulo de Azimut"
         minValue="0"
@@ -86,6 +74,18 @@ function FormWifi({ idUsuario }) {
         helpText={helpText.azimut}
       />
 
+      <FormRange
+        name="elevacion"
+        description="Ángulo de Elevación"
+        minValue="0"
+        maxValue="180"
+        step="5"
+        unit="°"
+        state={elevacion}
+        setState={setElevacion}
+        helpText={helpText.elevacion}
+      />
+      
       <Row>
         {submitActivo ? (
           <Col className="text-center d-grid gap-2">
