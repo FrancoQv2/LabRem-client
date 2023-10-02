@@ -8,10 +8,10 @@ import Col from "react-bootstrap/Col"
 
 import LabInformation from "@components/common/LabInformation"
 import LabVideoStreaming from "@components/common/LabVideoStreaming"
-import VideoPlayer from "@components/common/VideoPlayer"
 
 import FormHeader from "@components/_form/FormHeader"
 import FormWifi from "@components/teleco/FormWifi"
+import WiFiSignalStrength from "@components/teleco/WiFiSignalStrength"
 
 import TableQueryPaginated from "@components/common/TableQueryPaginated"
 import ExportResults from "@components/common/ExportResults"
@@ -26,9 +26,8 @@ import { headersWifi as tableHeaders } from "@libs/tableHeaders"
 
 import imgWifi from "@assets/teleco_wifi.jpg"
 
-
 /**
- * 
+ *
  */
 function EnlaceWifi() {
   const idLaboratorio = 1
@@ -62,17 +61,20 @@ function EnlaceWifi() {
 
       {/* <Row className="m-2" style={{height: 600}}> */}
       <Row className="m-2 d-flex justify-content-center">
-
         <Col
-          className="d-flex justify-content-center align-items-center"
-          sm={12}
-          lg={5}
+          // className="d-flex justify-content-center align-items-center"
+          // className="d-flex justify-content-center align-items-center"
+          sm={12} lg={6}
         >
-          {/* <LabVideoStreaming url={camera_url} /> */}
-          <VideoPlayer camera_url={camera_url}/>
+          <LabVideoStreaming streamUrl={camera_url} className="m-2"/>
+          <hr />
+          <Row sm={12} lg={12} className="mx-0 my-1">
+            <WiFiSignalStrength />
+          </Row>
+          <hr />
         </Col>
 
-        <Col sm={12} lg={7}>
+        <Col sm={12} lg={6}>
           <Card>
             <FormHeader
               onClickTabs={onClickTabs}
@@ -107,13 +109,13 @@ function EnlaceWifi() {
 
             <Card.Footer>
               <ExportResults
-                  useHook={useEnsayosUsuario}
-                  exportToProfe={useEnsayos}
-                  idLaboratorio={idLaboratorio}
-                  idUsuario={idUsuario}
-                  esProfesor={esProfesor}
-                  filename={"ensayos-wifi"}
-                  componentRef={componentRef}
+                useHook={useEnsayosUsuario}
+                exportToProfe={useEnsayos}
+                idLaboratorio={idLaboratorio}
+                idUsuario={idUsuario}
+                esProfesor={esProfesor}
+                filename={"ensayos-wifi"}
+                componentRef={componentRef}
               />
             </Card.Footer>
           </Card>

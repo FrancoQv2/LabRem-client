@@ -101,7 +101,9 @@ function FormWifi({ idUsuario }) {
           </Col>
         )}
         <Col className="text-center d-grid gap-2">
-          <BtnDownloadImage />
+          <BtnDownloadImage 
+            url="http://192.168.1.29:8765/picture/1/current/"
+          />
         </Col>
       </Row>
     </Form>

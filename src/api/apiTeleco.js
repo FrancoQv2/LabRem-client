@@ -77,17 +77,6 @@ export const postEnsayoWifi = async ({
     const { data } = await axios.post(`${API_TELECO}/wifi`, newEnsayoWifi)
     
     return data
-
-    // process()
-    // let response
-    // try {
-    //     response = await axios.post(`${API_TELECO}/wifi`, newEnsayoWifi)
-    //     console.log(response)
-    //     console.log(response.data)
-    // } catch (error) {
-    //     console.log(error)
-    // }
-    // return response
 }
 
 //-----------------------------------------------------

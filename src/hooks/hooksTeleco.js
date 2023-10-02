@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "react-query"
+import { useQuery, useMutation } from "react-query"
 
 import {
     getInfoLaboratorio,
@@ -11,7 +11,13 @@ import {
 const key = "telecomunicaciones"
 
 export function useInfoLaboratorio(idLaboratorio) {
-    return useQuery([key, { idLaboratorio: idLaboratorio }], getInfoLaboratorio)
+    return useQuery(
+        [key, { idLaboratorio: idLaboratorio }], 
+        getInfoLaboratorio, 
+        {
+            staleTime: Infinity,
+        }
+    )
 }
 
 export function useEnsayosUsuario({ idLaboratorio, idUsuario }, options) {
@@ -24,7 +30,9 @@ export function useEnsayosUsuario({ idLaboratorio, idUsuario }, options) {
 
 export function useEnsayos({ idLaboratorio }) {
     return useQuery(
-        [key, { idLaboratorio: idLaboratorio }], getEnsayos)
+        [key, { idLaboratorio: idLaboratorio }], 
+        getEnsayos
+    )
 }
 
 export function usePostEnsayoWifi() {
