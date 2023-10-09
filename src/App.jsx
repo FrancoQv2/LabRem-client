@@ -3,17 +3,17 @@ import { UserContext } from "@context/UserContext.js"
 
 import RootLayout from "@layouts/RootLayout.jsx"
 
-import EnlaceWifi from "@pages/teleco/EnlaceWifi.jsx"
-import EnlaceRadio from "@pages/teleco/EnlaceRadio.jsx"
+import EnlaceWifi from "@modules/teleco-wifi/EnlaceWifi"
+import EnlaceRadio from "@modules/teleco-radio/EnlaceRadio"
 
-import LentesConvergentes from "@pages/fisica/LentesConvergentes"
-import LentesDivergentes from "@pages/fisica/LentesDivergentes"
+import LentesConvergentes from "@modules/fisica-convergentes/LentesConvergentes"
+import LentesDivergentes from "@modules/fisica-divergentes/LentesDivergentes"
 
-import TxRxUART from "@pages/digital/TxRxUART"
-import TxRxI2C from "@pages/digital/TxRxI2C"
+import TxRxUART from "@modules/digital-uart/TxRxUART"
+import TxRxI2C from "@modules/digital-i2c/TxRxI2C"
 
-import Submuestreo from "@pages/control/Submuestreo.jsx"
-import Posicion from "@pages/control/Posicion"
+import Submuestreo from "@modules/control-submuestreo/Submuestreo"
+import Posicion from "@modules/control-posicion/Posicion"
 
 import HomePage from "@pages/home/HomePage.jsx"
 

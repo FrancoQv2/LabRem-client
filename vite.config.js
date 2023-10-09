@@ -27,7 +27,8 @@ export default defineConfig((config) => {
         '@hooks': path.resolve(__dirname, 'src/hooks'),
         '@layouts': path.resolve(__dirname, 'src/layouts'),
         '@libs': path.resolve(__dirname, 'src/libs'),
-        '@pages': path.resolve(__dirname, 'src/pages')
+        '@modules': path.resolve(__dirname, 'src/modules'), 
+        '@pages': path.resolve(__dirname, 'src/pages'), 
       }
     },
     server: {

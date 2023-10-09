@@ -8,25 +8,25 @@ import Col from "react-bootstrap/Col"
 
 import LabInformation from "@components/common/LabInformation"
 import LabVideoStreaming from "@components/common/LabVideoStreaming"
-import VideoPlayer from "@components/common/VideoPlayer"
 
 import FormHeader from "@components/_form/FormHeader"
-import FormPosicion from "@components/control/FormPosicion"
+import FormDivergentes from "./FormDivergentes"
 
 import TableQueryPaginated from "@components/common/TableQueryPaginated"
 import ExportResults from "@components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "@hooks/hooksControl"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "@hooks/hooksFisica"
 
-import { headersPosicion as tableHeaders } from "@libs/tableHeaders"
+import { headersDivergentes as tableHeaders } from "@libs/tableHeaders"
 
-import image from "@assets/posicion.jpg"
+import imgDiv from "@assets/lente-divergente.png"
 
+import VideoPlayer from "@components/common/VideoPlayer"
 
 /**
  * 
  */
-function Estroboscopica() {
+function LentesDivergentes() {
   const idLaboratorio = 2
   const { idUsuario, esProfesor } = useContext(UserContext)
 
@@ -39,7 +39,7 @@ function Estroboscopica() {
     setShowResults(!showResults)
   }
 
-  const camera_url = import.meta.env.VITE_CAMERA_CONTROL
+  const camera_url = import.meta.env.VITE_CAMERA_FISICA
 
   /**
    * -----------------------------------------------------
@@ -49,7 +49,7 @@ function Estroboscopica() {
   return (
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
       <LabInformation
-        imagen={image}
+        imagen={imgDiv}
         idLaboratorio={idLaboratorio}
         useInfoLaboratorio={useInfoLaboratorio}
       ></LabInformation>
@@ -77,7 +77,7 @@ function Estroboscopica() {
               {showForm ? (
                 <Card id="lab-form">
                   <Card.Body>
-                    <FormPosicion idUsuario={idUsuario} />
+                    <FormDivergentes idUsuario={idUsuario} />
                   </Card.Body>
                 </Card>
               ) : null}
@@ -85,7 +85,6 @@ function Estroboscopica() {
               {showResults ? (
                 <Card id="lab-results">
                   <Card.Body>
-                    <Card.Title>Ensayos realizados</Card.Title>
                     <TableQueryPaginated
                       idLaboratorio={idLaboratorio}
                       idUsuario={idUsuario}
@@ -99,14 +98,14 @@ function Estroboscopica() {
             </Card.Body>
 
             <Card.Footer>
-              <ExportResults 
+              <ExportResults
                 useHook={useEnsayosUsuario}
-                exportToProfe={useEnsayos}
                 idLaboratorio={idLaboratorio}
                 idUsuario={idUsuario}
-                Prof={esProfesor}
-                filename={"ensayos-Posicion"}
                 componentRef={componentRef}
+                filename={"ensayos-divergentes"}
+                Prof={esProfesor}
+                exportToProfe={useEnsayos}
               />
             </Card.Footer>
           </Card>
@@ -116,4 +115,4 @@ function Estroboscopica() {
   )
 }
 
-export default Estroboscopica
+export default LentesDivergentes

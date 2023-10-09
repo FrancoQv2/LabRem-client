@@ -11,7 +11,7 @@ import LabVideoStreaming from "@components/common/LabVideoStreaming"
 import VideoPlayer from "@components/common/VideoPlayer"
 
 import FormHeader from "@components/_form/FormHeader"
-import FormSubmuestreo from "@components/control/FormSubmuestreo"
+import FormSubmuestreo from "./FormSubmuestreo"
 
 import TableQueryPaginated from "@components/common/TableQueryPaginated"
 import ExportResults from "@components/common/ExportResults"

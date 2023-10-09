@@ -10,24 +10,23 @@ import LabInformation from "@components/common/LabInformation"
 import LabVideoStreaming from "@components/common/LabVideoStreaming"
 
 import FormHeader from "@components/_form/FormHeader"
-import FormDivergentes from "@components/fisica/FormDivergentes"
+import FormUART from "./FormUART"
 
 import TableQueryPaginated from "@components/common/TableQueryPaginated"
 import ExportResults from "@components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "@hooks/hooksFisica"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "@hooks/hooksDigital"
 
-import { headersDivergentes as tableHeaders } from "@libs/tableHeaders"
+import { headersUART as tableHeaders } from "@libs/tableHeaders"
 
-import imgDiv from "@assets/lente-divergente.png"
+import imgUART from "@assets/uart.png"
 
-import VideoPlayer from "@components/common/VideoPlayer"
 
 /**
  * 
  */
-function LentesDivergentes() {
-  const idLaboratorio = 2
+function TxRxUART() {
+  const idLaboratorio = 1
   const { idUsuario, esProfesor } = useContext(UserContext)
 
   const [showForm, setShowForm] = useState(true)
@@ -39,7 +38,7 @@ function LentesDivergentes() {
     setShowResults(!showResults)
   }
 
-  const camera_url = import.meta.env.VITE_CAMERA_FISICA
+  const camera_url = import.meta.env.VITE_CAMERA_DIGITAL
 
   /**
    * -----------------------------------------------------
@@ -49,7 +48,7 @@ function LentesDivergentes() {
   return (
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
       <LabInformation
-        imagen={imgDiv}
+        imagen={imgUART}
         idLaboratorio={idLaboratorio}
         useInfoLaboratorio={useInfoLaboratorio}
       ></LabInformation>
@@ -61,8 +60,7 @@ function LentesDivergentes() {
           sm={12}
           lg={5}
         >
-          {/* <LabVideoStreaming url={camera_url} /> */}
-          <VideoPlayer camera_url={camera_url}/>
+          <LabVideoStreaming streamUrl={camera_url} />
         </Col>
 
         <Col sm={12} lg={7}>
@@ -77,7 +75,7 @@ function LentesDivergentes() {
               {showForm ? (
                 <Card id="lab-form">
                   <Card.Body>
-                    <FormDivergentes idUsuario={idUsuario} />
+                    <FormUART idUsuario={idUsuario} />
                   </Card.Body>
                 </Card>
               ) : null}
@@ -100,12 +98,12 @@ function LentesDivergentes() {
             <Card.Footer>
               <ExportResults
                 useHook={useEnsayosUsuario}
+                exportToProfe={useEnsayos}
                 idLaboratorio={idLaboratorio}
                 idUsuario={idUsuario}
-                componentRef={componentRef}
-                filename={"ensayos-divergentes"}
                 Prof={esProfesor}
-                exportToProfe={useEnsayos}
+                filename={"ensayos-uart"}
+                componentRef={componentRef}
               />
             </Card.Footer>
           </Card>
@@ -115,4 +113,4 @@ function LentesDivergentes() {
   )
 }
 
-export default LentesDivergentes
+export default TxRxUART

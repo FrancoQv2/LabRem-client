@@ -10,23 +10,23 @@ import LabInformation from "@components/common/LabInformation"
 import LabVideoStreaming from "@components/common/LabVideoStreaming"
 
 import FormHeader from "@components/_form/FormHeader"
-import FormUART from "@components/digital/FormUART"
+import FormI2C from "./FormI2C"
 
 import TableQueryPaginated from "@components/common/TableQueryPaginated"
 import ExportResults from "@components/common/ExportResults"
 
 import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "@hooks/hooksDigital"
 
-import { headersUART as tableHeaders } from "@libs/tableHeaders"
+import { headersI2C as tableHeaders } from "@libs/tableHeaders"
 
-import imgUART from "@assets/uart.png"
+import imgI2C from "@assets/i2c.webp"
 
 
 /**
  * 
  */
-function TxRxUART() {
-  const idLaboratorio = 1
+function TxRxI2C() {
+  const idLaboratorio = 2
   const { idUsuario, esProfesor } = useContext(UserContext)
 
   const [showForm, setShowForm] = useState(true)
@@ -48,7 +48,7 @@ function TxRxUART() {
   return (
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
       <LabInformation
-        imagen={imgUART}
+        imagen={imgI2C}
         idLaboratorio={idLaboratorio}
         useInfoLaboratorio={useInfoLaboratorio}
       ></LabInformation>
@@ -75,7 +75,7 @@ function TxRxUART() {
               {showForm ? (
                 <Card id="lab-form">
                   <Card.Body>
-                    <FormUART idUsuario={idUsuario} />
+                    <FormI2C idUsuario={idUsuario} />
                   </Card.Body>
                 </Card>
               ) : null}
@@ -83,6 +83,7 @@ function TxRxUART() {
               {showResults ? (
                 <Card id="lab-results">
                   <Card.Body>
+                    <Card.Title>Ensayos realizados</Card.Title>
                     <TableQueryPaginated
                       idLaboratorio={idLaboratorio}
                       idUsuario={idUsuario}
@@ -102,7 +103,7 @@ function TxRxUART() {
                 idLaboratorio={idLaboratorio}
                 idUsuario={idUsuario}
                 Prof={esProfesor}
-                filename={"ensayos-uart"}
+                filename={"ensayos-i2c"}
                 componentRef={componentRef}
               />
             </Card.Footer>
@@ -113,4 +114,4 @@ function TxRxUART() {
   )
 }
 
-export default TxRxUART
+export default TxRxI2C

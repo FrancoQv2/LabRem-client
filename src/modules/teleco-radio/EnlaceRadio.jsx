@@ -8,29 +8,26 @@ import Col from "react-bootstrap/Col"
 
 import LabInformation from "@components/common/LabInformation"
 import LabVideoStreaming from "@components/common/LabVideoStreaming"
+import VideoPlayer from "@components/common/VideoPlayer"
 
 import FormHeader from "@components/_form/FormHeader"
-import FormWifi from "@components/teleco/FormWifi"
-import WiFiSignalStrength from "@components/teleco/WiFiSignalStrength"
+import FormRadio from "./FormRadio"
 
 import TableQueryPaginated from "@components/common/TableQueryPaginated"
 import ExportResults from "@components/common/ExportResults"
 
-import {
-  useInfoLaboratorio,
-  useEnsayosUsuario,
-  useEnsayos,
-} from "@hooks/hooksTeleco"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "@hooks/hooksTeleco"
 
-import { headersWifi as tableHeaders } from "@libs/tableHeaders"
+import { headersRadio as tableHeaders } from "@libs/tableHeaders"
 
-import imgWifi from "@assets/teleco_wifi.jpg"
+import imgRadio from "@assets/teleco_radio.png"
+
 
 /**
- *
+ * 
  */
-function EnlaceWifi() {
-  const idLaboratorio = 1
+function EnlaceRadio() {
+  const idLaboratorio = 2
   const { idUsuario, esProfesor } = useContext(UserContext)
 
   const [showForm, setShowForm] = useState(true)
@@ -43,7 +40,7 @@ function EnlaceWifi() {
 
   const [componentRef, setComponentRef] = useState({})
 
-  const camera_url = import.meta.env.VITE_CAMERA_TELECO
+  const camera_url = import.meta.env.VITE_CAMERA_DIGITAL
 
   /**
    * -----------------------------------------------------
@@ -53,28 +50,24 @@ function EnlaceWifi() {
   return (
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
       <LabInformation
-        imagen={imgWifi}
+        imagen={imgRadio}
         idLaboratorio={idLaboratorio}
         useInfoLaboratorio={useInfoLaboratorio}
       ></LabInformation>
       <hr />
 
-      {/* <Row className="m-2" style={{height: 600}}> */}
       <Row className="m-2 d-flex justify-content-center">
+
         <Col
-          // className="d-flex justify-content-center align-items-center"
-          // className="d-flex justify-content-center align-items-center"
-          sm={12} lg={6}
+          className="d-flex justify-content-center align-items-center"
+          sm={12}
+          lg={5}
         >
-          <LabVideoStreaming streamUrl={camera_url} className="m-2"/>
-          <hr />
-          <Row sm={12} lg={12} className="mx-0 my-1">
-            <WiFiSignalStrength />
-          </Row>
-          <hr />
+          {/* <LabVideoStreaming url={camera_url} /> */}
+          <VideoPlayer camera_url={camera_url}/>
         </Col>
 
-        <Col sm={12} lg={6}>
+        <Col sm={12} lg={7}>
           <Card>
             <FormHeader
               onClickTabs={onClickTabs}
@@ -82,12 +75,11 @@ function EnlaceWifi() {
               showResults={showResults}
             />
 
-            {/* <Card.Body style={{height: 525}}> */}
             <Card.Body>
               {showForm ? (
                 <Card id="lab-form">
                   <Card.Body>
-                    <FormWifi idUsuario={idUsuario} />
+                    <FormRadio idUsuario={idUsuario} />
                   </Card.Body>
                 </Card>
               ) : null}
@@ -114,7 +106,7 @@ function EnlaceWifi() {
                 idLaboratorio={idLaboratorio}
                 idUsuario={idUsuario}
                 esProfesor={esProfesor}
-                filename={"ensayos-wifi"}
+                filename={"ensayos-radio"}
                 componentRef={componentRef}
               />
             </Card.Footer>
@@ -125,4 +117,4 @@ function EnlaceWifi() {
   )
 }
 
-export default EnlaceWifi
+export default EnlaceRadio

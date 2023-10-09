@@ -11,7 +11,7 @@ import LabVideoStreaming from "@components/common/LabVideoStreaming"
 import VideoPlayer from "@components/common/VideoPlayer"
 
 import FormHeader from "@components/_form/FormHeader"
-import FormConvergentes from "@components/fisica/FormConvergentes"
+import FormConvergentes from "./FormConvergentes"
 
 import TableQueryPaginated from "@components/common/TableQueryPaginated"
 import ExportResults from "@components/common/ExportResults"

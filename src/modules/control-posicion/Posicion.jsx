@@ -11,36 +11,35 @@ import LabVideoStreaming from "@components/common/LabVideoStreaming"
 import VideoPlayer from "@components/common/VideoPlayer"
 
 import FormHeader from "@components/_form/FormHeader"
-import FormRadio from "@components/teleco/FormRadio"
+import FormPosicion from "./FormPosicion"
 
 import TableQueryPaginated from "@components/common/TableQueryPaginated"
 import ExportResults from "@components/common/ExportResults"
 
-import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "@hooks/hooksTeleco"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "@hooks/hooksControl"
 
-import { headersRadio as tableHeaders } from "@libs/tableHeaders"
+import { headersPosicion as tableHeaders } from "@libs/tableHeaders"
 
-import imgRadio from "@assets/teleco_radio.png"
+import image from "@assets/posicion.jpg"
 
 
 /**
  * 
  */
-function EnlaceRadio() {
+function Estroboscopica() {
   const idLaboratorio = 2
   const { idUsuario, esProfesor } = useContext(UserContext)
 
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
+  const [componentRef, setComponentRef] = useState({})
 
   const onClickTabs = () => {
     setShowForm(!showForm)
     setShowResults(!showResults)
   }
 
-  const [componentRef, setComponentRef] = useState({})
-
-  const camera_url = import.meta.env.VITE_CAMERA_DIGITAL
+  const camera_url = import.meta.env.VITE_CAMERA_CONTROL
 
   /**
    * -----------------------------------------------------
@@ -50,14 +49,13 @@ function EnlaceRadio() {
   return (
     <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
       <LabInformation
-        imagen={imgRadio}
+        imagen={image}
         idLaboratorio={idLaboratorio}
         useInfoLaboratorio={useInfoLaboratorio}
       ></LabInformation>
       <hr />
 
-      <Row className="m-2 d-flex justify-content-center">
-
+      <Row className="m-2">
         <Col
           className="d-flex justify-content-center align-items-center"
           sm={12}
@@ -79,7 +77,7 @@ function EnlaceRadio() {
               {showForm ? (
                 <Card id="lab-form">
                   <Card.Body>
-                    <FormRadio idUsuario={idUsuario} />
+                    <FormPosicion idUsuario={idUsuario} />
                   </Card.Body>
                 </Card>
               ) : null}
@@ -87,6 +85,7 @@ function EnlaceRadio() {
               {showResults ? (
                 <Card id="lab-results">
                   <Card.Body>
+                    <Card.Title>Ensayos realizados</Card.Title>
                     <TableQueryPaginated
                       idLaboratorio={idLaboratorio}
                       idUsuario={idUsuario}
@@ -100,13 +99,13 @@ function EnlaceRadio() {
             </Card.Body>
 
             <Card.Footer>
-              <ExportResults
+              <ExportResults 
                 useHook={useEnsayosUsuario}
                 exportToProfe={useEnsayos}
                 idLaboratorio={idLaboratorio}
                 idUsuario={idUsuario}
-                esProfesor={esProfesor}
-                filename={"ensayos-radio"}
+                Prof={esProfesor}
+                filename={"ensayos-Posicion"}
                 componentRef={componentRef}
               />
             </Card.Footer>
@@ -117,4 +116,4 @@ function EnlaceRadio() {
   )
 }
 
-export default EnlaceRadio
+export default Estroboscopica
