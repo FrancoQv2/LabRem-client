@@ -12,6 +12,7 @@ import FormText from "@components/_form/FormText"
 import FormSelect from "@components/_form/FormSelect"
 import FormBtnGroup from "@components/_form/FormBtnGroup"
 import BtnDownloadImage from "@components/_button/BtnDownloadImage"
+import FileUpload from "../../components/common/FileUpload"
 
 
 /**
@@ -97,76 +98,78 @@ function FormUART({ idUsuario }) {
   }
 
   return (
-    <Form className="m-3" onSubmit={handleSubmit}>
+    <FileUpload URL={'http://127.0.0.1:3034/upload'}/>
 
-      <FormSelect
-        name="Velocidad"
-        values={valuesVelocidad}
-        defaultValue={defaultVelocidad}
-        setState={setVelocidad}
-        helpText={helpText.velocidad}
-      />
+    // <Form className="m-3" onSubmit={handleSubmit}>
 
-      <FormSelect
-        name="Cantidad de Bits de Datos"
-        values={valuesBitsDatos}
-        defaultValue={defaultBitsDatos}
-        setState={setBitsDatos}
-        helpText={helpText.bitsDatos}
-      />
+    //   <FormSelect
+    //     name="Velocidad"
+    //     values={valuesVelocidad}
+    //     defaultValue={defaultVelocidad}
+    //     setState={setVelocidad}
+    //     helpText={helpText.velocidad}
+    //   />
 
-      <FormSelect
-        name="Cantidad de Bits de Parada"
-        values={valuesBitsParada}
-        defaultValue={defaultBitsParada}
-        setState={setBitsParada}
-        helpText={helpText.parada}
-      />
+    //   <FormSelect
+    //     name="Cantidad de Bits de Datos"
+    //     values={valuesBitsDatos}
+    //     defaultValue={defaultBitsDatos}
+    //     setState={setBitsDatos}
+    //     helpText={helpText.bitsDatos}
+    //   />
 
-      <FormSelect
-        name="Tipo de Paridad"
-        values={valuesParidad}
-        defaultValue={defaultParidad}
-        setState={setParidad}
-        helpText={helpText.paridad}
-      />
+    //   <FormSelect
+    //     name="Cantidad de Bits de Parada"
+    //     values={valuesBitsParada}
+    //     defaultValue={defaultBitsParada}
+    //     setState={setBitsParada}
+    //     helpText={helpText.parada}
+    //   />
 
-      <FormBtnGroup
-        name="Pulsadores"
-        state={pulsadores}
-        setState={setPulsadores}
-        helpText={helpText.pulsadores}
-      />
+    //   <FormSelect
+    //     name="Tipo de Paridad"
+    //     values={valuesParidad}
+    //     defaultValue={defaultParidad}
+    //     setState={setParidad}
+    //     helpText={helpText.paridad}
+    //   />
 
-      <FormText
-        name="Cadena a transmitir"
-        limit={100}
-        state={mensaje}
-        setState={setMensaje}
-        helpText={helpText.text}
-      />
+    //   <FormBtnGroup
+    //     name="Pulsadores"
+    //     state={pulsadores}
+    //     setState={setPulsadores}
+    //     helpText={helpText.pulsadores}
+    //   />
 
-      <Row>
-        {submitActivo ? (
-          <Col className="text-center d-grid gap-2">
-            <Button variant="primary" type="submit">
-              Iniciar ensayo
-            </Button>
-          </Col>
-        ) : (
-          <Col className="text-center d-grid gap-2">
-            <Button disabled variant="primary" type="submit">
-              Iniciar ensayo
-            </Button>
-          </Col>
-        )}
+    //   <FormText
+    //     name="Cadena a transmitir"
+    //     limit={100}
+    //     state={mensaje}
+    //     setState={setMensaje}
+    //     helpText={helpText.text}
+    //   />
 
-        <Col className="text-center d-grid gap-2">
-          <BtnDownloadImage />
-        </Col>
+    //   <Row>
+    //     {submitActivo ? (
+    //       <Col className="text-center d-grid gap-2">
+    //         <Button variant="primary" type="submit">
+    //           Iniciar ensayo
+    //         </Button>
+    //       </Col>
+    //     ) : (
+    //       <Col className="text-center d-grid gap-2">
+    //         <Button disabled variant="primary" type="submit">
+    //           Iniciar ensayo
+    //         </Button>
+    //       </Col>
+    //     )}
 
-      </Row>
-    </Form>
+    //     <Col className="text-center d-grid gap-2">
+    //       <BtnDownloadImage />
+    //     </Col>
+
+    //   </Row>
+    // </Form>
   )
 }
 
