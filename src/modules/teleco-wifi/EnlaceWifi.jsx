@@ -44,6 +44,7 @@ function EnlaceWifi() {
   const [componentRef, setComponentRef] = useState({})
 
   const camera_url = import.meta.env.VITE_CAMERA_TELECO
+  const antenna_url = import.meta.env.VITE_TELECO_ANTENA
 
   /**
    * -----------------------------------------------------
@@ -69,7 +70,7 @@ function EnlaceWifi() {
           <LabVideoStreaming streamUrl={camera_url} className="m-2"/>
           <hr />
           <Row sm={12} lg={12} className="mx-0 my-1">
-            <WiFiSignalStrength />
+            <WiFiSignalStrength antennaUrl={antenna_url}/>
           </Row>
           <hr />
         </Col>

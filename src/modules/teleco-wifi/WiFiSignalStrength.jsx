@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 
-const WiFiSignalStrength = () => {
+const WiFiSignalStrength = ({ antennaUrl }) => {
   const [signalStrength, setSignalStrength] = useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3033/api/teleco/wifi/bullet')
+        const response = await axios.get(antennaUrl)
         const wifiData = response.data
         setSignalStrength(wifiData.signalStrength)
       } catch (error) {
