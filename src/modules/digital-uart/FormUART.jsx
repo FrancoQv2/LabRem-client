@@ -20,6 +20,9 @@ import FileUpload from "../../components/common/FileUpload"
  */
 function FormUART({ idUsuario }) {
 
+  const API_DIGITAL = import.meta.env.VITE_API_DIGITAL
+
+
   // Definicion de valores de variables
 
   const valuesVelocidad = [300, 600, 1200, 2400, 4800, 9600, 19200, 38400, 57600, 115200, 230400, 460800, 921600] // bps
@@ -98,7 +101,7 @@ function FormUART({ idUsuario }) {
   }
 
   return (
-    <FileUpload URL={'http://127.0.0.1:3034/upload'}/>
+    <FileUpload URL={`${API_DIGITAL}/upload`}/>
 
     // <Form className="m-3" onSubmit={handleSubmit}>
 
