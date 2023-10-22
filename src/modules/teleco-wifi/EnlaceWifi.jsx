@@ -62,16 +62,12 @@ function EnlaceWifi() {
 
       {/* <Row className="m-2" style={{height: 600}}> */}
       <Row className="m-2 d-flex justify-content-center">
-        <Col
-          // className="d-flex justify-content-center align-items-center"
-          // className="d-flex justify-content-center align-items-center"
-          sm={12} lg={6}
-        >
+        <Col sm={12} lg={6}>
           <LabVideoStreaming streamUrl={camera_url} className="m-2"/>
           <hr />
-          <Row sm={12} lg={12} className="mx-0 my-1">
+          {/* <Row sm={12} lg={12} className="mx-0 my-1">
             <WiFiSignalStrength antennaUrl={antenna_url}/>
-          </Row>
+          </Row> */}
           <hr />
         </Col>
 
