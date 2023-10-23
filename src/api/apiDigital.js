@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API_DIGITAL = `${import.meta.env.VITE_URL_LABREM}/api/digital`
+const API_DIGITAL = `${import.meta.env.VITE_URL_DOMAIN}:3034/api/digital`
 
 //-----------------------------------------------------
 // Laboratorios - Sistemas Digitales

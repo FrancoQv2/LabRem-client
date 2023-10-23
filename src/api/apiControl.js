@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API_CONTROL = `${import.meta.env.VITE_URL_LABREM}/api/control`
+const API_CONTROL = `${import.meta.env.VITE_URL_DOMAIN}:3031/api/control`
 
 //-----------------------------------------------------
 // Laboratorios - Automatización y Control
