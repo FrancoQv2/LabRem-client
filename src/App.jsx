@@ -19,9 +19,10 @@ import HomePage from "@pages/home/HomePage.jsx"
 
 // import jwt from 'jsonwebtoken'
 
+/**
+ *
+ */
 function App() {
-
-  const URL_ANTENA_TELECO_WIFI = import.meta.env.VITE_TELECO_ANTENA
 
   const URL_CAMARA_TELECO_WIFI  = import.meta.env.VITE_CAMERA_TELECO_WIFI
   const URL_CAMARA_TELECO_RADIO = import.meta.env.VITE_CAMERA_TELECO_RADIO
@@ -98,10 +99,7 @@ function App() {
             <Route
               exact
               path="/telecomunicaciones/enlace-wifi"
-              element={<EnlaceWifi 
-                URL_CAMARA={URL_CAMARA_TELECO_WIFI} 
-                URL_ANTENA_WIFI={URL_ANTENA_TELECO_WIFI}
-              />}
+              element={<EnlaceWifi URL_CAMARA={URL_CAMARA_TELECO_WIFI} />}
             ></Route>
             <Route
               exact
