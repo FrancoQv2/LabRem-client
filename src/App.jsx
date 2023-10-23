@@ -20,6 +20,22 @@ import HomePage from "@pages/home/HomePage.jsx"
 // import jwt from 'jsonwebtoken'
 
 function App() {
+
+  const URL_ANTENA_TELECO_WIFI = import.meta.env.VITE_TELECO_ANTENA
+
+  const URL_CAMARA_TELECO_WIFI  = import.meta.env.VITE_CAMERA_TELECO_WIFI
+  const URL_CAMARA_TELECO_RADIO = import.meta.env.VITE_CAMERA_TELECO_RADIO
+  
+  const URL_CAMARA_FISICA_CONV  = import.meta.env.VITE_CAMERA_FISICA_CONV
+  const URL_CAMARA_FISICA_DIV   = import.meta.env.VITE_CAMERA_FISICA_DIV
+
+  const URL_CAMARA_DIGITAL_UART = import.meta.env.VITE_CAMERA_DIGITAL_UART
+  const URL_CAMARA_DIGITAL_I2C  = import.meta.env.VITE_CAMERA_DIGITAL_I2C
+
+  const URL_CAMARA_CONTROL_SUBM = import.meta.env.VITE_CAMERA_CONTROL_SUBM
+  const URL_CAMARA_CONTROL_POS  = import.meta.env.VITE_CAMERA_CONTROL_POS
+
+
   const user = {
     idLaboratorio: 1,
     idUsuario: 2,
@@ -82,45 +98,48 @@ function App() {
             <Route
               exact
               path="/telecomunicaciones/enlace-wifi"
-              element={<EnlaceWifi />}
+              element={<EnlaceWifi 
+                URL_CAMARA={URL_CAMARA_TELECO_WIFI} 
+                URL_ANTENA_WIFI={URL_ANTENA_TELECO_WIFI}
+              />}
             ></Route>
             <Route
               exact
               path="/telecomunicaciones/enlace-radio"
-              element={<EnlaceRadio />}
+              element={<EnlaceRadio URL_CAMARA={URL_CAMARA_TELECO_RADIO} />}
             ></Route>
 
             <Route
               exact
               path="/fisica-experimental-basica/lentes-convergentes"
-              element={<LentesConvergentes />}
+              element={<LentesConvergentes URL_CAMARA={URL_CAMARA_FISICA_CONV} />}
             ></Route>
             <Route
               exact
               path="/fisica-experimental-basica/lentes-divergentes"
-              element={<LentesDivergentes />}
+              element={<LentesDivergentes URL_CAMARA={URL_CAMARA_FISICA_DIV} />}
             ></Route>
 
             <Route
               exact
               path="/sistemas-digitales/uart"
-              element={<TxRxUART />}
+              element={<TxRxUART URL_CAMARA={URL_CAMARA_DIGITAL_UART} />}
             ></Route>
             <Route
               exact
               path="/sistemas-digitales/i2c"
-              element={<TxRxI2C />}
+              element={<TxRxI2C URL_CAMARA={URL_CAMARA_DIGITAL_I2C} />}
             ></Route>
 
             <Route
               exact
               path="/automatizacion-control/submuestreo"
-              element={<Submuestreo />}
+              element={<Submuestreo URL_CAMARA={URL_CAMARA_CONTROL_SUBM} />}
             ></Route>
             <Route
               exact
               path="/automatizacion-control/posicion"
-              element={<Posicion />}
+              element={<Posicion URL_CAMARA={URL_CAMARA_CONTROL_POS} />}
             ></Route>
           </Routes>
         </RootLayout>

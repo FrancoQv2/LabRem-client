@@ -26,7 +26,7 @@ import VideoPlayer from "@components/common/VideoPlayer"
 /**
  * 
  */
-function LentesDivergentes() {
+function LentesDivergentes({ URL_CAMARA }) {
   const idLaboratorio = 2
   const { idUsuario, esProfesor } = useContext(UserContext)
 
@@ -38,8 +38,6 @@ function LentesDivergentes() {
     setShowForm(!showForm)
     setShowResults(!showResults)
   }
-
-  const camera_url = import.meta.env.VITE_CAMERA_FISICA
 
   /**
    * -----------------------------------------------------
@@ -61,8 +59,7 @@ function LentesDivergentes() {
           sm={12}
           lg={5}
         >
-          {/* <LabVideoStreaming url={camera_url} /> */}
-          <VideoPlayer camera_url={camera_url}/>
+          <LabVideoStreaming streamUrl={URL_CAMARA} className="m-2"/>
         </Col>
 
         <Col sm={12} lg={7}>

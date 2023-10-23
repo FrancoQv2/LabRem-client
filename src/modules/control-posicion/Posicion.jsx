@@ -8,7 +8,6 @@ import Col from "react-bootstrap/Col"
 
 import LabInformation from "@components/common/LabInformation"
 import LabVideoStreaming from "@components/common/LabVideoStreaming"
-import VideoPlayer from "@components/common/VideoPlayer"
 
 import FormHeader from "@components/_form/FormHeader"
 import FormPosicion from "./FormPosicion"
@@ -26,7 +25,7 @@ import image from "@assets/posicion.jpg"
 /**
  * 
  */
-function Estroboscopica() {
+function Posicion({ URL_CAMARA }) {
   const idLaboratorio = 2
   const { idUsuario, esProfesor } = useContext(UserContext)
 
@@ -38,8 +37,6 @@ function Estroboscopica() {
     setShowForm(!showForm)
     setShowResults(!showResults)
   }
-
-  const camera_url = import.meta.env.VITE_CAMERA_CONTROL
 
   /**
    * -----------------------------------------------------
@@ -56,13 +53,8 @@ function Estroboscopica() {
       <hr />
 
       <Row className="m-2">
-        <Col
-          className="d-flex justify-content-center align-items-center"
-          sm={12}
-          lg={5}
-        >
-          {/* <LabVideoStreaming url={camera_url} /> */}
-          <VideoPlayer camera_url={camera_url}/>
+        <Col sm={12} lg={5}>
+          <LabVideoStreaming streamUrl={URL_CAMARA} className="m-2" />
         </Col>
 
         <Col sm={12} lg={7}>
@@ -116,4 +108,4 @@ function Estroboscopica() {
   )
 }
 
-export default Estroboscopica
+export default Posicion

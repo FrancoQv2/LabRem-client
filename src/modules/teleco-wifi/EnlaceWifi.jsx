@@ -29,7 +29,7 @@ import imagen from "@assets/teleco_wifi.jpg"
 /**
  *
  */
-function EnlaceWifi() {
+function EnlaceWifi({ URL_CAMARA, URL_ANTENA_WIFI }) {
   const idLaboratorio = 1
   const { idUsuario, esProfesor } = useContext(UserContext)
 
@@ -43,8 +43,6 @@ function EnlaceWifi() {
 
   const [componentRef, setComponentRef] = useState({})
 
-  const camera_url = import.meta.env.VITE_CAMERA_TELECO
-  const antenna_url = import.meta.env.VITE_TELECO_ANTENA
 
   /**
    * -----------------------------------------------------
@@ -63,10 +61,10 @@ function EnlaceWifi() {
       {/* <Row className="m-2" style={{height: 600}}> */}
       <Row className="m-2 d-flex justify-content-center">
         <Col sm={12} lg={6}>
-          <LabVideoStreaming streamUrl={camera_url} className="m-2"/>
+          <LabVideoStreaming streamUrl={URL_CAMARA} className="m-2"/>
           <hr />
           {/* <Row sm={12} lg={12} className="mx-0 my-1">
-            <WiFiSignalStrength antennaUrl={antenna_url}/>
+            <WiFiSignalStrength antennaUrl={URL_ANTENA_WIFI}/>
           </Row> */}
           <hr />
         </Col>

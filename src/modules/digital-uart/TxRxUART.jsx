@@ -25,7 +25,7 @@ import imgUART from "@assets/uart.png"
 /**
  * 
  */
-function TxRxUART() {
+function TxRxUART({ URL_CAMARA }) {
   const idLaboratorio = 1
   const { idUsuario, esProfesor } = useContext(UserContext)
 
@@ -37,8 +37,6 @@ function TxRxUART() {
     setShowForm(!showForm)
     setShowResults(!showResults)
   }
-
-  const camera_url = import.meta.env.VITE_CAMERA_DIGITAL
 
   /**
    * -----------------------------------------------------
@@ -55,12 +53,8 @@ function TxRxUART() {
       <hr />
 
       <Row className="m-2">
-        <Col
-          className="d-flex justify-content-center align-items-center"
-          sm={12}
-          lg={5}
-        >
-          <LabVideoStreaming streamUrl={camera_url} />
+        <Col sm={12} lg={5}>
+          <LabVideoStreaming streamUrl={URL_CAMARA} className="m-2" />
         </Col>
 
         <Col sm={12} lg={7}>

@@ -8,7 +8,6 @@ import Col from "react-bootstrap/Col"
 
 import LabInformation from "@components/common/LabInformation"
 import LabVideoStreaming from "@components/common/LabVideoStreaming"
-import VideoPlayer from "@components/common/VideoPlayer"
 
 import FormHeader from "@components/_form/FormHeader"
 import FormRadio from "./FormRadio"
@@ -26,7 +25,7 @@ import imgRadio from "@assets/teleco_radio.png"
 /**
  * 
  */
-function EnlaceRadio() {
+function EnlaceRadio({ URL_CAMARA }) {
   const idLaboratorio = 2
   const { idUsuario, esProfesor } = useContext(UserContext)
 
@@ -39,8 +38,6 @@ function EnlaceRadio() {
   }
 
   const [componentRef, setComponentRef] = useState({})
-
-  const camera_url = import.meta.env.VITE_CAMERA_DIGITAL
 
   /**
    * -----------------------------------------------------
@@ -57,14 +54,8 @@ function EnlaceRadio() {
       <hr />
 
       <Row className="m-2 d-flex justify-content-center">
-
-        <Col
-          className="d-flex justify-content-center align-items-center"
-          sm={12}
-          lg={5}
-        >
-          {/* <LabVideoStreaming url={camera_url} /> */}
-          <VideoPlayer camera_url={camera_url}/>
+        <Col sm={12} lg={5}>
+          <LabVideoStreaming streamUrl={URL_CAMARA} className="m-2" />
         </Col>
 
         <Col sm={12} lg={7}>

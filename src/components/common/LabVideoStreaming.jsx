@@ -13,22 +13,22 @@ function LabVideoStreaming({ streamUrl }) {
   }
 
   return (
-    // <div style={containerStyles}>
-    //   <Ratio aspectRatio="4x3">
-    //     <iframe 
-    //       src={`${streamUrl}`} 
-    //       style={iframeStyles} 
-    //       title="Camera Stream"
-    //     />
-    //   </Ratio>
-    // </div>
-    <>
-      <img
-        src={`${streamUrl}`}
-        width='100%'
-        // border='2px solid #000'
-      />
-    </>
+    <div style={containerStyles}>
+      <Ratio aspectRatio="4x3">
+        <iframe 
+          src={`${streamUrl}`} 
+          style={iframeStyles} 
+          title="Camera Stream"
+        />
+      </Ratio>
+    </div>
+    // <>
+    //   <img
+    //     src={`${streamUrl}`}
+    //     width='100%'
+    //     // border='2px solid #000'
+    //   />
+    // </>
   )
 }
 

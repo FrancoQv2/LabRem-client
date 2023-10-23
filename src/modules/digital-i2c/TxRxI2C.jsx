@@ -25,7 +25,7 @@ import imgI2C from "@assets/i2c.webp"
 /**
  * 
  */
-function TxRxI2C() {
+function TxRxI2C({ URL_CAMARA }) {
   const idLaboratorio = 2
   const { idUsuario, esProfesor } = useContext(UserContext)
 
@@ -55,12 +55,8 @@ function TxRxI2C() {
       <hr />
 
       <Row className="m-2">
-        <Col
-          className="d-flex justify-content-center align-items-center"
-          sm={12}
-          lg={5}
-        >
-          <LabVideoStreaming streamUrl={camera_url} />
+        <Col sm={12} lg={5}>
+          <LabVideoStreaming streamUrl={URL_CAMARA} className="m-2" />
         </Col>
 
         <Col sm={12} lg={7}>
