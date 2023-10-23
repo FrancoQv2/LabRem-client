@@ -101,78 +101,78 @@ function FormUART({ idUsuario }) {
   }
 
   return (
-    <FileUpload URL={`${API_DIGITAL}/upload`}/>
+    // <FileUpload URL={`${API_DIGITAL}/upload`}/>
 
-    // <Form className="m-3" onSubmit={handleSubmit}>
+    <Form className="m-3" onSubmit={handleSubmit}>
 
-    //   <FormSelect
-    //     name="Velocidad"
-    //     values={valuesVelocidad}
-    //     defaultValue={defaultVelocidad}
-    //     setState={setVelocidad}
-    //     helpText={helpText.velocidad}
-    //   />
+      <FormSelect
+        name="Velocidad"
+        values={valuesVelocidad}
+        defaultValue={defaultVelocidad}
+        setState={setVelocidad}
+        helpText={helpText.velocidad}
+      />
 
-    //   <FormSelect
-    //     name="Cantidad de Bits de Datos"
-    //     values={valuesBitsDatos}
-    //     defaultValue={defaultBitsDatos}
-    //     setState={setBitsDatos}
-    //     helpText={helpText.bitsDatos}
-    //   />
+      <FormSelect
+        name="Cantidad de Bits de Datos"
+        values={valuesBitsDatos}
+        defaultValue={defaultBitsDatos}
+        setState={setBitsDatos}
+        helpText={helpText.bitsDatos}
+      />
 
-    //   <FormSelect
-    //     name="Cantidad de Bits de Parada"
-    //     values={valuesBitsParada}
-    //     defaultValue={defaultBitsParada}
-    //     setState={setBitsParada}
-    //     helpText={helpText.parada}
-    //   />
+      <FormSelect
+        name="Cantidad de Bits de Parada"
+        values={valuesBitsParada}
+        defaultValue={defaultBitsParada}
+        setState={setBitsParada}
+        helpText={helpText.parada}
+      />
 
-    //   <FormSelect
-    //     name="Tipo de Paridad"
-    //     values={valuesParidad}
-    //     defaultValue={defaultParidad}
-    //     setState={setParidad}
-    //     helpText={helpText.paridad}
-    //   />
+      <FormSelect
+        name="Tipo de Paridad"
+        values={valuesParidad}
+        defaultValue={defaultParidad}
+        setState={setParidad}
+        helpText={helpText.paridad}
+      />
 
-    //   <FormBtnGroup
-    //     name="Pulsadores"
-    //     state={pulsadores}
-    //     setState={setPulsadores}
-    //     helpText={helpText.pulsadores}
-    //   />
+      <FormBtnGroup
+        name="Pulsadores"
+        state={pulsadores}
+        setState={setPulsadores}
+        helpText={helpText.pulsadores}
+      />
 
-    //   <FormText
-    //     name="Cadena a transmitir"
-    //     limit={100}
-    //     state={mensaje}
-    //     setState={setMensaje}
-    //     helpText={helpText.text}
-    //   />
+      <FormText
+        name="Cadena a transmitir"
+        limit={100}
+        state={mensaje}
+        setState={setMensaje}
+        helpText={helpText.text}
+      />
 
-    //   <Row>
-    //     {submitActivo ? (
-    //       <Col className="text-center d-grid gap-2">
-    //         <Button variant="primary" type="submit">
-    //           Iniciar ensayo
-    //         </Button>
-    //       </Col>
-    //     ) : (
-    //       <Col className="text-center d-grid gap-2">
-    //         <Button disabled variant="primary" type="submit">
-    //           Iniciar ensayo
-    //         </Button>
-    //       </Col>
-    //     )}
+      <Row>
+        {submitActivo ? (
+          <Col className="text-center d-grid gap-2">
+            <Button variant="primary" type="submit">
+              Iniciar ensayo
+            </Button>
+          </Col>
+        ) : (
+          <Col className="text-center d-grid gap-2">
+            <Button disabled variant="primary" type="submit">
+              Iniciar ensayo
+            </Button>
+          </Col>
+        )}
 
-    //     <Col className="text-center d-grid gap-2">
-    //       <BtnDownloadImage />
-    //     </Col>
+        <Col className="text-center d-grid gap-2">
+          <BtnDownloadImage />
+        </Col>
 
-    //   </Row>
-    // </Form>
+      </Row>
+    </Form>
   )
 }
 
