@@ -8,6 +8,7 @@ import Col from "react-bootstrap/Col"
 
 import LabInformation from "@components/common/LabInformation"
 import LabVideoStreaming from "@components/common/LabVideoStreaming"
+import VideoPlayer from "@components/common/VideoPlayer"
 
 import FormHeader from "@components/_form/FormHeader"
 import FormDivergentes from "./FormDivergentes"
@@ -59,7 +60,8 @@ function LentesDivergentes({ URL_CAMARA }) {
           sm={12}
           lg={5}
         >
-          <LabVideoStreaming streamUrl={URL_CAMARA} className="m-2"/>
+          {/* <LabVideoStreaming streamUrl={URL_CAMARA} className="m-2"/> */}
+          <VideoPlayer camera_url={URL_CAMARA} />
         </Col>
 
         <Col sm={12} lg={7}>
