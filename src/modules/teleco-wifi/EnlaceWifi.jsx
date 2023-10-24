@@ -29,7 +29,7 @@ import imagen from "@assets/teleco_wifi.jpg"
 /**
  *
  */
-function EnlaceWifi({ URL_CAMARA }) {
+function EnlaceWifi() {
   const idLaboratorio = 1
   const { idUsuario, esProfesor } = useContext(UserContext)
 
@@ -43,6 +43,7 @@ function EnlaceWifi({ URL_CAMARA }) {
 
   const [componentRef, setComponentRef] = useState({})
 
+  const URL_CAMARA_TELECO_WIFI  = import.meta.env.VITE_CAMERA_TELECO_WIFI
   const URL_ANTENA_TELECO_WIFI = `${import.meta.env.VITE_URL_DOMAIN}:3033/api/teleco/wifi/bullet`
 
 

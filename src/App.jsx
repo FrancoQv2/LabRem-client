@@ -99,7 +99,7 @@ function App() {
             <Route
               exact
               path="/telecomunicaciones/enlace-wifi"
-              element={<EnlaceWifi URL_CAMARA={URL_CAMARA_TELECO_WIFI} />}
+              element={<EnlaceWifi />}
             ></Route>
             <Route
               exact
