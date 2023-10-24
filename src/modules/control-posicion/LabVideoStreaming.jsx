@@ -22,13 +22,6 @@ function LabVideoStreaming({ streamUrl }) {
         />
       </Ratio>
     </div>
-    // <>
-    //   <img
-    //     src={`${streamUrl}`}
-    //     width='100%'
-    //     // border='2px solid #000'
-    //   />
-    // </>
   )
 }
 

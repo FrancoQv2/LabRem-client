@@ -24,8 +24,8 @@ import HomePage from "@pages/home/HomePage.jsx"
  */
 function App() {
 
-  const URL_CAMARA_TELECO_WIFI  = import.meta.env.VITE_CAMERA_TELECO_WIFI
-  const URL_CAMARA_TELECO_RADIO = import.meta.env.VITE_CAMERA_TELECO_RADIO
+  // const URL_CAMARA_TELECO_WIFI  = import.meta.env.VITE_CAMERA_TELECO_WIFI
+  // const URL_CAMARA_TELECO_RADIO = import.meta.env.VITE_CAMERA_TELECO_RADIO
   
   const URL_CAMARA_FISICA_CONV  = import.meta.env.VITE_CAMERA_FISICA_CONV
   const URL_CAMARA_FISICA_DIV   = import.meta.env.VITE_CAMERA_FISICA_DIV
@@ -104,7 +104,7 @@ function App() {
             <Route
               exact
               path="/telecomunicaciones/enlace-radio"
-              element={<EnlaceRadio URL_CAMARA={URL_CAMARA_TELECO_RADIO} />}
+              element={<EnlaceRadio />}
             ></Route>
 
             <Route

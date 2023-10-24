@@ -25,7 +25,7 @@ import imgRadio from "@assets/teleco_radio.png"
 /**
  * 
  */
-function EnlaceRadio({ URL_CAMARA }) {
+function EnlaceRadio() {
   const idLaboratorio = 2
   const { idUsuario, esProfesor } = useContext(UserContext)
 
@@ -38,6 +38,9 @@ function EnlaceRadio({ URL_CAMARA }) {
   }
 
   const [componentRef, setComponentRef] = useState({})
+
+  const URL_CAMARA = import.meta.env.VITE_CAMERA_TELECO_RADIO
+
 
   /**
    * -----------------------------------------------------

@@ -8,6 +8,7 @@ import Col from "react-bootstrap/Col"
 
 import LabInformation from "@components/common/LabInformation"
 import LabVideoStreaming from "@components/common/LabVideoStreaming"
+import VideoPlayer from "@components/common/VideoPlayer";
 
 import FormHeader from "@components/_form/FormHeader"
 import FormWifi from "./FormWifi"
@@ -44,7 +45,7 @@ function EnlaceWifi() {
   const [componentRef, setComponentRef] = useState({})
 
   const URL_CAMARA  = import.meta.env.VITE_CAMERA_TELECO_WIFI
-  const URL_ANTENA_TELECO_WIFI = `${import.meta.env.VITE_URL_DOMAIN}:3033/api/teleco/wifi/bullet`
+  // const URL_ANTENA_TELECO_WIFI = `${import.meta.env.VITE_URL_DOMAIN}:3033/api/teleco/wifi/bullet`
 
 
   /**
@@ -64,7 +65,8 @@ function EnlaceWifi() {
       {/* <Row className="m-2" style={{height: 600}}> */}
       <Row className="m-2 d-flex justify-content-center">
         <Col sm={12} lg={6}>
-          <LabVideoStreaming streamUrl={URL_CAMARA} className="m-2"/>
+          {/* <LabVideoStreaming streamUrl={URL_CAMARA} className="m-2"/> */}
+          <VideoPlayer camera_url={URL_CAMARA} />
           <hr />
           {/* <Row sm={12} lg={12} className="mx-0 my-1">
             <WiFiSignalStrength antennaUrl={URL_ANTENA_TELECO_WIFI}/>
