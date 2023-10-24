@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-// import JSMpeg from 'jsmpeg-player'
+import JSMpeg from 'jsmpeg-player'
 
 const VideoPlayer = ({camera_url}) => {
   useEffect(() => {
