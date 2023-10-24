@@ -22,7 +22,6 @@ import { headersDivergentes as tableHeaders } from "@libs/tableHeaders"
 
 import imgDiv from "@assets/lente-divergente.png"
 
-import VideoPlayer from "@components/common/VideoPlayer"
 
 /**
  * 
