@@ -7,7 +7,7 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 
 import LabInformation from "@components/common/LabInformation"
-import LabVideoStreaming from "@components/common/LabVideoStreaming"
+import LabVideoStreaming from "./LabVideoStreaming"
 
 import FormHeader from "@components/_form/FormHeader"
 import FormRadio from "./FormRadio"
