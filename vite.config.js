@@ -8,9 +8,7 @@ export default defineConfig((config) => {
   dotenv.config({ path: envFile })
 
   return {
-    plugins: [
-      react()
-    ],
+    plugins: [react()],
     build: {
       outDir: 'build',
       assetsDir: 'assets',
@@ -27,12 +25,13 @@ export default defineConfig((config) => {
         '@hooks': path.resolve(__dirname, 'src/hooks'),
         '@layouts': path.resolve(__dirname, 'src/layouts'),
         '@libs': path.resolve(__dirname, 'src/libs'),
-        '@modules': path.resolve(__dirname, 'src/modules'), 
-        '@pages': path.resolve(__dirname, 'src/pages'), 
+        '@modules': path.resolve(__dirname, 'src/modules'),
+        '@pages': path.resolve(__dirname, 'src/pages')
       }
     },
     server: {
-      open: false,
+      open: false
+      // port: 9000
       // proxy: {
       //   '/api/teleco': {
       //     target: process.env.VITE_API_TELECO,

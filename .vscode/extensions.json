@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "IronGeek.vscode-env",
+    "mhutchie.git-graph"
+  ]
+}
