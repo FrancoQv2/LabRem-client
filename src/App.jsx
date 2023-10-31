@@ -17,7 +17,7 @@ import Posicion from '@modules/control-posicion/Posicion'
 
 import HomePage from '@pages/home/HomePage.jsx'
 
-import jwt from 'jsonwebtoken'
+// import jwt from 'jsonwebtoken'
 
 /**
  *
