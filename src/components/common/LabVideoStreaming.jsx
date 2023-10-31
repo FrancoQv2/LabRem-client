@@ -17,13 +17,6 @@ function LabVideoStreaming({ streamUrl }) {
         <iframe src={`${streamUrl}`} style={iframeStyles} title='Camera Stream' />
       </Ratio>
     </div>
-    // <>
-    //   <img
-    //     src={`${streamUrl}`}
-    //     width='100%'
-    //     // border='2px solid #000'
-    //   />
-    // </>
   )
 }
 
