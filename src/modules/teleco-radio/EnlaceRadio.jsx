@@ -40,6 +40,13 @@ function EnlaceRadio() {
 
   const URL_CAMARA = import.meta.env.VITE_CAMERA_TELECO_RADIO
 
+  const params = new URLSearchParams(window.location.search)
+  console.log(params)
+  const token1 = params.get('token')
+  if (!token1) {
+    console.log('1 - Token no encontrado en la URL')
+  }
+
   const { token } = useParams()
   if (!token) {
     console.log('2 - Token no encontrado en la URL')
