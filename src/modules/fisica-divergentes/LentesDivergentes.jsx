@@ -54,8 +54,8 @@ function LentesDivergentes({ URL_CAMARA }) {
 
       <Row className='m-2'>
         <Col className='d-flex justify-content-center align-items-center' sm={12} lg={5}>
-          {/* <LabVideoStreaming streamUrl={URL_CAMARA} className="m-2"/> */}
-          <VideoPlayer camera_url={URL_CAMARA} />
+          <LabVideoStreaming streamUrl={URL_CAMARA} className='m-2' />
+          {/* <VideoPlayer camera_url={URL_CAMARA} /> */}
         </Col>
 
         <Col sm={12} lg={7}>

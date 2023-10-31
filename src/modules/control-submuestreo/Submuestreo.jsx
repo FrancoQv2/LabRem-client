@@ -54,8 +54,8 @@ function Submuestreo({ URL_CAMARA }) {
 
       <Row className='m-2'>
         <Col sm={12} lg={5}>
-          {/* <LabVideoStreaming streamUrl={URL_CAMARA} className="m-2" /> */}
-          <VideoPlayer camera_url={URL_CAMARA} />
+          <LabVideoStreaming streamUrl={URL_CAMARA} className='m-2' />
+          {/* <VideoPlayer camera_url={URL_CAMARA} /> */}
         </Col>
 
         <Col sm={12} lg={7}>
