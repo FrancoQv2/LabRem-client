@@ -23,7 +23,7 @@ import { headersWifi as tableHeaders } from '@libs/tableHeaders'
 
 import imagen from '@assets/teleco_wifi.jpg'
 import { useParams, useLocation } from 'react-router-dom'
-import jwt from 'jsonwebtoken'
+// import jwt from 'jsonwebtoken'
 
 /**
  *
@@ -52,8 +52,8 @@ function EnlaceWifi() {
     console.log('Token no encontrado en la URL')
   } else {
     console.log(token)
-    const decodedToken = jwt.decode(token)
-    console.log(decodedToken)
+    // const decodedToken = jwt.decode(token)
+    // console.log(decodedToken)
   }
 
   /**
