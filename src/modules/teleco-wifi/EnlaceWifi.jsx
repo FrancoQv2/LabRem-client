@@ -22,6 +22,7 @@ import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from '@hooks/hooksT
 import { headersWifi as tableHeaders } from '@libs/tableHeaders'
 
 import imagen from '@assets/teleco_wifi.jpg'
+import { useParams, useLocation } from 'react-router-dom'
 
 /**
  *
@@ -42,6 +43,15 @@ function EnlaceWifi() {
 
   const URL_CAMARA = import.meta.env.VITE_CAMERA_TELECO_WIFI
   // const URL_ANTENA_TELECO_WIFI = `${import.meta.env.VITE_URL_DOMAIN}:3033/api/teleco/wifi/bullet`
+
+  const location = useLocation()
+  console.log(location)
+  const token = new URLSearchParams(location.search).get('token')
+  if (!token) {
+    console.log('Token no encontrado en la URL')
+  } else {
+    console.log(token)
+  }
 
   /**
    * -----------------------------------------------------
