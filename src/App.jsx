@@ -34,10 +34,11 @@ function App() {
   const token1 = params.get('token')
   if (!token1) {
     console.log('1 - Token no encontrado en la URL')
-  } else {
-    const decodedToken = jwt.decode(token1)
-    console.log(decodedToken)
   }
+  // else {
+  //   const decodedToken = jwt.decode(token1)
+  //   console.log(decodedToken)
+  // }
 
   const { token } = useParams()
   if (!token) {
