@@ -27,7 +27,7 @@
     "dotenv": "^16.3.1",
     "html-react-parser": "^4.2.0",
     "jsmpeg-player": "^3.0.3",
-    "jsonwebtoken": "^9.0.1",
+    "jsonwebtoken": "^9.0.2",
     "react": "18.2.0",
     "react-bootstrap": "2.7.4",
     "react-component-export-image": "1.0.6",

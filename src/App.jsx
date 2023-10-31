@@ -17,7 +17,7 @@ import Posicion from '@modules/control-posicion/Posicion'
 
 import HomePage from '@pages/home/HomePage.jsx'
 
-// import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 
 /**
  *
@@ -30,11 +30,11 @@ function App() {
     esProfesor: false
   }
 
-  // const params = new URLSearchParams(window.location.search)
-  // const token = params.get('token')
+  const params = new URLSearchParams(window.location.search)
+  const token = params.get('token')
 
-  // const decodedToken = jwt.decode(token)
-  // console.log(decodedToken)
+  const decodedToken = jwt.decode(token)
+  console.log(decodedToken)
 
   // let idLaboratorio
 
@@ -66,11 +66,11 @@ function App() {
   // }
 
   // const user2 = {
-  //   idUsuario:      decodedToken.usuario.idUsuario,
+  //   idUsuario: decodedToken.usuario.idUsuario,
   //   nombreApellido: `${decodedToken.usuario.nombre} ${decodedToken.usuario.apellido}`,
   //   // esProfesor:     decodedToken.usuario.rolSuperior,
-  //   esProfesor:     false,
-  //   idLaboratorio:  idLaboratorio,
+  //   esProfesor: false,
+  //   idLaboratorio
   // }
 
   // console.log(user2)
