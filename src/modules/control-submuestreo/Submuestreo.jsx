@@ -1,30 +1,29 @@
-import { useContext, useState } from "react"
-import { UserContext } from "@context/UserContext"
+import { useContext, useState } from 'react'
+import { UserContext } from '@context/UserContext'
 
-import Container from "react-bootstrap/Container"
-import Card from "react-bootstrap/Card"
-import Row from "react-bootstrap/Row"
-import Col from "react-bootstrap/Col"
+import Container from 'react-bootstrap/Container'
+import Card from 'react-bootstrap/Card'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
-import LabInformation from "@components/common/LabInformation"
-import LabVideoStreaming from "@components/common/LabVideoStreaming"
-import VideoPlayer from "@components/common/VideoPlayer"
+import LabInformation from '@components/common/LabInformation'
+import LabVideoStreaming from '@components/common/LabVideoStreaming'
+import VideoPlayer from '@components/common/VideoPlayer'
 
-import FormHeader from "@components/_form/FormHeader"
-import FormSubmuestreo from "./FormSubmuestreo"
+import FormHeader from '@components/_form/FormHeader'
+import FormSubmuestreo from './FormSubmuestreo'
 
-import TableQueryPaginated from "@components/common/TableQueryPaginated"
-import ExportResults from "@components/common/ExportResults"
+import TableQueryPaginated from '@components/common/TableQueryPaginated'
+import ExportResults from '@components/common/ExportResults'
 
-import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "@hooks/hooksControl"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from '@hooks/hooksControl'
 
-import { headersSubmuestreo as tableHeaders } from "@libs/tableHeaders"
+import { headersSubmuestreo as tableHeaders } from '@libs/tableHeaders'
 
-import image from "@assets/estroboscopico.png"
-
+import image from '@assets/estroboscopico.png'
 
 /**
- * 
+ *
  */
 function Submuestreo({ URL_CAMARA }) {
   const idLaboratorio = 1
@@ -45,15 +44,15 @@ function Submuestreo({ URL_CAMARA }) {
    * -----------------------------------------------------
    */
   return (
-    <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
+    <Container className='justify-content-center align-items-center my-4 border border-dark rounded'>
       <LabInformation
         imagen={image}
         idLaboratorio={idLaboratorio}
-        useInfoLaboratorio={useInfoLaboratorio}>
-      </LabInformation>
+        useInfoLaboratorio={useInfoLaboratorio}
+      ></LabInformation>
       <hr />
 
-      <Row className="m-2">
+      <Row className='m-2'>
         <Col sm={12} lg={5}>
           {/* <LabVideoStreaming streamUrl={URL_CAMARA} className="m-2" /> */}
           <VideoPlayer camera_url={URL_CAMARA} />
@@ -61,15 +60,11 @@ function Submuestreo({ URL_CAMARA }) {
 
         <Col sm={12} lg={7}>
           <Card>
-            <FormHeader
-              onClickTabs={onClickTabs}
-              showForm={showForm}
-              showResults={showResults}
-            />
+            <FormHeader onClickTabs={onClickTabs} showForm={showForm} showResults={showResults} />
 
             <Card.Body>
               {showForm ? (
-                <Card id="lab-form">
+                <Card id='lab-form'>
                   <Card.Body>
                     <FormSubmuestreo idUsuario={idUsuario} />
                   </Card.Body>
@@ -77,7 +72,7 @@ function Submuestreo({ URL_CAMARA }) {
               ) : null}
 
               {showResults ? (
-                <Card id="lab-results">
+                <Card id='lab-results'>
                   <Card.Body>
                     <Card.Title>Ensayos realizados</Card.Title>
                     <TableQueryPaginated
@@ -99,7 +94,7 @@ function Submuestreo({ URL_CAMARA }) {
                 idLaboratorio={idLaboratorio}
                 idUsuario={idUsuario}
                 Prof={esProfesor}
-                filename={"ensayos-Estroboscopico"}
+                filename={'ensayos-Estroboscopico'}
                 componentRef={componentRef}
               />
             </Card.Footer>

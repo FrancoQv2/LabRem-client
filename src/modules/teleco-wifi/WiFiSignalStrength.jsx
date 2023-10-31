@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-
 const WiFiSignalStrength = ({ antennaUrl }) => {
   const [signalStrength, setSignalStrength] = useState(null)
 
@@ -24,21 +23,23 @@ const WiFiSignalStrength = ({ antennaUrl }) => {
   }, [])
 
   const containerStyles = {
-    height: "50px",
-    border: "2px solid #000",
+    height: '50px',
+    border: '2px solid #000',
     borderRadius: '10px',
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 
   return (
     <div style={containerStyles}>
       {signalStrength !== null ? (
-          <p style={{}}><b>Intensidad de señal actual:</b> {signalStrength} dBm</p>
-        ) : (
-          <p>Cargando...</p>
-        )}
+        <p style={{}}>
+          <b>Intensidad de señal actual:</b> {signalStrength} dBm
+        </p>
+      ) : (
+        <p>Cargando...</p>
+      )}
     </div>
   )
 }

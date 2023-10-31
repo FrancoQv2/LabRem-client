@@ -1,38 +1,32 @@
-import { useContext } from "react"
-import { UserContext } from "@context/UserContext"
+import { useContext } from 'react'
+import { UserContext } from '@context/UserContext'
 
-import Container from "react-bootstrap/Container"
-import Navbar from "react-bootstrap/Navbar"
+import Container from 'react-bootstrap/Container'
+import Navbar from 'react-bootstrap/Navbar'
 
-import logoUNT from "@assets/logoUNT.png"
+import logoUNT from '@assets/logoUNT.png'
 
-const title = "Laboratorios Remotos"
+const title = 'Laboratorios Remotos'
 
 function NavigationBar() {
-	const user = useContext(UserContext)
+  const user = useContext(UserContext)
 
-	return (
-		<Navbar className="bg-light">
-			<Container fluid>
-				<Navbar.Brand href="">
-					<img
-						alt=""
-						src={logoUNT}
-						width="65"
-						height="30"
-						className="d-inline-block align-top"
-					/>
-					{"  " + title}
-				</Navbar.Brand>
-				<Navbar.Toggle />
-				<Navbar.Collapse className="justify-content-end">
-					<Navbar.Text>
-						<b>{user.nombreApellido}</b>
-					</Navbar.Text>
-				</Navbar.Collapse>
-			</Container>
-		</Navbar>
-	)
+  return (
+    <Navbar className='bg-light'>
+      <Container fluid>
+        <Navbar.Brand href=''>
+          <img alt='' src={logoUNT} width='65' height='30' className='d-inline-block align-top' />
+          {'  ' + title}
+        </Navbar.Brand>
+        <Navbar.Toggle />
+        <Navbar.Collapse className='justify-content-end'>
+          <Navbar.Text>
+            <b>{user.nombreApellido}</b>
+          </Navbar.Text>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  )
 }
 
 export default NavigationBar

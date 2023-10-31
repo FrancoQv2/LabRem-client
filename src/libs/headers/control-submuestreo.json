@@ -1,26 +1,26 @@
 [
-    {
-        "Header": "#",
-        "accessor": "index"
-    },
-    {
-        "Header": "Fecha",
-        "accessor": "Fecha"
-    },
-    {
-        "Header": "Hora",
-        "accessor": "Hora"
-    },
-    {
-        "Header": "Frecuencia de caída del Agua",
-        "accessor": "frecuenciaAgua"
-    },
-    {
-        "Header": "Frecuencia de la Luz",
-        "accessor": "frecuenciaLuz"
-    },
-    {
-        "Header": "Caída de Agua",
-        "accessor": "caidaAgua"
-    }
+  {
+    "Header": "#",
+    "accessor": "index"
+  },
+  {
+    "Header": "Fecha",
+    "accessor": "Fecha"
+  },
+  {
+    "Header": "Hora",
+    "accessor": "Hora"
+  },
+  {
+    "Header": "Frecuencia de caída del Agua",
+    "accessor": "frecuenciaAgua"
+  },
+  {
+    "Header": "Frecuencia de la Luz",
+    "accessor": "frecuenciaLuz"
+  },
+  {
+    "Header": "Caída de Agua",
+    "accessor": "caidaAgua"
+  }
 ]

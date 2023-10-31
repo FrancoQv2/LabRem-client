@@ -1,26 +1,26 @@
 [
-    {
-        "Header": "#",
-        "accessor": "index"
-    },
-    {
-        "Header": "Fecha",
-        "accessor": "Fecha"
-    },
-    {
-        "Header": "Hora",
-        "accessor": "Hora"
-    },
-    {
-        "Header": "Distancia Lente",
-        "accessor": "distanciaFL"
-    },
-    {
-        "Header": "Distancia Pantalla",
-        "accessor": "distanciaLP"
-    },
-    {
-        "Header": "Diafragma",
-        "accessor": "diafragma"
-    }
+  {
+    "Header": "#",
+    "accessor": "index"
+  },
+  {
+    "Header": "Fecha",
+    "accessor": "Fecha"
+  },
+  {
+    "Header": "Hora",
+    "accessor": "Hora"
+  },
+  {
+    "Header": "Distancia Lente",
+    "accessor": "distanciaFL"
+  },
+  {
+    "Header": "Distancia Pantalla",
+    "accessor": "distanciaLP"
+  },
+  {
+    "Header": "Diafragma",
+    "accessor": "diafragma"
+  }
 ]

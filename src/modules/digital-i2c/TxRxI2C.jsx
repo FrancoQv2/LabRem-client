@@ -1,30 +1,29 @@
-import { useContext, useState } from "react"
-import { UserContext } from "@context/UserContext"
+import { useContext, useState } from 'react'
+import { UserContext } from '@context/UserContext'
 
-import Container from "react-bootstrap/Container"
-import Card from "react-bootstrap/Card"
-import Row from "react-bootstrap/Row"
-import Col from "react-bootstrap/Col"
+import Container from 'react-bootstrap/Container'
+import Card from 'react-bootstrap/Card'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
-import LabInformation from "@components/common/LabInformation"
-import LabVideoStreaming from "@components/common/LabVideoStreaming"
-import VideoPlayer from "@components/common/VideoPlayer"
+import LabInformation from '@components/common/LabInformation'
+import LabVideoStreaming from '@components/common/LabVideoStreaming'
+import VideoPlayer from '@components/common/VideoPlayer'
 
-import FormHeader from "@components/_form/FormHeader"
-import FormI2C from "./FormI2C"
+import FormHeader from '@components/_form/FormHeader'
+import FormI2C from './FormI2C'
 
-import TableQueryPaginated from "@components/common/TableQueryPaginated"
-import ExportResults from "@components/common/ExportResults"
+import TableQueryPaginated from '@components/common/TableQueryPaginated'
+import ExportResults from '@components/common/ExportResults'
 
-import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "@hooks/hooksDigital"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from '@hooks/hooksDigital'
 
-import { headersI2C as tableHeaders } from "@libs/tableHeaders"
+import { headersI2C as tableHeaders } from '@libs/tableHeaders'
 
-import imgI2C from "@assets/i2c.webp"
-
+import imgI2C from '@assets/i2c.webp'
 
 /**
- * 
+ *
  */
 function TxRxI2C({ URL_CAMARA }) {
   const idLaboratorio = 2
@@ -39,14 +38,13 @@ function TxRxI2C({ URL_CAMARA }) {
     setShowResults(!showResults)
   }
 
-
   /**
    * -----------------------------------------------------
    * Renderizado del componente
    * -----------------------------------------------------
    */
   return (
-    <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
+    <Container className='justify-content-center align-items-center my-4 border border-dark rounded'>
       <LabInformation
         imagen={imgI2C}
         idLaboratorio={idLaboratorio}
@@ -54,7 +52,7 @@ function TxRxI2C({ URL_CAMARA }) {
       ></LabInformation>
       <hr />
 
-      <Row className="m-2">
+      <Row className='m-2'>
         <Col sm={12} lg={5}>
           {/* <LabVideoStreaming streamUrl={URL_CAMARA} className="m-2" /> */}
           <VideoPlayer camera_url={URL_CAMARA} />
@@ -62,15 +60,11 @@ function TxRxI2C({ URL_CAMARA }) {
 
         <Col sm={12} lg={7}>
           <Card>
-            <FormHeader
-              onClickTabs={onClickTabs}
-              showForm={showForm}
-              showResults={showResults}
-            />
+            <FormHeader onClickTabs={onClickTabs} showForm={showForm} showResults={showResults} />
 
             <Card.Body>
               {showForm ? (
-                <Card id="lab-form">
+                <Card id='lab-form'>
                   <Card.Body>
                     <FormI2C idUsuario={idUsuario} />
                   </Card.Body>
@@ -78,7 +72,7 @@ function TxRxI2C({ URL_CAMARA }) {
               ) : null}
 
               {showResults ? (
-                <Card id="lab-results">
+                <Card id='lab-results'>
                   <Card.Body>
                     <Card.Title>Ensayos realizados</Card.Title>
                     <TableQueryPaginated
@@ -100,7 +94,7 @@ function TxRxI2C({ URL_CAMARA }) {
                 idLaboratorio={idLaboratorio}
                 idUsuario={idUsuario}
                 Prof={esProfesor}
-                filename={"ensayos-i2c"}
+                filename={'ensayos-i2c'}
                 componentRef={componentRef}
               />
             </Card.Footer>

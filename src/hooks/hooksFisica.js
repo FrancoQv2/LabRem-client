@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "react-query"
+import { useMutation, useQuery } from 'react-query'
 
 import {
   getInfoLaboratorio,
@@ -6,28 +6,24 @@ import {
   getEnsayos,
   postEnsayoConvergentes,
   postEnsayoDivergentes
-} from "@api/apiFisica";
+} from '@api/apiFisica'
 
-const key = "fisica"
+const key = 'fisica'
 
 export function useInfoLaboratorio(idLabActual) {
-	return useQuery([key, { idLaboratorio: idLabActual }], getInfoLaboratorio)
+  return useQuery([key, { idLaboratorio: idLabActual }], getInfoLaboratorio)
 }
 
 export function useEnsayosUsuario({ idLaboratorio, idUsuario }) {
-	return useQuery(
-		[key, { idLaboratorio: idLaboratorio, idUsuario: idUsuario }],
-		getEnsayosUsuario
-	)
+  return useQuery([key, { idLaboratorio, idUsuario }], getEnsayosUsuario)
 }
 export function useEnsayos({ idLaboratorio }) {
-	return useQuery(
-		[key, { idLaboratorio: idLaboratorio }], getEnsayos)
+  return useQuery([key, { idLaboratorio }], getEnsayos)
 }
 export function usePostEnsayoConvergentes() {
-	return useMutation(postEnsayoConvergentes)
+  return useMutation(postEnsayoConvergentes)
 }
 
 export function usePostEnsayoDivergentes() {
-	return useMutation(postEnsayoDivergentes)
+  return useMutation(postEnsayoDivergentes)
 }

@@ -1,8 +1,8 @@
-import Row from "react-bootstrap/Row"
-import Col from "react-bootstrap/Col"
-import Form from "react-bootstrap/Form"
-import ToggleButton from "react-bootstrap/ToggleButton"
-import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup"
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Form from 'react-bootstrap/Form'
+import ToggleButton from 'react-bootstrap/ToggleButton'
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 
 function FormBtnGroup({ name, state, setState, ayuda }) {
   const handleButtonClick = (index) => {
@@ -12,23 +12,17 @@ function FormBtnGroup({ name, state, setState, ayuda }) {
   }
 
   return (
-    <Row className="my-3">
-      <Form.Group
-        className="border border-secondary rounded"
-        controlId={`form${name}`}
-      >
-        <Row className="my-3">
+    <Row className='my-3'>
+      <Form.Group className='border border-secondary rounded' controlId={`form${name}`}>
+        <Row className='my-3'>
           <Col sm={4} lg={6}>
-            <span
-              className="input-group-text"
-              htmlFor={name.toString().toLowerCase()}
-            >
+            <span className='input-group-text' htmlFor={name.toString().toLowerCase()}>
               {name}
             </span>
           </Col>
 
           <Col sm={4} lg={6}>
-            <ToggleButtonGroup type="checkbox" className="w-100">
+            <ToggleButtonGroup type='checkbox' className='w-100'>
               <ToggleButton
                 value={1}
                 variant={state[0] === 1 ? 'danger' : 'secondary'}

@@ -1,6 +1,6 @@
-import Button from "react-bootstrap/Button"
+import Button from 'react-bootstrap/Button'
 
-import { submitSuccess, submitError } from "@libs/alerts"
+import { submitSuccess, submitError } from '@libs/alerts'
 
 function FormSave({ idUsuario, setCambio, useHook, ...params }) {
   const { mutate, error, isLoading } = useHook()
@@ -8,24 +8,22 @@ function FormSave({ idUsuario, setCambio, useHook, ...params }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    setCambio(current => !current)
+    setCambio((current) => !current)
     const guardar = true
 
     mutate(
       { idUsuario, setCambio, guardar, ...params },
       {
-        onSuccess: () => {
-
-        },
+        onSuccess: () => {},
         onError: () => {
           submitError()
-        },
+        }
       }
     )
   }
 
   return (
-    <Button variant="success" onClick={handleSubmit}>
+    <Button variant='success' onClick={handleSubmit}>
       Guardar valores
     </Button>
   )

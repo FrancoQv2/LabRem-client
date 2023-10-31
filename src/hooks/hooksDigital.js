@@ -1,35 +1,25 @@
-import { useMutation, useQuery } from "react-query"
+import { useMutation, useQuery } from 'react-query'
 
-import {
-  getInfoLaboratorio,
-  getEnsayosUsuario,
-  getEnsayos,
-  postEnsayoUART,
-  postEnsayoI2C
-} from "@api/apiDigital";
+import { getInfoLaboratorio, getEnsayosUsuario, getEnsayos, postEnsayoUART, postEnsayoI2C } from '@api/apiDigital'
 
-const key = "digital"
+const key = 'digital'
 
 export function useInfoLaboratorio(idLabActual) {
-	return useQuery([key, { idLaboratorio: idLabActual }], getInfoLaboratorio)
+  return useQuery([key, { idLaboratorio: idLabActual }], getInfoLaboratorio)
 }
 
 export function useEnsayosUsuario({ idLaboratorio, idUsuario }) {
-	return useQuery(
-		[key, { idLaboratorio: idLaboratorio, idUsuario: idUsuario }],
-		getEnsayosUsuario
-	)
+  return useQuery([key, { idLaboratorio, idUsuario }], getEnsayosUsuario)
 }
 
 export function useEnsayos({ idLaboratorio }) {
-	return useQuery(
-		[key, { idLaboratorio: idLaboratorio }], getEnsayos)
+  return useQuery([key, { idLaboratorio }], getEnsayos)
 }
 
 export function usePostEnsayoUART() {
-	return useMutation(postEnsayoUART)
+  return useMutation(postEnsayoUART)
 }
 
 export function usePostEnsayoI2C() {
-	return useMutation(postEnsayoI2C)
+  return useMutation(postEnsayoI2C)
 }

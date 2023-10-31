@@ -1,34 +1,34 @@
 [
-    {
-        "Header": "#",
-        "accessor": "index"
-    },
-    {
-        "Header": "Fecha",
-        "accessor": "Fecha"
-    },
-    {
-        "Header": "Hora",
-        "accessor": "Hora"
-    },
-    {
-        "Header": "Velocidad",
-        "accessor": "velocidad"
-    },
-    {
-        "Header": "bitsDatos",
-        "accessor": "bitsDatos"
-    },
-    {
-        "Header": "bitsParada",
-        "accessor": "bitsParada"
-    },
-    {
-        "Header": "Paridad",
-        "accessor": "paridad"
-    },
-    {
-        "Header": "Mensaje",
-        "accessor": "mensaje"
-    }
+  {
+    "Header": "#",
+    "accessor": "index"
+  },
+  {
+    "Header": "Fecha",
+    "accessor": "Fecha"
+  },
+  {
+    "Header": "Hora",
+    "accessor": "Hora"
+  },
+  {
+    "Header": "Velocidad",
+    "accessor": "velocidad"
+  },
+  {
+    "Header": "bitsDatos",
+    "accessor": "bitsDatos"
+  },
+  {
+    "Header": "bitsParada",
+    "accessor": "bitsParada"
+  },
+  {
+    "Header": "Paridad",
+    "accessor": "paridad"
+  },
+  {
+    "Header": "Mensaje",
+    "accessor": "mensaje"
+  }
 ]

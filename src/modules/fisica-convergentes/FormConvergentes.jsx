@@ -1,25 +1,24 @@
-import { useState } from "react"
+import { useState } from 'react'
 
-import Row from "react-bootstrap/Row"
-import Col from "react-bootstrap/Col"
-import Form from "react-bootstrap/Form"
-import Button from "react-bootstrap/Button"
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
-import FormSelect from "@components/_form/FormSelect"
-import FormRange from "@components/_form/FormRange"
+import FormSelect from '@components/_form/FormSelect'
+import FormRange from '@components/_form/FormRange'
 
-import { usePostEnsayoConvergentes } from "@hooks/hooksFisica"
-import { submitSuccess, submitError } from "@libs/alerts"
+import { usePostEnsayoConvergentes } from '@hooks/hooksFisica'
+import { submitSuccess, submitError } from '@libs/alerts'
 
-import BtnDownloadImage from "@components/_button/BtnDownloadImage"
-import BtnSaveLaboratorio from "@components/_button/BtnSaveLaboratorio"
-
+import BtnDownloadImage from '@components/_button/BtnDownloadImage'
+import BtnSaveLaboratorio from '@components/_button/BtnSaveLaboratorio'
 
 /**
- * 
+ *
  */
 function FormConvergentes({ idUsuario }) {
-  const tipoDiafragma = ["Sin diafragma", "Central", "Periférico", "Filtro rojo"]
+  const tipoDiafragma = ['Sin diafragma', 'Central', 'Periférico', 'Filtro rojo']
   const defaultDiafragma = tipoDiafragma[0]
 
   const [distanciaFL, setDistanciaFL] = useState(120)
@@ -33,16 +32,16 @@ function FormConvergentes({ idUsuario }) {
   // Definicion de textos de helpText para tooltip
 
   const helpText = {
-    distanciaFL:  'Distancia entre el lente y el foco',
-    distanciaLP:  'Distancia entre el lente y la pantalla',
-    diaframa:     'Objeto utilizado para corregir aberraciones de la lentes'
+    distanciaFL: 'Distancia entre el lente y el foco',
+    distanciaLP: 'Distancia entre el lente y la pantalla',
+    diaframa: 'Objeto utilizado para corregir aberraciones de la lentes'
   }
 
   // Definicion de funciones Handle
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitActivo(current => !current)
+    setSubmitActivo((current) => !current)
 
     mutate(
       {
@@ -54,14 +53,14 @@ function FormConvergentes({ idUsuario }) {
       {
         onSuccess: (e) => {
           setTimeout(() => {
-            setSubmitActivo(current => !current)
+            setSubmitActivo((current) => !current)
           }, 5000)
 
           submitSuccess(e)
         },
         onError: (e) => {
           setTimeout(() => {
-            setSubmitActivo(current => !current)
+            setSubmitActivo((current) => !current)
           }, 5000)
 
           submitError(e.response.data)
@@ -71,33 +70,33 @@ function FormConvergentes({ idUsuario }) {
   }
 
   return (
-    <Form className="m-3" onSubmit={handleSubmit}>
+    <Form className='m-3' onSubmit={handleSubmit}>
       <FormRange
-        name="distancia-lente"
-        description="Distancia Foco - Lente"
-        minValue="120"
-        maxValue="970"
-        step="5"
-        unit="mm"
+        name='distancia-lente'
+        description='Distancia Foco - Lente'
+        minValue='120'
+        maxValue='970'
+        step='5'
+        unit='mm'
         state={distanciaFL}
         setState={setDistanciaFL}
         helpText={helpText.distanciaFL}
       />
 
       <FormRange
-        name="distancia-pantalla"
-        description="Distancia Lente - Pantalla"
-        minValue="70"
-        maxValue="970"
-        step="5"
-        unit="mm"
+        name='distancia-pantalla'
+        description='Distancia Lente - Pantalla'
+        minValue='70'
+        maxValue='970'
+        step='5'
+        unit='mm'
         state={distanciaLP}
         setState={setDistanciaLP}
         helpText={helpText.distanciaLP}
       />
 
       <FormSelect
-        name="Diafragma"
+        name='Diafragma'
         values={tipoDiafragma}
         defaultValue={defaultDiafragma}
         setState={setDiafragma}
@@ -106,14 +105,14 @@ function FormConvergentes({ idUsuario }) {
 
       <Row>
         {submitActivo ? (
-          <Col className="text-center d-grid gap-2">
-            <Button variant="primary" type="submit">
+          <Col className='text-center d-grid gap-2'>
+            <Button variant='primary' type='submit'>
               Iniciar ensayo
             </Button>
           </Col>
         ) : null}
 
-        <Col className="text-center">
+        <Col className='text-center'>
           <BtnSaveLaboratorio
             idUsuario={idUsuario}
             setSubmitActivo={setSubmitActivo}
@@ -124,10 +123,9 @@ function FormConvergentes({ idUsuario }) {
           />
         </Col>
 
-        <Col className="text-center d-grid gap-2">
+        <Col className='text-center d-grid gap-2'>
           <BtnDownloadImage />
         </Col>
-
       </Row>
     </Form>
   )

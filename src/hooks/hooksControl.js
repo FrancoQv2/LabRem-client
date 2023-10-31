@@ -1,36 +1,30 @@
-import { useMutation, useQuery } from "react-query"
+import { useMutation, useQuery } from 'react-query'
 
 import {
-    getInfoLaboratorio,
-    getEnsayosUsuario,
-    getEnsayos,
-    postEnsayoSubmuestreo,
-    postEnsayoPosicion
-} from "@api/apiControl"
+  getInfoLaboratorio,
+  getEnsayosUsuario,
+  getEnsayos,
+  postEnsayoSubmuestreo,
+  postEnsayoPosicion
+} from '@api/apiControl'
 
-const key = "control"
+const key = 'control'
 
 export function useInfoLaboratorio(idLabActual) {
-    return useQuery([key, { idLaboratorio: idLabActual }], getInfoLaboratorio)
+  return useQuery([key, { idLaboratorio: idLabActual }], getInfoLaboratorio)
 }
 
 export function useEnsayosUsuario({ idLaboratorio, idUsuario }) {
-    return useQuery(
-        [key, { idLaboratorio: idLaboratorio, idUsuario: idUsuario }],
-        getEnsayosUsuario
-    )
+  return useQuery([key, { idLaboratorio, idUsuario }], getEnsayosUsuario)
 }
 
 export function useEnsayos({ idLaboratorio }) {
-    return useQuery(
-        [key, { idLaboratorio: idLaboratorio }], 
-        getEnsayos
-    )
+  return useQuery([key, { idLaboratorio }], getEnsayos)
 }
 export function usePostEnsayoSubmuestreo() {
-    return useMutation(postEnsayoSubmuestreo)
+  return useMutation(postEnsayoSubmuestreo)
 }
 
 export function usePostEnsayoPosicion() {
-    return useMutation(postEnsayoPosicion);
+  return useMutation(postEnsayoPosicion)
 }

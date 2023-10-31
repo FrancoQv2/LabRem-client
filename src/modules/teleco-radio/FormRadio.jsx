@@ -1,30 +1,30 @@
-import { useState } from "react"
+import { useState } from 'react'
 
-import Row from "react-bootstrap/Row"
-import Col from "react-bootstrap/Col"
-import Form from "react-bootstrap/Form"
-import Button from "react-bootstrap/Button"
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
-import FormSelect from "@components/_form/FormSelect"
-import BtnDownloadImage from "@components/_button/BtnDownloadImage"
+import FormSelect from '@components/_form/FormSelect'
+import BtnDownloadImage from '@components/_button/BtnDownloadImage'
 
-import { usePostEnsayoRadio } from "@hooks/hooksTeleco"
-import { submitSuccess, submitError } from "@libs/alerts"
+import { usePostEnsayoRadio } from '@hooks/hooksTeleco'
+import { submitSuccess, submitError } from '@libs/alerts'
 
 /**
- * 
+ *
  */
 function FormRadio({ idUsuario }) {
-  const tipoModulacion = ["4-QAM", "8-QAM", "16-QAM", "PSK", "FSK", "QPSK"]
+  const tipoModulacion = ['4-QAM', '8-QAM', '16-QAM', 'PSK', 'FSK', 'QPSK']
   const defaultTipoModulacion = tipoModulacion[4]
 
-  const tipoCodificacion = ["-",1,2,3]
+  const tipoCodificacion = ['-', 1, 2, 3]
   const defaultTipoCodificacion = tipoCodificacion[0]
 
-  const tipoIntensidadMin = ["-",10,15,20,25]
+  const tipoIntensidadMin = ['-', 10, 15, 20, 25]
   const defaultIntensidadMin = tipoIntensidadMin[0]
 
-  const tipoIntensidadMax = ["-",50,80,100,120]
+  const tipoIntensidadMax = ['-', 50, 80, 100, 120]
   const defaultIntensidadMax = tipoIntensidadMax[0]
 
   const [submitActivo, setSubmitActivo] = useState(true)
@@ -39,17 +39,17 @@ function FormRadio({ idUsuario }) {
   // Definicion de textos de ayuda para tooltip
 
   const helpText = {
-    modulacion:     'Es la modulación en ampliturd, frecuencia o fase establecida para la comunicación.',
-    codificacion:   'Tipo codificación que utiliza la comunicación',
-    intensidadMin:  'Potencia mínima a utilizar por el transmisor.',
-    intensidadMax:  'Potencia máxima a utilizar por el transmisor.',
+    modulacion: 'Es la modulación en ampliturd, frecuencia o fase establecida para la comunicación.',
+    codificacion: 'Tipo codificación que utiliza la comunicación',
+    intensidadMin: 'Potencia mínima a utilizar por el transmisor.',
+    intensidadMax: 'Potencia máxima a utilizar por el transmisor.'
   }
-  
+
   // Definicion de funciones Handle
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitActivo(current =>!current)
+    setSubmitActivo((current) => !current)
 
     mutate(
       {
@@ -62,15 +62,15 @@ function FormRadio({ idUsuario }) {
       {
         onSuccess: (e) => {
           setTimeout(() => {
-            setSubmitActivo(current => !current)
-          }, 5000);
+            setSubmitActivo((current) => !current)
+          }, 5000)
 
           submitSuccess(e)
         },
         onError: (e) => {
           setTimeout(() => {
-            setSubmitActivo(current => !current)
-          }, 5000);
+            setSubmitActivo((current) => !current)
+          }, 5000)
 
           submitError(e.response.data)
         }
@@ -79,9 +79,9 @@ function FormRadio({ idUsuario }) {
   }
 
   return (
-    <Form className="m-3" onSubmit={handleSubmit}>
+    <Form className='m-3' onSubmit={handleSubmit}>
       <FormSelect
-        name="Tipo de Modulación"
+        name='Tipo de Modulación'
         values={tipoModulacion}
         defaultValue={defaultTipoModulacion}
         setState={setModulacion}
@@ -89,7 +89,7 @@ function FormRadio({ idUsuario }) {
       />
 
       <FormSelect
-        name="Tipo de Codificación"
+        name='Tipo de Codificación'
         values={tipoCodificacion}
         defaultValue={defaultTipoCodificacion}
         setState={setCodificacion}
@@ -97,7 +97,7 @@ function FormRadio({ idUsuario }) {
       />
 
       <FormSelect
-        name="Intensidad Mínima [ dBm ]"
+        name='Intensidad Mínima [ dBm ]'
         values={tipoIntensidadMin}
         defaultValue={defaultIntensidadMin}
         setState={setIntensidadMin}
@@ -105,7 +105,7 @@ function FormRadio({ idUsuario }) {
       />
 
       <FormSelect
-        name="Intensidad Máxima [ dBm ]"
+        name='Intensidad Máxima [ dBm ]'
         values={tipoIntensidadMax}
         defaultValue={defaultIntensidadMax}
         setState={setIntensidadMax}
@@ -114,19 +114,19 @@ function FormRadio({ idUsuario }) {
 
       <Row>
         {submitActivo ? (
-          <Col className="text-center d-grid gap-2">
-            <Button variant="primary" type="submit">
+          <Col className='text-center d-grid gap-2'>
+            <Button variant='primary' type='submit'>
               Iniciar ensayo
             </Button>
           </Col>
         ) : (
-          <Col className="text-center d-grid gap-2">
-            <Button disabled variant="primary" type="submit">
+          <Col className='text-center d-grid gap-2'>
+            <Button disabled variant='primary' type='submit'>
               Iniciar ensayo
             </Button>
           </Col>
         )}
-        <Col className="text-center d-grid gap-2">
+        <Col className='text-center d-grid gap-2'>
           <BtnDownloadImage />
         </Col>
       </Row>

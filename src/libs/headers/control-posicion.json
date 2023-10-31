@@ -1,34 +1,34 @@
 [
-    {
-        "Header": "#",
-        "accessor": "index"
-    },
-    {
-        "Header": "Fecha",
-        "accessor": "Fecha"
-    },
-    {
-        "Header": "Hora",
-        "accessor": "Hora"
-    },
-    {
-        "Header": "Rapidez de Motor",
-        "accessor": "rapidezMotor"
-    },
-    {
-        "Header": "Angulo de Salida",
-        "accessor": "anguloMotor"
-    },
-    {
-        "Header": "Modificación del driver",
-        "accessor": "modificacionesDriver"
-    },
-    {
-        "Header": "Rapidez del Controlador",
-        "accessor": "rapidezControlador"
-    },
-    {
-        "Header": "Angulo de Salida del Controlador",
-        "accessor": "anguloControlador"
-    }
+  {
+    "Header": "#",
+    "accessor": "index"
+  },
+  {
+    "Header": "Fecha",
+    "accessor": "Fecha"
+  },
+  {
+    "Header": "Hora",
+    "accessor": "Hora"
+  },
+  {
+    "Header": "Rapidez de Motor",
+    "accessor": "rapidezMotor"
+  },
+  {
+    "Header": "Angulo de Salida",
+    "accessor": "anguloMotor"
+  },
+  {
+    "Header": "Modificación del driver",
+    "accessor": "modificacionesDriver"
+  },
+  {
+    "Header": "Rapidez del Controlador",
+    "accessor": "rapidezControlador"
+  },
+  {
+    "Header": "Angulo de Salida del Controlador",
+    "accessor": "anguloControlador"
+  }
 ]

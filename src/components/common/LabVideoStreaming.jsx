@@ -1,23 +1,22 @@
-import Ratio from 'react-bootstrap/Ratio';
-
+import Ratio from 'react-bootstrap/Ratio'
 
 function LabVideoStreaming({ streamUrl }) {
   const containerStyles = {
     // width: "640px",
-    height: "auto",
+    height: 'auto'
   }
 
   const iframeStyles = {
-    border: "2px solid #000",
+    border: '2px solid #000',
     borderRadius: '10px'
   }
 
   return (
     // <div style={containerStyles}>
     //   <Ratio aspectRatio="4x3">
-    //     <iframe 
-    //       src={`${streamUrl}`} 
-    //       style={iframeStyles} 
+    //     <iframe
+    //       src={`${streamUrl}`}
+    //       style={iframeStyles}
     //       title="Camera Stream"
     //     />
     //   </Ratio>

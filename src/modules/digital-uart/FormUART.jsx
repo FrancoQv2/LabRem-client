@@ -1,27 +1,24 @@
-import { useState } from "react"
+import { useState } from 'react'
 
-import Row from "react-bootstrap/Row"
-import Col from "react-bootstrap/Col"
-import Form from "react-bootstrap/Form"
-import Button from "react-bootstrap/Button"
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
-import { usePostEnsayoUART } from "@hooks/hooksDigital"
-import { submitSuccess, submitError } from "@libs/alerts"
+import { usePostEnsayoUART } from '@hooks/hooksDigital'
+import { submitSuccess, submitError } from '@libs/alerts'
 
-import FormText from "@components/_form/FormText"
-import FormSelect from "@components/_form/FormSelect"
-import FormBtnGroup from "@components/_form/FormBtnGroup"
-import BtnDownloadImage from "@components/_button/BtnDownloadImage"
-import FileUpload from "../../components/common/FileUpload"
-
+import FormText from '@components/_form/FormText'
+import FormSelect from '@components/_form/FormSelect'
+import FormBtnGroup from '@components/_form/FormBtnGroup'
+import BtnDownloadImage from '@components/_button/BtnDownloadImage'
+import FileUpload from '../../components/common/FileUpload'
 
 /**
- * 
+ *
  */
 function FormUART({ idUsuario }) {
-
   const API_DIGITAL = import.meta.env.VITE_API_DIGITAL
-
 
   // Definicion de valores de variables
 
@@ -31,7 +28,7 @@ function FormUART({ idUsuario }) {
   const valuesBitsDatos = [5, 6, 7, 8, 9]
   const defaultBitsDatos = valuesBitsDatos[2]
 
-  const valuesParidad = ["Par", "Impar"]
+  const valuesParidad = ['Par', 'Impar']
   const defaultParidad = valuesParidad[0]
 
   const valuesBitsParada = [1, 2]
@@ -39,7 +36,7 @@ function FormUART({ idUsuario }) {
 
   const defaultPulsadores = [0, 0, 0, 0]
 
-  const defaultMensaje = ""
+  const defaultMensaje = ''
 
   // Definicion de Hooks
 
@@ -57,19 +54,19 @@ function FormUART({ idUsuario }) {
   // Definicion de textos de ayuda para tooltip
 
   const helpText = {
-    velocidad:  'Velocidad de comunicacion',
-    bitsDatos:  'Cantidad de bits de los datos',
-    parada:     'Cantidad de bits de parada',
-    paridad:    'Indica si es una cantidad par o impar de bits',
+    velocidad: 'Velocidad de comunicacion',
+    bitsDatos: 'Cantidad de bits de los datos',
+    parada: 'Cantidad de bits de parada',
+    paridad: 'Indica si es una cantidad par o impar de bits',
     pulsadores: 'Manda el comando al pulsador que se desea presionar si se estuviera presencial',
-    text:       'Texto que se desea enviar para pruebas'
+    text: 'Texto que se desea enviar para pruebas'
   }
 
   // Definicion de funciones Handle
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitActivo(current => !current)
+    setSubmitActivo((current) => !current)
 
     mutate(
       {
@@ -84,14 +81,14 @@ function FormUART({ idUsuario }) {
       {
         onSuccess: (e) => {
           setTimeout(() => {
-            setSubmitActivo(current => !current)
+            setSubmitActivo((current) => !current)
           }, 5000)
 
           submitSuccess(e)
         },
         onError: (e) => {
           setTimeout(() => {
-            setSubmitActivo(current => !current)
+            setSubmitActivo((current) => !current)
           }, 5000)
 
           submitError(e.response.data)
@@ -103,10 +100,9 @@ function FormUART({ idUsuario }) {
   return (
     // <FileUpload URL={`${API_DIGITAL}/upload`}/>
 
-    <Form className="m-3" onSubmit={handleSubmit}>
-
+    <Form className='m-3' onSubmit={handleSubmit}>
       <FormSelect
-        name="Velocidad"
+        name='Velocidad'
         values={valuesVelocidad}
         defaultValue={defaultVelocidad}
         setState={setVelocidad}
@@ -114,7 +110,7 @@ function FormUART({ idUsuario }) {
       />
 
       <FormSelect
-        name="Cantidad de Bits de Datos"
+        name='Cantidad de Bits de Datos'
         values={valuesBitsDatos}
         defaultValue={defaultBitsDatos}
         setState={setBitsDatos}
@@ -122,7 +118,7 @@ function FormUART({ idUsuario }) {
       />
 
       <FormSelect
-        name="Cantidad de Bits de Parada"
+        name='Cantidad de Bits de Parada'
         values={valuesBitsParada}
         defaultValue={defaultBitsParada}
         setState={setBitsParada}
@@ -130,47 +126,35 @@ function FormUART({ idUsuario }) {
       />
 
       <FormSelect
-        name="Tipo de Paridad"
+        name='Tipo de Paridad'
         values={valuesParidad}
         defaultValue={defaultParidad}
         setState={setParidad}
         helpText={helpText.paridad}
       />
 
-      <FormBtnGroup
-        name="Pulsadores"
-        state={pulsadores}
-        setState={setPulsadores}
-        helpText={helpText.pulsadores}
-      />
+      <FormBtnGroup name='Pulsadores' state={pulsadores} setState={setPulsadores} helpText={helpText.pulsadores} />
 
-      <FormText
-        name="Cadena a transmitir"
-        limit={100}
-        state={mensaje}
-        setState={setMensaje}
-        helpText={helpText.text}
-      />
+      <FormText name='Cadena a transmitir' limit={100} state={mensaje} setState={setMensaje} helpText={helpText.text} />
 
       <Row>
         {submitActivo ? (
-          <Col className="text-center d-grid gap-2">
-            <Button variant="primary" type="submit">
+          <Col className='text-center d-grid gap-2'>
+            <Button variant='primary' type='submit'>
               Iniciar ensayo
             </Button>
           </Col>
         ) : (
-          <Col className="text-center d-grid gap-2">
-            <Button disabled variant="primary" type="submit">
+          <Col className='text-center d-grid gap-2'>
+            <Button disabled variant='primary' type='submit'>
               Iniciar ensayo
             </Button>
           </Col>
         )}
 
-        <Col className="text-center d-grid gap-2">
+        <Col className='text-center d-grid gap-2'>
           <BtnDownloadImage />
         </Col>
-
       </Row>
     </Form>
   )

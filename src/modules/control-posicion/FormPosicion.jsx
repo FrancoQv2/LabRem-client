@@ -1,31 +1,30 @@
-import { useState } from "react"
+import { useState } from 'react'
 
-import Row from "react-bootstrap/Row"
-import Col from "react-bootstrap/Col"
-import Card from "react-bootstrap/Card"
-import Form from "react-bootstrap/Form"
-import Button from "react-bootstrap/Button"
-import Container from "react-bootstrap/Container"
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Card from 'react-bootstrap/Card'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
 
-import FormText from "@components/_form/FormText"
-import FormRange from "@components/_form/FormRange"
-import FormSelect from "@components/_form/FormSelect"
+import FormText from '@components/_form/FormText'
+import FormRange from '@components/_form/FormRange'
+import FormSelect from '@components/_form/FormSelect'
 
-import BtnDownloadImage from "@components/_button/BtnDownloadImage"
-import BtnSaveLaboratorio from "@components/_button/BtnSaveLaboratorio"
+import BtnDownloadImage from '@components/_button/BtnDownloadImage'
+import BtnSaveLaboratorio from '@components/_button/BtnSaveLaboratorio'
 
-import { usePostEnsayoPosicion } from "@hooks/hooksControl"
-import { submitSuccess, submitError } from "@libs/alerts"
-import FormTooltip from "@components/_form/FormTooltip"
+import { usePostEnsayoPosicion } from '@hooks/hooksControl'
+import { submitSuccess, submitError } from '@libs/alerts'
+import FormTooltip from '@components/_form/FormTooltip'
 
 /**
- * 
+ *
  */
 function FormPosicion({ idUsuario }) {
-
   // Definicion de valores posibles
 
-  const valueDriver = ["Ninguna", "Retardos", "No linealidades", "Polos-ceros extras"]
+  const valueDriver = ['Ninguna', 'Retardos', 'No linealidades', 'Polos-ceros extras']
   const defaultDriver = valueDriver[0]
 
   // Definicion de Hooks
@@ -33,11 +32,11 @@ function FormPosicion({ idUsuario }) {
   const [submitActivo, setSubmitActivo] = useState(true)
 
   const [anguloMotor, setAnguloMotor] = useState(0)
-  const [rapidezMotor, setRapidezMotor] = useState("")
+  const [rapidezMotor, setRapidezMotor] = useState('')
 
   const [modificacionesDriver, setModificacionesDriver] = useState(defaultDriver)
 
-  const [rapidezControlador, setRapidezControlador] = useState("")
+  const [rapidezControlador, setRapidezControlador] = useState('')
   const [anguloControlador, setAnguloControlador] = useState(0)
 
   const { mutate, error, isLoading } = usePostEnsayoPosicion()
@@ -46,7 +45,7 @@ function FormPosicion({ idUsuario }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitActivo(current => !current)
+    setSubmitActivo((current) => !current)
 
     mutate(
       {
@@ -60,15 +59,15 @@ function FormPosicion({ idUsuario }) {
       {
         onSuccess: (e) => {
           setTimeout(() => {
-            setSubmitActivo(current => !current)
-          }, 5000);
-          
+            setSubmitActivo((current) => !current)
+          }, 5000)
+
           submitSuccess(e)
         },
         onError: (e) => {
           setTimeout(() => {
-            setSubmitActivo(current => !current)
-          }, 5000);
+            setSubmitActivo((current) => !current)
+          }, 5000)
 
           submitError(e.response.data)
         }
@@ -79,9 +78,10 @@ function FormPosicion({ idUsuario }) {
   // Definicion de textos de ayuda para tooltip
 
   const helpText = {
-    motor: "Motor",
-    driver: "A la electrónica del driver del motor se le pueden agregar modificaciones por software",
-    controlador: "El controlador también es configurable por software. Recibe las señales temporales de referencia y de feedback.",
+    motor: 'Motor',
+    driver: 'A la electrónica del driver del motor se le pueden agregar modificaciones por software',
+    controlador:
+      'El controlador también es configurable por software. Recibe las señales temporales de referencia y de feedback.',
     anguloMotor: 'Posición angular del eje de salida.',
     rapidezMotor: 'Rapidez de cambio del motor.',
     modificacionesDriver: 'Modificaciones que se le pueden agregar al driver.',
@@ -90,29 +90,25 @@ function FormPosicion({ idUsuario }) {
   }
 
   return (
-    <Form className="m-3" onSubmit={handleSubmit}>
-
-      <Container className="border border-secondary rounded px-4 pt-3">
+    <Form className='m-3' onSubmit={handleSubmit}>
+      <Container className='border border-secondary rounded px-4 pt-3'>
         <Card.Subtitle>
-          <FormTooltip
-            helpText={helpText.motor}
-          >
-          </FormTooltip>
+          <FormTooltip helpText={helpText.motor}></FormTooltip>
           Motor eléctrico y Tren reductor
         </Card.Subtitle>
         <FormRange
-          name="elevacion"
-          description="Ángulo de Salida"
-          minValue="-180"
-          maxValue="180"
-          step="5"
-          unit="°"
+          name='elevacion'
+          description='Ángulo de Salida'
+          minValue='-180'
+          maxValue='180'
+          step='5'
+          unit='°'
           state={anguloMotor}
           setState={setAnguloMotor}
           helpText={helpText.anguloMotor}
         />
         <FormText
-          name="Rapidez de cambio"
+          name='Rapidez de cambio'
           limit={100}
           showLimit={false}
           state={rapidezMotor}
@@ -123,16 +119,13 @@ function FormPosicion({ idUsuario }) {
 
       <hr />
 
-      <Container className="border border-secondary rounded px-4 pt-3">
+      <Container className='border border-secondary rounded px-4 pt-3'>
         <Card.Subtitle>
-          <FormTooltip
-            helpText={helpText.driver}
-          >
-          </FormTooltip>
+          <FormTooltip helpText={helpText.driver}></FormTooltip>
           Driver del Motor
         </Card.Subtitle>
         <FormSelect
-          name="Modificaciones agregadas"
+          name='Modificaciones agregadas'
           values={valueDriver}
           defaultValue={defaultDriver}
           setState={setModificacionesDriver}
@@ -142,27 +135,24 @@ function FormPosicion({ idUsuario }) {
 
       <hr />
 
-      <Container className="border border-secondary rounded px-4 pt-3">
+      <Container className='border border-secondary rounded px-4 pt-3'>
         <Card.Subtitle>
-          <FormTooltip
-            helpText={helpText.controlador}
-          >
-          </FormTooltip>
+          <FormTooltip helpText={helpText.controlador}></FormTooltip>
           Controlador
         </Card.Subtitle>
         <FormRange
-          name="elevacion"
-          description="Ángulo de Salida"
-          minValue="-180"
-          maxValue="180"
-          step="5"
-          unit="°"
+          name='elevacion'
+          description='Ángulo de Salida'
+          minValue='-180'
+          maxValue='180'
+          step='5'
+          unit='°'
           state={anguloControlador}
           setState={setAnguloControlador}
           helpText={helpText.anguloControlador}
         />
         <FormText
-          name="Rapidez de cambio"
+          name='Rapidez de cambio'
           limit={100}
           showLimit={false}
           state={rapidezControlador}
@@ -171,22 +161,22 @@ function FormPosicion({ idUsuario }) {
         />
       </Container>
 
-      <Row className="mt-4">
+      <Row className='mt-4'>
         {submitActivo ? (
-          <Col className="text-center d-grid gap-2">
-            <Button variant="primary" type="submit">
+          <Col className='text-center d-grid gap-2'>
+            <Button variant='primary' type='submit'>
               Iniciar ensayo
             </Button>
           </Col>
         ) : (
-          <Col className="text-center d-grid gap-2">
-            <Button disabled variant="primary" type="submit">
+          <Col className='text-center d-grid gap-2'>
+            <Button disabled variant='primary' type='submit'>
               Iniciar ensayo
             </Button>
           </Col>
         )}
 
-        <Col className="text-center">
+        <Col className='text-center'>
           <BtnSaveLaboratorio
             idUsuario={idUsuario}
             setSubmitActivo={setSubmitActivo}
@@ -199,10 +189,9 @@ function FormPosicion({ idUsuario }) {
           />
         </Col>
 
-        <Col className="text-center d-grid gap-2">
+        <Col className='text-center d-grid gap-2'>
           <BtnDownloadImage />
         </Col>
-
       </Row>
     </Form>
   )

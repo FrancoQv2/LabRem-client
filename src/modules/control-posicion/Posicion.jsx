@@ -1,29 +1,28 @@
-import { useContext, useState } from "react"
-import { UserContext } from "@context/UserContext"
+import { useContext, useState } from 'react'
+import { UserContext } from '@context/UserContext'
 
-import Container from "react-bootstrap/Container"
-import Card from "react-bootstrap/Card"
-import Row from "react-bootstrap/Row"
-import Col from "react-bootstrap/Col"
+import Container from 'react-bootstrap/Container'
+import Card from 'react-bootstrap/Card'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
-import LabInformation from "@components/common/LabInformation"
-import LabVideoStreaming from "./LabVideoStreaming"
+import LabInformation from '@components/common/LabInformation'
+import LabVideoStreaming from './LabVideoStreaming'
 
-import FormHeader from "@components/_form/FormHeader"
-import FormPosicion from "./FormPosicion"
+import FormHeader from '@components/_form/FormHeader'
+import FormPosicion from './FormPosicion'
 
-import TableQueryPaginated from "@components/common/TableQueryPaginated"
-import ExportResults from "@components/common/ExportResults"
+import TableQueryPaginated from '@components/common/TableQueryPaginated'
+import ExportResults from '@components/common/ExportResults'
 
-import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from "@hooks/hooksControl"
+import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from '@hooks/hooksControl'
 
-import { headersPosicion as tableHeaders } from "@libs/tableHeaders"
+import { headersPosicion as tableHeaders } from '@libs/tableHeaders'
 
-import image from "@assets/posicion.jpg"
-
+import image from '@assets/posicion.jpg'
 
 /**
- * 
+ *
  */
 function Posicion({ URL_CAMARA }) {
   const idLaboratorio = 2
@@ -44,7 +43,7 @@ function Posicion({ URL_CAMARA }) {
    * -----------------------------------------------------
    */
   return (
-    <Container className="justify-content-center align-items-center my-4 border border-dark rounded">
+    <Container className='justify-content-center align-items-center my-4 border border-dark rounded'>
       <LabInformation
         imagen={image}
         idLaboratorio={idLaboratorio}
@@ -52,22 +51,18 @@ function Posicion({ URL_CAMARA }) {
       ></LabInformation>
       <hr />
 
-      <Row className="m-2">
+      <Row className='m-2'>
         <Col sm={12} lg={5}>
-          <LabVideoStreaming streamUrl={URL_CAMARA} className="m-2" />
+          <LabVideoStreaming streamUrl={URL_CAMARA} className='m-2' />
         </Col>
 
         <Col sm={12} lg={7}>
           <Card>
-            <FormHeader
-              onClickTabs={onClickTabs}
-              showForm={showForm}
-              showResults={showResults}
-            />
+            <FormHeader onClickTabs={onClickTabs} showForm={showForm} showResults={showResults} />
 
             <Card.Body>
               {showForm ? (
-                <Card id="lab-form">
+                <Card id='lab-form'>
                   <Card.Body>
                     <FormPosicion idUsuario={idUsuario} />
                   </Card.Body>
@@ -75,7 +70,7 @@ function Posicion({ URL_CAMARA }) {
               ) : null}
 
               {showResults ? (
-                <Card id="lab-results">
+                <Card id='lab-results'>
                   <Card.Body>
                     <Card.Title>Ensayos realizados</Card.Title>
                     <TableQueryPaginated
@@ -91,13 +86,13 @@ function Posicion({ URL_CAMARA }) {
             </Card.Body>
 
             <Card.Footer>
-              <ExportResults 
+              <ExportResults
                 useHook={useEnsayosUsuario}
                 exportToProfe={useEnsayos}
                 idLaboratorio={idLaboratorio}
                 idUsuario={idUsuario}
                 Prof={esProfesor}
-                filename={"ensayos-Posicion"}
+                filename={'ensayos-Posicion'}
                 componentRef={componentRef}
               />
             </Card.Footer>
