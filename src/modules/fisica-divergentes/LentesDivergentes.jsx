@@ -25,7 +25,7 @@ import imgDiv from '@assets/lente-divergente.png'
 /**
  *
  */
-function LentesDivergentes({ URL_CAMARA }) {
+function LentesDivergentes() {
   const idLaboratorio = 2
   const { idUsuario, esProfesor } = useContext(UserContext)
 
@@ -37,6 +37,8 @@ function LentesDivergentes({ URL_CAMARA }) {
     setShowForm(!showForm)
     setShowResults(!showResults)
   }
+
+  const URL_CAMARA = import.meta.env.VITE_CAMERA_FISICA_CONV
 
   /**
    * -----------------------------------------------------

@@ -25,7 +25,7 @@ import imgConv from '@assets/lente-convergente.jpg'
 /**
  *
  */
-function LentesConvergentes({ URL_CAMARA }) {
+function LentesConvergentes() {
   const idLaboratorio = 1
   const { idUsuario, esProfesor } = useContext(UserContext)
 
@@ -37,6 +37,8 @@ function LentesConvergentes({ URL_CAMARA }) {
     setShowForm(!showForm)
     setShowResults(!showResults)
   }
+
+  const URL_CAMARA = import.meta.env.VITE_CAMERA_FISICA_DIV
 
   /**
    * -----------------------------------------------------

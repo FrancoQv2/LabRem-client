@@ -25,7 +25,7 @@ import imgI2C from '@assets/i2c.webp'
 /**
  *
  */
-function TxRxI2C({ URL_CAMARA }) {
+function TxRxI2C() {
   const idLaboratorio = 2
   const { idUsuario, esProfesor } = useContext(UserContext)
 
@@ -37,6 +37,8 @@ function TxRxI2C({ URL_CAMARA }) {
     setShowForm(!showForm)
     setShowResults(!showResults)
   }
+
+  const URL_CAMARA = import.meta.env.VITE_CAMERA_DIGITAL_I2C
 
   /**
    * -----------------------------------------------------

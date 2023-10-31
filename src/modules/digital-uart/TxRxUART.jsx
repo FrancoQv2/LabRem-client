@@ -25,7 +25,7 @@ import imgUART from '@assets/uart.png'
 /**
  *
  */
-function TxRxUART({ URL_CAMARA }) {
+function TxRxUART() {
   const idLaboratorio = 1
   const { idUsuario, esProfesor } = useContext(UserContext)
 
@@ -37,6 +37,8 @@ function TxRxUART({ URL_CAMARA }) {
     setShowForm(!showForm)
     setShowResults(!showResults)
   }
+
+  const URL_CAMARA = import.meta.env.VITE_CAMERA_DIGITAL_UART
 
   /**
    * -----------------------------------------------------

@@ -24,7 +24,7 @@ import image from '@assets/posicion.jpg'
 /**
  *
  */
-function Posicion({ URL_CAMARA }) {
+function Posicion() {
   const idLaboratorio = 2
   const { idUsuario, esProfesor } = useContext(UserContext)
 
@@ -36,6 +36,8 @@ function Posicion({ URL_CAMARA }) {
     setShowForm(!showForm)
     setShowResults(!showResults)
   }
+
+  const URL_CAMARA = import.meta.env.VITE_CAMERA_CONTROL_POS
 
   /**
    * -----------------------------------------------------

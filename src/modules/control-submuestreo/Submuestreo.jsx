@@ -25,7 +25,7 @@ import image from '@assets/estroboscopico.png'
 /**
  *
  */
-function Submuestreo({ URL_CAMARA }) {
+function Submuestreo() {
   const idLaboratorio = 1
   const { idUsuario, esProfesor } = useContext(UserContext)
 
@@ -37,6 +37,8 @@ function Submuestreo({ URL_CAMARA }) {
     setShowForm(!showForm)
     setShowResults(!showResults)
   }
+
+  const URL_CAMARA = import.meta.env.VITE_CAMERA_CONTROL_SUBM
 
   /**
    * -----------------------------------------------------
