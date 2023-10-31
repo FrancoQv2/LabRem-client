@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom'
 import { UserContext } from '@context/UserContext.js'
 
 import RootLayout from '@layouts/RootLayout.jsx'
@@ -17,7 +17,7 @@ import Posicion from '@modules/control-posicion/Posicion'
 
 import HomePage from '@pages/home/HomePage.jsx'
 
-// import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 
 /**
  *
@@ -30,11 +30,21 @@ function App() {
     esProfesor: false
   }
 
-  // const params = new URLSearchParams(window.location.search)
-  // const token = params.get('token')
+  const params = new URLSearchParams(window.location.search)
+  const token1 = params.get('token')
+  if (!token1) {
+    console.log('1 - Token no encontrado en la URL')
+  } else {
+    const decodedToken = jwt.decode(token1)
+    console.log(decodedToken)
+  }
 
-  // const decodedToken = jwt.decode(token)
-  // console.log(decodedToken)
+  const { token } = useParams()
+  if (!token) {
+    console.log('2 - Token no encontrado en la URL')
+  } else {
+    console.log(token)
+  }
 
   // let idLaboratorio
 
