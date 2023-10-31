@@ -30,11 +30,11 @@ function App() {
     esProfesor: false
   }
 
-  const params = new URLSearchParams(window.location.search)
-  const token = params.get('token')
+  // const params = new URLSearchParams(window.location.search)
+  // const token = params.get('token')
 
-  const decodedToken = jwt.decode(token)
-  console.log(decodedToken)
+  // const decodedToken = jwt.decode(token)
+  // console.log(decodedToken)
 
   // let idLaboratorio
 
