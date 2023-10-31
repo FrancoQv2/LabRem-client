@@ -20,7 +20,7 @@ import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from '@hooks/hooksT
 import { headersRadio as tableHeaders } from '@libs/tableHeaders'
 
 import imgRadio from '@assets/teleco_radio.png'
-
+import { useParams } from 'react-router-dom'
 /**
  *
  */
@@ -39,6 +39,13 @@ function EnlaceRadio() {
   const [componentRef, setComponentRef] = useState({})
 
   const URL_CAMARA = import.meta.env.VITE_CAMERA_TELECO_RADIO
+
+  const { token } = useParams()
+  if (!token) {
+    console.log('2 - Token no encontrado en la URL')
+  } else {
+    console.log(token)
+  }
 
   /**
    * -----------------------------------------------------
