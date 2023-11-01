@@ -4,9 +4,7 @@ import Footer from './Footer'
 function RootLayout({ children }) {
   return (
     <div className='app'>
-      {setTimeout(() => {
-        ;<NavigationBar />
-      }, 100)}
+      <NavigationBar />
       <main className='main'>{children}</main>
       <Footer />
     </div>
