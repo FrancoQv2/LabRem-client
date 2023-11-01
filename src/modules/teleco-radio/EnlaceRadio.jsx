@@ -24,6 +24,7 @@ import imgRadio from '@assets/teleco_radio.png'
 
 import { useLocation } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
+import NavigationBar from '@layouts/NavigationBar'
 
 /**
  *
@@ -74,65 +75,69 @@ function EnlaceRadio() {
    * -----------------------------------------------------
    */
   return (
-    <Container className='justify-content-center align-items-center my-4 border border-dark rounded'>
-      <LabInformation
-        imagen={imgRadio}
-        idLaboratorio={idLaboratorio}
-        useInfoLaboratorio={useInfoLaboratorio}
-      ></LabInformation>
-      <hr />
+    <>
+      <NavigationBar />
 
-      <Row className='m-2 d-flex justify-content-center'>
-        <Col sm={12} lg={5}>
-          <LabVideoStreaming streamUrl={URL_CAMARA} className='m-2' />
-        </Col>
+      <Container className='justify-content-center align-items-center my-4 border border-dark rounded'>
+        <LabInformation
+          imagen={imgRadio}
+          idLaboratorio={idLaboratorio}
+          useInfoLaboratorio={useInfoLaboratorio}
+        ></LabInformation>
+        <hr />
 
-        <Col sm={12} lg={7}>
-          <Card>
-            <FormHeader onClickTabs={onClickTabs} showForm={showForm} showResults={showResults} />
+        <Row className='m-2 d-flex justify-content-center'>
+          <Col sm={12} lg={5}>
+            <LabVideoStreaming streamUrl={URL_CAMARA} className='m-2' />
+          </Col>
 
-            <Card.Body>
-              {showForm ? (
-                <Card id='lab-form'>
-                  <Card.Body>
-                    {/* <FormRadio idUsuario={user.idUsuario} /> */}
-                    <FormRadio idUsuario={idUsuario} />
-                  </Card.Body>
-                </Card>
-              ) : null}
+          <Col sm={12} lg={7}>
+            <Card>
+              <FormHeader onClickTabs={onClickTabs} showForm={showForm} showResults={showResults} />
 
-              {showResults ? (
-                <Card id='lab-results'>
-                  <Card.Body>
-                    <TableQueryPaginated
-                      idLaboratorio={idLaboratorio}
-                      // idUsuario={user.idUsuario}
-                      idUsuario={idUsuario}
-                      tableHeaders={tableHeaders}
-                      useHook={useEnsayosUsuario}
-                      setComponentRef={setComponentRef}
-                    />
-                  </Card.Body>
-                </Card>
-              ) : null}
-            </Card.Body>
+              <Card.Body>
+                {showForm ? (
+                  <Card id='lab-form'>
+                    <Card.Body>
+                      {/* <FormRadio idUsuario={user.idUsuario} /> */}
+                      <FormRadio idUsuario={idUsuario} />
+                    </Card.Body>
+                  </Card>
+                ) : null}
 
-            <Card.Footer>
-              <ExportResults
-                useHook={useEnsayosUsuario}
-                exportToProfe={useEnsayos}
-                idLaboratorio={idLaboratorio}
-                // idUsuario={user.idUsuario}
-                idUsuario={idUsuario}
-                esProfesor={esProfesor}
-                filename={'ensayos-radio'}
-                componentRef={componentRef}
-              />
-            </Card.Footer>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+                {showResults ? (
+                  <Card id='lab-results'>
+                    <Card.Body>
+                      <TableQueryPaginated
+                        idLaboratorio={idLaboratorio}
+                        // idUsuario={user.idUsuario}
+                        idUsuario={idUsuario}
+                        tableHeaders={tableHeaders}
+                        useHook={useEnsayosUsuario}
+                        setComponentRef={setComponentRef}
+                      />
+                    </Card.Body>
+                  </Card>
+                ) : null}
+              </Card.Body>
+
+              <Card.Footer>
+                <ExportResults
+                  useHook={useEnsayosUsuario}
+                  exportToProfe={useEnsayos}
+                  idLaboratorio={idLaboratorio}
+                  // idUsuario={user.idUsuario}
+                  idUsuario={idUsuario}
+                  esProfesor={esProfesor}
+                  filename={'ensayos-radio'}
+                  componentRef={componentRef}
+                />
+              </Card.Footer>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </>
   )
 }
 
