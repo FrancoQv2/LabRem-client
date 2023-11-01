@@ -20,8 +20,9 @@ import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from '@hooks/hooksT
 import { headersRadio as tableHeaders } from '@libs/tableHeaders'
 
 import imgRadio from '@assets/teleco_radio.png'
-import { useParams, useLocation } from 'react-router-dom'
-import { jwtDecode } from 'jwt-decode'
+
+// import { useLocation } from 'react-router-dom'
+// import { jwtDecode } from 'jwt-decode'
 
 /**
  *
@@ -42,42 +43,25 @@ function EnlaceRadio() {
 
   const URL_CAMARA = import.meta.env.VITE_CAMERA_TELECO_RADIO
 
-  // const params = new URLSearchParams(window.location.search)
-  // console.log(params)
-  // const token1 = params.get('token')
-  // if (!token1) {
-  //   console.log('1 - Token no encontrado en la URL')
-  // }
+  // Obtencion y decodificacion de token por parametro URL
+  // const location = useLocation()
+  // console.log(location)
+  // const token = new URLSearchParams(location.search).get('token')
 
-  // const { token } = useParams()
   // if (!token) {
-  //   console.log('2 - Token no encontrado en la URL')
+  //   console.log('Token no encontrado en la URL')
   // } else {
-  //   console.log(token)
+  //   let decodedToken
+  //   try {
+  //     decodedToken = jwtDecode(token)
+  //   } catch (error) {
+  //     console.error('Error al decodificar el token:', error)
+  //   }
+
+  //   console.log(decodedToken)
+  //   localStorage.setItem('token', token)
+  //   localStorage.setItem('decodedToken', decodedToken)
   // }
-
-  const location = useLocation()
-  console.log(location)
-  const token = new URLSearchParams(location.search).get('token')
-  if (!token) {
-    console.log('Token no encontrado en la URL')
-  } else {
-    console.log(token)
-    localStorage.setItem('token', token)
-
-    let decodedToken
-    try {
-      decodedToken = jwtDecode(token)
-      // decodedToken = decode(token)
-    } catch (error) {
-      console.error('Error al decodificar el token:', error)
-    }
-    if (decodedToken) {
-      console.log(decodedToken)
-    } else {
-      console.log('No se decodifico el token')
-    }
-  }
 
   /**
    * -----------------------------------------------------
