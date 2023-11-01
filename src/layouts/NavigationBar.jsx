@@ -7,7 +7,7 @@ const title = 'Laboratorios Remotos'
 
 function NavigationBar() {
   console.log('NavBar')
-  const informacion = JSON.parse(localStorage.getItem('decodedToken'))
+  const informacion = JSON.parse(localStorage.getItem('informacion'))
   console.log(informacion)
 
   return (
