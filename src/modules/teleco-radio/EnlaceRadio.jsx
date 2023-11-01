@@ -24,7 +24,7 @@ import imgRadio from '@assets/teleco_radio.png'
 // import { useLocation } from 'react-router-dom'
 // import { jwtDecode } from 'jwt-decode'
 
-import TokenProvider from './TokenProvider'
+import TokenProvider from '@context/TokenProvider'
 
 /**
  *
