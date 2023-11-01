@@ -17,7 +17,7 @@ import Posicion from '@modules/control-posicion/Posicion'
 
 import HomePage from '@pages/home/HomePage.jsx'
 
-import { jwtDecode } from 'jwt-decode'
+// import { jwtDecode } from 'jwt-decode'
 
 /**
  *
@@ -31,24 +31,24 @@ function App() {
   }
 
   // Obtencion y decodificacion de token por parametro URL
-  const location = useLocation()
-  console.log(location)
-  const token = new URLSearchParams(location.search).get('token')
+  // const location = useLocation()
+  // console.log(location)
+  // const token = new URLSearchParams(location.search).get('token')
 
-  if (!token) {
-    console.log('Token no encontrado en la URL')
-  } else {
-    let decodedToken
-    try {
-      decodedToken = jwtDecode(token)
-    } catch (error) {
-      console.error('Error al decodificar el token:', error)
-    }
+  // if (!token) {
+  //   console.log('Token no encontrado en la URL')
+  // } else {
+  //   let decodedToken
+  //   try {
+  //     decodedToken = jwtDecode(token)
+  //   } catch (error) {
+  //     console.error('Error al decodificar el token:', error)
+  //   }
 
-    console.log(decodedToken)
-    localStorage.setItem('token', token)
-    localStorage.setItem('decodedToken', decodedToken)
-  }
+  //   console.log(decodedToken)
+  //   localStorage.setItem('token', token)
+  //   localStorage.setItem('decodedToken', decodedToken)
+  // }
 
   // let idLaboratorio
 
