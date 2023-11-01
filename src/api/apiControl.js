@@ -57,12 +57,14 @@ export const getEnsayos = async ({ queryKey }) => {
 // Laboratorio - Submuestreo
 // -----------------------------------------------------
 
-export const postEnsayoSubmuestreo = async ({ idUsuario, frecuenciaAgua, frecuenciaLuz, caidaAgua }) => {
+export const postEnsayoSubmuestreo = async ({ idUsuario, kp, ki, kd, init, perturbar }) => {
   const newEnsayoSubmuestreo = {
     idUsuario,
-    frecuenciaAgua: parseInt(frecuenciaAgua),
-    frecuenciaLuz: parseInt(frecuenciaLuz),
-    caidaAgua
+    kp,
+    ki,
+    kd,
+    init,
+    perturbar
   }
   console.log(newEnsayoSubmuestreo)
 

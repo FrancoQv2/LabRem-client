@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 import FormSelect from '@components/_form/FormSelect'
-import FormText from '@components/_form/FormText'
+import FormRange from '@components/_form/FormRange'
 
 import BtnDownloadImage from '@components/_button/BtnDownloadImage'
 import BtnSaveLaboratorio from '@components/_button/BtnSaveLaboratorio'
@@ -20,16 +20,21 @@ import { submitSuccess, submitError } from '@libs/alerts'
 function FormSubmuestreo({ idUsuario }) {
   // Definicion de valores posibles
 
-  const valuesCaida = ['Cae agua', 'No cae agua']
-  const defaultCaida = valuesCaida[0]
+  const valuesInit = [0, 1]
+  const defaultInit = valuesInit[0]
+
+  const valuesPerturbar = [0, 1]
+  const defaultPerturbar = valuesPerturbar[0]
 
   // Definicion de Hooks
 
   const [submitActivo, setSubmitActivo] = useState(true)
 
-  const [frecuenciaAgua, setFrecuenciaAgua] = useState('')
-  const [frecuenciaLuz, setFrecuenciaLuz] = useState('')
-  const [caidaAgua, setCaida] = useState(defaultCaida)
+  const [kp, setKp] = useState(0)
+  const [ki, setKi] = useState(0)
+  const [kd, setKd] = useState(0)
+  const [init, setInit] = useState(defaultInit)
+  const [perturbar, setPerturbar] = useState(defaultPerturbar)
 
   const { mutate } = usePostEnsayoSubmuestreo()
 
@@ -42,9 +47,11 @@ function FormSubmuestreo({ idUsuario }) {
     mutate(
       {
         idUsuario,
-        frecuenciaAgua,
-        frecuenciaLuz,
-        caidaAgua
+        kp,
+        ki,
+        kd,
+        init,
+        perturbar
       },
       {
         onSuccess: (e) => {
@@ -66,37 +73,65 @@ function FormSubmuestreo({ idUsuario }) {
   }
 
   const helpText = {
-    frecuenciaAgua: 'Valor de frecuencia de oscilación lateral del agua.',
-    frecuenciaLuz: 'Valor de frecuencia de la luz estroboscópica a la que se ilumina el agua.',
-    caidaAgua: 'Control para dejar o no pasar el agua.'
+    kp: 'Constante de sintonización Kp',
+    ki: 'Constante de sintonización Ki',
+    kd: 'Constante de sintonización Kd',
+    init: 'Iniciar/Parar ensayo',
+    perturbar: 'Perturbar sistema'
   }
 
   return (
     <Form className='m-3' onSubmit={handleSubmit}>
-      <FormText
-        name='Frecuencia de Caída del Agua'
-        limit={100}
-        showLimit={false}
-        state={frecuenciaAgua}
-        setState={setFrecuenciaAgua}
-        helpText={helpText.frecuenciaAgua}
+      <FormRange
+        name='kp'
+        description='Constante Kp'
+        minValue='0'
+        maxValue='25'
+        step='0.5'
+        unit='-'
+        state={kp}
+        setState={setKp}
+        helpText={helpText.kp}
       />
 
-      <FormText
-        name='Frecuencia de Caída de la Luz'
-        limit={100}
-        showLimit={false}
-        state={frecuenciaLuz}
-        setState={setFrecuenciaLuz}
-        helpText={helpText.frecuenciaLuz}
+      <FormRange
+        name='ki'
+        description='Constante Ki'
+        minValue='0'
+        maxValue='25'
+        step='0.5'
+        unit='-'
+        state={ki}
+        setState={setKi}
+        helpText={helpText.ki}
+      />
+
+      <FormRange
+        name='kd'
+        description='Constante Kd'
+        minValue='0'
+        maxValue='25'
+        step='0.5'
+        unit='-'
+        state={kd}
+        setState={setKd}
+        helpText={helpText.kd}
       />
 
       <FormSelect
-        name='Iniciar/Detener Caída de Agua'
-        values={valuesCaida}
-        defaultValue={defaultCaida}
-        setState={setCaida}
-        helpText={helpText.caidaAgua}
+        name='Iniciar/Parar ensayo'
+        values={valuesInit}
+        defaultValue={defaultInit}
+        setState={setInit}
+        helpText={helpText.init}
+      />
+
+      <FormSelect
+        name='Perturbar sistema'
+        values={valuesPerturbar}
+        defaultValue={defaultPerturbar}
+        setState={setPerturbar}
+        helpText={helpText.perturbar}
       />
 
       <Row>
@@ -119,9 +154,9 @@ function FormSubmuestreo({ idUsuario }) {
             idUsuario={idUsuario}
             setSubmitActivo={setSubmitActivo}
             useHook={usePostEnsayoSubmuestreo}
-            frecuenciaAgua={frecuenciaAgua}
-            frecuenciaLuz={frecuenciaLuz}
-            caidaAgua={caidaAgua}
+            kp={kp}
+            ki={ki}
+            kd={kd}
           />
         </Col>
 
