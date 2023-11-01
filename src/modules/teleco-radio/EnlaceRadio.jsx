@@ -21,6 +21,8 @@ import { headersRadio as tableHeaders } from '@libs/tableHeaders'
 
 import imgRadio from '@assets/teleco_radio.png'
 import { useParams, useLocation } from 'react-router-dom'
+import { jwtDecode } from 'jwt-decode'
+
 /**
  *
  */
@@ -61,6 +63,20 @@ function EnlaceRadio() {
     console.log('Token no encontrado en la URL')
   } else {
     console.log(token)
+    localStorage.setItem('token', token)
+
+    let decodedToken
+    try {
+      decodedToken = jwtDecode(token)
+      // decodedToken = decode(token)
+    } catch (error) {
+      console.error('Error al decodificar el token:', error)
+    }
+    if (decodedToken) {
+      console.log(decodedToken)
+    } else {
+      console.log('No se decodifico el token')
+    }
   }
 
   /**
