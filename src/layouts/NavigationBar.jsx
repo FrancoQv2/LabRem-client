@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { UserContext } from '@context/UserContext'
+import { InfoContext } from '@context/InfoContext'
 
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
@@ -10,6 +11,7 @@ const title = 'Laboratorios Remotos'
 
 function NavigationBar() {
   const user = useContext(UserContext)
+  const { info } = useContext(InfoContext)
 
   return (
     <Navbar className='bg-light'>
@@ -22,6 +24,7 @@ function NavigationBar() {
         <Navbar.Collapse className='justify-content-end'>
           <Navbar.Text>
             <b>{user.nombreApellido}</b>
+            <b>{`${info.nombre} ${info.apellido}`}</b>
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>

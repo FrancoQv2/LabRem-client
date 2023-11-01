@@ -15,7 +15,15 @@ import BtnDownloadCsvProf from '@components/_button/BtnDownloadCsvProf.jsx'
  * - Para csv realiza una query usando el hook useEnsayosUsuarios y obtener toda la data más reciente
  * - Para png necesita la Red del componente Tabla actual
  */
-function ExportResults({ useHook, idLaboratorio, idUsuario, Prof, filename, exportToProfe, componentRef }) {
+function ExportResults({
+  useHook,
+  idLaboratorio,
+  idUsuario,
+  esProfesor = false,
+  filename,
+  exportToProfe,
+  componentRef
+}) {
   const options = {
     staleTime: Infinity,
     cacheTime: Infinity
@@ -53,7 +61,7 @@ function ExportResults({ useHook, idLaboratorio, idUsuario, Prof, filename, expo
         </Col>
       </Row>
 
-      {Prof ? <BtnDownloadCsvProf useHookProf={exportToProfe} idLaboratorio={id} filename={filename} /> : null}
+      {esProfesor ? <BtnDownloadCsvProf useHookProf={exportToProfe} idLaboratorio={id} filename={filename} /> : null}
     </>
   )
 }

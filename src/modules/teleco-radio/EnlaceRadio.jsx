@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react'
 import { UserContext } from '@context/UserContext'
+import { InfoContext } from '@context/InfoContext.js'
 
 import Container from 'react-bootstrap/Container'
 import Card from 'react-bootstrap/Card'
@@ -29,7 +30,9 @@ import { jwtDecode } from 'jwt-decode'
  */
 function EnlaceRadio() {
   const idLaboratorio = 2
+  // const idUsuario = 2
   const { idUsuario, esProfesor } = useContext(UserContext)
+  const { info, setInfo } = useContext(InfoContext)
 
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
@@ -48,20 +51,22 @@ function EnlaceRadio() {
   console.log(location)
   const token = new URLSearchParams(location.search).get('token')
 
+  let decodedToken
   if (!token) {
     console.log('Token no encontrado en la URL')
   } else {
-    let decodedToken
     try {
       decodedToken = jwtDecode(token)
     } catch (error) {
       console.error('Error al decodificar el token:', error)
     }
-
     console.log(decodedToken)
     localStorage.setItem('token', token)
     localStorage.setItem('decodedToken', JSON.stringify(decodedToken))
   }
+  const values = localStorage.getItem('decodedToken')
+  setInfo(values.usuario)
+  console.log(info)
 
   /**
    * -----------------------------------------------------
@@ -90,6 +95,7 @@ function EnlaceRadio() {
               {showForm ? (
                 <Card id='lab-form'>
                   <Card.Body>
+                    {/* <FormRadio idUsuario={user.idUsuario} /> */}
                     <FormRadio idUsuario={idUsuario} />
                   </Card.Body>
                 </Card>
@@ -100,6 +106,7 @@ function EnlaceRadio() {
                   <Card.Body>
                     <TableQueryPaginated
                       idLaboratorio={idLaboratorio}
+                      // idUsuario={user.idUsuario}
                       idUsuario={idUsuario}
                       tableHeaders={tableHeaders}
                       useHook={useEnsayosUsuario}
@@ -115,6 +122,7 @@ function EnlaceRadio() {
                 useHook={useEnsayosUsuario}
                 exportToProfe={useEnsayos}
                 idLaboratorio={idLaboratorio}
+                // idUsuario={user.idUsuario}
                 idUsuario={idUsuario}
                 esProfesor={esProfesor}
                 filename={'ensayos-radio'}

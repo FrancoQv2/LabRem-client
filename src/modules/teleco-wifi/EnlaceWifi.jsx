@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react'
 import { UserContext } from '@context/UserContext'
+import { InfoContext } from '@context/InfoContext.js'
 
 import Container from 'react-bootstrap/Container'
 import Card from 'react-bootstrap/Card'
@@ -8,7 +9,7 @@ import Col from 'react-bootstrap/Col'
 
 import LabInformation from '@components/common/LabInformation'
 import LabVideoStreaming from '@components/common/LabVideoStreaming'
-import VideoPlayer from '@components/common/VideoPlayer'
+// import VideoPlayer from '@components/common/VideoPlayer'
 
 import FormHeader from '@components/_form/FormHeader'
 import FormWifi from './FormWifi'
@@ -22,9 +23,8 @@ import { useInfoLaboratorio, useEnsayosUsuario, useEnsayos } from '@hooks/hooksT
 import { headersWifi as tableHeaders } from '@libs/tableHeaders'
 
 import imagen from '@assets/teleco_wifi.jpg'
-import { useParams, useLocation } from 'react-router-dom'
-// import jwt from 'jsonwebtoken'
-// import { decode } from 'jsonwebtoken'
+
+import { useLocation } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
 
 /**
@@ -47,27 +47,23 @@ function EnlaceWifi() {
   const URL_CAMARA = import.meta.env.VITE_CAMERA_TELECO_WIFI
   // const URL_ANTENA_TELECO_WIFI = `${import.meta.env.VITE_URL_DOMAIN}:3033/api/teleco/wifi/bullet`
 
+  // Obtencion y decodificacion de token por parametro URL
   const location = useLocation()
   console.log(location)
   const token = new URLSearchParams(location.search).get('token')
+
+  let decodedToken
   if (!token) {
     console.log('Token no encontrado en la URL')
   } else {
-    console.log(token)
-    localStorage.setItem('token', token)
-
-    let decodedToken
     try {
       decodedToken = jwtDecode(token)
-      // decodedToken = decode(token)
     } catch (error) {
       console.error('Error al decodificar el token:', error)
     }
-    if (decodedToken) {
-      console.log(decodedToken)
-    } else {
-      console.log('No se decodifico el token')
-    }
+    console.log(decodedToken)
+    localStorage.setItem('token', token)
+    localStorage.setItem('decodedToken', JSON.stringify(decodedToken))
   }
 
   /**

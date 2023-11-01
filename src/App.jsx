@@ -1,5 +1,7 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { UserContext } from '@context/UserContext.js'
+import { InfoContext } from '@context/InfoContext.js'
 
 import RootLayout from '@layouts/RootLayout.jsx'
 
@@ -17,8 +19,6 @@ import Posicion from '@modules/control-posicion/Posicion'
 
 import HomePage from '@pages/home/HomePage.jsx'
 
-// import { jwtDecode } from 'jwt-decode'
-
 /**
  *
  */
@@ -30,89 +30,39 @@ function App() {
     esProfesor: false
   }
 
-  // Obtencion y decodificacion de token por parametro URL
-  // const location = useLocation()
-  // console.log(location)
-  // const token = new URLSearchParams(location.search).get('token')
-
-  // if (!token) {
-  //   console.log('Token no encontrado en la URL')
-  // } else {
-  //   let decodedToken
-  //   try {
-  //     decodedToken = jwtDecode(token)
-  //   } catch (error) {
-  //     console.error('Error al decodificar el token:', error)
-  //   }
-
-  //   console.log(decodedToken)
-  //   localStorage.setItem('token', token)
-  //   localStorage.setItem('decodedToken', decodedToken)
-  // }
-
-  // let idLaboratorio
-
-  // switch (decodedToken.experiencia.idExperiencia) {
-  //   case 1:
-  //     idLaboratorio = 1 // UART
-  //     break;
-  //   case 2:
-  //     idLaboratorio = 2 // I2C
-  //     break;
-  //   case 3:
-  //     idLaboratorio = 1 // Submuestreo
-  //     break;
-  //   case 4:
-  //     idLaboratorio = 2 // Posicion
-  //     break;
-  //   case 5:
-  //     idLaboratorio = 1 // WiFi
-  //     break;
-  //   case 6:
-  //     idLaboratorio = 2 // Radio
-  //     break;
-  //   case 7:
-  //     idLaboratorio = 1 // Convergentes
-  //     break;
-  //   case 8:
-  //     idLaboratorio = 2 // Divergentes
-  //     break;
-  // }
-
-  // const user2 = {
-  //   idUsuario: decodedToken.usuario.idUsuario,
-  //   nombreApellido: `${decodedToken.usuario.nombre} ${decodedToken.usuario.apellido}`,
-  //   // esProfesor:     decodedToken.usuario.rolSuperior,
-  //   esProfesor: false,
-  //   idLaboratorio
-  // }
-
-  // console.log(user2)
+  const [info, setInfo] = useState({})
+  const value = { info, setInfo }
 
   return (
     <BrowserRouter>
       <UserContext.Provider value={user}>
-        <RootLayout>
-          <Routes>
-            <Route exact path='/' element={<HomePage />}></Route>
+        <InfoContext.Provider value={value}>
+          <RootLayout>
+            <Routes>
+              <Route exact path='/' element={<HomePage />}></Route>
 
-            <Route exact path='/telecomunicaciones/enlace-wifi' element={<EnlaceWifi />}></Route>
-            <Route exact path='/telecomunicaciones/enlace-radio' element={<EnlaceRadio />}></Route>
+              <Route exact path='/telecomunicaciones/enlace-wifi' element={<EnlaceWifi />}></Route>
+              <Route exact path='/telecomunicaciones/enlace-radio' element={<EnlaceRadio />}></Route>
 
-            <Route
-              exact
-              path='/fisica-experimental-basica/lentes-convergentes'
-              element={<LentesConvergentes />}
-            ></Route>
-            <Route exact path='/fisica-experimental-basica/lentes-divergentes' element={<LentesDivergentes />}></Route>
+              <Route
+                exact
+                path='/fisica-experimental-basica/lentes-convergentes'
+                element={<LentesConvergentes />}
+              ></Route>
+              <Route
+                exact
+                path='/fisica-experimental-basica/lentes-divergentes'
+                element={<LentesDivergentes />}
+              ></Route>
 
-            <Route exact path='/sistemas-digitales/uart' element={<TxRxUART />}></Route>
-            <Route exact path='/sistemas-digitales/i2c' element={<TxRxI2C />}></Route>
+              <Route exact path='/sistemas-digitales/uart' element={<TxRxUART />}></Route>
+              <Route exact path='/sistemas-digitales/i2c' element={<TxRxI2C />}></Route>
 
-            <Route exact path='/automatizacion-control/submuestreo' element={<Submuestreo />}></Route>
-            <Route exact path='/automatizacion-control/posicion' element={<Posicion />}></Route>
-          </Routes>
-        </RootLayout>
+              <Route exact path='/automatizacion-control/submuestreo' element={<Submuestreo />}></Route>
+              <Route exact path='/automatizacion-control/posicion' element={<Posicion />}></Route>
+            </Routes>
+          </RootLayout>
+        </InfoContext.Provider>
       </UserContext.Provider>
     </BrowserRouter>
   )
