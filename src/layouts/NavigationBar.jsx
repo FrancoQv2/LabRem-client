@@ -32,7 +32,7 @@ function NavigationBar() {
         <Navbar.Toggle />
         <Navbar.Collapse className='justify-content-end'>
           <Navbar.Text>
-            <b>{`${informacion.usuario.nombre} ${informacion.usuario.apellido}`}</b>
+            {!informacion ? '...' : <b>{`${informacion.usuario.nombre} ${informacion.usuario.apellido}`}</b>}
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>
