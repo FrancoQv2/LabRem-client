@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { UserContext } from '@context/UserContext'
 
 import Container from 'react-bootstrap/Container'
@@ -21,8 +21,10 @@ import { headersRadio as tableHeaders } from '@libs/tableHeaders'
 
 import imgRadio from '@assets/teleco_radio.png'
 
-import { useLocation } from 'react-router-dom'
-import { jwtDecode } from 'jwt-decode'
+// import { useLocation } from 'react-router-dom'
+// import { jwtDecode } from 'jwt-decode'
+
+import TokenProvider from './TokenProvider'
 
 /**
  *
@@ -41,26 +43,33 @@ function EnlaceRadio() {
     setShowResults(!showResults)
   }
 
-  // Obtencion y decodificacion de token por parametro URL
-  const location = useLocation()
-  const token = new URLSearchParams(location.search).get('token')
+  const [informacion, setInformacion] = useState(null)
 
-  let informacion
-  if (!token) {
-    console.log('Token no encontrado en la URL')
-  } else {
-    try {
-      informacion = jwtDecode(token)
-    } catch (error) {
-      console.error('Error al decodificar el token:', error)
-    }
-    localStorage.setItem('token', token)
-    localStorage.setItem('informacion', JSON.stringify(informacion))
+  useEffect(() => {
+    const storedToken = localStorage.getItem('informacion')
+    setInformacion(storedToken)
+  }, [])
 
-    // Elimina el parámetro 'token' de la URL
-    const baseURL = window.location.pathname
-    window.history.replaceState({}, document.title, baseURL)
-  }
+  // // Obtencion y decodificacion de token por parametro URL
+  // const location = useLocation()
+  // const token = new URLSearchParams(location.search).get('token')
+
+  // let informacion
+  // if (!token) {
+  //   console.log('Token no encontrado en la URL')
+  // } else {
+  //   try {
+  //     informacion = jwtDecode(token)
+  //   } catch (error) {
+  //     console.error('Error al decodificar el token:', error)
+  //   }
+  //   localStorage.setItem('token', token)
+  //   localStorage.setItem('informacion', JSON.stringify(informacion))
+
+  //   // Elimina el parámetro 'token' de la URL
+  //   const baseURL = window.location.pathname
+  //   window.history.replaceState({}, document.title, baseURL)
+  // }
 
   /**
    * -----------------------------------------------------
@@ -68,7 +77,7 @@ function EnlaceRadio() {
    * -----------------------------------------------------
    */
   return (
-    <>
+    <TokenProvider>
       <Container className='justify-content-center align-items-center my-4 border border-dark rounded'>
         <LabInformation
           imagen={imgRadio}
@@ -126,7 +135,7 @@ function EnlaceRadio() {
           </Col>
         </Row>
       </Container>
-    </>
+    </TokenProvider>
   )
 }
 
