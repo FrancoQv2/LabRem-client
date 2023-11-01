@@ -12,16 +12,14 @@ function NavigationBar() {
   // const informacion = JSON.parse(localStorage.getItem('informacion'))
   // console.log(informacion)
 
-  const [informacion, setInformacion] = useState(null)
+  const [informacion, setInformacion] = useState(JSON.parse(localStorage.getItem('informacion')))
 
-  if (localStorage.length === 0) {
+  // if (localStorage.length === 0) {
+  if (!informacion) {
     setTimeout(() => {
       const value = localStorage.getItem('informacion')
       setInformacion(value)
     }, 100)
-  } else {
-    const value = localStorage.getItem('informacion')
-    setInformacion(value)
   }
 
   // useEffect(() => {
