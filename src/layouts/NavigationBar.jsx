@@ -1,6 +1,6 @@
-import { useContext } from 'react'
-import { UserContext } from '@context/UserContext'
-import { InfoContext } from '@context/InfoContext'
+import { useContext, useMemo } from 'react'
+// import { UserContext } from '@context/UserContext'
+// import { InfoContext } from '@context/InfoContext'
 
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
@@ -10,11 +10,13 @@ import logoUNT from '@assets/logoUNT.png'
 const title = 'Laboratorios Remotos'
 
 function NavigationBar() {
-  const user = useContext(UserContext)
+  // const user = useContext(UserContext)
   // const { info } = useContext(InfoContext)
   // console.log(info)
   console.log('NavBar')
-  const token = JSON.parse(localStorage.getItem('decodedToken'))
+  // const token = JSON.parse(localStorage.getItem('decodedToken'))
+
+  const token = useMemo(() => JSON.parse(localStorage.getItem('decodedToken')), [])
   console.log(token)
 
   return (
