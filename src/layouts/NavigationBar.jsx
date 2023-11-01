@@ -12,6 +12,7 @@ const title = 'Laboratorios Remotos'
 function NavigationBar() {
   const user = useContext(UserContext)
   const { info } = useContext(InfoContext)
+  console.log(info)
 
   return (
     <Navbar className='bg-light'>
@@ -24,7 +25,7 @@ function NavigationBar() {
         <Navbar.Collapse className='justify-content-end'>
           <Navbar.Text>
             <b>{user.nombreApellido}</b>
-            <b>{`${info.nombre} ${info.apellido}`}</b>
+            {/* <b>{`${info.nombre} ${info.apellido}`}</b> */}
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>
