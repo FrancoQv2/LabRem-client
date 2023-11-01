@@ -77,21 +77,14 @@ export const postEnsayoSubmuestreo = async ({ idUsuario, kp, ki, kd, init, pertu
 // Laboratorio - Posicion
 // -----------------------------------------------------
 
-export const postEnsayoPosicion = async ({
-  idUsuario,
-  anguloMotor,
-  rapidezMotor,
-  modificacionesDriver,
-  anguloControlador,
-  rapidezControlador
-}) => {
+export const postEnsayoPosicion = async ({ idUsuario, kp, ki, kd, init, perturbar }) => {
   const newEnsayoPosicion = {
     idUsuario,
-    anguloMotor,
-    rapidezMotor: parseInt(rapidezMotor),
-    modificacionesDriver,
-    anguloControlador,
-    rapidezControlador: parseInt(rapidezControlador)
+    kp,
+    ki,
+    kd,
+    init,
+    perturbar
   }
   console.log(newEnsayoPosicion)
 
