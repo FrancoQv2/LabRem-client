@@ -1,6 +1,5 @@
 import { useContext, useState, useMemo } from 'react'
 import { UserContext } from '@context/UserContext'
-import { InfoContext } from '@context/InfoContext.js'
 
 import Container from 'react-bootstrap/Container'
 import Card from 'react-bootstrap/Card'
@@ -24,39 +23,17 @@ import imgRadio from '@assets/teleco_radio.png'
 
 import { useLocation } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
-import NavigationBar from '@layouts/NavigationBar'
 
 /**
  *
  */
 function EnlaceRadio() {
-  // const location = useLocation()
-  // const token = new URLSearchParams(location.search).get('token')
-
   const idLaboratorio = 2
-  // const idUsuario = 2
-  const { idUsuario, esProfesor } = useContext(UserContext)
-  // const { info, setInfo } = useContext(InfoContext)
+  // const { idUsuario, esProfesor } = useContext(UserContext)
+  const { esProfesor } = useContext(UserContext)
 
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
-
-  // const userData = useMemo(() => {
-  //   let decodedToken
-  //   if (!token) {
-  //     console.log('Token no encontrado en la URL')
-  //   } else {
-  //     try {
-  //       decodedToken = jwtDecode(token)
-  //     } catch (error) {
-  //       console.error('Error al decodificar el token:', error)
-  //     }
-  //     localStorage.setItem('token', token)
-  //     localStorage.setItem('decodedToken', JSON.stringify(decodedToken))
-  //     return decodedToken
-  //   }
-  //   // JSON.parse(localStorage.getItem('decodedToken'))
-  // }, [token])
 
   const onClickTabs = () => {
     setShowForm(!showForm)
@@ -71,17 +48,17 @@ function EnlaceRadio() {
   const location = useLocation()
   const token = new URLSearchParams(location.search).get('token')
 
-  let decodedToken
+  let informacion
   if (!token) {
     console.log('Token no encontrado en la URL')
   } else {
     try {
-      decodedToken = jwtDecode(token)
+      informacion = jwtDecode(token)
     } catch (error) {
       console.error('Error al decodificar el token:', error)
     }
     localStorage.setItem('token', token)
-    localStorage.setItem('decodedToken', JSON.stringify(decodedToken))
+    localStorage.setItem('informacion', JSON.stringify(informacion))
   }
 
   /**
@@ -91,9 +68,6 @@ function EnlaceRadio() {
    */
   return (
     <>
-      {/* <NavigationBar userData={userData} /> */}
-      {/* <NavigationBar /> */}
-
       <Container className='justify-content-center align-items-center my-4 border border-dark rounded'>
         <LabInformation
           imagen={imgRadio}
@@ -116,7 +90,7 @@ function EnlaceRadio() {
                   <Card id='lab-form'>
                     <Card.Body>
                       {/* <FormRadio idUsuario={user.idUsuario} /> */}
-                      <FormRadio idUsuario={idUsuario} />
+                      <FormRadio idUsuario={informacion.usuario.idUsuario} />
                     </Card.Body>
                   </Card>
                 ) : null}
@@ -127,7 +101,7 @@ function EnlaceRadio() {
                       <TableQueryPaginated
                         idLaboratorio={idLaboratorio}
                         // idUsuario={user.idUsuario}
-                        idUsuario={idUsuario}
+                        idUsuario={informacion.usuario.idUsuario}
                         tableHeaders={tableHeaders}
                         useHook={useEnsayosUsuario}
                         setComponentRef={setComponentRef}
@@ -143,7 +117,7 @@ function EnlaceRadio() {
                   exportToProfe={useEnsayos}
                   idLaboratorio={idLaboratorio}
                   // idUsuario={user.idUsuario}
-                  idUsuario={idUsuario}
+                  idUsuario={informacion.usuario.idUsuario}
                   esProfesor={esProfesor}
                   filename={'ensayos-radio'}
                   componentRef={componentRef}
