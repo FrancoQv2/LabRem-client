@@ -11,9 +11,11 @@ const title = 'Laboratorios Remotos'
 
 function NavigationBar() {
   const user = useContext(UserContext)
-  const { info } = useContext(InfoContext)
+  // const { info } = useContext(InfoContext)
+  // console.log(info)
   console.log('NavBar')
-  console.log(info)
+  const values = localStorage.getItem('decodedToken')
+  console.log(values)
 
   return (
     <Navbar className='bg-light'>

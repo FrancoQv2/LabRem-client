@@ -33,7 +33,7 @@ function EnlaceRadio() {
   const idLaboratorio = 2
   // const idUsuario = 2
   const { idUsuario, esProfesor } = useContext(UserContext)
-  const { info, setInfo } = useContext(InfoContext)
+  // const { info, setInfo } = useContext(InfoContext)
 
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
@@ -64,12 +64,12 @@ function EnlaceRadio() {
     // console.log(decodedToken)
     localStorage.setItem('token', token)
     localStorage.setItem('decodedToken', JSON.stringify(decodedToken))
-    setInfo(decodedToken)
+    // setInfo(decodedToken)
   }
-  const values = localStorage.getItem('decodedToken')
+  // const values = localStorage.getItem('decodedToken')
   // setInfo(values.usuario)
-  console.log(values)
-  console.log(info)
+  // console.log(values)
+  // console.log(info)
 
   /**
    * -----------------------------------------------------
