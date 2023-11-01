@@ -14,7 +14,7 @@ function NavigationBar() {
   // const { info } = useContext(InfoContext)
   // console.log(info)
   console.log('NavBar')
-  const token = localStorage.getItem('decodedToken')
+  const token = JSON.parse(localStorage.getItem('decodedToken'))
   console.log(token)
 
   return (
