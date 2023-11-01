@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react'
 import { UserContext } from '@context/UserContext'
-import { InfoContext } from '@context/InfoContext.js'
 
 import Container from 'react-bootstrap/Container'
 import Card from 'react-bootstrap/Card'
@@ -31,39 +30,39 @@ import { jwtDecode } from 'jwt-decode'
  *
  */
 function EnlaceWifi() {
+  const URL_CAMARA = import.meta.env.VITE_CAMERA_TELECO_WIFI
+  // const URL_ANTENA_TELECO_WIFI = `${import.meta.env.VITE_URL_LABREM}/api/teleco/wifi/bullet`
   const idLaboratorio = 1
-  const { idUsuario, esProfesor } = useContext(UserContext)
+  const { esProfesor } = useContext(UserContext)
 
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
+  const [componentRef, setComponentRef] = useState({})
 
   const onClickTabs = () => {
     setShowForm(!showForm)
     setShowResults(!showResults)
   }
 
-  const [componentRef, setComponentRef] = useState({})
-
-  const URL_CAMARA = import.meta.env.VITE_CAMERA_TELECO_WIFI
-  // const URL_ANTENA_TELECO_WIFI = `${import.meta.env.VITE_URL_LABREM}/api/teleco/wifi/bullet`
-
   // Obtencion y decodificacion de token por parametro URL
   const location = useLocation()
-  console.log(location)
   const token = new URLSearchParams(location.search).get('token')
 
-  let decodedToken
+  let informacion
   if (!token) {
     console.log('Token no encontrado en la URL')
   } else {
     try {
-      decodedToken = jwtDecode(token)
+      informacion = jwtDecode(token)
     } catch (error) {
       console.error('Error al decodificar el token:', error)
     }
-    console.log(decodedToken)
     localStorage.setItem('token', token)
-    localStorage.setItem('decodedToken', JSON.stringify(decodedToken))
+    localStorage.setItem('informacion', JSON.stringify(informacion))
+
+    // Elimina el parámetro 'token' de la URL
+    const baseURL = window.location.pathname
+    window.history.replaceState({}, document.title, baseURL)
   }
 
   /**
@@ -84,7 +83,6 @@ function EnlaceWifi() {
       <Row className='m-2 d-flex justify-content-center'>
         <Col sm={12} lg={6}>
           <LabVideoStreaming streamUrl={URL_CAMARA} className='m-2' />
-          {/* <VideoPlayer camera_url={URL_CAMARA} /> */}
           <hr />
           {/* <Row sm={12} lg={12} className="mx-0 my-1">
             <WiFiSignalStrength antennaUrl={URL_ANTENA_TELECO_WIFI}/>
@@ -101,7 +99,7 @@ function EnlaceWifi() {
               {showForm ? (
                 <Card id='lab-form'>
                   <Card.Body>
-                    <FormWifi idUsuario={idUsuario} />
+                    <FormWifi idUsuario={informacion.usuario.idUsuario} />
                   </Card.Body>
                 </Card>
               ) : null}
@@ -111,7 +109,7 @@ function EnlaceWifi() {
                   <Card.Body>
                     <TableQueryPaginated
                       idLaboratorio={idLaboratorio}
-                      idUsuario={idUsuario}
+                      idUsuario={informacion.usuario.idUsuario}
                       tableHeaders={tableHeaders}
                       useHook={useEnsayosUsuario}
                       setComponentRef={setComponentRef}
@@ -126,7 +124,7 @@ function EnlaceWifi() {
                 useHook={useEnsayosUsuario}
                 exportToProfe={useEnsayos}
                 idLaboratorio={idLaboratorio}
-                idUsuario={idUsuario}
+                idUsuario={informacion.usuario.idUsuario}
                 esProfesor={esProfesor}
                 filename={'ensayos-wifi'}
                 componentRef={componentRef}

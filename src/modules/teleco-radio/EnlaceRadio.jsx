@@ -101,7 +101,6 @@ function EnlaceRadio() {
                     <Card.Body>
                       <TableQueryPaginated
                         idLaboratorio={idLaboratorio}
-                        // idUsuario={user.idUsuario}
                         idUsuario={informacion.usuario.idUsuario}
                         tableHeaders={tableHeaders}
                         useHook={useEnsayosUsuario}
@@ -117,7 +116,6 @@ function EnlaceRadio() {
                   useHook={useEnsayosUsuario}
                   exportToProfe={useEnsayos}
                   idLaboratorio={idLaboratorio}
-                  // idUsuario={user.idUsuario}
                   idUsuario={informacion.usuario.idUsuario}
                   esProfesor={esProfesor}
                   // esProfesor={informacion.usuario.rol[0].rol}
