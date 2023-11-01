@@ -10,22 +10,9 @@ import logoUNT from '@assets/logoUNT.png'
 const title = 'Laboratorios Remotos'
 
 function NavigationBar() {
-  // const user = useContext(UserContext)
-  // const { info } = useContext(InfoContext)
-  // console.log(info)
   console.log('NavBar')
-  // const token = useMemo(() => JSON.parse(localStorage.getItem('decodedToken')), [])
-
-  // const [token, setToken] = useState({})
-
-  // let token
-  // try {
-  // token = JSON.parse(localStorage.getItem('decodedToken'))
   const informacion = JSON.parse(localStorage.getItem('decodedToken'))
   console.log(informacion)
-  // } catch (error) {
-  //   console.log('Aun no hay token cargado')
-  // }
 
   return (
     <Navbar className='bg-light'>
