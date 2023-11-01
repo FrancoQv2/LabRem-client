@@ -43,7 +43,6 @@ function EnlaceRadio() {
 
   // Obtencion y decodificacion de token por parametro URL
   const location = useLocation()
-  console.log(location)
   let token
   try {
     token = new URLSearchParams(location.search).get('token')
@@ -66,7 +65,6 @@ function EnlaceRadio() {
     // Elimina el parámetro 'token' de la URL
     setTimeout(() => {
       const baseURL = window.location.pathname
-      console.log(window.location)
       window.history.replaceState({}, document.title, baseURL)
     }, 200)
   }

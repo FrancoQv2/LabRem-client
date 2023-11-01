@@ -8,7 +8,6 @@ import Col from 'react-bootstrap/Col'
 
 import LabInformation from '@components/common/LabInformation'
 import LabVideoStreaming from '@components/common/LabVideoStreaming'
-// import VideoPlayer from '@components/common/VideoPlayer'
 
 import FormHeader from '@components/_form/FormHeader'
 import FormWifi from './FormWifi'
@@ -46,11 +45,16 @@ function EnlaceWifi() {
 
   // Obtencion y decodificacion de token por parametro URL
   const location = useLocation()
-  const token = new URLSearchParams(location.search).get('token')
+  let token
+  try {
+    token = new URLSearchParams(location.search).get('token')
+  } catch (error) {
+    console.log('Token no encontrado en la URL, se busca en localStorage')
+  }
 
   let informacion
   if (!token) {
-    console.log('Token no encontrado en la URL')
+    informacion = JSON.parse(localStorage.getItem('informacion'))
   } else {
     try {
       informacion = jwtDecode(token)
@@ -61,8 +65,10 @@ function EnlaceWifi() {
     localStorage.setItem('informacion', JSON.stringify(informacion))
 
     // Elimina el parámetro 'token' de la URL
-    const baseURL = window.location.pathname
-    window.history.replaceState({}, document.title, baseURL)
+    setTimeout(() => {
+      const baseURL = window.location.pathname
+      window.history.replaceState({}, document.title, baseURL)
+    }, 200)
   }
 
   /**
