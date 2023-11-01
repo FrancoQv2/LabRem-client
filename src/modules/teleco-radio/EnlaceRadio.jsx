@@ -78,7 +78,7 @@ function EnlaceRadio() {
    */
   return (
     <>
-      <NavigationBar />
+      {/* <NavigationBar /> */}
 
       <Container className='justify-content-center align-items-center my-4 border border-dark rounded'>
         <LabInformation
