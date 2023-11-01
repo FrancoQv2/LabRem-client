@@ -58,8 +58,8 @@ function EnlaceRadio() {
     localStorage.setItem('informacion', JSON.stringify(informacion))
 
     // Elimina el parámetro 'token' de la URL
-    // const baseURL = window.location.pathname
-    // window.history.replaceState({}, document.title, baseURL)
+    const baseURL = window.location.pathname
+    window.history.replaceState({}, document.title, baseURL)
   }
 
   /**
@@ -68,63 +68,65 @@ function EnlaceRadio() {
    * -----------------------------------------------------
    */
   return (
-    <Container className='justify-content-center align-items-center my-4 border border-dark rounded'>
-      <LabInformation
-        imagen={imgRadio}
-        idLaboratorio={idLaboratorio}
-        useInfoLaboratorio={useInfoLaboratorio}
-      ></LabInformation>
-      <hr />
+    <>
+      <Container className='justify-content-center align-items-center my-4 border border-dark rounded'>
+        <LabInformation
+          imagen={imgRadio}
+          idLaboratorio={idLaboratorio}
+          useInfoLaboratorio={useInfoLaboratorio}
+        ></LabInformation>
+        <hr />
 
-      <Row className='m-2 d-flex justify-content-center'>
-        <Col sm={12} lg={5}>
-          <LabVideoStreaming streamUrl={URL_CAMARA} className='m-2' />
-        </Col>
+        <Row className='m-2 d-flex justify-content-center'>
+          <Col sm={12} lg={5}>
+            <LabVideoStreaming streamUrl={URL_CAMARA} className='m-2' />
+          </Col>
 
-        <Col sm={12} lg={7}>
-          <Card>
-            <FormHeader onClickTabs={onClickTabs} showForm={showForm} showResults={showResults} />
+          <Col sm={12} lg={7}>
+            <Card>
+              <FormHeader onClickTabs={onClickTabs} showForm={showForm} showResults={showResults} />
 
-            <Card.Body>
-              {showForm ? (
-                <Card id='lab-form'>
-                  <Card.Body>
-                    <FormRadio idUsuario={informacion.usuario.idUsuario} />
-                  </Card.Body>
-                </Card>
-              ) : null}
+              <Card.Body>
+                {showForm ? (
+                  <Card id='lab-form'>
+                    <Card.Body>
+                      <FormRadio idUsuario={informacion.usuario.idUsuario} />
+                    </Card.Body>
+                  </Card>
+                ) : null}
 
-              {showResults ? (
-                <Card id='lab-results'>
-                  <Card.Body>
-                    <TableQueryPaginated
-                      idLaboratorio={idLaboratorio}
-                      idUsuario={informacion.usuario.idUsuario}
-                      tableHeaders={tableHeaders}
-                      useHook={useEnsayosUsuario}
-                      setComponentRef={setComponentRef}
-                    />
-                  </Card.Body>
-                </Card>
-              ) : null}
-            </Card.Body>
+                {showResults ? (
+                  <Card id='lab-results'>
+                    <Card.Body>
+                      <TableQueryPaginated
+                        idLaboratorio={idLaboratorio}
+                        idUsuario={informacion.usuario.idUsuario}
+                        tableHeaders={tableHeaders}
+                        useHook={useEnsayosUsuario}
+                        setComponentRef={setComponentRef}
+                      />
+                    </Card.Body>
+                  </Card>
+                ) : null}
+              </Card.Body>
 
-            <Card.Footer>
-              <ExportResults
-                useHook={useEnsayosUsuario}
-                exportToProfe={useEnsayos}
-                idLaboratorio={idLaboratorio}
-                idUsuario={informacion.usuario.idUsuario}
-                esProfesor={esProfesor}
-                // esProfesor={informacion.usuario.rol[0].rol}
-                filename={'ensayos-radio'}
-                componentRef={componentRef}
-              />
-            </Card.Footer>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+              <Card.Footer>
+                <ExportResults
+                  useHook={useEnsayosUsuario}
+                  exportToProfe={useEnsayos}
+                  idLaboratorio={idLaboratorio}
+                  idUsuario={informacion.usuario.idUsuario}
+                  esProfesor={esProfesor}
+                  // esProfesor={informacion.usuario.rol[0].rol}
+                  filename={'ensayos-radio'}
+                  componentRef={componentRef}
+                />
+              </Card.Footer>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </>
   )
 }
 
