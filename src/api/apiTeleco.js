@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_TELECO = `${import.meta.env.VITE_URL_DOMAIN}:3033/api/teleco`
+const API_TELECO = `${import.meta.env.VITE_URL_LABREM}/api/teleco`
 
 // -----------------------------------------------------
 // Laboratorios - Teleco

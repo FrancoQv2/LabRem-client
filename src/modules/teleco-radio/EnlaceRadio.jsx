@@ -80,10 +80,8 @@ function EnlaceRadio() {
     } catch (error) {
       console.error('Error al decodificar el token:', error)
     }
-    // console.log(decodedToken)
     localStorage.setItem('token', token)
     localStorage.setItem('decodedToken', JSON.stringify(decodedToken))
-    // setInfo(decodedToken)
   }
 
   /**

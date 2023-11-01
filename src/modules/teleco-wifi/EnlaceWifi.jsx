@@ -45,7 +45,7 @@ function EnlaceWifi() {
   const [componentRef, setComponentRef] = useState({})
 
   const URL_CAMARA = import.meta.env.VITE_CAMERA_TELECO_WIFI
-  // const URL_ANTENA_TELECO_WIFI = `${import.meta.env.VITE_URL_DOMAIN}:3033/api/teleco/wifi/bullet`
+  // const URL_ANTENA_TELECO_WIFI = `${import.meta.env.VITE_URL_LABREM}/api/teleco/wifi/bullet`
 
   // Obtencion y decodificacion de token por parametro URL
   const location = useLocation()
