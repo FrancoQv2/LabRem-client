@@ -58,8 +58,10 @@ function EnlaceRadio() {
     localStorage.setItem('informacion', JSON.stringify(informacion))
 
     // Elimina el parámetro 'token' de la URL
-    const baseURL = window.location.pathname
-    window.history.replaceState({}, document.title, baseURL)
+    setTimeout(() => {
+      const baseURL = window.location.pathname
+      window.history.replaceState({}, document.title, baseURL)
+    }, 500)
   }
 
   /**
