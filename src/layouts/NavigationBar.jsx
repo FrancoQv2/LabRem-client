@@ -1,4 +1,4 @@
-import { useContext, useMemo } from 'react'
+import { useContext, useMemo, useState } from 'react'
 // import { UserContext } from '@context/UserContext'
 // import { InfoContext } from '@context/InfoContext'
 
@@ -16,9 +16,13 @@ function NavigationBar() {
   console.log('NavBar')
   // const token = useMemo(() => JSON.parse(localStorage.getItem('decodedToken')), [])
 
+  // const [token, setToken] = useState({})
+
   let token
   try {
-    token = JSON.parse(localStorage.getItem('decodedToken'))
+    while (!token) {
+      token = JSON.parse(localStorage.getItem('decodedToken'))
+    }
     console.log(token)
   } catch (error) {
     console.log('Aun no hay token cargado')
