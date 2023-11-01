@@ -49,7 +49,7 @@ function EnlaceRadio() {
 
   // Obtencion y decodificacion de token por parametro URL
   const location = useLocation()
-  console.log(location)
+  // console.log(location)
   const token = new URLSearchParams(location.search).get('token')
 
   let decodedToken
@@ -61,12 +61,14 @@ function EnlaceRadio() {
     } catch (error) {
       console.error('Error al decodificar el token:', error)
     }
-    console.log(decodedToken)
+    // console.log(decodedToken)
     localStorage.setItem('token', token)
     localStorage.setItem('decodedToken', JSON.stringify(decodedToken))
+    setInfo(decodedToken)
   }
   const values = localStorage.getItem('decodedToken')
-  setInfo(values.usuario)
+  // setInfo(values.usuario)
+  console.log(values)
   console.log(info)
 
   /**

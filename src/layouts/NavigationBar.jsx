@@ -12,6 +12,7 @@ const title = 'Laboratorios Remotos'
 function NavigationBar() {
   const user = useContext(UserContext)
   const { info } = useContext(InfoContext)
+  console.log('NavBar')
   console.log(info)
 
   return (
