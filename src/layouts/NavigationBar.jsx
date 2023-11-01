@@ -8,19 +8,19 @@ import logoUNT from '@assets/logoUNT.png'
 const title = 'Laboratorios Remotos'
 
 function NavigationBar() {
-  console.log('NavBar')
   // const informacion = JSON.parse(localStorage.getItem('informacion'))
   // console.log(informacion)
 
   const [informacion, setInformacion] = useState(null)
 
   useEffect(() => {
+    console.log('useEffect')
     setTimeout(() => {
       const value = localStorage.getItem('informacion')
       setInformacion(value)
       console.log(informacion)
-    }, 100)
-  }, [])
+    }, 200)
+  }, [informacion])
 
   return (
     <Navbar className='bg-light'>
