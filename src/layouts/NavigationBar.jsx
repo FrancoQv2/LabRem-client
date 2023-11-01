@@ -14,10 +14,13 @@ function NavigationBar() {
   // const { info } = useContext(InfoContext)
   // console.log(info)
   console.log('NavBar')
-  // const token = JSON.parse(localStorage.getItem('decodedToken'))
+  // const token = useMemo(() => JSON.parse(localStorage.getItem('decodedToken')), [])
 
-  const token = useMemo(() => JSON.parse(localStorage.getItem('decodedToken')), [])
-  console.log(token)
+  let token
+  try {
+    token = JSON.parse(localStorage.getItem('decodedToken'))
+    console.log(token)
+  } catch (error) {}
 
   return (
     <Navbar className='bg-light'>
