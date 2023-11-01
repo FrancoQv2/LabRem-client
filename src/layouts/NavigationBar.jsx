@@ -10,15 +10,16 @@ const title = 'Laboratorios Remotos'
 function NavigationBar() {
   console.log('Navbar')
   // const informacion = JSON.parse(localStorage.getItem('informacion'))
-  // console.log(informacion)
 
   const [informacion, setInformacion] = useState(JSON.parse(localStorage.getItem('informacion')))
+  console.log(informacion)
 
   // if (localStorage.length === 0) {
   if (!informacion) {
     setTimeout(() => {
       const value = localStorage.getItem('informacion')
       setInformacion(value)
+      console.log(informacion)
     }, 100)
   }
 
