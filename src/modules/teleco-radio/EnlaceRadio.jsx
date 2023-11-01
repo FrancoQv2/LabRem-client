@@ -43,11 +43,16 @@ function EnlaceRadio() {
 
   // Obtencion y decodificacion de token por parametro URL
   const location = useLocation()
-  const token = new URLSearchParams(location.search).get('token')
+  console.log(location)
+  let token
+  try {
+    token = new URLSearchParams(location.search).get('token')
+  } catch (error) {
+    console.log('Token no encontrado en la URL, se busca en localStorage')
+  }
 
   let informacion
   if (!token) {
-    console.log('Token no encontrado en la URL, se busca en localStorage')
     informacion = JSON.parse(localStorage.getItem('informacion'))
   } else {
     try {
@@ -61,6 +66,7 @@ function EnlaceRadio() {
     // Elimina el parámetro 'token' de la URL
     setTimeout(() => {
       const baseURL = window.location.pathname
+      console.log(window.location)
       window.history.replaceState({}, document.title, baseURL)
     }, 200)
   }

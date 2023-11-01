@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
@@ -8,13 +8,8 @@ import logoUNT from '@assets/logoUNT.png'
 const title = 'Laboratorios Remotos'
 
 function NavigationBar() {
-  console.log('Navbar')
-  // const informacion = JSON.parse(localStorage.getItem('informacion'))
-
   const [informacion, setInformacion] = useState(JSON.parse(localStorage.getItem('informacion')))
-  console.log(informacion)
 
-  // if (localStorage.length === 0) {
   if (!informacion) {
     setTimeout(() => {
       const value = JSON.parse(localStorage.getItem('informacion'))
@@ -22,19 +17,6 @@ function NavigationBar() {
       console.log(informacion)
     }, 100)
   }
-
-  // useEffect(() => {
-  //   if (localStorage.length === 0) {
-  //     setTimeout(() => {
-  //       const value = localStorage.getItem('informacion')
-  //       setInformacion(value)
-  //     }, 100)
-  //   } else {
-  //     const value = localStorage.getItem('informacion')
-  //     setInformacion(value)
-  //   }
-  //   console.log(informacion)
-  // }, [])
 
   return (
     <Navbar className='bg-light'>
