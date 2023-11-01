@@ -29,8 +29,9 @@ function App() {
     esProfesor: false
   }
 
-  const [info, setInfo] = useState({})
-  const value = { info, setInfo }
+  window.addEventListener('beforeunload', () => {
+    localStorage.clear()
+  })
 
   return (
     <BrowserRouter>
