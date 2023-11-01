@@ -20,7 +20,9 @@ function NavigationBar() {
   try {
     token = JSON.parse(localStorage.getItem('decodedToken'))
     console.log(token)
-  } catch (error) {}
+  } catch (error) {
+    console.log('Aun no hay token cargado')
+  }
 
   return (
     <Navbar className='bg-light'>
