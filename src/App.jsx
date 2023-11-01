@@ -29,8 +29,23 @@ function App() {
     esProfesor: false
   }
 
-  window.addEventListener('beforeunload', () => {
-    localStorage.clear()
+  // window.addEventListener('beforeunload', () => {
+  //   localStorage.clear()
+  // })
+
+  let isPageReloaded = false
+
+  window.addEventListener('beforeunload', (event) => {
+    if (isPageReloaded) {
+      // La página se recargó, no limpies el localStorage
+    } else {
+      // La página se cierra o el usuario va hacia atrás, limpia el localStorage
+      localStorage.clear()
+    }
+  })
+
+  window.addEventListener('load', () => {
+    isPageReloaded = true
   })
 
   return (
