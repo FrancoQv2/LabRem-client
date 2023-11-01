@@ -28,6 +28,7 @@ import { jwtDecode } from 'jwt-decode'
  *
  */
 function LentesDivergentes() {
+  console.log('LentesDivergentes')
   const URL_CAMARA = import.meta.env.VITE_CAMERA_FISICA_DIV
   const idLaboratorio = 2
   const { esProfesor } = useContext(UserContext)
