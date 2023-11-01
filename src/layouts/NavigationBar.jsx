@@ -14,8 +14,8 @@ function NavigationBar() {
   // const { info } = useContext(InfoContext)
   // console.log(info)
   console.log('NavBar')
-  const values = localStorage.getItem('decodedToken')
-  console.log(values)
+  const token = localStorage.getItem('decodedToken')
+  console.log(token)
 
   return (
     <Navbar className='bg-light'>
@@ -27,8 +27,8 @@ function NavigationBar() {
         <Navbar.Toggle />
         <Navbar.Collapse className='justify-content-end'>
           <Navbar.Text>
-            <b>{user.nombreApellido}</b>
-            {/* <b>{`${info.nombre} ${info.apellido}`}</b> */}
+            {/* <b>{user.nombreApellido}</b> */}
+            <b>{`${token.usuario.nombre} ${token.usuario.apellido}`}</b>
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>
