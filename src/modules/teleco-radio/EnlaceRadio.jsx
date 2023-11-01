@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useMemo } from 'react'
 import { UserContext } from '@context/UserContext'
 import { InfoContext } from '@context/InfoContext.js'
 
@@ -30,6 +30,9 @@ import NavigationBar from '@layouts/NavigationBar'
  *
  */
 function EnlaceRadio() {
+  const location = useLocation()
+  const token = new URLSearchParams(location.search).get('token')
+
   const idLaboratorio = 2
   // const idUsuario = 2
   const { idUsuario, esProfesor } = useContext(UserContext)
@@ -37,6 +40,23 @@ function EnlaceRadio() {
 
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
+
+  const userData = useMemo(() => {
+    let decodedToken
+    if (!token) {
+      console.log('Token no encontrado en la URL')
+    } else {
+      try {
+        decodedToken = jwtDecode(token)
+      } catch (error) {
+        console.error('Error al decodificar el token:', error)
+      }
+      localStorage.setItem('token', token)
+      localStorage.setItem('decodedToken', JSON.stringify(decodedToken))
+      return decodedToken
+    }
+    // JSON.parse(localStorage.getItem('decodedToken'))
+  }, [token])
 
   const onClickTabs = () => {
     setShowForm(!showForm)
@@ -47,29 +67,25 @@ function EnlaceRadio() {
 
   const URL_CAMARA = import.meta.env.VITE_CAMERA_TELECO_RADIO
 
-  // Obtencion y decodificacion de token por parametro URL
-  const location = useLocation()
-  // console.log(location)
-  const token = new URLSearchParams(location.search).get('token')
+  // // Obtencion y decodificacion de token por parametro URL
+  // const location = useLocation()
+  // // console.log(location)
+  // const token = new URLSearchParams(location.search).get('token')
 
-  let decodedToken
-  if (!token) {
-    console.log('Token no encontrado en la URL')
-  } else {
-    try {
-      decodedToken = jwtDecode(token)
-    } catch (error) {
-      console.error('Error al decodificar el token:', error)
-    }
-    // console.log(decodedToken)
-    localStorage.setItem('token', token)
-    localStorage.setItem('decodedToken', JSON.stringify(decodedToken))
-    // setInfo(decodedToken)
-  }
-  // const values = localStorage.getItem('decodedToken')
-  // setInfo(values.usuario)
-  // console.log(values)
-  // console.log(info)
+  // let decodedToken
+  // if (!token) {
+  //   console.log('Token no encontrado en la URL')
+  // } else {
+  //   try {
+  //     decodedToken = jwtDecode(token)
+  //   } catch (error) {
+  //     console.error('Error al decodificar el token:', error)
+  //   }
+  //   // console.log(decodedToken)
+  //   localStorage.setItem('token', token)
+  //   localStorage.setItem('decodedToken', JSON.stringify(decodedToken))
+  //   // setInfo(decodedToken)
+  // }
 
   /**
    * -----------------------------------------------------
@@ -78,7 +94,7 @@ function EnlaceRadio() {
    */
   return (
     <>
-      {/* <NavigationBar /> */}
+      <NavigationBar userData={userData} />
 
       <Container className='justify-content-center align-items-center my-4 border border-dark rounded'>
         <LabInformation

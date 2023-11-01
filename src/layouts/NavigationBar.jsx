@@ -9,24 +9,23 @@ import logoUNT from '@assets/logoUNT.png'
 
 const title = 'Laboratorios Remotos'
 
-function NavigationBar() {
+function NavigationBar({ userData }) {
   // const user = useContext(UserContext)
   // const { info } = useContext(InfoContext)
   // console.log(info)
   console.log('NavBar')
+  console.log(userData)
   // const token = useMemo(() => JSON.parse(localStorage.getItem('decodedToken')), [])
 
   // const [token, setToken] = useState({})
 
-  let token
-  try {
-    while (!token) {
-      token = JSON.parse(localStorage.getItem('decodedToken'))
-    }
-    console.log(token)
-  } catch (error) {
-    console.log('Aun no hay token cargado')
-  }
+  // let token
+  // try {
+  //   token = JSON.parse(localStorage.getItem('decodedToken'))
+  //   console.log(token)
+  // } catch (error) {
+  //   console.log('Aun no hay token cargado')
+  // }
 
   return (
     <Navbar className='bg-light'>
@@ -39,7 +38,8 @@ function NavigationBar() {
         <Navbar.Collapse className='justify-content-end'>
           <Navbar.Text>
             {/* <b>{user.nombreApellido}</b> */}
-            {token ? <b>{`${token.usuario.nombre} ${token.usuario.apellido}`}</b> : null}
+            {/* {token ? <b>{`${token.usuario.nombre} ${token.usuario.apellido}`}</b> : null} */}
+            <b>{`${userData.usuario.nombre} ${userData.usuario.apellido}`}</b>
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>
