@@ -35,7 +35,7 @@ function NavigationBar() {
         <Navbar.Collapse className='justify-content-end'>
           <Navbar.Text>
             {/* <b>{user.nombreApellido}</b> */}
-            <b>{`${token.usuario.nombre} ${token.usuario.apellido}`}</b>
+            {token ? <b>{`${token.usuario.nombre} ${token.usuario.apellido}`}</b> : null}
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>
