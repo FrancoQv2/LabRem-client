@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { UserContext } from '@context/UserContext.js'
 
@@ -29,12 +28,7 @@ function App() {
     esProfesor: false
   }
 
-  // window.addEventListener('beforeunload', () => {
-  //   localStorage.clear()
-  // })
-
   let isPageReloaded = false
-
   window.addEventListener('beforeunload', (event) => {
     if (isPageReloaded) {
       // La página se recargó, no limpies el localStorage
@@ -43,7 +37,6 @@ function App() {
       localStorage.clear()
     }
   })
-
   window.addEventListener('load', () => {
     isPageReloaded = true
   })

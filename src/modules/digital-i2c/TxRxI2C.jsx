@@ -30,7 +30,7 @@ import { jwtDecode } from 'jwt-decode'
 function TxRxI2C() {
   const URL_CAMARA = import.meta.env.VITE_CAMERA_DIGITAL_I2C
   const idLaboratorio = 2
-  const { idUsuario, esProfesor } = useContext(UserContext)
+  const { esProfesor } = useContext(UserContext)
 
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
@@ -96,7 +96,7 @@ function TxRxI2C() {
               {showForm ? (
                 <Card id='lab-form'>
                   <Card.Body>
-                    <FormI2C idUsuario={idUsuario} />
+                    <FormI2C idUsuario={informacion.usuario.idUsuario} />
                   </Card.Body>
                 </Card>
               ) : null}
@@ -107,7 +107,7 @@ function TxRxI2C() {
                     <Card.Title>Ensayos realizados</Card.Title>
                     <TableQueryPaginated
                       idLaboratorio={idLaboratorio}
-                      idUsuario={idUsuario}
+                      idUsuario={informacion.usuario.idUsuario}
                       tableHeaders={tableHeaders}
                       useHook={useEnsayosUsuario}
                       setComponentRef={setComponentRef}
@@ -122,7 +122,7 @@ function TxRxI2C() {
                 useHook={useEnsayosUsuario}
                 exportToProfe={useEnsayos}
                 idLaboratorio={idLaboratorio}
-                idUsuario={idUsuario}
+                idUsuario={informacion.usuario.idUsuario}
                 Prof={esProfesor}
                 filename={'ensayos-i2c'}
                 componentRef={componentRef}

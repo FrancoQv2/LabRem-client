@@ -21,12 +21,16 @@ import { headersPosicion as tableHeaders } from '@libs/tableHeaders'
 
 import image from '@assets/posicion.jpg'
 
+import { useLocation } from 'react-router-dom'
+import { jwtDecode } from 'jwt-decode'
+
 /**
  *
  */
 function Posicion() {
+  const URL_CAMARA = import.meta.env.VITE_CAMERA_CONTROL_POS
   const idLaboratorio = 2
-  const { idUsuario, esProfesor } = useContext(UserContext)
+  const { esProfesor } = useContext(UserContext)
 
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
@@ -37,7 +41,33 @@ function Posicion() {
     setShowResults(!showResults)
   }
 
-  const URL_CAMARA = import.meta.env.VITE_CAMERA_CONTROL_POS
+  // Obtencion y decodificacion de token por parametro URL
+  const location = useLocation()
+  let token
+  try {
+    token = new URLSearchParams(location.search).get('token')
+  } catch (error) {
+    console.log('Token no encontrado en la URL, se busca en localStorage')
+  }
+
+  let informacion
+  if (!token) {
+    informacion = JSON.parse(localStorage.getItem('informacion'))
+  } else {
+    try {
+      informacion = jwtDecode(token)
+    } catch (error) {
+      console.error('Error al decodificar el token:', error)
+    }
+    localStorage.setItem('token', token)
+    localStorage.setItem('informacion', JSON.stringify(informacion))
+
+    // Elimina el parámetro 'token' de la URL
+    setTimeout(() => {
+      const baseURL = window.location.pathname
+      window.history.replaceState({}, document.title, baseURL)
+    }, 200)
+  }
 
   /**
    * -----------------------------------------------------
@@ -66,7 +96,7 @@ function Posicion() {
               {showForm ? (
                 <Card id='lab-form'>
                   <Card.Body>
-                    <FormPosicion idUsuario={idUsuario} />
+                    <FormPosicion idUsuario={informacion.usuario.idUsuario} />
                   </Card.Body>
                 </Card>
               ) : null}
@@ -77,7 +107,7 @@ function Posicion() {
                     <Card.Title>Ensayos realizados</Card.Title>
                     <TableQueryPaginated
                       idLaboratorio={idLaboratorio}
-                      idUsuario={idUsuario}
+                      idUsuario={informacion.usuario.idUsuario}
                       tableHeaders={tableHeaders}
                       useHook={useEnsayosUsuario}
                       setComponentRef={setComponentRef}
@@ -92,7 +122,7 @@ function Posicion() {
                 useHook={useEnsayosUsuario}
                 exportToProfe={useEnsayos}
                 idLaboratorio={idLaboratorio}
-                idUsuario={idUsuario}
+                idUsuario={informacion.usuario.idUsuario}
                 Prof={esProfesor}
                 filename={'ensayos-Posicion'}
                 componentRef={componentRef}

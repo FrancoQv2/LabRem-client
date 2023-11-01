@@ -21,12 +21,16 @@ import { headersDivergentes as tableHeaders } from '@libs/tableHeaders'
 
 import imgDiv from '@assets/lente-divergente.png'
 
+import { useLocation } from 'react-router-dom'
+import { jwtDecode } from 'jwt-decode'
+
 /**
  *
  */
 function LentesDivergentes() {
+  const URL_CAMARA = import.meta.env.VITE_CAMERA_FISICA_DIV
   const idLaboratorio = 2
-  const { idUsuario, esProfesor } = useContext(UserContext)
+  const { esProfesor } = useContext(UserContext)
 
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
@@ -37,7 +41,33 @@ function LentesDivergentes() {
     setShowResults(!showResults)
   }
 
-  const URL_CAMARA = import.meta.env.VITE_CAMERA_FISICA_CONV
+  // Obtencion y decodificacion de token por parametro URL
+  const location = useLocation()
+  let token
+  try {
+    token = new URLSearchParams(location.search).get('token')
+  } catch (error) {
+    console.log('Token no encontrado en la URL, se busca en localStorage')
+  }
+
+  let informacion
+  if (!token) {
+    informacion = JSON.parse(localStorage.getItem('informacion'))
+  } else {
+    try {
+      informacion = jwtDecode(token)
+    } catch (error) {
+      console.error('Error al decodificar el token:', error)
+    }
+    localStorage.setItem('token', token)
+    localStorage.setItem('informacion', JSON.stringify(informacion))
+
+    // Elimina el parámetro 'token' de la URL
+    setTimeout(() => {
+      const baseURL = window.location.pathname
+      window.history.replaceState({}, document.title, baseURL)
+    }, 200)
+  }
 
   /**
    * -----------------------------------------------------
@@ -66,7 +96,7 @@ function LentesDivergentes() {
               {showForm ? (
                 <Card id='lab-form'>
                   <Card.Body>
-                    <FormDivergentes idUsuario={idUsuario} />
+                    <FormDivergentes idUsuario={informacion.usuario.idUsuario} />
                   </Card.Body>
                 </Card>
               ) : null}
@@ -76,7 +106,7 @@ function LentesDivergentes() {
                   <Card.Body>
                     <TableQueryPaginated
                       idLaboratorio={idLaboratorio}
-                      idUsuario={idUsuario}
+                      idUsuario={informacion.usuario.idUsuario}
                       tableHeaders={tableHeaders}
                       useHook={useEnsayosUsuario}
                       setComponentRef={setComponentRef}
@@ -90,7 +120,7 @@ function LentesDivergentes() {
               <ExportResults
                 useHook={useEnsayosUsuario}
                 idLaboratorio={idLaboratorio}
-                idUsuario={idUsuario}
+                idUsuario={informacion.usuario.idUsuario}
                 componentRef={componentRef}
                 filename={'ensayos-divergentes'}
                 Prof={esProfesor}

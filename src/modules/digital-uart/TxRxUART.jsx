@@ -21,12 +21,16 @@ import { headersUART as tableHeaders } from '@libs/tableHeaders'
 
 import imgUART from '@assets/uart.png'
 
+import { useLocation } from 'react-router-dom'
+import { jwtDecode } from 'jwt-decode'
+
 /**
  *
  */
 function TxRxUART() {
+  const URL_CAMARA = import.meta.env.VITE_CAMERA_DIGITAL_UART
   const idLaboratorio = 1
-  const { idUsuario, esProfesor } = useContext(UserContext)
+  const { esProfesor } = useContext(UserContext)
 
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
@@ -37,7 +41,33 @@ function TxRxUART() {
     setShowResults(!showResults)
   }
 
-  const URL_CAMARA = import.meta.env.VITE_CAMERA_DIGITAL_UART
+  // Obtencion y decodificacion de token por parametro URL
+  const location = useLocation()
+  let token
+  try {
+    token = new URLSearchParams(location.search).get('token')
+  } catch (error) {
+    console.log('Token no encontrado en la URL, se busca en localStorage')
+  }
+
+  let informacion
+  if (!token) {
+    informacion = JSON.parse(localStorage.getItem('informacion'))
+  } else {
+    try {
+      informacion = jwtDecode(token)
+    } catch (error) {
+      console.error('Error al decodificar el token:', error)
+    }
+    localStorage.setItem('token', token)
+    localStorage.setItem('informacion', JSON.stringify(informacion))
+
+    // Elimina el parámetro 'token' de la URL
+    setTimeout(() => {
+      const baseURL = window.location.pathname
+      window.history.replaceState({}, document.title, baseURL)
+    }, 200)
+  }
 
   /**
    * -----------------------------------------------------
@@ -66,7 +96,7 @@ function TxRxUART() {
               {showForm ? (
                 <Card id='lab-form'>
                   <Card.Body>
-                    <FormUART idUsuario={idUsuario} />
+                    <FormUART idUsuario={informacion.usuario.idUsuario} />
                   </Card.Body>
                 </Card>
               ) : null}
@@ -76,7 +106,7 @@ function TxRxUART() {
                   <Card.Body>
                     <TableQueryPaginated
                       idLaboratorio={idLaboratorio}
-                      idUsuario={idUsuario}
+                      idUsuario={informacion.usuario.idUsuario}
                       tableHeaders={tableHeaders}
                       useHook={useEnsayosUsuario}
                       setComponentRef={setComponentRef}
@@ -91,7 +121,7 @@ function TxRxUART() {
                 useHook={useEnsayosUsuario}
                 exportToProfe={useEnsayos}
                 idLaboratorio={idLaboratorio}
-                idUsuario={idUsuario}
+                idUsuario={informacion.usuario.idUsuario}
                 Prof={esProfesor}
                 filename={'ensayos-uart'}
                 componentRef={componentRef}
