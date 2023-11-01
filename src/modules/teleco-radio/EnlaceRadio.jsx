@@ -90,7 +90,6 @@ function EnlaceRadio() {
                 {showForm ? (
                   <Card id='lab-form'>
                     <Card.Body>
-                      {/* <FormRadio idUsuario={user.idUsuario} /> */}
                       <FormRadio idUsuario={informacion.usuario.idUsuario} />
                     </Card.Body>
                   </Card>

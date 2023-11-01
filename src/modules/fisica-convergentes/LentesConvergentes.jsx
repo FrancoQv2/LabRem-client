@@ -8,7 +8,6 @@ import Col from 'react-bootstrap/Col'
 
 import LabInformation from '@components/common/LabInformation'
 import LabVideoStreaming from '@components/common/LabVideoStreaming'
-import VideoPlayer from '@components/common/VideoPlayer'
 
 import FormHeader from '@components/_form/FormHeader'
 import FormConvergentes from './FormConvergentes'
@@ -22,12 +21,16 @@ import { headersConvergentes as tableHeaders } from '@libs/tableHeaders'
 
 import imgConv from '@assets/lente-convergente.jpg'
 
+import { useLocation } from 'react-router-dom'
+import { jwtDecode } from 'jwt-decode'
+
 /**
  *
  */
 function LentesConvergentes() {
+  const URL_CAMARA = import.meta.env.VITE_CAMERA_FISICA_CONV
   const idLaboratorio = 1
-  const { idUsuario, esProfesor } = useContext(UserContext)
+  const { esProfesor } = useContext(UserContext)
 
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
@@ -38,7 +41,26 @@ function LentesConvergentes() {
     setShowResults(!showResults)
   }
 
-  const URL_CAMARA = import.meta.env.VITE_CAMERA_FISICA_DIV
+  // Obtencion y decodificacion de token por parametro URL
+  const location = useLocation()
+  const token = new URLSearchParams(location.search).get('token')
+
+  let informacion
+  if (!token) {
+    console.log('Token no encontrado en la URL')
+  } else {
+    try {
+      informacion = jwtDecode(token)
+    } catch (error) {
+      console.error('Error al decodificar el token:', error)
+    }
+    localStorage.setItem('token', token)
+    localStorage.setItem('informacion', JSON.stringify(informacion))
+
+    // Elimina el parámetro 'token' de la URL
+    const baseURL = window.location.pathname
+    window.history.replaceState({}, document.title, baseURL)
+  }
 
   /**
    * -----------------------------------------------------
@@ -57,7 +79,6 @@ function LentesConvergentes() {
       <Row className='m-2'>
         <Col sm={12} lg={5}>
           <LabVideoStreaming streamUrl={URL_CAMARA} className='m-2' />
-          {/* <VideoPlayer camera_url={URL_CAMARA} /> */}
         </Col>
 
         <Col sm={12} lg={7}>
@@ -68,7 +89,7 @@ function LentesConvergentes() {
               {showForm ? (
                 <Card id='lab-form'>
                   <Card.Body>
-                    <FormConvergentes idUsuario={idUsuario} />
+                    <FormConvergentes idUsuario={informacion.usuario.idUsuario} />
                   </Card.Body>
                 </Card>
               ) : null}
@@ -78,7 +99,7 @@ function LentesConvergentes() {
                   <Card.Body>
                     <TableQueryPaginated
                       idLaboratorio={idLaboratorio}
-                      idUsuario={idUsuario}
+                      idUsuario={informacion.usuario.idUsuario}
                       tableHeaders={tableHeaders}
                       useHook={useEnsayosUsuario}
                       setComponentRef={setComponentRef}
@@ -93,7 +114,7 @@ function LentesConvergentes() {
                 useHook={useEnsayosUsuario}
                 exportToProfe={useEnsayos}
                 idLaboratorio={idLaboratorio}
-                idUsuario={idUsuario}
+                idUsuario={informacion.usuario.idUsuario}
                 Prof={esProfesor}
                 filename={'ensayos-convergentes'}
                 componentRef={componentRef}
