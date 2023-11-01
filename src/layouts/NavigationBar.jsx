@@ -17,7 +17,7 @@ function NavigationBar() {
   // if (localStorage.length === 0) {
   if (!informacion) {
     setTimeout(() => {
-      const value = localStorage.getItem('informacion')
+      const value = JSON.parse(localStorage.getItem('informacion'))
       setInformacion(value)
       console.log(informacion)
     }, 100)
