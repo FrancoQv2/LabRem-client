@@ -21,10 +21,14 @@ import { headersI2C as tableHeaders } from '@libs/tableHeaders'
 
 import imgI2C from '@assets/i2c.webp'
 
+import { useLocation } from 'react-router-dom'
+import { jwtDecode } from 'jwt-decode'
+
 /**
  *
  */
 function TxRxI2C() {
+  const URL_CAMARA = import.meta.env.VITE_CAMERA_DIGITAL_I2C
   const idLaboratorio = 2
   const { idUsuario, esProfesor } = useContext(UserContext)
 
@@ -37,7 +41,33 @@ function TxRxI2C() {
     setShowResults(!showResults)
   }
 
-  const URL_CAMARA = import.meta.env.VITE_CAMERA_DIGITAL_I2C
+  // Obtencion y decodificacion de token por parametro URL
+  const location = useLocation()
+  let token
+  try {
+    token = new URLSearchParams(location.search).get('token')
+  } catch (error) {
+    console.log('Token no encontrado en la URL, se busca en localStorage')
+  }
+
+  let informacion
+  if (!token) {
+    informacion = JSON.parse(localStorage.getItem('informacion'))
+  } else {
+    try {
+      informacion = jwtDecode(token)
+    } catch (error) {
+      console.error('Error al decodificar el token:', error)
+    }
+    localStorage.setItem('token', token)
+    localStorage.setItem('informacion', JSON.stringify(informacion))
+
+    // Elimina el parámetro 'token' de la URL
+    setTimeout(() => {
+      const baseURL = window.location.pathname
+      window.history.replaceState({}, document.title, baseURL)
+    }, 200)
+  }
 
   /**
    * -----------------------------------------------------
