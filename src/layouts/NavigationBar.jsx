@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 
@@ -7,8 +9,18 @@ const title = 'Laboratorios Remotos'
 
 function NavigationBar() {
   console.log('NavBar')
-  const informacion = JSON.parse(localStorage.getItem('informacion'))
-  console.log(informacion)
+  // const informacion = JSON.parse(localStorage.getItem('informacion'))
+  // console.log(informacion)
+
+  const [informacion, setInformacion] = useState(null)
+
+  useEffect(() => {
+    setTimeout(() => {
+      const value = localStorage.getItem('informacion')
+      setInformacion(value)
+      console.log(informacion)
+    }, 100)
+  }, [])
 
   return (
     <Navbar className='bg-light'>

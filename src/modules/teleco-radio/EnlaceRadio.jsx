@@ -61,7 +61,7 @@ function EnlaceRadio() {
     setTimeout(() => {
       const baseURL = window.location.pathname
       window.history.replaceState({}, document.title, baseURL)
-    }, 500)
+    }, 200)
   }
 
   /**
