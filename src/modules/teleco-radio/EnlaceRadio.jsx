@@ -1,4 +1,4 @@
-import { useContext, useState, useMemo } from 'react'
+import { useContext, useState } from 'react'
 import { UserContext } from '@context/UserContext'
 
 import Container from 'react-bootstrap/Container'
@@ -29,20 +29,17 @@ import { jwtDecode } from 'jwt-decode'
  */
 function EnlaceRadio() {
   const idLaboratorio = 2
-  // const { idUsuario, esProfesor } = useContext(UserContext)
+  const URL_CAMARA = import.meta.env.VITE_CAMERA_TELECO_RADIO
   const { esProfesor } = useContext(UserContext)
 
   const [showForm, setShowForm] = useState(true)
   const [showResults, setShowResults] = useState(false)
+  const [componentRef, setComponentRef] = useState({})
 
   const onClickTabs = () => {
     setShowForm(!showForm)
     setShowResults(!showResults)
   }
-
-  const [componentRef, setComponentRef] = useState({})
-
-  const URL_CAMARA = import.meta.env.VITE_CAMERA_TELECO_RADIO
 
   // Obtencion y decodificacion de token por parametro URL
   const location = useLocation()
@@ -59,6 +56,10 @@ function EnlaceRadio() {
     }
     localStorage.setItem('token', token)
     localStorage.setItem('informacion', JSON.stringify(informacion))
+
+    // Elimina el parámetro 'token' de la URL
+    const baseURL = window.location.pathname
+    window.history.replaceState({}, document.title, baseURL)
   }
 
   /**
@@ -119,6 +120,7 @@ function EnlaceRadio() {
                   // idUsuario={user.idUsuario}
                   idUsuario={informacion.usuario.idUsuario}
                   esProfesor={esProfesor}
+                  // esProfesor={informacion.usuario.rol[0].rol}
                   filename={'ensayos-radio'}
                   componentRef={componentRef}
                 />
