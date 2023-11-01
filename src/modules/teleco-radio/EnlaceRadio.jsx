@@ -47,7 +47,8 @@ function EnlaceRadio() {
 
   let informacion
   if (!token) {
-    console.log('Token no encontrado en la URL')
+    console.log('Token no encontrado en la URL, se busca en localStorage')
+    informacion = JSON.parse(localStorage.getItem('informacion'))
   } else {
     try {
       informacion = jwtDecode(token)
