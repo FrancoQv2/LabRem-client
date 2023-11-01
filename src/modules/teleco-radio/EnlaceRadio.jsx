@@ -60,7 +60,7 @@ function EnlaceRadio() {
 
     console.log(decodedToken)
     localStorage.setItem('token', token)
-    localStorage.setItem('decodedToken', decodedToken)
+    localStorage.setItem('decodedToken', JSON.stringify(decodedToken))
   }
 
   /**
