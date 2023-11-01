@@ -7,13 +7,7 @@ const title = 'Laboratorios Remotos'
 
 function NavigationBar() {
   console.log('NavBar')
-  let informacion
-  try {
-    informacion = JSON.parse(localStorage.getItem('decodedToken'))
-  } catch (error) {
-    console.error('Error al cargar desde LocalStorage:', error)
-  }
-  // const informacion = JSON.parse(localStorage.getItem('decodedToken'))
+  const informacion = JSON.parse(localStorage.getItem('decodedToken'))
   console.log(informacion)
 
   return (
