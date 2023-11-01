@@ -8,19 +8,34 @@ import logoUNT from '@assets/logoUNT.png'
 const title = 'Laboratorios Remotos'
 
 function NavigationBar() {
-  const informacion = JSON.parse(localStorage.getItem('informacion'))
-  console.log(informacion)
+  console.log('Navbar')
+  // const informacion = JSON.parse(localStorage.getItem('informacion'))
+  // console.log(informacion)
 
-  // const [informacion, setInformacion] = useState(null)
+  const [informacion, setInformacion] = useState(null)
+
+  if (localStorage.length === 0) {
+    setTimeout(() => {
+      const value = localStorage.getItem('informacion')
+      setInformacion(value)
+    }, 100)
+  } else {
+    const value = localStorage.getItem('informacion')
+    setInformacion(value)
+  }
 
   // useEffect(() => {
-  //   console.log('useEffect')
-  //   setTimeout(() => {
+  //   if (localStorage.length === 0) {
+  //     setTimeout(() => {
+  //       const value = localStorage.getItem('informacion')
+  //       setInformacion(value)
+  //     }, 100)
+  //   } else {
   //     const value = localStorage.getItem('informacion')
   //     setInformacion(value)
-  //     console.log(informacion)
-  //   }, 200)
-  // }, [informacion])
+  //   }
+  //   console.log(informacion)
+  // }, [])
 
   return (
     <Navbar className='bg-light'>
